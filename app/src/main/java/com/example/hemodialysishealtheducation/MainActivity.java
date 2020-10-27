@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void choicepatient(View v) {
         //跳轉到病人畫面
-        String str=Account.getText().toString().trim();
+        String str=Account.getText().toString().trim().toUpperCase();
         String pas=editText.getText().toString().trim();
         Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+str+"'",null);
         if (str.trim().length()>0){
@@ -437,6 +437,11 @@ public class MainActivity extends AppCompatActivity {
         String sql = "CREATE TABLE IF NOT EXISTS Answer (result INT, patient_answer INT, question_id INT, exam_id INT,change_data INT,  PRIMARY KEY(exam_id, question_id), FOREIGN KEY(exam_id) REFERENCES Exam(exam_id)ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY(question_id) REFERENCES Question(question_id) ON DELETE SET NULL ON UPDATE CASCADE)";
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
+    }
+    public void vediotest(View v){
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this , signature.class);
+        startActivity(intent);
     }
 
 }

@@ -41,41 +41,52 @@ public class mainview extends View{
 
     public mainview(Context context, AttributeSet attrs){
         super(context, attrs);
+        Log.e("mainview","44");
         initView();
+        Log.e("mainview","46");
     }
 
     public mainview(Context context, AttributeSet attrs , int defStyleAttr){
         super(context, attrs, defStyleAttr);
+        Log.e("mainview","51");
         initView();
+        Log.e("mainview","53");
     }
 
     private void initView()
     {
+        Log.e("mainview","58");
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeWidth(10f);
         mPaint.setColor(Color.BLACK);
+        Log.e("mainview","64");
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh){
         super.onSizeChanged(w,h,oldw,oldh);
+        Log.e("mainview","70");
         canvasBitmap = Bitmap.createBitmap(getWidth(),getHeight(), Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(canvasBitmap);
         mCanvas.drawColor(Color.WHITE);
         //isDrawing = false;
+        Log.e("mainview","75");
     }
 
     @Override
     protected void onDraw(Canvas canvas){
+        Log.e("mainview","80");
         super.onDraw(canvas);
         canvas.drawBitmap(canvasBitmap,0,0,mPaint);
         canvas.drawPath(mPath,mPaint);
+        Log.e("mainview","84");
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
+        Log.e("mainview","89");
         float eventX = event.getX();
         float eventY = event.getY();
         switch(event.getAction()){
@@ -102,6 +113,7 @@ public class mainview extends View{
     }
 
     private void touchMove(MotionEvent event){
+        Log.e("mainview","116");
         final float x = event.getX();
         final float y = event.getY();
         final float previousX = endX;
@@ -160,7 +172,9 @@ public class mainview extends View{
     //\内部共享存储空间\Screenshots
     public void onclear()
     {
+        Log.e("mainview","175");
         mCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
         invalidate();
+        Log.e("mainview","178");
     }
 }

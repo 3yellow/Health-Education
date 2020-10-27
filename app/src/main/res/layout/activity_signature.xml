@@ -48,7 +48,7 @@
         android:layout_height="539dp"
         android:orientation="horizontal">
 
-        <com.example.newlogin.mainview
+        <com.example.hemodialysishealtheducation.mainview
             android:id="@+id/mainview"
             android:layout_width="match_parent"
             android:layout_height="680dp" />
