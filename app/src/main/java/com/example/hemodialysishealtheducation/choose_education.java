@@ -26,9 +26,12 @@ public class choose_education extends AppCompatActivity {
     SQLiteDatabase db;
     static final String Nurse="nurse"; //database table name
     static final String Patient="patient"; //database table name
-    TextView kindney_reason_date,kindney_reason_grade;
-    TextView kindney_function_date,kindney_function_grade;
-    Button kindney_function,What_is_chronic_kidney_disease;
+    TextView t1_date,t2_date,t3_date,t4_date,t5_date,t6_date,t7_date,t8_date,t9_date,t10_date,t11_date,t12_date,t13_date;
+    TextView t1_grade,t2_grade,t3_grade,t4_grade,t5_grade,t6_grade,t7_grade,t8_grade,t9_grade,t10_grade,t11_grade,t12_grade,t13_grade;
+    //衛教資料按鈕
+    Button one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen;
+    //顯示成績按鈕
+    Button t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13;
     Cursor cu;
     String nurseID;
     int pad=0;
@@ -39,12 +42,57 @@ public class choose_education extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_education);
+        one=findViewById(R.id.one);
+        t1_date=findViewById(R.id.t1_date);
+        t1_grade=findViewById(R.id.t1_grade);
 
-        kindney_reason_date=findViewById(R.id.What_is_chronic_kidney_disease_date);
-        kindney_reason_grade=findViewById(R.id.What_is_chronic_kidney_disease_grade);
+        two=findViewById(R.id.two);
+        t2_date=findViewById(R.id.t2_date);
+        t2_grade=findViewById(R.id.t2_grade);
 
-        kindney_function=findViewById(R.id.kindney_function);
-        What_is_chronic_kidney_disease=findViewById(R.id.What_is_chronic_kidney_disease);
+        three=findViewById(R.id.three);
+        t3_date=findViewById(R.id.t3_date);
+        t3_grade=findViewById(R.id.t3_grade);
+
+        four=findViewById(R.id.four);
+        t4_date=findViewById(R.id.t4_date);
+        t4_grade=findViewById(R.id.t4_grade);
+
+        five=findViewById(R.id.five);
+        t5_date=findViewById(R.id.t5_date);
+        t5_grade=findViewById(R.id.t5_grade);
+
+        six=findViewById(R.id.six);
+        t6_date=findViewById(R.id.t6_date);
+        t6_grade=findViewById(R.id.t6_grade);
+
+        seven=findViewById(R.id.seven);
+        t7_date=findViewById(R.id.t7_date);
+        t7_grade=findViewById(R.id.t7_grade);
+
+        eight=findViewById(R.id.eight);
+        t8_date=findViewById(R.id.t8_date);
+        t8_grade=findViewById(R.id.t8_grade);
+
+        nine=findViewById(R.id.nine);
+        t9_date=findViewById(R.id.t9_date);
+        t9_grade=findViewById(R.id.t9_grade);
+
+        ten=findViewById(R.id.ten);
+        t10_date=findViewById(R.id.t10_date);
+        t10_grade=findViewById(R.id.t10_grade);
+
+        eleven=findViewById(R.id.eleven);
+        t11_date=findViewById(R.id.t11_date);
+        t11_grade=findViewById(R.id.t11_grade);
+
+        twelve=findViewById(R.id.twelve);
+        t12_date=findViewById(R.id.t12_date);
+        t12_grade=findViewById(R.id.t12_grade);
+
+        thirteen=findViewById(R.id.thirteen);
+        t13_date=findViewById(R.id.t13_date);
+        t13_grade=findViewById(R.id.t13_grade);
 
         TextView nurse=findViewById(R.id.tex_nurse_name);
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
@@ -65,10 +113,10 @@ public class choose_education extends AppCompatActivity {
             String patient_name=cu.getString(1);
             patient.setText("姓名："+patient_name);
         }
-        show_kidney_reason( id,"kidney_reason");
-        show_kindney_function( id,"kindney_function");
+        show_t1( id,"t1");
+        show_t2( id,"t2");
 
-        kindney_function.setOnClickListener(new View.OnClickListener() {
+        t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //hendl action here eg
@@ -82,7 +130,7 @@ public class choose_education extends AppCompatActivity {
             }
         });
 
-        What_is_chronic_kidney_disease.setOnClickListener(new View.OnClickListener() {
+        t2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(choose_education.this,Grade.class);
@@ -125,9 +173,9 @@ public class choose_education extends AppCompatActivity {
         return Q_array;
     }
 
-    public void show_kindney_function(String id,String s_p){
-        kindney_function_date=findViewById(R.id.kindney_function_date);
-        kindney_function_grade=findViewById(R.id.kindney_function_grade);
+    public void show_t1(String id,String s_p){
+        //kindney_function_date=findViewById(R.id.kindney_function_date);
+        //kindney_function_grade=findViewById(R.id.kindney_function_grade);
         //patient_name LIKE '"+s_p+"%'";
         //String exam_id="kidney_reason"+id+count;
         int count=0;
@@ -144,13 +192,13 @@ public class choose_education extends AppCompatActivity {
             cu.moveToFirst();
             String date=cu.getString(1);
             String grade=cu.getString(2);
-            kindney_function_date.setText("  "+date);
-            kindney_function_grade.setText(" "+grade);
+            t1_date.setText("  "+date);
+            t1_grade.setText(" "+grade);
         }
 
     }
 
-    public void show_kidney_reason(String id,String s_p){
+    public void show_t2(String id,String s_p){
         //patient_name LIKE '"+s_p+"%'";
         //String exam_id="kidney_reason"+id+count;
         int count=0;
@@ -167,8 +215,8 @@ public class choose_education extends AppCompatActivity {
             cu.moveToFirst();
             String date=cu.getString(1);
             String grade=cu.getString(2);
-            kindney_reason_date.setText("  "+date);
-            kindney_reason_grade.setText(" "+grade);
+            t2_date.setText("  "+date);
+            t2_grade.setText(" "+grade);
         }
 
     }
@@ -252,19 +300,19 @@ public class choose_education extends AppCompatActivity {
         }
     }
 
-    public void function(View v){
+    public void t1(View v){
         String Q_array[]=new String[5];
         Q_array=choi_Q();
         int count=0;//看有幾張考卷了
-        cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+"kindney_function"+id+"%'",null);
+        cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+"t1"+id+"%'",null);
         if (cu.getCount()==1){
             cu.moveToFirst();
             count=cu.getCount();
             if (cu.getInt(2)==-1){
-                go_fronttest_kindney_function(Q_array,count-1);
+                go_fronttest_t1(Q_array,count-1);
             }
             else {
-                go_backtest_kindney_function(count,Q_array);
+                go_backtest_t1(count,Q_array);
             }
         }
         else if (cu.getCount()>1){
@@ -272,14 +320,14 @@ public class choose_education extends AppCompatActivity {
             int flag=0;
             count=cu.getCount();
             int c=count-1;
-            String exam_id="kindney_function"+id+c;
+            String exam_id="t1"+id+c;
             flag=judgment_f_or_b(exam_id);
             if (flag==-1){
                 //去做上次沒做完的後側
-                go_backtest_kindney_function(count-1,Q_array);
+                go_backtest_t1(count-1,Q_array);
             }
             else if(flag==2){
-                go_backtest_kindney_function(count,Q_array);
+                go_backtest_t1(count,Q_array);
             }
             else {
                 Toast.makeText(getApplicationContext(), "查無此資料", Toast.LENGTH_SHORT).show();
@@ -287,23 +335,23 @@ public class choose_education extends AppCompatActivity {
         }
         else {
             //前側
-            go_fronttest_kindney_function(Q_array,count);
+            go_fronttest_t1(Q_array,count);
         }
     }
 
-    public void reason(View v){
+    public void t2(View v){
         String Q_array[]=new String[5];
         Q_array=choi_Q();
         int count=0;//看有幾張考卷了
-        cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+"kidney_reason"+id+"%'",null);
+        cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+"t2"+id+"%'",null);
         if (cu.getCount()==1){
             cu.moveToFirst();
             count=cu.getCount();
             if (cu.getInt(2)==-1){
-                go_fronttest_kidney_reason(Q_array,count-1);
+                go_fronttest_t2(Q_array,count-1);
             }
             else {
-                go_backtest_kidney_reason(count,Q_array);
+                go_backtest_t2(count,Q_array);
             }
         }
         else if (cu.getCount()>1){
@@ -311,13 +359,13 @@ public class choose_education extends AppCompatActivity {
             int flag=0;
             count=cu.getCount();
             int c=count-1;
-            String exam_id="kidney_reason"+id+c;
+            String exam_id="t2"+id+c;
             flag=judgment_f_or_b(exam_id);
             if (flag==-1){
-                go_backtest_kidney_reason(count-1,Q_array);
+                go_backtest_t2(count-1,Q_array);
             }
             else if(flag==2){
-                go_backtest_kidney_reason(count,Q_array);
+                go_backtest_t2(count,Q_array);
             }
             else {
                 Toast.makeText(getApplicationContext(), "查無此資料", Toast.LENGTH_SHORT).show();
@@ -325,7 +373,7 @@ public class choose_education extends AppCompatActivity {
         }
         else {
             //前側
-            go_fronttest_kidney_reason(Q_array,count);
+            go_fronttest_t2(Q_array,count);
         }
     }
 
@@ -349,11 +397,11 @@ public class choose_education extends AppCompatActivity {
         return flag;
     }
 
-    public void go_backtest_kidney_reason(int count,String[] Q_array){
+    public void go_backtest_t2(int count,String[] Q_array){
         //衛教+後側
         cu.moveToFirst();
         count=cu.getCount();
-        String exam_id="kidney_reason"+id+count;//考卷id=衛教資料名+病友id+第幾筆
+        String exam_id="t2"+id+count;//考卷id=衛教資料名+病友id+第幾筆
         // Q_array=choi_Q();
         insertExam(exam_id ,nurseID, id);
         Intent i=new Intent( this,HealthInformation.class);
@@ -369,9 +417,9 @@ public class choose_education extends AppCompatActivity {
         finish();
     }
 
-    public void go_fronttest_kidney_reason(String[] Q_array,int count){
+    public void go_fronttest_t2(String[] Q_array,int count){
         //前側
-        String exam_id="kidney_reason"+id+count;
+        String exam_id="t2"+id+count;
         // Q_array=choi_Q();
         insertExam(exam_id ,nurseID, id);
         Intent i=new Intent( this,fronttest.class);
@@ -389,11 +437,11 @@ public class choose_education extends AppCompatActivity {
         finish();
     }
     //kindney_function
-    public void go_backtest_kindney_function(int count,String[] Q_array){
+    public void go_backtest_t1(int count,String[] Q_array){
         //衛教+後側
         cu.moveToFirst();
         count=cu.getCount();
-        String exam_id="kindney_function"+id+count;//考卷id=衛教資料名+病友id+第幾筆
+        String exam_id="t1"+id+count;//考卷id=衛教資料名+病友id+第幾筆
         // Q_array=choi_Q();
         insertExam(exam_id ,nurseID, id);
         Intent i=new Intent( this,HealthInformation.class);
@@ -409,9 +457,9 @@ public class choose_education extends AppCompatActivity {
         finish();
     }
 
-    public void go_fronttest_kindney_function(String[] Q_array,int count){
+    public void go_fronttest_t1(String[] Q_array,int count){
         //前側
-        String exam_id="kindney_function"+id+count;
+        String exam_id="t1"+id+count;
         // Q_array=choi_Q();
         insertExam(exam_id ,nurseID, id);
         Intent i=new Intent( this,fronttest.class);

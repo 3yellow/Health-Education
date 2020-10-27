@@ -121,27 +121,28 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/one"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="function"
+                    android:onClick="t1"
                     android:text="   壹.腎臟功能簡介   "
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/kindney_function_date"
+                    android:id="@+id/t1_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/kindney_function_grade"
+                    android:id="@+id/t1_grade"
                     android:layout_width="150dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
 
                 <Button
-                    android:id="@+id/kindney_function"
+                    android:id="@+id/t1"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -154,27 +155,28 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/two"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
+                    android:onClick="t2"
                     android:text="   貳.甚麼是慢性腎臟病   "
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/What_is_chronic_kidney_disease_date"
+                    android:id="@+id/t2_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/What_is_chronic_kidney_disease_grade"
+                    android:id="@+id/t2_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
 
                 <Button
-                    android:id="@+id/What_is_chronic_kidney_disease"
+                    android:id="@+id/t2"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -187,7 +189,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/How_healthy_people_protect_their_health"
+                    android:id="@+id/three"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -195,18 +197,19 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/How_healthy_people_protect_their_health_date"
+                    android:id="@+id/t3_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/How_healthy_people_protect_their_health_grade"
+                    android:id="@+id/t3_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t3"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -220,7 +223,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/Causes_of_kidney_failure"
+                    android:id="@+id/four"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -228,18 +231,19 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Causes_of_kidney_failure_date"
+                    android:id="@+id/t4_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Causes_of_kidney_failure_grade"
+                    android:id="@+id/t4_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t4"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -253,7 +257,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/Causes_of_renal_failure_treatment"
+                    android:id="@+id/five"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -261,18 +265,19 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Causes_of_renal_failure_treatment_date"
+                    android:id="@+id/t5_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Causes_of_renal_failure_treatment_grade"
+                    android:id="@+id/t5_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t5"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -286,7 +291,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/Hemodialysis_treatment_and_care"
+                    android:id="@+id/six"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -294,18 +299,19 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Hemodialysis_treatment_and_care_date"
+                    android:id="@+id/t6_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Hemodialysis_treatment_and_care_grade"
+                    android:id="@+id/t6_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t6"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -319,7 +325,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/What_is_hemodialysis"
+                    android:id="@+id/seven"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -327,18 +333,19 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/What_is_hemodialysis_date"
+                    android:id="@+id/t7_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/What_is_hemodialysis_grade"
+                    android:id="@+id/t7_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t7"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -352,7 +359,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/Arteriovenous_donkey_care"
+                    android:id="@+id/eight"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -360,18 +367,19 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Arteriovenous_donkey_care_date"
+                    android:id="@+id/t8_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Arteriovenous_donkey_care_grade"
+                    android:id="@+id/t8_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t8"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -385,7 +393,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/How_can_kidney_friends_prevent_constipation"
+                    android:id="@+id/nine"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -393,18 +401,19 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/How_can_kidney_friends_prevent_constipation_date"
+                    android:id="@+id/t9_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/How_can_kidney_friends_prevent_constipation_grade"
+                    android:id="@+id/t9_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t9"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -418,7 +427,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/How_to_remove_the_itchy_skin"
+                    android:id="@+id/ten"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -426,18 +435,19 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/How_to_remove_the_itchy_skin_date"
+                    android:id="@+id/t10_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/How_to_remove_the_itchy_skin_grade"
+                    android:id="@+id/t10_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t10"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -451,7 +461,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/Dry_weight"
+                    android:id="@+id/eleven"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -459,18 +469,19 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Dry_weight_date"
+                    android:id="@+id/t11_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Dry_weight_grade"
+                    android:id="@+id/t11_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t11"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -484,7 +495,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/Introduction_of_vascular_access"
+                    android:id="@+id/twelve"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -492,18 +503,19 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Introduction_of_vascular_access_date"
+                    android:id="@+id/t12_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Introduction_of_vascular_access_grade"
+                    android:id="@+id/t12_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t12"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
@@ -517,7 +529,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/Essentials_of_Diet_Control"
+                    android:id="@+id/thirteen"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
                     android:onClick="reason"
@@ -525,14 +537,14 @@
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Essentials_of_Diet_Control_date"
+                    android:id="@+id/t13_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
                     android:textSize="35dp" />
 
                 <TextView
-                    android:id="@+id/Essentials_of_Diet_Control_grade"
+                    android:id="@+id/t13_grade"
                     android:layout_width="200dp"
                     android:layout_height="62dp"
                     android:textSize="35dp" />
