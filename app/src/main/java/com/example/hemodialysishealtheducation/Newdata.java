@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
@@ -161,6 +162,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             }
         },mYear_b,mMonth_b,mDay_b).show();
     }
+
     private String setDateFormat(int year, int month, int day) {
         return String.valueOf(year)+"/"+String.valueOf(month+1)+"/"+String.valueOf(day);
     }
@@ -274,7 +276,17 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         return flag;
     }
 
+    public String datetime(){
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd 'T' HH:mm:ss");
+        //==GMT標準時間往後加八小時
+        nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //==取得目前時間
+        String date_time = nowdate.format(new java.util.Date());
+
+        return date_time;
+    }
     private void addData(String name,String id ,int gender,String date,String birth_date,String nurseID) {
+        String date_time= datetime();
         int pad=0,change_data=0;
         Intent i=this.getIntent();
         pad=i.getIntExtra("pad",-1);
@@ -285,13 +297,13 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         cv.put("patient_gender",gender);
         cv.put("patient_register",date);
         cv.put("patient_birth",birth_date);
-        cv.put("change_data",change_data);
+        cv.put("change_data",date_time);
 
         //cv.put("nurse_id", nurseID);
         cv.put("patient_incharge",nurseID);//目前沒有護理師的資料，護理師的資料是從登入那抓取id，一直傳
 
         //cv.put("nurse_id", nurseId);
-        cv.put("patient_incharge","admin");//目前沒有護理師的資料，護理師的資料是從登入那抓取id，一直傳
+      //  cv.put("patient_incharge","admin");//目前沒有護理師的資料，護理師的資料是從登入那抓取id，一直傳
 
         DBS.insert("Patient", null, cv);
 
@@ -302,6 +314,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     }
 
     private void modify_patient(String name,String id ,int gender,String date,String birth_date ){
+        String date_time= datetime();
         int pad=0,change_data=0;
         Intent i=this.getIntent();
         pad=i.getIntExtra("pad",pad);
@@ -312,7 +325,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         cv.put("patient_gender", gender);
         cv.put("patient_register", date);
         cv.put("patient_birth", birth_date);
-        cv.put("change_data",change_data);
+        cv.put("change_data",date_time);
 
 
         //如果是修改

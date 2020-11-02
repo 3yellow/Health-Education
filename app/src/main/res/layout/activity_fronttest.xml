@@ -113,27 +113,7 @@
                                 android:text="\tB.肌肉痙攣"
                                 android:textSize="30sp" />
 
-                            <RadioButton
-                                android:id="@+id/radioButton3"
-                                android:layout_width="954dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_weight="1"
-                                android:button="@drawable/radiostyle"
-                                android:text="\tC.失衡綜合征"
-                                android:textSize="30sp" />
 
-                            <RadioButton
-                                android:id="@+id/radioButton4"
-                                android:layout_width="951dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_weight="1"
-                                android:button="@drawable/radiostyle"
-                                android:text="\tD.透析性骨病"
-                                android:textSize="30sp" />
                         </RadioGroup>
 
                     </LinearLayout>

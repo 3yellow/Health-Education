@@ -102,27 +102,7 @@
                                     android:textColor="@color/radiobutton_textcolor"
                                     android:textSize="30sp" />
 
-                                <RadioButton
-                                    android:id="@+id/icho3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:button="@drawable/radiostyle"
-                                    android:text="C"
-                                    android:textColor="@color/radiobutton_textcolor"
-                                    android:textSize="30sp" />
 
-                                <RadioButton
-                                    android:id="@+id/icho4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:button="@drawable/radiostyle"
-                                    android:text="D"
-                                    android:textColor="@color/radiobutton_textcolor"
-                                    android:textSize="30sp" />
                             </RadioGroup>
                         </LinearLayout>
                     </LinearLayout>

@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Field;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 
 public class Menu extends AppCompatActivity {
@@ -58,6 +60,18 @@ public class Menu extends AppCompatActivity {
         read();
     }
 
+    public static String sha256(String base) //加密
+    {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            String pass = Base64.encodeToString(hash, Base64.DEFAULT);
+            return pass;
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
+
     public void on_dialog(String str){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Menu.this);
         View v1 = getLayoutInflater().inflate(R.layout.dialog_signin,null);
@@ -80,6 +94,7 @@ public class Menu extends AppCompatActivity {
             public void onClick(View v) {
                 String s=username.getText().toString().trim();
                 String pas=password.getText().toString().trim();
+                pas=sha256(pas);
                 Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id = '"+ s +"'",null);
                 if (!cu.moveToFirst()){
                     Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();

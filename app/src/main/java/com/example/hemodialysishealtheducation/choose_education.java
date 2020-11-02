@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -45,54 +46,68 @@ public class choose_education extends AppCompatActivity {
         one=findViewById(R.id.one);
         t1_date=findViewById(R.id.t1_date);
         t1_grade=findViewById(R.id.t1_grade);
+        t1=findViewById(R.id.t1);
 
         two=findViewById(R.id.two);
         t2_date=findViewById(R.id.t2_date);
         t2_grade=findViewById(R.id.t2_grade);
+        t2=findViewById(R.id.t12);
 
         three=findViewById(R.id.three);
         t3_date=findViewById(R.id.t3_date);
         t3_grade=findViewById(R.id.t3_grade);
+        t3=findViewById(R.id.t3);
 
         four=findViewById(R.id.four);
         t4_date=findViewById(R.id.t4_date);
         t4_grade=findViewById(R.id.t4_grade);
+        t4=findViewById(R.id.t4);
 
         five=findViewById(R.id.five);
         t5_date=findViewById(R.id.t5_date);
         t5_grade=findViewById(R.id.t5_grade);
+        t5=findViewById(R.id.t5);
 
         six=findViewById(R.id.six);
         t6_date=findViewById(R.id.t6_date);
         t6_grade=findViewById(R.id.t6_grade);
+        t6=findViewById(R.id.t6);
 
         seven=findViewById(R.id.seven);
         t7_date=findViewById(R.id.t7_date);
         t7_grade=findViewById(R.id.t7_grade);
+        t7=findViewById(R.id.t7);
 
         eight=findViewById(R.id.eight);
         t8_date=findViewById(R.id.t8_date);
         t8_grade=findViewById(R.id.t8_grade);
+        t8=findViewById(R.id.t8);
 
         nine=findViewById(R.id.nine);
         t9_date=findViewById(R.id.t9_date);
         t9_grade=findViewById(R.id.t9_grade);
+        t9=findViewById(R.id.t9);
 
         ten=findViewById(R.id.ten);
         t10_date=findViewById(R.id.t10_date);
         t10_grade=findViewById(R.id.t10_grade);
+        t10=findViewById(R.id.t10);
 
         eleven=findViewById(R.id.eleven);
         t11_date=findViewById(R.id.t11_date);
         t11_grade=findViewById(R.id.t11_grade);
+        t11=findViewById(R.id.t11);
 
         twelve=findViewById(R.id.twelve);
         t12_date=findViewById(R.id.t12_date);
         t12_grade=findViewById(R.id.t12_grade);
+        t12=findViewById(R.id.t12);
 
         thirteen=findViewById(R.id.thirteen);
         t13_date=findViewById(R.id.t13_date);
         t13_grade=findViewById(R.id.t13_grade);
+        t13=findViewById(R.id.t13);
+
 
         TextView nurse=findViewById(R.id.tex_nurse_name);
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
@@ -144,19 +159,26 @@ public class choose_education extends AppCompatActivity {
         });
     }
 
-    public String[] choi_Q()//隨機產生5題題目
+    public String[] choi_Q(String str)//隨機產生5題題目
     {
         int [] array;
+        int min=0,max=0;
+        int [ ]Q=new  int[20];
         String []Q_array=new String[5];
-        int count=0,total_Q=0;
-        cu = db.rawQuery("SELECT * FROM Question ",null);
-        if (cu.getCount()>0){
+        int count=0,total=0;
+        cu = db.rawQuery("SELECT * FROM Question WHERE topic_id='"+str+"' ",null);
+        if (cu.getCount()>0)
+        {
+            //total_Q=cu.getCount();
             cu.moveToFirst();
-            total_Q=cu.getCount();
+            min=Integer.valueOf(cu.getString(0));
+            cu.moveToLast();
+            max=Integer.valueOf(cu.getString(0));
         }
+
         array=new int [5];
         while (count<5){
-            int num=(int)(Math.random()*(total_Q))+1;
+            int num=(int)(Math.random()*(max-min+1))+min;
             boolean flag=true;
             for (int j=0;j<5;j++){
                 if (num==array[j]){
@@ -164,7 +186,8 @@ public class choose_education extends AppCompatActivity {
                     break;
                 }
             }
-            if (flag){
+            if (flag)
+            {
                 array[count]=num;
                 Q_array[count]=num+"";
                 count++;
@@ -221,9 +244,20 @@ public class choose_education extends AppCompatActivity {
 
     }
 
+    public String datetime(){
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //==GMT標準時間往後加八小時
+        nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //==取得目前時間
+        String date_time = nowdate.format(new java.util.Date());
+
+        return date_time;
+    }
+
     private void insertExam(String exam_id ,String nurse_id,  String patient_id){
         //  exam_id TEXT, exam_date DateTime, exam_score INT,question_id_1 TEXT,question_id_2 TEXT,question_id_3 TEXT,question_id_4 TEXT,question_id_5 TEXT, patient_id TEXT, nurse_id TEXT
         // ==格式化
+        String date_time=datetime();
         int change_data=pad+1;
         SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd");
         //==GMT標準時間往後加八小時
@@ -236,7 +270,7 @@ public class choose_education extends AppCompatActivity {
         cv.put("exam_score",-1);
         cv.put("patient_id",patient_id);
         cv.put("nurse_id",nurse_id);
-        cv.put("change_data",change_data);
+        cv.put("change_data",date_time);
 
         db.insert("Exam", null, cv);
         // Toast.makeText(getApplicationContext(), "成功注冊", Toast.LENGTH_SHORT).show();
@@ -246,6 +280,25 @@ public class choose_education extends AppCompatActivity {
 
 
             String s = c.getString(0) + "\n" + c.getString(1) + "\n" + c.getString(2) + "\n"+c.getString(3) + "\n"+c.getString(4) + "\n";
+        }
+    }
+
+    public void insertAnswer(String answer_id, int result,int question_id,String exam_id){
+        //answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data INT
+        // answer_id exam_id+count
+        String date_time=datetime();
+        ContentValues cv =new ContentValues(1);//10
+        int change_data=pad+1;
+        cv.put("answer_id",answer_id);
+        cv.put("result",result);
+        cv.put("question_id",question_id);
+        cv.put("exam_id",exam_id);
+        cv.put("change_data",date_time);
+        db.insert("Answer", null, cv);
+        Cursor c = db.rawQuery("SELECT * FROM Answer",null);
+        if(c.getCount()>0) {
+            c.moveToFirst();
+            String s = c.getString(1) + "\n" + c.getString(3) + "\n" + c.getString(4) ;
         }
     }
 
@@ -302,7 +355,7 @@ public class choose_education extends AppCompatActivity {
 
     public void t1(View v){
         String Q_array[]=new String[5];
-        Q_array=choi_Q();
+        Q_array=choi_Q("t1");
         int count=0;//看有幾張考卷了
         cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+"t1"+id+"%'",null);
         if (cu.getCount()==1){
@@ -340,8 +393,9 @@ public class choose_education extends AppCompatActivity {
     }
 
     public void t2(View v){
+        cu=db.rawQuery("SELECT * FROM Answer WHERE exam_id LIKE '"+"t2"+id+"%'",null);
         String Q_array[]=new String[5];
-        Q_array=choi_Q();
+        Q_array=choi_Q("t2");
         int count=0;//看有幾張考卷了
         cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+"t2"+id+"%'",null);
         if (cu.getCount()==1){
@@ -397,6 +451,15 @@ public class choose_education extends AppCompatActivity {
         return flag;
     }
 
+    public void Answer_inser_db(String exam_id,String[] Q_array){
+        for (int i=0;i<5;i++)
+        {
+            int q_id=Integer.valueOf(Q_array[i]);
+            String answer_id=exam_id+i;
+            insertAnswer(answer_id,-1,q_id,exam_id);//true_or_false：-1 為還沒有做題目，先都存-1
+        }
+    }
+
     public void go_backtest_t2(int count,String[] Q_array){
         //衛教+後側
         cu.moveToFirst();
@@ -404,6 +467,13 @@ public class choose_education extends AppCompatActivity {
         String exam_id="t2"+id+count;//考卷id=衛教資料名+病友id+第幾筆
         // Q_array=choi_Q();
         insertExam(exam_id ,nurseID, id);
+        for(int i=0;i<5;i++)
+        {
+            //insertAnswer(String answer_id, int result,int question_id,String exam_id)
+            int q_id=Integer.valueOf(Q_array[i]);
+            String answer_id=exam_id+i;
+            insertAnswer(answer_id,-1,q_id, exam_id);//true_or_false：-1 為還沒有做題目，先都存-1
+        }
         Intent i=new Intent( this,HealthInformation.class);
         //String nurseID=i.getStringExtra("nurseID");
         //  String id=i.getStringExtra("eid");
@@ -411,7 +481,8 @@ public class choose_education extends AppCompatActivity {
         i.putExtra("pad",pad);
         i.putExtra("id",id);
         i.putExtra("exam_id",exam_id);
-        i.putExtra("Q_array",Q_array);
+        //i.putExtra("answer_id",answer_id);
+        i.putExtra("health_education","t2");
         db.close();
         startActivity(i);
         finish();
@@ -420,17 +491,23 @@ public class choose_education extends AppCompatActivity {
     public void go_fronttest_t2(String[] Q_array,int count){
         //前側
         String exam_id="t2"+id+count;
-        // Q_array=choi_Q();
         insertExam(exam_id ,nurseID, id);
+        Answer_inser_db(exam_id,Q_array);
+        /*
+        for(int i=0;i<5;i++)
+        {
+            //insertAnswer(String answer_id, int result,int question_id,String exam_id)
+            int q_id=Integer.valueOf(Q_array[i]);
+            String answer_id=exam_id+i;
+            insertAnswer(answer_id,-1,q_id,exam_id);//true_or_false：-1 為還沒有做題目，先都存-1
+        } */
         Intent i=new Intent( this,fronttest.class);
-        //String nurseID=i.getStringExtra("nurseID");
-        // String id=i.getStringExtra("eid");
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("pad",pad);
         i.putExtra("exam_id",exam_id);
-        i.putExtra("health_education","kidney_reason");
-        i.putExtra("Q_array",Q_array);
+        i.putExtra("health_education","t2");
+        //i.putExtra("answer_id",answer_id);
 
         db.close();
         startActivity(i);
@@ -442,16 +519,21 @@ public class choose_education extends AppCompatActivity {
         cu.moveToFirst();
         count=cu.getCount();
         String exam_id="t1"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        // Q_array=choi_Q();
+        for(int i=0;i<5;i++)
+        {
+            //insertAnswer(String answer_id, int result,int question_id,String exam_id)
+            int q_id=Integer.valueOf(Q_array[i]);
+            String answer_id=exam_id+i;
+            insertAnswer(answer_id,-1,q_id, exam_id);//true_or_false：-1 為還沒有做題目，先都存-1
+        }
         insertExam(exam_id ,nurseID, id);
         Intent i=new Intent( this,HealthInformation.class);
-        //String nurseID=i.getStringExtra("nurseID");
-        //  String id=i.getStringExtra("eid");
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("pad",pad);
         i.putExtra("exam_id",exam_id);
-        i.putExtra("Q_array",Q_array);
+        //i.putExtra("exam_id",exam_id);
+        i.putExtra("health_education","t1");
         db.close();
         startActivity(i);
         finish();
@@ -460,16 +542,21 @@ public class choose_education extends AppCompatActivity {
     public void go_fronttest_t1(String[] Q_array,int count){
         //前側
         String exam_id="t1"+id+count;
-        // Q_array=choi_Q();
+        for(int i=0;i<5;i++)
+        {
+            //insertAnswer(String answer_id, int result,int question_id,String exam_id)
+            int q_id=Integer.valueOf(Q_array[i]);
+            String str=Integer.toString(i+1);
+            String answer_id=exam_id+str;
+            insertAnswer(answer_id,-1,q_id, exam_id);//true_or_false：-1 為還沒有做題目，先都存-1
+        }
         insertExam(exam_id ,nurseID, id);
         Intent i=new Intent( this,fronttest.class);
-        //String nurseID=i.getStringExtra("nurseID");
-        // String id=i.getStringExtra("eid");
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("pad",pad);
         i.putExtra("exam_id",exam_id);
-        i.putExtra("health_education","kindney_function");
+        i.putExtra("health_education","t1");
         i.putExtra("Q_array",Q_array);
 
         db.close();

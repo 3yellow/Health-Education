@@ -142,6 +142,7 @@
                     android:textSize="35dp" />
 
                 <Button
+
                     android:id="@+id/t1"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
@@ -549,6 +550,7 @@
                     android:layout_height="62dp"
                     android:textSize="35dp" />
                 <Button
+                    android:id="@+id/t13"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
