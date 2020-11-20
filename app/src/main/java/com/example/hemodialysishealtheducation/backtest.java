@@ -36,8 +36,9 @@ public class backtest extends AppCompatActivity {
     Cursor cu;
     String nurseID,id,exam_id,health_education,patient_answer;
     int score=0,count=0;
-    int Q_array[]=new int[5];
+    //int Q_array[]=new int[5];
     int right_choi=0,q_id=0;
+    //int index=0;
     RadioButton tempButton;
     String[] Choi;
     // final String[] Choi = {"A.監測水中細菌量","B.測定管路中消毒液殘留量", "C.測定管路壓力", "D.不需要測定任何專案","B.測定管路中消毒液殘留量"};
@@ -49,54 +50,57 @@ public class backtest extends AppCompatActivity {
         setContentView(R.layout.activity_backtest);
 
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫
-        TextView Que=(TextView)findViewById(R.id.Question);
-        final TextView Als=(TextView)findViewById(R.id.Analysis);
-        final TextView An=(TextView)findViewById(R.id.An);
+        TextView Que = (TextView) findViewById(R.id.Question);
+        final TextView Als = (TextView) findViewById(R.id.Analysis);
+        final TextView An = (TextView) findViewById(R.id.An);
         final RadioGroup ans = (RadioGroup) findViewById(R.id.Ans);
-        mRG=(RadioGroup)findViewById(R.id.Mrg);
-        item1=(RadioButton)findViewById(R.id.icho1);
-        item2=(RadioButton)findViewById(R.id.icho2);
-        final Button check=(Button)findViewById(R.id.button19);
+        mRG = (RadioGroup) findViewById(R.id.Mrg);
+        item1 = (RadioButton) findViewById(R.id.icho1);
+        item2 = (RadioButton) findViewById(R.id.icho2);
+        final Button check = (Button) findViewById(R.id.button19);
 
-        intent=this.getIntent();
-        nurseID=intent.getStringExtra("nurseID");
-        pad=intent.getIntExtra("pad",-1);
-        id=intent.getStringExtra("id");
-        exam_id=intent.getStringExtra("exam_id");
-        health_education=intent.getStringExtra("health education");
-        score=intent.getIntExtra("score",0);
-        count=intent.getIntExtra("count",0);
-        int c=Integer.valueOf(count);
+        //nurseID id exam_id index health_education
+        intent = this.getIntent();
+        nurseID = intent.getStringExtra("nurseID");
+        id = intent.getStringExtra("id");
+        exam_id = intent.getStringExtra("exam_id");
+        //index = intent.getIntExtra("index", -1);
+        health_education = intent.getStringExtra("health education");
+        score = intent.getIntExtra("score", 0);
+        count = intent.getIntExtra("count", 0);
+       // count=index;
         //Q_array=intent.getStringArrayExtra("Q_array");
-
-        for (int i=1;i<=5;i++)// 找題目
+        if (count==-1)
         {
-            int j=0;//控制有幾題 題目還沒做過
-            String answer_id=exam_id+i;
-            String sql = "SELECT * FROM Answer WHERE answer_id='"+answer_id; //我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
-            cu = db.rawQuery( sql,null );
-            if(cu.getCount()>0) {
+            Que.setText("產生考卷發生問題");
+        }
+        else if (count != -1)
+        {
+           // int c = Integer.valueOf(count);
+
+            String answer_id = exam_id + count;
+            String sql = "SELECT * FROM Answer WHERE answer_id='" + answer_id+ "'"; //我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
+            cu = db.rawQuery(sql, null);
+            if (cu.getCount() > 0) {
                 cu.moveToFirst();
-                if (cu.getInt(1)==-1)//如果作答解果為-1，表示還沒做過題目
+                if (cu.getInt(1) == -1)//如果作答解果為-1，表示還沒做過題目
                 {
-                    Q_array[j]=cu.getInt(2);
-                    j++;
+                    q_id = cu.getInt(2);
                 }
             }
-        }
-        q_id=Q_array[c];
+        //q_id = Q_array[c];
 
 
-        String sql = "SELECT * FROM Question WHERE question_id = '"+ q_id +"'"; //我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
-        cu = db.rawQuery( sql,null );
-        if (!cu.moveToFirst()){
+        sql = "SELECT * FROM Question WHERE question_id = '" + q_id + "'"; //我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
+        cu = db.rawQuery(sql, null);
+        if (!cu.moveToFirst()) {
             Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
         }
         else {
-            String content=cu.getString(1);
+            String content = cu.getString(1);
             Que.setText(content);
             //{"A.發熱", "B.肌肉痙攣", "C.失衡綜合征", "D.透析性骨病", "D.透析性骨病"};
-            Choi=new String[4];
+            Choi = new String[4];
             //  for (int i = 0;i < 2 ; i++){
             //    Choi[i]=cu.getString(i+3);//拿到存在資料庫中的選項
             //}
@@ -108,41 +112,35 @@ public class backtest extends AppCompatActivity {
 
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     tempButton = (RadioButton) findViewById(checkedId);
-                    right_choi=cu.getInt(2);
-                    your_ans=tempButton.getText().toString();
-                    int int_your_ans=-1;
-                    if (your_ans.equals("正確"))
-                    {
-                        int_your_ans=1;
-                    }
-                    else
-                    {
-                        int_your_ans=0;
+                    right_choi = cu.getInt(2);
+                    your_ans = tempButton.getText().toString();
+                    int int_your_ans = -1;
+                    if (your_ans.equals("正確")) {
+                        int_your_ans = 1;
+                    } else {
+                        int_your_ans = 0;
                     }
                     if (int_your_ans == right_choi) {
                         choiceid = tempButton.getId();
                         result = true;
                         // MyToast("正確答案："+tempButton.getText()+"，恭喜你，回答正確");
-                    }
-                    else {
+                    } else {
                         result = false;
                         //MyToast("回答錯誤！");
                     }
                 }
             });
 
-            if (right_choi==0)
-            {
-                str="錯誤";
+            if (right_choi == 0) {
+                str = "錯誤";
+            } else {
+                str = "正確";
             }
-            else
-            {
-                str="正確";
-            }
-            String explain=cu.getString(3);
-            An.setText("正確答案：" + str+ "\n");
+            String explain = cu.getString(3);
+            An.setText("正確答案：" + str + "\n");
             Als.setText(explain);
         }
+    }
     }
 
     private void showDialog(){
@@ -250,8 +248,8 @@ public class backtest extends AppCompatActivity {
         else {
             // answer_id exam_id+count
             String answer_id=exam_id+count;
-            int q=Integer.valueOf(q_id);
-            modify_Answer(answer_id,true_or_false, q, exam_id);
+            //int q=Integer.valueOf(q_id);
+            modify_Answer(answer_id,true_or_false, q_id, exam_id);
             Intent i = new Intent(this, backtest.class);
             i.putExtra("count", count);
             i.putExtra("score", score);
@@ -259,14 +257,14 @@ public class backtest extends AppCompatActivity {
             i.putExtra("nurseID", nurseID);
             i.putExtra("id", id);
             i.putExtra("exam_id", exam_id);
-            i.putExtra("Q_array", Q_array);
+            //i.putExtra("Q_array", Q_array);
             startActivity(i);
             finish();
         }
     }
 
     public String datetime(){
-        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd 'T' HH:mm:ss");
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //==GMT標準時間往後加八小時
         nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         //==取得目前時間
@@ -277,6 +275,7 @@ public class backtest extends AppCompatActivity {
 
     public void modify_Answer(String answer_id, int result,int question_id,String exam_id)
     {
+        //answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME
         ContentValues cv =new ContentValues(1);//10
         String change_data=datetime();
         cv.put("answer_id",answer_id);

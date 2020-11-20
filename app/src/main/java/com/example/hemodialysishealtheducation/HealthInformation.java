@@ -8,13 +8,20 @@ import android.view.View;
 
 public class HealthInformation extends AppCompatActivity {
 
-    String nurseID;
+    String nurseID,exam_id,health_education;
     String id;
+    int index=0,count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_information);
+        Intent intent = this.getIntent();
+        nurseID = intent.getStringExtra("nurseID");
+        id = intent.getStringExtra("id");
+        exam_id = intent.getStringExtra("exam_id");
+        count = intent.getIntExtra("count", -1);
+        health_education = intent.getStringExtra("health education");
 
        // PDFView pdf=findViewById(R.id.pdfView);
       //  pdf.fromAsset("014.顧腰子好朋友-呷哈咪.pdf").load();//壹．腎臟功能簡介.doc.pdf

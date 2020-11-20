@@ -327,7 +327,6 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         cv.put("patient_birth", birth_date);
         cv.put("change_data",date_time);
 
-
         //如果是修改
         String whereClause = "patient_id = ?";
         String whereArgs[] = {id};
