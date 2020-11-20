@@ -4,17 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 public class HealthInformation extends AppCompatActivity {
 
-    String nurseID;
+    String nurseID,exam_id,health_education;
     String id;
+    int index=0,count,score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_information);
+        Intent intent = this.getIntent();
+        nurseID = intent.getStringExtra("nurseID");
+        id = intent.getStringExtra("id");
+        exam_id = intent.getStringExtra("exam_id");
+        count = intent.getIntExtra("count", -1);
+        score = intent.getIntExtra("score", -1);
+        health_education = intent.getStringExtra("health education");
 
        // PDFView pdf=findViewById(R.id.pdfView);
       //  pdf.fromAsset("014.顧腰子好朋友-呷哈咪.pdf").load();//壹．腎臟功能簡介.doc.pdf
@@ -39,5 +48,15 @@ public class HealthInformation extends AppCompatActivity {
         intent.putExtra("Q_array",Q_array);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+        }
+        return true;
     }
 }

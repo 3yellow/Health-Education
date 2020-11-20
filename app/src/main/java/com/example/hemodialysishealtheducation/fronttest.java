@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -31,7 +32,7 @@ public class fronttest extends AppCompatActivity {
     RadioButton item1;
     RadioButton item2;
     String your_ans=null;
-    int pad=0;
+    //int index=0;
     int q_id=0;//要把所有用到資料庫的 都要改成int
     int score=0,count=0;
     String[] Choi;
@@ -48,89 +49,84 @@ public class fronttest extends AppCompatActivity {
         final RadioGroup ans = (RadioGroup) findViewById(R.id.Ans);
         //final ScrollView scroll = (ScrollView) findViewById(R.id.roll);
         final Button next = (Button) findViewById(R.id.button12);
-        item1=(RadioButton)findViewById(R.id.radioButton1);
-        item2=(RadioButton)findViewById(R.id.radioButton2);
+        item1 = (RadioButton) findViewById(R.id.radioButton1);
+        item2 = (RadioButton) findViewById(R.id.radioButton2);
         Button dialog = (Button) findViewById(R.id.button);
 
-        Intent intent=this.getIntent();
-        nurseID=intent.getStringExtra("nurseID");
-        id=intent.getStringExtra("id");
-        pad=intent.getIntExtra("pad",-1);
-        exam_id=intent.getStringExtra("exam_id");
-        health_education=intent.getStringExtra("health_education");
-        score=intent.getIntExtra("score",0);
-        count=intent.getIntExtra("count",0);
-        int c=Integer.valueOf(count);
-        //answer_id=intent.getStringExtra("answer_id");
-        //answer_id=exam_id+i;
-        for (int i=1;i<=5;i++)// 找題目
-        {
-            int j=0;//控制有幾題 題目還沒做過
-            String answer_id=exam_id+i;
-            //answer_id
-            String sql = "SELECT * FROM Answer  WHERE answer_id='"+answer_id+"'";//我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
-            cu = db.rawQuery( sql,null );
-            if(cu.getCount()>0) {
-                cu.moveToFirst();
-                if (cu.getInt(1)==-1)//如果作答解果為-1，表示還沒做過題目
-                {
-                    Q_array[j]=cu.getInt(2);
-                    j++;
+        //nurseID id exam_id index health_education
+        Intent intent = this.getIntent();
+        nurseID = intent.getStringExtra("nurseID");
+        id = intent.getStringExtra("id");
+        exam_id = intent.getStringExtra("exam_id");
+        //index = intent.getIntExtra("index", -1);//看題目要從哪一題開始。 0：表示上一張考卷有坐完 非0：上一張考卷沒有坐完，要從上一張考卷開始坐。
+        health_education = intent.getStringExtra("health_education");
+        score = intent.getIntExtra("score", 0);
+        count = intent.getIntExtra("count", 0);
+        if (count == -1) {
+            Que.setText("產生考卷發生問題");
+        } else if (count != -1) {
+            int c = Integer.valueOf(count);
+            //answer_id=intent.getStringExtra("answer_id");
+            //answer_id=exam_id+i;
+
+                String answer_id = exam_id + count;
+                //answer_id
+                String sql = "SELECT * FROM Answer  WHERE answer_id='" + answer_id + "'";//我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
+                cu = db.rawQuery(sql, null);
+                if (cu.getCount() > 0) {
+                    cu.moveToFirst();
+                    if (cu.getInt(1) == -1)//如果作答解果為-1，表示還沒做過題目
+                    {
+                        q_id= cu.getInt(2);
+                    }
                 }
+            //q_id = Q_array[c];
+            //question_id='"+q_id+"'";
+             sql = "SELECT * FROM Question WHERE topic_id='" + health_education + "' AND question_id='" + q_id + "'";//我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
+            cu = db.rawQuery(sql, null);
+            if (!cu.moveToFirst()) {
+                Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
+            } else {
+                String content = cu.getString(1);
+                Que.setText(content);
+                //{"A.發熱", "B.肌肉痙攣", "C.失衡綜合征", "D.透析性骨病", "D.透析性骨病"};
+                Choi = new String[4];
+                // for (int i = 0;i < 2 ; i++){
+                //    Choi[i]=cu.getString(i+3);//拿到存在資料庫中的選項
+                //}
+                item1.setText("正確");
+                item2.setText("錯誤");
+
+                ans.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        // TODO Auto-generated method stub
+                        RadioButton tempButton = (RadioButton) findViewById(checkedId); // 通过RadioGroup的findViewById方法，找到ID为checkedID的RadioButton
+                        your_ans = tempButton.getText().toString();
+                        int int_your_ans = -1;
+                        if (your_ans.equals("正確")) {
+                            int_your_ans = 1;
+                        } else {
+                            int_your_ans = 0;
+                        }
+                        // 以下就可以对这个RadioButton进行处理了
+                        int a = cu.getInt(1);//拿到資料庫中的答案
+                        //patient_answer=tempButton.getText().toString();
+                        YAns.setText("您的答案：" + tempButton.getText());
+                        //YAns.setVisibility(View.VISIBLE);
+                        next.setVisibility(View.VISIBLE);
+                        if (int_your_ans == a) {
+                            result = true;
+                        } else {
+                            result = false;
+                        }
+                    }
+
+                });
             }
         }
-        q_id=Q_array[c];
-                                                                                     //question_id='"+q_id+"'";
-        String sql = "SELECT * FROM Question WHERE topic_id='"+health_education+"' AND question_id='"+q_id+"'";//我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
-        cu = db.rawQuery( sql,null );
-        if (!cu.moveToFirst()){
-            Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            String content=cu.getString(1);
-            Que.setText(content);
-            //{"A.發熱", "B.肌肉痙攣", "C.失衡綜合征", "D.透析性骨病", "D.透析性骨病"};
-            Choi=new String[4];
-            // for (int i = 0;i < 2 ; i++){
-            //    Choi[i]=cu.getString(i+3);//拿到存在資料庫中的選項
-            //}
-            item1.setText("正確");
-            item2.setText("錯誤");
-
-            ans.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    // TODO Auto-generated method stub
-                    RadioButton tempButton = (RadioButton) findViewById(checkedId); // 通过RadioGroup的findViewById方法，找到ID为checkedID的RadioButton
-                    your_ans=tempButton.getText().toString();
-                    int int_your_ans=-1;
-                    if (your_ans.equals("正確"))
-                    {
-                        int_your_ans=1;
-                    }
-                    else
-                    {
-                        int_your_ans=0;
-                    }
-                    // 以下就可以对这个RadioButton进行处理了
-                    int a=cu.getInt(2);//拿到資料庫中的答案
-                    //patient_answer=tempButton.getText().toString();
-                    YAns.setText("您的答案：" + tempButton.getText());
-                    //YAns.setVisibility(View.VISIBLE);
-                    next.setVisibility(View.VISIBLE);
-                    if (int_your_ans == a){
-                        result = true;
-                    }
-                    else {
-                        result = false;
-                    }
-                }
-
-            });
-        }
     }
-
     public void tofronttest2 (View v){
         if (your_ans!=null) {
             count++;
@@ -167,7 +163,6 @@ public class fronttest extends AppCompatActivity {
                 i.putExtra("health_education", health_education);
                 i.putExtra("id", id);
                 i.putExtra("exam_id", exam_id);
-                i.putExtra("Q_array", Q_array);
                 startActivity(i);
                 finish();
             }
@@ -175,7 +170,7 @@ public class fronttest extends AppCompatActivity {
     }
 
     public String datetime(){
-        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd 'T' HH:mm:ss");
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //==GMT標準時間往後加八小時
         nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         //==取得目前時間
@@ -195,12 +190,23 @@ public class fronttest extends AppCompatActivity {
         cv.put("change_data",change_data);
         String whereClause = "answer_id = ?";
         String whereArgs[] = {answer_id};
-        db.update("Answer", cv, whereClause, whereArgs);
+       // db.replace ("Answer", cv, whereClause, whereArgs);
+        db.replace ("Answer", null,cv);
         Cursor c = db.rawQuery("SELECT * FROM Answer",null);
         if(c.getCount()>0) {
             c.moveToFirst();
             String s = c.getString(1) + "\n" + c.getString(3) + "\n" + c.getString(4) ;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+        }
+        return true;
     }
 
     private void modify_Exam(int score,String patient_id,String exam_id){
@@ -223,7 +229,8 @@ public class fronttest extends AppCompatActivity {
             String whereClause = "exam_id = ?";
             //  String whereArgs[] = {id};
             String whereArgs[ ]={String.valueOf(exam_id)};
-            db.update("Exam", cv, whereClause, whereArgs);
+            db.replace ("Exam", null,cv);
+          //  db.update("Exam", cv, whereClause, whereArgs);
         }
         c = db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+exam_id+"'",null);
         if(c.getCount()>0) {

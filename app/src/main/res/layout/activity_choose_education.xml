@@ -61,7 +61,7 @@
                 android:onClick="onclick"
                 android:background="@drawable/bluebutton"
                 android:text="登出"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
         </TableRow>
 
     </TableLayout>
@@ -147,6 +147,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
+                    android:onClick="show_grade"
                     android:textSize="35dp" />
             </TableRow>
 
