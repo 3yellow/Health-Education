@@ -459,6 +459,7 @@ public class choose_education extends AppCompatActivity {
             go_fronttest_t1(Q_array,count,0,-1);//0：考卷還沒做過
         }
     }
+    */
 
     public void t2(View v){
         int score=0;
