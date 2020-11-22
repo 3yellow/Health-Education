@@ -84,8 +84,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="993dp"
-        android:layout_height="596dp"
+        android:layout_width="1079dp"
+        android:layout_height="603dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,11 +101,11 @@
                 android:layout_width="684dp"
                 android:layout_height="58dp"
                 android:gravity="center"
-                android:text="   \t姓名\t\t\t\t\t\t\t\t身分證\t\t\t\t\t\t\t\t收案日期"
+                android:text="   \t姓名\t\t\t\t\t\t\t\t身分證\t\t\t\t\t\t\t\t\t\t收案日期"
                 android:textSize="35dp" />
 
             <TextView
-                android:layout_width="262dp"
+                android:layout_width="267dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="40dp"
                 android:gravity="center"
@@ -114,23 +114,25 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="1000dp"
+            android:layout_width="match_parent"
+            android:layout_height="568dp"
             android:orientation="vertical">
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="match_parent">
 
                 <TableLayout
                     android:id="@+id/tbl"
                     android:layout_width="999dp"
                     android:layout_height="400dp"
-                    android:background="@drawable/yellowbutton"
                     android:shrinkColumns="0"
                     android:stretchColumns="1">
 
-                    <TableRow android:id="@+id/tbr"></TableRow>
+                    <TableRow
+                        android:id="@+id/tbr"
+                        android:layout_width="980dp"
+                        android:layout_height="match_parent"></TableRow>
                 </TableLayout>
 
             </ScrollView>

@@ -74,7 +74,7 @@ public class Nurse_Newdata extends AppCompatActivity {
         pas1=edt_pas1.getText().toString();
         flag=pas1.compareTo(edt_pas2.getText().toString());
 
-        eId=edt_id.getText().toString();
+        eId=edt_id.getText().toString().trim();
         eId=eId.toUpperCase();
         int flag_2=0;
         flag_2=searchData(eId, flag_2);
