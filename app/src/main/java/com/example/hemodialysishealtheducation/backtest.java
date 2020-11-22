@@ -36,6 +36,7 @@ public class backtest extends AppCompatActivity {
     Cursor cu;
     String nurseID,id,exam_id,health_education,patient_answer;
     int score=0,count=0;
+    int int_your_ans = -1;
     //int Q_array[]=new int[5];
     int right_choi=0,q_id=0;
     //int index=0;
@@ -114,34 +115,31 @@ public class backtest extends AppCompatActivity {
                     tempButton = (RadioButton) findViewById(checkedId);
                     right_choi = cu.getInt(2);
                     your_ans = tempButton.getText().toString();
-                    int int_your_ans = -1;
+
                     if (your_ans.equals("正確")) {
                         int_your_ans = 1;
                     } else {
                         int_your_ans = 0;
                     }
                     if (int_your_ans == right_choi) {
-                        choiceid = tempButton.getId();
+                        //choiceid = tempButton.getId();
                         result = true;
+
                         // MyToast("正確答案："+tempButton.getText()+"，恭喜你，回答正確");
                     } else {
                         result = false;
+
                         //MyToast("回答錯誤！");
                     }
                 }
             });
 
-            if (right_choi == 0) {
-                str = "錯誤";
-            } else {
-                str = "正確";
-            }
-            String explain = cu.getString(3);
-            An.setText("正確答案：" + str + "\n");
-            Als.setText(explain);
+
         }
     }
     }
+
+
 
     private void showDialog(){
         /* @setIcon 设置对话框图标
@@ -197,13 +195,24 @@ public class backtest extends AppCompatActivity {
             //   RadioButton tempButton = (RadioButton) findViewById(checkedId);
             if (result == true) {
                 tempButton.setTextColor(Color.GREEN);
+                if(int_your_ans==1)
+                    str="正確";
+                else
+                    str="錯誤";
                 MyToast("恭喜你，回答正確！");
                 An.setTextColor(Color.GREEN);
             } else {
+                if (int_your_ans==1)
+                    str="錯誤";
+                else
+                    str="正確";
                 tempButton.setTextColor(Color.RED);
                 MyToast("回答錯誤！");
                 An.setTextColor(Color.RED);
             }
+            String explain = cu.getString(3);
+            An.setText("正確答案：" + str + "\n");
+            Als.setText(explain);
             Als.setVisibility(View.VISIBLE);
             An.setVisibility(View.VISIBLE);
             next.setVisibility(View.VISIBLE);
@@ -285,7 +294,8 @@ public class backtest extends AppCompatActivity {
         cv.put("change_data",change_data);
         String whereClause = "answer_id = ?";
         String whereArgs[] = {answer_id};
-        db.update("Answer", cv, whereClause, whereArgs);
+        //db.update("Answer", cv, whereClause, whereArgs);
+        db.replace ("Answer", null,cv);
         Cursor c = db.rawQuery("SELECT * FROM Answer",null);
         if(c.getCount()>0) {
             c.moveToFirst();
@@ -313,7 +323,8 @@ public class backtest extends AppCompatActivity {
             String whereClause = "exam_id = ?";
             //  String whereArgs[] = {id};
             String whereArgs[ ]={String.valueOf(exam_id)};
-            db.update("Exam", cv, whereClause, whereArgs);
+            db.replace ("Exam", null,cv);
+            //db.update("Exam", cv, whereClause, whereArgs);
         }
         c = db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+exam_id+"'",null);
         if(c.getCount()>0) {

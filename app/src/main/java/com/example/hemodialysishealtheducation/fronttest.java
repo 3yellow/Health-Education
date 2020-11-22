@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -189,12 +190,23 @@ public class fronttest extends AppCompatActivity {
         cv.put("change_data",change_data);
         String whereClause = "answer_id = ?";
         String whereArgs[] = {answer_id};
-        db.update("Answer", cv, whereClause, whereArgs);
+       // db.replace ("Answer", cv, whereClause, whereArgs);
+        db.replace ("Answer", null,cv);
         Cursor c = db.rawQuery("SELECT * FROM Answer",null);
         if(c.getCount()>0) {
             c.moveToFirst();
             String s = c.getString(1) + "\n" + c.getString(3) + "\n" + c.getString(4) ;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+        }
+        return true;
     }
 
     private void modify_Exam(int score,String patient_id,String exam_id){
@@ -217,7 +229,8 @@ public class fronttest extends AppCompatActivity {
             String whereClause = "exam_id = ?";
             //  String whereArgs[] = {id};
             String whereArgs[ ]={String.valueOf(exam_id)};
-            db.update("Exam", cv, whereClause, whereArgs);
+            db.replace ("Exam", null,cv);
+          //  db.update("Exam", cv, whereClause, whereArgs);
         }
         c = db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+exam_id+"'",null);
         if(c.getCount()>0) {

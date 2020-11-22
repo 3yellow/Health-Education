@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 public class HealthInformation extends AppCompatActivity {
 
     String nurseID,exam_id,health_education;
     String id;
-    int index=0,count;
+    int index=0,count,score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class HealthInformation extends AppCompatActivity {
         id = intent.getStringExtra("id");
         exam_id = intent.getStringExtra("exam_id");
         count = intent.getIntExtra("count", -1);
+        score = intent.getIntExtra("score", -1);
         health_education = intent.getStringExtra("health education");
 
        // PDFView pdf=findViewById(R.id.pdfView);
@@ -46,5 +48,15 @@ public class HealthInformation extends AppCompatActivity {
         intent.putExtra("Q_array",Q_array);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+        }
+        return true;
     }
 }
