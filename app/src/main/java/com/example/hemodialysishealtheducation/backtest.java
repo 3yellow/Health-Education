@@ -89,6 +89,7 @@ public class backtest extends AppCompatActivity {
                     q_id = cu.getInt(2);
                 }
             }
+            cu.close();
         //q_id = Q_array[c];
 
 
@@ -133,9 +134,8 @@ public class backtest extends AppCompatActivity {
                     }
                 }
             });
-
-
         }
+        cu.close();
     }
     }
 
@@ -251,6 +251,7 @@ public class backtest extends AppCompatActivity {
             i.putExtra("id", id);
             i.putExtra("score", score);
             i.putExtra("flag", 99);//到MaunActivity時要判別 修改考卷
+            db.close();
             startActivity(i);
             finish();
         }
@@ -267,6 +268,7 @@ public class backtest extends AppCompatActivity {
             i.putExtra("id", id);
             i.putExtra("exam_id", exam_id);
             //i.putExtra("Q_array", Q_array);
+            db.close();
             startActivity(i);
             finish();
         }
@@ -301,6 +303,7 @@ public class backtest extends AppCompatActivity {
             c.moveToFirst();
             String s = c.getString(1) + "\n" + c.getString(3) + "\n" + c.getString(4) ;
         }
+        c.close();
     }
 
     private void modify_Exam(int score,String patient_id,String exam_id){
@@ -326,12 +329,6 @@ public class backtest extends AppCompatActivity {
             db.replace ("Exam", null,cv);
             //db.update("Exam", cv, whereClause, whereArgs);
         }
-        c = db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+exam_id+"'",null);
-        if(c.getCount()>0) {
-            c.moveToFirst();
-            String s = c.getString(0) + "\n" + c.getString(1) + "\n" + c.getString(2) + "\n"+c.getString(3) + "\n"+c.getString(4) + "\n"+c.getString(5) ;
-            //Toast.makeText(getApplicationContext(), "Modify Success!", Toast.LENGTH_SHORT).show();
-        }
-
+        c.close();
     }
 }

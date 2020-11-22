@@ -63,7 +63,7 @@ public class Searchlogin extends AppCompatActivity {
             user.setText(nurse_name+"登入");
             user.setTextSize(28);
         }
-
+        cu.close();
 
         // db = openOrCreateDatabase("dbs", Context.MODE_PRIVATE, null);
         layout2=findViewById(R.id.tbl);
@@ -189,6 +189,7 @@ public class Searchlogin extends AppCompatActivity {
                     });
                 } while (cu.moveToNext());
             }
+            cu.close();
         }
         else if(s_p.length() > 0) //收尋病人名
         {
@@ -257,6 +258,7 @@ public class Searchlogin extends AppCompatActivity {
                     });
                 } while (cu.moveToNext());
             }
+            cu.close();
         }
         else
             read();
@@ -331,6 +333,7 @@ public class Searchlogin extends AppCompatActivity {
                 });
             }while(cu.moveToNext());
         }
+        cu.close();
     }
 
     public void insertpaient(View v){
@@ -338,6 +341,7 @@ public class Searchlogin extends AppCompatActivity {
         intent.setClass(this,Newdata.class);
         intent.putExtra("nurseID",nurseID);
         intent.putExtra("pad",pad);
+        db.close();
         startActivity(intent);
         finish();
     }
@@ -349,8 +353,9 @@ public class Searchlogin extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent i = new Intent(Searchlogin.this,MainActivity.class);
-                        finish();
                         startActivity(i);
+                        db.close();
+                        finish();
                     }
                 }).setNegativeButton("取消",null).create();
         dialog.show();

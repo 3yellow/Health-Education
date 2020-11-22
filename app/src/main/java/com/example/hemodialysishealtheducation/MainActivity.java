@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             contentValues.put("nurse_authority", 1);
             db.insert("Nurse", null, contentValues);
         }
+        cursor.close();
     }
 
     private void createPatientTable() {
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             insertTopic("t9","玖.腎友如何預防便祕.doc.pdf");
             insertTopic("t10","拾..doc.pdf");
         }
+        cursor.close();
     }
 
     private void createStudyTable()//閱讀紀錄
@@ -279,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
 
              */
         }
+        cursor.close();
     }
 
     private void createExamTable() {
@@ -315,6 +318,7 @@ public class MainActivity extends AppCompatActivity {
     public void vediotest(View v){
         Intent intent = new Intent();
         intent.setClass(MainActivity.this , signature.class);
+        db.close();
         startActivity(intent);
     }
 
@@ -406,6 +410,7 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("nurseID",str);
                             intent.putExtra("nurse",str);
                             // intent.putExtra("name", Account.getText().toString());
+                            db.close();
                             startActivity(intent);
                             finish();
                         }
@@ -491,6 +496,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        cu.close();
     }
 
     public void back(View v) {
@@ -509,6 +515,7 @@ public class MainActivity extends AppCompatActivity {
                         if (password.equals(pas) )//輸入正確帳號密碼
                         {
                             Intent i = new Intent(MainActivity.this, Menu.class);
+                            db.close();;
                             startActivity(i);
                             finish();
                         }
@@ -540,6 +547,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }while(cu.moveToNext());
                 }
+                cu.close();
             }
             else {
                 AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
@@ -566,7 +574,8 @@ public class MainActivity extends AppCompatActivity {
                 } catch (NoSuchFieldException e2) {
                     e2.printStackTrace();
                 }
-            }}
+            }
+        }
     }
 
 }

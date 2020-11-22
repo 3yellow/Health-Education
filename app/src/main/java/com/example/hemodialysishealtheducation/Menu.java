@@ -116,6 +116,7 @@ public class Menu extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "輸入錯誤!!", Toast.LENGTH_SHORT).show();
                     }
                 }
+                cu.close();
                 /*
                 Intent i=new Intent(Menu.this,Nurse_Newdata.class);
                 i.putExtra("aa",s);
@@ -178,10 +179,12 @@ public class Menu extends AppCompatActivity {
                 });
             }while(cu.moveToNext());
         }
+        cu.close();
     }
 
     public void nwedata(View v){
         Intent i=new Intent(Menu.this,Nurse_Newdata.class);
+        db.close();
         startActivity(i);
         finish();
     }
@@ -250,6 +253,7 @@ public class Menu extends AppCompatActivity {
                         });
                     } while (cu.moveToNext());
                 }
+                cu.close();
             }
             else //收尋病人名
             {
@@ -305,6 +309,7 @@ public class Menu extends AppCompatActivity {
                         });
                     } while (cu.moveToNext());
                 }
+                cu.close();
             }
         }
         else {
@@ -337,6 +342,7 @@ public class Menu extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent i = new Intent(Menu.this,MainActivity.class);
+                        db.close();
                         startActivity(i);
                         finish();
                     }

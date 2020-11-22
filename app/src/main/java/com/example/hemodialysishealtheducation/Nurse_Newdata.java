@@ -64,6 +64,7 @@ public class Nurse_Newdata extends AppCompatActivity {
 
     public void back(View v){
         Intent i=new Intent(this,Menu.class);
+        db.close();
         startActivity(i);
         finish();
     }
@@ -93,6 +94,7 @@ public class Nurse_Newdata extends AppCompatActivity {
             addData(name,eId,pas1,1);
             db.close();
             Intent i=new Intent(this,Menu.class);
+            db.close();
             startActivity(i);
             finish();
         }
@@ -136,6 +138,7 @@ public class Nurse_Newdata extends AppCompatActivity {
         else {
             flag =1;
         }
+        c.close();
         return flag;
     }
 

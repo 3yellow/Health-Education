@@ -74,6 +74,7 @@ public class Nurse_modify extends AppCompatActivity {
                 w_stause = 2;
             }
         }
+        cu.close();
         read(idd);
         //work.setOnCheckedChangeListener(radGrpRegionOnCheckedChange);
     }
@@ -106,6 +107,7 @@ public class Nurse_modify extends AppCompatActivity {
 
     public void back(View v){
         Intent i=new Intent(this,Menu.class);
+        db.close();
         startActivity(i);
         finish();
     }
@@ -146,7 +148,6 @@ public class Nurse_modify extends AppCompatActivity {
             modify_nurse(edt_name.getText().toString(),eId,pas1,w_stause);
             String sql = "SELECT * FROM Nurse WHERE nurse_id = '"+ eId +"'";
             Cursor cu = db.rawQuery( sql,null );
-
             if(cu.getCount()>0) {
                 cu.moveToFirst();
 
@@ -161,8 +162,10 @@ public class Nurse_modify extends AppCompatActivity {
                 String text = cu.getString(1) + "\t\t" + cu.getString((0)) + "\t\t\t" + staue1;
 
             }
+            cu.close();
             db.close();
             Intent i=new Intent(this,Menu.class);
+            db.close();
             startActivity(i);
             finish();
         }
@@ -170,7 +173,6 @@ public class Nurse_modify extends AppCompatActivity {
     public void read(String id_tmp){
         String sql = "SELECT * FROM Nurse WHERE nurse_id = '"+ id_tmp +"'";
         Cursor cu = db.rawQuery( sql,null );
-
         if (!cu.moveToFirst()){
             Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
         }
@@ -197,6 +199,7 @@ public class Nurse_modify extends AppCompatActivity {
                 femalee.setChecked(true);
             }
         }
+        cu.close();
     }
 
     /*private void addData(String name,String id,String pas,int staue) {
