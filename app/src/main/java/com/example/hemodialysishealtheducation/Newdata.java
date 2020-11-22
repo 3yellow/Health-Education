@@ -179,19 +179,24 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         String nurseID=i.getStringExtra("nurseID");
         flag=searchData(eId);
         if (flag==2&&flag1!=1){
+            textView7.setVisibility(View.VISIBLE);
             textView7.setText("已有此資料");
         }
         else if (ename.isEmpty()){
-            textView7.setText("身分證還沒填");
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("姓名還沒填");
         }
         else if (eId.isEmpty()){
+            textView7.setVisibility(View.VISIBLE);
             textView7.setText("身分證還沒填");
         }
         else if (geender==0){
+            textView7.setVisibility(View.VISIBLE);
             flag=3;
             textView7.setText("性別還沒選");
         }
         else if(eId==null){
+            textView7.setVisibility(View.VISIBLE);
             flag=3;
             textView7.setText("身分證還沒選");
         }

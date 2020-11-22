@@ -1,111 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/wave1"
+    android:background="@drawable/patientchoicebg"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:orientation="horizontal">
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bluebutton"
+        android:onClick="nwedata"
+        android:text="新增"
+        android:textSize="26sp"
+        android:typeface="sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.413"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.028" />
 
-        <LinearLayout
-            android:layout_width="92dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <Button
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bluebutton"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:onClick="onclick"
+        android:text="登出"
+        android:textAllCaps="false"
+        android:textColorHint="#DBD5D5"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.028" />
 
-        </LinearLayout>
+    <EditText
+        android:id="@+id/edt_search"
+        android:layout_width="252dp"
+        android:layout_height="66dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.014" />
 
-        <LinearLayout
-            android:layout_width="62dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-        </LinearLayout>
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="42dp"
+        android:layout_height="54dp"
+        android:background="#00ffffff"
+        android:onClick="search"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toEndOf="@+id/edt_search"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029"
+        app:srcCompat="@drawable/searchicon" />
 
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <EditText
-                android:id="@+id/edt_search"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textSize="24sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="65dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="42dp"
-                android:layout_height="54dp"
-                android:background="#00ffffff"
-                android:scaleType="fitCenter"
-                android:onClick="search"
-                app:srcCompat="@drawable/searchicon" />
-        </LinearLayout>
-        <!--
-        !-->
-
-
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="13dp"
-                android:orientation="horizontal"></LinearLayout>
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bluebutton"
-                android:onClick="nwedata"
-                android:text="新增"
-                android:textSize="20sp"
-                android:typeface="sans" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="191dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center|right|center_horizontal"
-                android:onClick="onclick"
-                android:background="@drawable/bluebutton"
-                android:text="登出"
-                android:textAllCaps="false"
-                android:textColorHint="#DBD5D5"
-                android:textSize="26sp" />
-        </LinearLayout>
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="66dp"
+        android:layout_height="63dp"
+        android:background="#00000000"
+        android:onClick="onclick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021"
+        app:srcCompat="@drawable/home" />
 
     <LinearLayout
-        android:layout_width="999dp"
-        android:layout_height="1997dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="80dp"
-        android:orientation="vertical">
+        android:id="@+id/linearLayout"
+        android:layout_width="1050dp"
+        android:layout_height="598dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -115,38 +103,35 @@
             <TextView
                 android:layout_width="684dp"
                 android:layout_height="58dp"
-                android:text="   \t\t姓名\t\t\t\t\t\t\t\t\t身分證\t\t\t\t\t\t\t目前狀態"
+                android:text="\t\t\t\t\t\t\t\t\t\t姓名\t\t\t\t\t\t\t\t\t\t\t身分證\t\t\t\t\t\t\t\t目前狀態"
                 android:textSize="35dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:text="\t\t\t\t\t變更資料  "
+                android:text="\t\t\t\t\t\t\t\t變更資料  "
                 android:textSize="35dp" />
         </LinearLayout>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="535dp">
 
+            <TableLayout
+                android:id="@+id/tbl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:shrinkColumns="0"
+                android:stretchColumns="1">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="800dp"
-            android:orientation="vertical">
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="400px">
-
-                <TableLayout
-                    android:id="@+id/tbl"
-                    android:layout_width="999dp"
-                    android:layout_height="470dp"
-                    android:shrinkColumns="0"
-                    android:stretchColumns="1">
-
-                    <TableRow android:id="@+id/tbr"></TableRow>
-                </TableLayout>
-            </ScrollView>
-        </LinearLayout>
+                <TableRow
+                    android:id="@+id/tbr"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:baselineAligned="false"></TableRow>
+            </TableLayout>
+        </ScrollView>
 
     </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

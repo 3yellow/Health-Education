@@ -506,6 +506,7 @@ public class MainActivity extends AppCompatActivity {
                     cu.moveToFirst();
                     do {
                         String password=cu.getString(2);
+                        password=sha256(password);
                         if (password.equals(pas) )//輸入正確帳號密碼
                         {
                             Intent i = new Intent(MainActivity.this, Menu.class);
@@ -567,6 +568,12 @@ public class MainActivity extends AppCompatActivity {
                     e2.printStackTrace();
                 }
             }}
+    }
+
+    public void signaturetest(View v){
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this , signature.class);
+        startActivity(intent);
     }
 
 }
