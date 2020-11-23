@@ -80,14 +80,17 @@ public class Nurse_Newdata extends AppCompatActivity {
         int flag_2=0;
         flag_2=searchData(eId, flag_2);
         if (flag!=0) {
-            textView7.setText("兩個密碼輸入同");
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("兩次密碼輸入必須相同");
         }
         if (flag_2==2 ){
+            textView7.setVisibility(View.VISIBLE);
             textView7.setText("已有此資料");
         }
         else if (pas1==null){
             //判別是不是空
-            textView7.setText("密碼必須數入");
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("密碼必須輸入");
         }
         else if(flag==0&&flag_2!=2 ){
             //pas1=pas1.toLowerCase();//讓密碼統一都是小寫
@@ -212,11 +215,13 @@ public class Nurse_Newdata extends AppCompatActivity {
         int bb=((id.charAt(9)-48)+total)%10;
         if (bb==0)
         {
+            textView7.setVisibility(View.VISIBLE);
             System.out.println("這是正確的身分證號碼!!");
             aa=1;
             return true;
         }
         if (aa==0) {              //aa不等於0則輸入身分證字號不符合
+            textView7.setVisibility(View.VISIBLE);
             System.out.println("這不是正確的身分證字號!!");
             return false;
         }

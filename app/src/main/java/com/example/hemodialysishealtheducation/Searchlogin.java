@@ -140,10 +140,10 @@ public class Searchlogin extends AppCompatActivity {
                     TableRow r = new TableRow(this);//final TableRow
                     //  final ScrollView sc=new ScrollView(this);
                     // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-                    r.setLayoutParams(new TableRow.LayoutParams(1520, 80));
-                    button.setLayoutParams(new TableRow.LayoutParams(684, 80));
+                    r.setLayoutParams(new TableRow.LayoutParams(1520,100));
+                    button.setLayoutParams(new TableRow.LayoutParams(1124,100));//842
 
-                    btn_modify.setLayoutParams(new TableRow.LayoutParams(120, 80));
+                    btn_modify.setLayoutParams(new TableRow.LayoutParams(60,100));
                     btn_modify.setId(i);
                     button.setId(i);
                     r.setId(i);
@@ -211,10 +211,10 @@ public class Searchlogin extends AppCompatActivity {
                     TableRow r = new TableRow(this);//final TableRow
                     //  final ScrollView sc=new ScrollView(this);
                     // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-                    r.setLayoutParams(new TableRow.LayoutParams(1520, 80));
-                    button.setLayoutParams(new TableRow.LayoutParams(684, 80));
+                    r.setLayoutParams(new TableRow.LayoutParams(1520,100));
+                    button.setLayoutParams(new TableRow.LayoutParams(1124,100));
 
-                    btn_modify.setLayoutParams(new TableRow.LayoutParams(120, 80));
+                    btn_modify.setLayoutParams(new TableRow.LayoutParams(60,100));
 
                     button.setTextSize(35);
                     button.setText(text);
@@ -283,10 +283,10 @@ public class Searchlogin extends AppCompatActivity {
                 r=new TableRow(this);//final TableRow
                 //  final ScrollView sc=new ScrollView(this);
                 // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-                r.setLayoutParams(new TableRow.LayoutParams(1520,80));
-                button.setLayoutParams(new TableRow.LayoutParams(824,80));
+                r.setLayoutParams(new TableRow.LayoutParams(1520,100));
+                button.setLayoutParams(new TableRow.LayoutParams(1124,100));
 
-                btn_modify.setLayoutParams(new TableRow.LayoutParams(60,80));
+                btn_modify.setLayoutParams(new TableRow.LayoutParams(60,100));
                 btn_modify.setId(i);
                 button.setId(i);
                 r.setId(i);

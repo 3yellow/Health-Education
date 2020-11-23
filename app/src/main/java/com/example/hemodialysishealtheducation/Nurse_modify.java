@@ -135,12 +135,15 @@ public class Nurse_modify extends AppCompatActivity {
         iId=Boolean.TRUE;
 //        iId=vreifyId(eId);
         if (flag!=0) {
-            textView7.setText("兩個密碼輸入同");
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("兩次密碼輸入必須相同");
         }
         else if (!iId) {
+            textView7.setVisibility(View.VISIBLE);
             textView7.setText("請輸入正確的身分證格式(A123456789)");
         }
         else if(w_stause==0){
+            textView7.setVisibility(View.VISIBLE);
             textView7.setText("工作狀態還沒選");
         }
         else if(flag==0&iId){
@@ -179,16 +182,18 @@ public class Nurse_modify extends AppCompatActivity {
         else{
             edt_id.setFocusable(false);
             edt_id.setFocusableInTouchMode(false);
+            edt_name.setFocusable(false);
+            edt_name.setFocusableInTouchMode(false);
             String anamee = cu.getString(1);
-            String pa=cu.getString(2);
+           // String pa=cu.getString(2);
             edt_name.setText(anamee);
             edt_id.setText(idd);
-            edt_pas1.setText(pa);
+            edt_pas1.setText("");
 
             //以下兩行是不要讓密碼顯示出來
             //  edt_pas1.setTransformationMethod(PasswordTransformationMethod.getInstance());
             // edt_pas2.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            edt_pas2.setText(pa);
+            edt_pas2.setText("");
             int w = cu.getInt(3);//性別的預設值
             if (w==1){
                 //w_stause=1;
