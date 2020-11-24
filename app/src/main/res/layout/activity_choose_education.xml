@@ -147,7 +147,6 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:text="展開"
-                    android:onClick="show_grade"
                     android:textSize="35dp" />
             </TableRow>
 

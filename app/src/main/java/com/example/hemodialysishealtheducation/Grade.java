@@ -20,6 +20,7 @@ import java.lang.reflect.Field;
 public class Grade extends AppCompatActivity {
 
     String nurseID=null,id=null,ed_name_chinese=null,ed_name_ec=null;
+    String ex_id_1=null,ex_id_2=null,ex_id_3=null,ex_id_4=null,ex_id_5=null;
     Cursor cu=null;
     SQLiteDatabase db;
     Button btn_1_date=null,btn_2_date=null,btn_3_date=null,btn_4_date=null,btn_5_date=null;
@@ -83,7 +84,14 @@ public class Grade extends AppCompatActivity {
         btn_1_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(Grade.this,show_grade.class);
+                intent.putExtra("nurseID",nurseID);
+                intent.putExtra("examid",ex_id_1);
+                intent.putExtra("id",id);
+                intent.putExtra("ed_name_chinese","壹.腎臟估能簡介");
+                intent.putExtra("ed_name_ec","t1");
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -91,7 +99,7 @@ public class Grade extends AppCompatActivity {
     protected void show(String exam_id,int count_exam)
     {
         // cu = db.rawQuery("SELECT * FROM Patient WHERE patient_id='"+id+"' ",null);
-        //Exam (exam_id TEXT, exam_date DateTime, exam_score INT, patient_id char(10), nurse_id char(10),change_data DATETIME
+
         //Answer (answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME,
         String date=null,nurse=null;
         int score=0,i=2,count=5;
@@ -108,7 +116,6 @@ public class Grade extends AppCompatActivity {
                 btn_2_date.setVisibility(View.INVISIBLE); // 隱藏
             count--;
         }
-            count=count_exam;
         exam=exam_id+"0";
         Cursor cu=db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+exam+"'",null);
         if (cu.getCount()>0)
@@ -117,6 +124,7 @@ public class Grade extends AppCompatActivity {
             score=cu.getInt(2);
             date=cu.getString(1);
             nurse=cu.getString(4);
+            ex_id_1=exam;
             btn_1_date.setText(date);
             txt_1_score.setText(""+score);
             txt_1_time.setText("前側");
@@ -142,6 +150,7 @@ public class Grade extends AppCompatActivity {
                     nurse=cu.getString(4);
                     if(i==2)
                     {
+                        ex_id_2=exam;
                         btn_2_date.setText(date);
                         txt_2_score.setText(""+score);
                         txt_2_time.setText("後側第"+count_exam+"次");
@@ -149,6 +158,7 @@ public class Grade extends AppCompatActivity {
                     }
                     else if(i==3)
                     {
+                        ex_id_3=exam;
                         btn_3_date.setText(date);
                         txt_3_score.setText(""+score);
                         txt_3_time.setText("後側第"+count_exam+"次");
@@ -156,6 +166,7 @@ public class Grade extends AppCompatActivity {
                     }
                     else if(i==4)
                     {
+                        ex_id_4=exam;
                         btn_4_date.setText(date);
                         txt_4_score.setText(""+score);
                         txt_4_time.setText("後側第"+count_exam+"次");
@@ -163,6 +174,7 @@ public class Grade extends AppCompatActivity {
                     }
                     else if(i==5)
                     {
+                        ex_id_5=exam;
                         btn_5_date.setText(date);
                         txt_5_score.setText(""+score);
                         txt_5_time.setText("後側第"+count_exam+"次");
@@ -242,7 +254,7 @@ public class Grade extends AppCompatActivity {
     }
 
     public  void  back(View v){
-        Intent i=new Intent( this,Searchlogin.class);
+        Intent i=new Intent( this,choose_education.class);
         i.putExtra("nurseID",nurseID);
         db.close();
         startActivity(i);
