@@ -92,7 +92,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
                     femalee.setChecked(true);
                 }
             }
-
+            cu.close();
             read(idd);
         }
         else {
@@ -118,6 +118,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             edt_name.setText(anamee);
             edt_id.setText(idd);
         }
+        cu.close();
     }
     public void onDay2(View v)//設定時間的元件 View v int flag,String date
     {
@@ -203,6 +204,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             i=new Intent(Newdata.this,Searchlogin.class);
             i.putExtra("nurseID",nurseID);
             i=new Intent(Newdata.this,Searchlogin.class);
+            DBS.close();
             startActivity(i);
             finish();
         }
@@ -214,7 +216,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             i=new Intent(Newdata.this,consent.class);
             i.putExtra("nurseID",nurseID);
             i.putExtra("id",eId);
-
+            DBS.close();
             startActivity(i);
             finish();
         }
@@ -275,6 +277,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         else {
             flag =1;
         }
+        c.close();
         return flag;
     }
 
@@ -300,19 +303,9 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         cv.put("patient_register",date);
         cv.put("patient_birth",birth_date);
         cv.put("change_data",date_time);
-
-        //cv.put("nurse_id", nurseID);
         cv.put("patient_incharge",nurseID);//目前沒有護理師的資料，護理師的資料是從登入那抓取id，一直傳
 
-        //cv.put("nurse_id", nurseId);
-      //  cv.put("patient_incharge","admin");//目前沒有護理師的資料，護理師的資料是從登入那抓取id，一直傳
-
         DBS.insert("Patient", null, cv);
-
-        Cursor cu = DBS.rawQuery("SELECT * FROM Patient",null);
-        if(cu.getCount()>0) {
-            cu.moveToFirst();
-        }
     }
 
     private void modify_patient(String name,String id ,int gender,String date,String birth_date ){
@@ -333,11 +326,6 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         String whereClause = "patient_id = ?";
         String whereArgs[] = {id};
         DBS.update("Patient", cv, whereClause, whereArgs);
-        // Toast.makeText(getApplicationContext(), "Modify Success!", Toast.LENGTH_SHORT).show();
-        Cursor cu = DBS.rawQuery("SELECT * FROM Patient",null);
-        if(cu.getCount()>0) {
-            cu.moveToFirst();
-        }
     }
 
     public void nowTime(int flag_data,String id_tmp,int flag)//取得當日日期並且顯示在按鈕上
@@ -353,6 +341,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
                 else {
                     date = cu.getString(0);//formatter.format(new java.util.Date());
                 }
+                cu.close();
             }
             else {
                 date=formatter.format(new java.util.Date());
@@ -372,6 +361,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
                 else {
                     birth = cu.getString(0);
                 }
+                cu.close();
             }
             else {
                 birth=formatter_b.format(new java.util.Date());
@@ -406,6 +396,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     public void back(View v){
         Intent i=new Intent(Newdata.this,Searchlogin.class);
         i.putExtra("nurseID",nurseID);
+        DBS.close();
         startActivity(i);
         finish();
     }

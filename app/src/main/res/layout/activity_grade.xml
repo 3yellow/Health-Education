@@ -20,21 +20,14 @@
         android:onClick="back"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/backkey" />
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="496dp"
-        android:layout_height="113dp"
-        android:text="TextView"
-        android:textSize="37dp"
-        android:layout_marginLeft="300dp"
-         />
+
     <TextView
         android:id="@+id/nurse_id"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="99dp"
         android:text="TextView"
-        android:textSize="25dp"
-        android:layout_marginLeft="50dp"/>
+        android:textSize="35dp"
+        android:layout_marginLeft="800dp"/>
 
     <Button
         android:id="@+id/Sign_out"
@@ -43,14 +36,21 @@
         android:background="@drawable/bluebutton"
         android:onClick="onclick"
         android:text="登出"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.076"  />
+        android:layout_marginLeft="35dp"
+        android:textSize="24sp"  />
 </TableRow>
+    <TableRow android:layout_height="115dp"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="496dp"
+            android:layout_height="113dp"
+            android:text="TextView"
+            android:textSize="40dp"
+            android:layout_marginLeft="500dp"
+            />
+    </TableRow>
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -70,61 +70,53 @@
             android:layout_marginLeft="200dp"/>
 
     </TableRow>
-    <LinearLayout
+    <TableRow
         android:id="@+id/linearLayout2"
         android:layout_width="1021dp"
         android:layout_height="62dp"
-        android:layout_marginLeft="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.398">
+        android:layout_marginLeft="170dp"
+        >
 
         <TextView
             android:layout_width="255dp"
             android:layout_height="62dp"
+            android:gravity="center"
             android:text="衛教日期"
             android:textSize="30dp" />
 
         <TextView
             android:layout_width="255dp"
             android:layout_height="62dp"
-            android:layout_marginLeft="10dp"
+            android:gravity="center"
             android:text="第幾次衛教"
             android:textSize="30dp" />
 
         <TextView
             android:layout_width="255dp"
+            android:gravity="center"
             android:layout_height="62dp"
-            android:layout_marginLeft="10dp"
             android:text="成績"
-            android:textSize="32dp" />
+            android:textSize="30dp" />
         <TextView
             android:layout_width="255dp"
             android:layout_height="62dp"
-            android:layout_marginLeft="10dp"
+            android:gravity="center"
             android:text="護理師"
-            android:textSize="32dp" />
-    </LinearLayout>
+            android:textSize="30dp" />
+    </TableRow>
 
-
+    <LinearLayout
+        android:layout_width="1021dp"
+        android:layout_height="850dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="150dp">
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="915dp"
-        android:layout_height="420dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692">
-
-
+        android:layout_width="1021dp"
+        android:layout_height="500dp" >
         <TableLayout
             android:layout_width="1021dp"
-            android:layout_height="420dp"
+            android:layout_height="999dp"
             android:orientation="horizontal">
 
             <TableRow
@@ -132,37 +124,33 @@
                 android:layout_height="62dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <Button
                     android:id="@+id/btn_1_date"
                     android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:text="2020/08/23"
+                    android:gravity="center"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_1_time"
                     android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="4"
+                    android:gravity="center"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_1_score"
                     android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="88"
+                    android:gravity="center"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_1_nurse"
                     android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="李大奔"
+                    android:gravity="center"
                     android:textSize="30dp" />
-
 
             </TableRow>
 
@@ -171,24 +159,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <Button
                     android:id="@+id/btn_2_date"
-                    android:layout_width="350dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_2_time"
-                    android:layout_width="300dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_2_score"
-                    android:layout_width="300dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:textSize="30dp" />
+                <TextView
+                    android:id="@+id/btn_2_nurse"
+                    android:layout_width="255dp"
+                    android:layout_height="62dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
             </TableRow>
 
@@ -197,24 +192,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <Button
                     android:id="@+id/btn_3_date"
-                    android:layout_width="350dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_3_time"
-                    android:layout_width="300dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_3_score"
-                    android:layout_width="300dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:textSize="30dp" />
+                <TextView
+                    android:id="@+id/btn_3_nurse"
+                    android:layout_width="255dp"
+                    android:layout_height="62dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
             </TableRow>
 
@@ -223,24 +225,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <Button
                     android:id="@+id/btn_4_date"
-                    android:layout_width="350dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_4_time"
-                    android:layout_width="300dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_4_score"
-                    android:layout_width="300dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:textSize="30dp" />
+                <TextView
+                    android:id="@+id/btn_4_nurse"
+                    android:layout_width="255dp"
+                    android:layout_height="62dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
             </TableRow>
 
@@ -249,29 +257,36 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <Button
                     android:id="@+id/btn_5_date"
-                    android:layout_width="350dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_5_time"
-                    android:layout_width="300dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/btn_5_score"
-                    android:layout_width="300dp"
+                    android:layout_width="255dp"
                     android:layout_height="62dp"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:textSize="30dp" />
+                <TextView
+                    android:id="@+id/btn_5_nurse"
+                    android:layout_width="255dp"
+                    android:layout_height="62dp"
+                    android:gravity="center"
                     android:textSize="30dp" />
             </TableRow>
 
         </TableLayout>
     </ScrollView>
-
+    </LinearLayout>
 
 </LinearLayout >

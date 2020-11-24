@@ -107,7 +107,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.883">
 
-
             <TableLayout
                 android:layout_width="1021dp"
                 android:layout_height="420dp"
@@ -116,169 +115,114 @@
 
                 <TableRow
                     android:layout_width="1021dp"
-                    android:layout_height="62dp"
+                    android:layout_height="160dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txv_1_date"
+                        android:id="@+id/txv_right_wrong_1"
                         android:layout_width="245dp"
                         android:layout_height="match_parent"
                         android:text="2020/08/23"
                         android:textSize="30dp" />
 
                     <TextView
-                        android:id="@+id/txv_1_time"
+                        android:id="@+id/txv_Q1"
                         android:layout_width="245dp"
                         android:layout_height="62dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
                         android:textSize="30dp" />
 
-                    <Button
-                        android:id="@+id/btn_1_score"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="88"
-                        android:textSize="30dp" />
-
-                    <TextView
-                        android:id="@+id/txv_1_nurse"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="李大奔"
-                        android:textSize="30dp"
-                        />
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="1021dp"
+                    android:layout_height="160dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txv_2_date"
+                        android:id="@+id/txv_right_wrong_2"
                         android:layout_width="245dp"
-                        android:layout_height="62dp"
+                        android:layout_height="match_parent"
+                        android:text="2020/08/23"
                         android:textSize="30dp" />
 
                     <TextView
-                        android:id="@+id/txv_2_time"
+                        android:id="@+id/txv_Q2"
                         android:layout_width="245dp"
                         android:layout_height="62dp"
                         android:layout_marginLeft="10dp"
+                        android:text="4"
                         android:textSize="30dp" />
 
-                    <Button
-                        android:id="@+id/btn_2_score"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="30dp" />
-                    <TextView
-                        android:id="@+id/txv_2_nurse"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="30dp" />
+
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="1021dp"
+                    android:layout_height="160dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txv_3_date"
+                        android:id="@+id/txv_right_wrong_3"
                         android:layout_width="245dp"
-                        android:layout_height="62dp"
+                        android:layout_height="match_parent"
+                        android:text="2020/08/23"
                         android:textSize="30dp" />
 
                     <TextView
-                        android:id="@+id/txv_3_time"
+                        android:id="@+id/txv_Q3"
                         android:layout_width="245dp"
                         android:layout_height="62dp"
                         android:layout_marginLeft="10dp"
+                        android:text="4"
                         android:textSize="30dp" />
 
-                    <Button
-                        android:id="@+id/btn_3_score"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="30dp" />
-                    <TextView
-                        android:id="@+id/txv_3_nurse"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="30dp" />
+
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="1021dp"
+                    android:layout_height="160dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txv_4_date"
+                        android:id="@+id/txv_right_wrong_4"
                         android:layout_width="245dp"
-                        android:layout_height="62dp"
+                        android:layout_height="match_parent"
+                        android:text="2020/08/23"
                         android:textSize="30dp" />
 
                     <TextView
-                        android:id="@+id/txv_4_time"
+                        android:id="@+id/txv_Q4"
                         android:layout_width="245dp"
                         android:layout_height="62dp"
                         android:layout_marginLeft="10dp"
+                        android:text="4"
                         android:textSize="30dp" />
 
-                    <Button
-                        android:id="@+id/btn_4_score"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="30dp" />
-                    <TextView
-                        android:id="@+id/txv_4_nurse"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="30dp" />
+
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="1021dp"
+                    android:layout_height="160dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txv_5_date"
+                        android:id="@+id/txv_right_wrong_5"
                         android:layout_width="245dp"
-                        android:layout_height="62dp"
+                        android:layout_height="match_parent"
+                        android:text="2020/08/23"
                         android:textSize="30dp" />
 
                     <TextView
-                        android:id="@+id/txv_5_time"
+                        android:id="@+id/txv_Q5"
                         android:layout_width="245dp"
                         android:layout_height="62dp"
                         android:layout_marginLeft="10dp"
-                        android:textSize="30dp" />
-
-                    <Button
-                        android:id="@+id/btn_5_score"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="30dp" />
-
-                    <TextView
-                        android:id="@+id/txv_5_nurse"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
-                        android:layout_marginLeft="10dp"
+                        android:text="4"
                         android:textSize="30dp" />
                 </TableRow>
 

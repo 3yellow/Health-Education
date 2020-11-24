@@ -62,6 +62,7 @@ public class fronttest extends AppCompatActivity {
         health_education = intent.getStringExtra("health_education");
         score = intent.getIntExtra("score", 0);
         count = intent.getIntExtra("count", 0);
+        score=0;
         if (count == -1) {
             Que.setText("產生考卷發生問題");
         } else if (count != -1) {
@@ -80,6 +81,7 @@ public class fronttest extends AppCompatActivity {
                         q_id= cu.getInt(2);
                     }
                 }
+                cu.close();
             //q_id = Q_array[c];
             //question_id='"+q_id+"'";
              sql = "SELECT * FROM Question WHERE topic_id='" + health_education + "' AND question_id='" + q_id + "'";//我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
@@ -125,11 +127,13 @@ public class fronttest extends AppCompatActivity {
 
                 });
             }
+            cu.close();
         }
     }
     public void tofronttest2 (View v){
         if (your_ans!=null) {
             count++;
+
             int true_or_false = -1;//判別題目有沒有做對 1:對 0:錯
             if (result == true) {
                 true_or_false = 1;
@@ -150,6 +154,7 @@ public class fronttest extends AppCompatActivity {
                 i.putExtra("nurseID", nurseID);
                 i.putExtra("id", id);
                 i.putExtra("flag", 99);//到MaunActivity時要判別 修改考卷
+                db.close();
                 startActivity(i);
                 finish();
             } else {
@@ -163,6 +168,7 @@ public class fronttest extends AppCompatActivity {
                 i.putExtra("health_education", health_education);
                 i.putExtra("id", id);
                 i.putExtra("exam_id", exam_id);
+                db.close();
                 startActivity(i);
                 finish();
             }
@@ -193,10 +199,6 @@ public class fronttest extends AppCompatActivity {
        // db.replace ("Answer", cv, whereClause, whereArgs);
         db.replace ("Answer", null,cv);
         Cursor c = db.rawQuery("SELECT * FROM Answer",null);
-        if(c.getCount()>0) {
-            c.moveToFirst();
-            String s = c.getString(1) + "\n" + c.getString(3) + "\n" + c.getString(4) ;
-        }
     }
 
     @Override
@@ -232,12 +234,7 @@ public class fronttest extends AppCompatActivity {
             db.replace ("Exam", null,cv);
           //  db.update("Exam", cv, whereClause, whereArgs);
         }
-        c = db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+exam_id+"'",null);
-        if(c.getCount()>0) {
-            c.moveToFirst();
-            String s = c.getString(0) + "\n" + c.getString(1) + "\n" + c.getString(2) + "\n"+c.getString(3) + "\n"+c.getString(4) + "\n"+c.getString(5);
-            //Toast.makeText(getApplicationContext(), "Modify Success!", Toast.LENGTH_SHORT).show();
-        }
+        c.close();
 
     }
 }
