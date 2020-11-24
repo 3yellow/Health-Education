@@ -273,13 +273,15 @@ public class Searchlogin extends AppCompatActivity {
         if(cu.getCount()>0) {
             cu.moveToFirst();
             do {
-                String text=cu.getString(1)+"\t\t"+cu.getString((0))+"\t\t\t"+cu.getString(3);
+                String text=cu.getString(1)+"\t\t"+cu.getString((0))+"\t\t\t\t"+cu.getString(3);
                 id_array.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
                 namee=cu.getString(0);
                 idd=cu.getString(1);
                 agee=cu.getString(2);
                 final Button button = new Button(this);//final Button
+                button.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                 final Button btn_modify=new Button(this);//final Button
+                btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                 r=new TableRow(this);//final TableRow
                 //  final ScrollView sc=new ScrollView(this);
                 // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));

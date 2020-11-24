@@ -173,9 +173,6 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         eId=edt_id.getText().toString().trim();//trim去除多餘空白
         eId=eId.toUpperCase();
         String ename=edt_name.getText().toString().trim();
-
-
-
         Intent i=this.getIntent();
         String nurseID=i.getStringExtra("nurseID");
         flag=searchData(eId);

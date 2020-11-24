@@ -502,9 +502,10 @@ public class MainActivity extends AppCompatActivity {
     public void back(View v) {
         String str1=Account.getText().toString().trim().toLowerCase();
         String pas=editText.getText().toString().trim().toLowerCase();
-        pas=sha256(pas);
+       pas=sha256(pas);
         if (str1.trim().length()>0)//確定有輸入東西，不是誤按。
         {
+           // String str_pas=pas=sha256("admin");
             if ("admin".equals(str1))//只有管理員可以進入後台管理。
             {
                 Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+"admin"+"'",null);
@@ -512,7 +513,6 @@ public class MainActivity extends AppCompatActivity {
                     cu.moveToFirst();
                     do {
                         String password=cu.getString(2);
-                        password=sha256(password);
                         if (password.equals(pas) )//輸入正確帳號密碼
                         {
                             Intent i = new Intent(MainActivity.this, Menu.class);
