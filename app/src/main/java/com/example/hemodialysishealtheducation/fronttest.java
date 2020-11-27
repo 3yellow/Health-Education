@@ -62,11 +62,11 @@ public class fronttest extends AppCompatActivity {
         health_education = intent.getStringExtra("health_education");
         score = intent.getIntExtra("score", 0);
         count = intent.getIntExtra("count", 0);
-        score=0;
+        if(score<0)
+            score=0;
         if (count == -1) {
             Que.setText("產生考卷發生問題");
         } else if (count != -1) {
-            int c = Integer.valueOf(count);
             //answer_id=intent.getStringExtra("answer_id");
             //answer_id=exam_id+i;
 
@@ -84,8 +84,8 @@ public class fronttest extends AppCompatActivity {
                 cu.close();
             //q_id = Q_array[c];
             //question_id='"+q_id+"'";
-             sql = "SELECT * FROM Question WHERE topic_id='" + health_education + "' AND question_id='" + q_id + "'";//我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
-            cu = db.rawQuery(sql, null);
+            final String sql_1 = "SELECT * FROM Question WHERE topic_id='" + health_education + "' AND question_id='" + q_id + "'";//我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
+            cu = db.rawQuery(sql_1, null);
             if (!cu.moveToFirst()) {
                 Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
             } else {
@@ -99,11 +99,19 @@ public class fronttest extends AppCompatActivity {
                 item1.setText("正確");
                 item2.setText("錯誤");
 
+                cu.close();
                 ans.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
                         // TODO Auto-generated method stub
+                        cu = db.rawQuery(sql_1, null);
+                        int a=-1;
+                        if (cu.moveToFirst())
+                        {
+                            a = cu.getInt(2);//拿到資料庫中的答案
+                        }
+                        cu.close();
                         RadioButton tempButton = (RadioButton) findViewById(checkedId); // 通过RadioGroup的findViewById方法，找到ID为checkedID的RadioButton
                         your_ans = tempButton.getText().toString();
                         int int_your_ans = -1;
@@ -113,13 +121,13 @@ public class fronttest extends AppCompatActivity {
                             int_your_ans = 0;
                         }
                         // 以下就可以对这个RadioButton进行处理了
-                       int a = cu.getInt(1);//拿到資料庫中的答案
+
                         //patient_answer=tempButton.getText().toString();
                         YAns.setText("您的答案：" + tempButton.getText());
                         //YAns.setVisibility(View.VISIBLE);
                         next.setVisibility(View.VISIBLE);
                         if (int_your_ans == a) {
-                            result = true;
+                           result = true;
                         } else {
                             result = false;
                         }
@@ -127,13 +135,12 @@ public class fronttest extends AppCompatActivity {
 
                 });
             }
-            cu.close();
+
         }
     }
     public void tofronttest2 (View v){
         if (your_ans!=null) {
             count++;
-
             int true_or_false = -1;//判別題目有沒有做對 1:對 0:錯
             if (result == true) {
                 true_or_false = 1;
@@ -198,7 +205,6 @@ public class fronttest extends AppCompatActivity {
         String whereArgs[] = {answer_id};
        // db.replace ("Answer", cv, whereClause, whereArgs);
         db.replace ("Answer", null,cv);
-        Cursor c = db.rawQuery("SELECT * FROM Answer",null);
     }
 
     @Override

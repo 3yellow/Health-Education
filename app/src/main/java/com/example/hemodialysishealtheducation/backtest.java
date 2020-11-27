@@ -69,6 +69,8 @@ public class backtest extends AppCompatActivity {
         health_education = intent.getStringExtra("health education");
         score = intent.getIntExtra("score", 0);
         count = intent.getIntExtra("count", 0);
+        if(score==-1)
+            score=0;
        // count=index;
         //Q_array=intent.getStringArrayExtra("Q_array");
         if (count==-1)
@@ -93,8 +95,8 @@ public class backtest extends AppCompatActivity {
         //q_id = Q_array[c];
 
 
-        sql = "SELECT * FROM Question WHERE question_id = '" + q_id + "'"; //我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
-        cu = db.rawQuery(sql, null);
+        final String  sql_1 = "SELECT * FROM Question WHERE question_id = '" + q_id + "'"; //我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
+        cu = db.rawQuery(sql_1, null);
         if (!cu.moveToFirst()) {
             Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
         }
@@ -108,13 +110,18 @@ public class backtest extends AppCompatActivity {
             //}
             item1.setText("正確");
             item2.setText("錯誤");
-
+            cu.close();
 
             mRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     tempButton = (RadioButton) findViewById(checkedId);
-                    right_choi = cu.getInt(2);
+                    cu = db.rawQuery(sql_1, null);
+                    if (cu.moveToFirst())
+                    {
+                        right_choi = cu.getInt(2);
+                    }
+                   cu.close();
                     your_ans = tempButton.getText().toString();
 
                     if (your_ans.equals("正確")) {
@@ -135,7 +142,6 @@ public class backtest extends AppCompatActivity {
                 }
             });
         }
-        cu.close();
     }
     }
 
@@ -185,6 +191,7 @@ public class backtest extends AppCompatActivity {
     }
 
     public void CHECK(View v) {
+        String explain=null;
         if (your_ans != null) {
             TextView Als = (TextView) findViewById(R.id.Analysis);
             TextView An = (TextView) findViewById(R.id.An);
@@ -210,7 +217,10 @@ public class backtest extends AppCompatActivity {
                 MyToast("回答錯誤！");
                 An.setTextColor(Color.RED);
             }
-            String explain = cu.getString(3);
+            cu = db.rawQuery("SELECT * FROM Question WHERE question_id = '" + q_id + "'", null);
+            if (cu.moveToFirst()) {
+                explain = cu.getString(3);
+            }
             An.setText("正確答案：" + str + "\n");
             Als.setText(explain);
             Als.setVisibility(View.VISIBLE);

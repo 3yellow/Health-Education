@@ -69,31 +69,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="245dp"
+                android:layout_width="115dp"
                 android:layout_height="62dp"
-                android:text="衛教日期"
+                android:text="對錯"
+                android:textSize="30dp" />
+            <TextView
+                android:layout_width="906dp"
+                android:layout_height="62dp"
+                android:layout_marginLeft="10dp"
+                android:text="題目"
                 android:textSize="30dp" />
 
-
-            <TextView
-                android:layout_width="245dp"
-                android:layout_height="62dp"
-                android:layout_marginLeft="10dp"
-                android:text="第幾次衛教"
-                android:textSize="30dp" />
-
-            <TextView
-                android:layout_width="245dp"
-                android:layout_height="62dp"
-                android:layout_marginLeft="10dp"
-                android:text="成績"
-                android:textSize="32dp" />
-            <TextView
-                android:layout_width="245dp"
-                android:layout_height="62dp"
-                android:layout_marginLeft="10dp"
-                android:text="護理師"
-                android:textSize="32dp" />
         </LinearLayout>
 
         <ScrollView
@@ -118,17 +104,17 @@
                     android:layout_height="160dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/txv_right_wrong_1"
-                        android:layout_width="245dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="115dp"
+                        android:layout_height="160dp"
                         android:text="2020/08/23"
                         android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/txv_Q1"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
+                        android:layout_width="906dp"
+                        android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
                         android:textSize="30dp" />
@@ -141,17 +127,17 @@
                     android:layout_height="160dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/txv_right_wrong_2"
-                        android:layout_width="245dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="115dp"
+                        android:layout_height="160dp"
                         android:text="2020/08/23"
                         android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/txv_Q2"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
+                        android:layout_width="906dp"
+                        android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
                         android:textSize="30dp" />
@@ -164,17 +150,17 @@
                     android:layout_height="160dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/txv_right_wrong_3"
-                        android:layout_width="245dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="115dp"
+                        android:layout_height="160dp"
                         android:text="2020/08/23"
                         android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/txv_Q3"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
+                        android:layout_width="906dp"
+                        android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
                         android:textSize="30dp" />
@@ -187,17 +173,17 @@
                     android:layout_height="160dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/txv_right_wrong_4"
-                        android:layout_width="245dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="115dp"
+                        android:layout_height="160dp"
                         android:text="2020/08/23"
                         android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/txv_Q4"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
+                        android:layout_width="906dp"
+                        android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
                         android:textSize="30dp" />
@@ -210,17 +196,17 @@
                     android:layout_height="160dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/txv_right_wrong_5"
-                        android:layout_width="245dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="115dp"
+                        android:layout_height="160dp"
                         android:text="2020/08/23"
                         android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/txv_Q5"
-                        android:layout_width="245dp"
-                        android:layout_height="62dp"
+                        android:layout_width="906dp"
+                        android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
                         android:textSize="30dp" />
