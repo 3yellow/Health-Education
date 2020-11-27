@@ -113,7 +113,7 @@ public class fronttest extends AppCompatActivity {
                             int_your_ans = 0;
                         }
                         // 以下就可以对这个RadioButton进行处理了
-                        int a = cu.getInt(1);//拿到資料庫中的答案
+                       int a = cu.getInt(1);//拿到資料庫中的答案
                         //patient_answer=tempButton.getText().toString();
                         YAns.setText("您的答案：" + tempButton.getText());
                         //YAns.setVisibility(View.VISIBLE);
