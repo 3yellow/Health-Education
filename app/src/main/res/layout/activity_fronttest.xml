@@ -3,164 +3,120 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/testbg"
     tools:context=".fronttest">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/frontground1"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent">
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="272dp"
+        android:layout_height="98dp"
+        android:background="@drawable/bluebutton"
+        android:onClick="tofronttest2"
+        android:text="下一題"
+        android:textSize="56sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.955" />
 
-        <LinearLayout
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.205"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Ans"
+        app:layout_constraintVertical_bias="0.113"
+        app:srcCompat="@drawable/right" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.598"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/Ans"
+        app:layout_constraintVertical_bias="0.085"
+        app:srcCompat="@drawable/wrong" />
+
+    <RadioGroup
+        android:id="@+id/Ans"
+        android:layout_width="1280dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="200dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="200dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="5dp"
+            android:button="@drawable/radiostyle"
+            android:text="\tA.正確"
+            android:textSize="68sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="230dp"
+            android:layout_marginStart="230dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:button="@drawable/radiostyle"
+            android:text="\tB.錯誤"
+            android:textSize="68sp" />
+
+
+    </RadioGroup>
+
+    <ScrollView
+        android:layout_width="897dp"
+        android:layout_height="181dp"
+        app:layout_constraintBottom_toTopOf="@+id/Ans"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.828">
+
+        <TextView
+            android:id="@+id/Question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:text="Questiong"
+            android:textColor="#000000"
+            android:textSize="56sp" />
+    </ScrollView>
 
-            <LinearLayout
-                android:layout_width="1064dp"
-                android:layout_height="144dp"
-                android:layout_weight="1">
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="210dp"
+        android:layout_height="140dp"
+        android:layout_weight="1"
+        android:text="前測"
+        android:textColor="#79a6a9"
+        android:textSize="96sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="1124dp"
-                    android:layout_height="153dp"
-                    android:layout_weight="1"
-                    android:text="\t\t\t\t\t\t\t\t\t\t\t前測"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#257B81"
-                    android:textSize="96sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="18dp"
-            android:orientation="horizontal"></LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="497dp">
-
-            <LinearLayout
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:layout_width="982dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="948dp"
-                    android:layout_height="120dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/Question"
-                        android:layout_width="950dp"
-                        android:layout_height="127dp"
-                        android:layout_weight="1"
-                        android:text="Questiong"
-                        android:textColor="#000000"
-                        android:textSize="30sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="408dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="311dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <RadioGroup
-                            android:id="@+id/Ans"
-                            android:layout_width="match_parent"
-                            android:layout_height="312dp">
-
-                            <RadioButton
-                                android:id="@+id/radioButton1"
-                                android:layout_width="951dp"
-                                android:layout_height="64dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:button="@drawable/radiostyle"
-                                android:text="\tA.發熱"
-                                android:textSize="30sp" />
-
-                            <RadioButton
-                                android:id="@+id/radioButton2"
-                                android:layout_width="954dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_weight="1"
-                                android:button="@drawable/radiostyle"
-                                android:text="\tB.肌肉痙攣"
-                                android:textSize="30sp" />
-
-
-                        </RadioGroup>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/YourAns"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="YourAns"
-                android:textSize="24sp"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
-
-            <Button
-                android:id="@+id/button12"
-                android:layout_width="262dp"
-                android:layout_height="76dp"
-                android:background="@drawable/bluebutton"
-                android:onClick="tofronttest2"
-                android:text="下一題"
-                android:textSize="36sp"
-                android:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="335dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

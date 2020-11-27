@@ -216,7 +216,7 @@ public class backtest extends AppCompatActivity {
             if (cu.moveToFirst()) {
                 explain = cu.getString(3);
             }
-            An.setText("正確答案：" + str + "\n");
+            An.setText("正確答案：" + str);
             Als.setText(explain);
             Als.setVisibility(View.VISIBLE);
             An.setVisibility(View.VISIBLE);
