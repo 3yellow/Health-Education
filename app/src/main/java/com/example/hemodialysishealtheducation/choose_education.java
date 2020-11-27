@@ -347,118 +347,6 @@ public class choose_education extends AppCompatActivity {
             e2.printStackTrace();
         }
     }
-/*
-    public void t1(View v){
-        int score=0;
-        int Q_array[]=new int[5];
-        int count=0;//看有幾張考卷了
-        String exam_id;
-        exam_id="t1"+id;
-        cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+exam_id+"%'",null);
-        int co=cu.getCount();
-        if (cu.getCount()==1){
-            cu.moveToFirst();
-            count=cu.getCount();
-            if (cu.getInt(2)==-1)//考卷沒有做完
-            {
-                int i=0;//判別考卷從哪開始做
-                cu.close();
-                cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+"t1"+id+"0"+"%'AND result='" + -1 + "'" ,null);
-                if (cu.getCount()>0)
-                {
-                    cu.moveToFirst();
-                    int c=cu.getCount();//看有幾題做過
-                    c=5-c;//有幾題沒做過
-                    while (c>0){
-                        Q_array[i]=cu.getInt(2);
-                        i++;
-                        cu.moveToNext();
-                    }
-                }
-                cu.close();
-                cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+"t1"+id+"0"+"%'" ,null);//AND result='" + 1+ "'
-                if (cu.getCount()>0)
-                {
-                    cu.moveToFirst();
-                    int r_w=cu.getInt(1);
-                    if (r_w==1)
-                        score+=10;
-                }
-                go_fronttest_t1(Q_array,count-1,i,score);
-            }
-            else//考卷做完
-            {
-                exam_id="t1"+id+count;
-                Q_array=choi_Q("t1");
-                insertExam(exam_id ,nurseID, id);
-                Answer_inser_db(exam_id,Q_array);
-                //go_backtest_t1(int count,int[] Q_array,int index)/
-                go_backtest_t1(count,Q_array,0,-1);//0：考卷還沒做過
-            }
-        }
-        else if (cu.getCount()>1){
-            //衛教+後側
-            int flag=0;
-            count=cu.getCount();
-            count=count-1;
-            exam_id="t1"+id+count;
-            flag=judgment_f_or_b(exam_id);
-            if (flag==-1)//考卷還沒做完
-            {
-                int i=0;//判別考卷從哪開始做
-                int j=0;//檢查題目
-                while (j<5)
-                {
-                    cu.close();
-                    cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+exam_id+j+"%'AND result='" + -1 + "'" ,null);
-                    if (cu.getCount()>0)
-                    {
-                        cu.moveToFirst();
-                        int c=cu.getCount();//看有幾題做過
-                        c=5-c;//有幾題沒做過
-                        if (c>0){
-                            Q_array[i]=cu.getInt(2);
-                            i++;
-                            cu.moveToNext();
-                        }
-                    }
-                    j++;
-                    cu.close();
-                    cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+exam_id+j+"%'AND result='" + 1 + "'" ,null);
-                    if (cu.getCount()>0)
-                    {
-                        cu.moveToFirst();
-                        int r_w=cu.getInt(1);
-                        if (r_w==1)
-                            score+=20;
-                    }
-                }
-                //去做上次沒做完的後側
-                go_backtest_t1(count,Q_array,5-i,score);//0：考卷還沒做過
-            }
-            else if(flag==99 || flag==2)
-            {
-                count=cu.getCount();
-                exam_id="t1"+id+count;
-                Q_array=choi_Q("t1");
-                insertExam(exam_id ,nurseID, id);
-                Answer_inser_db(exam_id,Q_array);
-                go_backtest_t1(count,Q_array,0,-1);//0：考卷還沒做過
-            }
-            else {
-                Toast.makeText(getApplicationContext(), "查無此資料", Toast.LENGTH_SHORT).show();
-            }
-        }
-        else {
-            //前側
-            Q_array=choi_Q("t1");
-            insertExam("t1"+id+"0" ,nurseID, id);
-            Answer_inser_db("t1"+id+"0",Q_array);
-            go_fronttest_t1(Q_array,count,0,-1);//0：考卷還沒做過
-        }
-        cu.close();
-    }
-*/
 
     public void t1(View v){
         int score=0;
@@ -482,21 +370,7 @@ public class choose_education extends AppCompatActivity {
                 while (j<5)
                 {
                     cu.close();
-                    cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+exam_id+j+"%'AND result='" + -1 + "'" ,null);
-                    if (cu.getCount()>0)
-                    {
-                        cu.moveToFirst();
-                        int c=cu.getCount();//看有幾題做過
-                        //c=5-c;//有幾題沒做過
-                        if (c>0){
-                         Q_array[i]=cu.getInt(2);
-                     //   i++;
-                        // cu.moveToNext();
-                        }
-                   }
-                    j++;
-                    cu.close();
-                    cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+exam_id+j+"%'AND result='" + 1 + "'" ,null);
+                    cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+exam_id+j+"%'AND result!='" + -1 + "'"  ,null);
                     if (cu.getCount()>0)
                     {
                         i++;
@@ -504,9 +378,11 @@ public class choose_education extends AppCompatActivity {
                         int r_w=cu.getInt(1);
                         if (r_w==1)
                             score+=20;
-                        i++;
                     }
+                    j++;
+                    cu.close();
                 }
+
                 //去做上次沒做完的後側
                 if(count==0)//前側
                 {
@@ -544,87 +420,45 @@ public class choose_education extends AppCompatActivity {
         int score=0;
         int Q_array[]=new int[5];
         int count=0;//看有幾張考卷了
-        cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+"t2"+id+"%'",null);
+        String exam_id;
+        exam_id="t2"+id;
+        cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+exam_id+"%'",null);
         int co=cu.getCount();
-        if (cu.getCount()==1){
-            cu.moveToFirst();
-            count=cu.getCount();
-            if (cu.getInt(2)==-1)//考卷沒有做完
-            {
-                int i=0;//判別考卷從哪開始做
-                cu.close();
-                cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+"t2"+id+"0"+"%'AND result='" + -1 + "'" ,null);
-                if (cu.getCount()>0)
-                {
-                    cu.moveToFirst();
-                    int c=cu.getCount();//看有幾題做過
-                    c=5-c;//有幾題沒做過
-                    while (c>0){
-                        Q_array[i]=cu.getInt(2);
-                        i++;
-                        cu.moveToNext();
-                    }
-                }
-                cu.close();
-                cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+"t2"+id+"0"+"%'" ,null);//AND result='" + 1+ "'
-                if (cu.getCount()>0)
-                {
-                    cu.moveToFirst();
-                    int r_w=cu.getInt(1);
-                    if (r_w==1)
-                        score+=10;
-                }
-                go_fronttest_t2(Q_array,count-1,i,score);
-            }
-            else//考卷做完
-            {
-                String exam_id="t2"+id+count;
-                Q_array=choi_Q("t2");
-                insertExam(exam_id ,nurseID, id);
-                Answer_inser_db(exam_id,Q_array);
-                //go_backtest_t2(int count,int[] Q_array,int index)/
-                go_backtest_t2(count,Q_array,0,-1);//0：考卷還沒做過
-            }
-        }
-        else if (cu.getCount()>1){
+        if (cu.getCount()>0){
             //衛教+後側
             int flag=0;
             count=cu.getCount();
             count=count-1;
-            String exam_id="t2"+id+count;
+            exam_id="t2"+id+count;
             flag=judgment_f_or_b(exam_id);
             if (flag==-1)//考卷還沒做完
             {
                 int i=0;//判別考卷從哪開始做
                 int j=0;//檢查題目
+                int k=0;
                 while (j<5)
                 {
                     cu.close();
-                    cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+exam_id+j+"%'AND result='" + -1 + "'" ,null);
+                    cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+exam_id+j+"%'AND result!='" + -1 + "'"  ,null);
                     if (cu.getCount()>0)
                     {
-                        cu.moveToFirst();
-                        int c=cu.getCount();//看有幾題做過
-                        c=5-c;//有幾題沒做過
-                        if (c>0){
-                            Q_array[i]=cu.getInt(2);
-                            i++;
-                            cu.moveToNext();
-                        }
-                    }
-                    j++;
-                    cu.close();
-                    cu = db.rawQuery("SELECT * FROM Answer WHERE answer_id LIKE '"+exam_id+j+"%'AND result='" + 1 + "'" ,null);
-                    if (cu.getCount()>0)
-                    {
+                        i++;
                         cu.moveToFirst();
                         int r_w=cu.getInt(1);
                         if (r_w==1)
                             score+=20;
                     }
+                    j++;
                 }
                 //去做上次沒做完的後側
-                go_backtest_t2(count,Q_array,5-i,score);//0：考卷還沒做過
+                if(count==0)//前側
+                {
+                    go_fronttest_t2(Q_array,count,i,score);
+                }
+                else //後側
+                {
+                    go_backtest_t2(count,Q_array,i,score);//0：考卷還沒做過
+                }
             }
             else if(flag==99 || flag==2)
             {
@@ -721,7 +555,7 @@ public class choose_education extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-    //kindney_function
+
     public void go_backtest_t1(int count,int[] Q_array,int index,int score)
     {
         //衛教+後側

@@ -35,7 +35,6 @@ public class fronttest extends AppCompatActivity {
     //int index=0;
     int q_id=0;//要把所有用到資料庫的 都要改成int
     int score=0,count=0;
-    String[] Choi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +44,16 @@ public class fronttest extends AppCompatActivity {
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫
         TextView Que = (TextView) findViewById(R.id.Question);
         final TextView YAns = (TextView) findViewById(R.id.YourAns);
-        //final TextView Als = (TextView) findViewById(R.id.Analysis);
         final RadioGroup ans = (RadioGroup) findViewById(R.id.Ans);
-        //final ScrollView scroll = (ScrollView) findViewById(R.id.roll);
         final Button next = (Button) findViewById(R.id.button12);
         item1 = (RadioButton) findViewById(R.id.radioButton1);
         item2 = (RadioButton) findViewById(R.id.radioButton2);
         Button dialog = (Button) findViewById(R.id.button);
 
-        //nurseID id exam_id index health_education
         Intent intent = this.getIntent();
         nurseID = intent.getStringExtra("nurseID");
         id = intent.getStringExtra("id");
         exam_id = intent.getStringExtra("exam_id");
-        //index = intent.getIntExtra("index", -1);//看題目要從哪一題開始。 0：表示上一張考卷有坐完 非0：上一張考卷沒有坐完，要從上一張考卷開始坐。
         health_education = intent.getStringExtra("health_education");
         score = intent.getIntExtra("score", 0);
         count = intent.getIntExtra("count", 0);
@@ -67,11 +62,7 @@ public class fronttest extends AppCompatActivity {
         if (count == -1) {
             Que.setText("產生考卷發生問題");
         } else if (count != -1) {
-            //answer_id=intent.getStringExtra("answer_id");
-            //answer_id=exam_id+i;
-
                 String answer_id = exam_id + count;
-                //answer_id
                 String sql = "SELECT * FROM Answer  WHERE answer_id='" + answer_id + "'";//我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
                 cu = db.rawQuery(sql, null);
                 if (cu.getCount() > 0) {
@@ -92,10 +83,7 @@ public class fronttest extends AppCompatActivity {
                 String content = cu.getString(1);
                 Que.setText(content);
                 //{"A.發熱", "B.肌肉痙攣", "C.失衡綜合征", "D.透析性骨病", "D.透析性骨病"};
-                Choi = new String[4];
-                // for (int i = 0;i < 2 ; i++){
-                //    Choi[i]=cu.getString(i+3);//拿到存在資料庫中的選項
-                //}
+
                 item1.setText("正確");
                 item2.setText("錯誤");
 
@@ -140,7 +128,6 @@ public class fronttest extends AppCompatActivity {
     }
     public void tofronttest2 (View v){
         if (your_ans!=null) {
-
             int true_or_false = -1;//判別題目有沒有做對 1:對 0:錯
             if (result == true) {
                 true_or_false = 1;
@@ -150,13 +137,13 @@ public class fronttest extends AppCompatActivity {
                 //Toast.makeText(this, "error" + score, Toast.LENGTH_LONG).show();
                 true_or_false = 0;
             }
-            if (count >= 5) {
+            if (count >= 4) {
                 // answer_id exam_id+count
                 String answer_id=exam_id+count;
                 modify_Answer(answer_id,true_or_false, q_id, exam_id);
                 modify_Exam(score, id, exam_id);
-                Intent intent = this.getIntent();
-                health_education = intent.getStringExtra("health education");
+                //Intent intent = this.getIntent();
+                //health_education = intent.getStringExtra("health education");
                 Intent i = new Intent(fronttest.this, choose_education.class);
                 i.putExtra("nurseID", nurseID);
                 i.putExtra("id", id);
