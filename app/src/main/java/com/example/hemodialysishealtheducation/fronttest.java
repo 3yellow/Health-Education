@@ -148,6 +148,7 @@ public class fronttest extends AppCompatActivity {
                 i.putExtra("nurseID", nurseID);
                 i.putExtra("id", id);
                 i.putExtra("flag", 99);//到MaunActivity時要判別 修改考卷
+
                 db.close();
                 startActivity(i);
                 finish();
