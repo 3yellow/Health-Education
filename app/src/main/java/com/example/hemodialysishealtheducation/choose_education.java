@@ -310,6 +310,7 @@ public class choose_education extends AppCompatActivity {
     public  void  back(View v){
         Intent i=new Intent(choose_education.this,Searchlogin.class);
         i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
         startActivity(i);
         finish();
     }

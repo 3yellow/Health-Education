@@ -19,7 +19,7 @@ import java.lang.reflect.Field;
 
 public class Grade extends AppCompatActivity {
 
-    String nurseID=null,id=null,ed_name_chinese=null,ed_name_ec=null;
+    String nurseID=null,id=null ,ed_name_chinese=null,ed_name_ec=null;
     String ex_id_1=null,ex_id_2=null,ex_id_3=null,ex_id_4=null,ex_id_5=null;
     Cursor cu=null;
     SQLiteDatabase db;
@@ -40,7 +40,6 @@ public class Grade extends AppCompatActivity {
         Intent intent=this.getIntent();
         nurseID=intent.getStringExtra("nurseID");
         id=intent.getStringExtra("id");
-        ed_name_chinese=intent.getStringExtra("ed_name_chinese");
         ed_name_ec=intent.getStringExtra("ed_name_ec");
 
         cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+nurseID+"' ",null);
@@ -59,6 +58,13 @@ public class Grade extends AppCompatActivity {
             patient_id.setTextSize(30);
         }
         cu.close();
+        //Topic (topic_id char(10), topic_name TEXT,change_data DATETIME
+        cu=db.rawQuery("SELECT * FROM Topic WHERE topic_id='"+ed_name_ec+"' ",null);
+        if(cu.getCount()>0)
+        {
+            cu.moveToFirst();
+            ed_name_chinese=cu.getString(1);
+        }
         patient.setTextSize(30);
         patient_id.setText(id);
         patient_id.setTextSize(30);
@@ -88,8 +94,19 @@ public class Grade extends AppCompatActivity {
                 intent.putExtra("nurseID",nurseID);
                 intent.putExtra("examid",ex_id_1);
                 intent.putExtra("id",id);
-                intent.putExtra("ed_name_chinese","壹.腎臟估能簡介");
-                intent.putExtra("ed_name_ec","t1");
+                intent.putExtra("ed_name_ec",ed_name_ec);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btn_2_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Grade.this,show_grade.class);
+                intent.putExtra("nurseID",nurseID);
+                intent.putExtra("examid",ex_id_1);
+                intent.putExtra("id",id);
+                intent.putExtra("ed_name_ec",ed_name_ec);
                 startActivity(intent);
                 finish();
             }
