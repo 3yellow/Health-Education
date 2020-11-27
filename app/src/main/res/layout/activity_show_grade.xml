@@ -5,6 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".show_grade">
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="1168dp"
+        android:layout_marginRight="1168dp"
+        android:layout_marginBottom="16dp"
+        android:background="#00000000"
+        android:onClick="back"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.067"
+        app:srcCompat="@drawable/backkey" />
+
     <TextView
         android:id="@+id/textView14"
         android:layout_width="496dp"
@@ -39,40 +58,42 @@
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.076" />
+
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="1021dp"
-        android:layout_height="62dp"
+        android:layout_width="1068dp"
+        android:layout_height="513dp"
         android:layout_marginLeft="70dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.398"
-        android:orientation="vertical">
+        app:layout_constraintVertical_bias="0.975">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="1021dp"
             android:layout_height="62dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.398"
-            android:orientation="horizontal">
+            app:layout_constraintVertical_bias="0.398">
 
             <TextView
                 android:layout_width="115dp"
                 android:layout_height="62dp"
                 android:text="對錯"
                 android:textSize="30dp" />
+
             <TextView
                 android:layout_width="906dp"
                 android:layout_height="62dp"
@@ -96,8 +117,7 @@
             <TableLayout
                 android:layout_width="1021dp"
                 android:layout_height="420dp"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TableRow
                     android:layout_width="1021dp"
@@ -107,9 +127,7 @@
                     <ImageView
                         android:id="@+id/txv_right_wrong_1"
                         android:layout_width="115dp"
-                        android:layout_height="160dp"
-                        android:text="2020/08/23"
-                        android:textSize="30dp" />
+                        android:layout_height="160dp" />
 
                     <TextView
                         android:id="@+id/txv_Q1"
@@ -117,9 +135,7 @@
                         android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
-                        android:textSize="30dp" />
-
-
+                        android:textSize="30sp" />
                 </TableRow>
 
                 <TableRow
@@ -130,19 +146,16 @@
                     <ImageView
                         android:id="@+id/txv_right_wrong_2"
                         android:layout_width="115dp"
-                        android:layout_height="160dp"
-                        android:text="2020/08/23"
-                        android:textSize="30dp" />
+                        android:layout_height="160dp" />
 
                     <TextView
                         android:id="@+id/txv_Q2"
                         android:layout_width="906dp"
                         android:layout_height="160dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
-                        android:textSize="30dp" />
-
-
+                        android:textSize="30sp" />
                 </TableRow>
 
                 <TableRow
@@ -153,9 +166,7 @@
                     <ImageView
                         android:id="@+id/txv_right_wrong_3"
                         android:layout_width="115dp"
-                        android:layout_height="160dp"
-                        android:text="2020/08/23"
-                        android:textSize="30dp" />
+                        android:layout_height="160dp" />
 
                     <TextView
                         android:id="@+id/txv_Q3"
@@ -163,7 +174,7 @@
                         android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
-                        android:textSize="30dp" />
+                        android:textSize="30sp" />
 
 
                 </TableRow>
@@ -176,9 +187,7 @@
                     <ImageView
                         android:id="@+id/txv_right_wrong_4"
                         android:layout_width="115dp"
-                        android:layout_height="160dp"
-                        android:text="2020/08/23"
-                        android:textSize="30dp" />
+                        android:layout_height="160dp" />
 
                     <TextView
                         android:id="@+id/txv_Q4"
@@ -186,7 +195,7 @@
                         android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
-                        android:textSize="30dp" />
+                        android:textSize="30sp" />
 
 
                 </TableRow>
@@ -199,9 +208,7 @@
                     <ImageView
                         android:id="@+id/txv_right_wrong_5"
                         android:layout_width="115dp"
-                        android:layout_height="160dp"
-                        android:text="2020/08/23"
-                        android:textSize="30dp" />
+                        android:layout_height="160dp" />
 
                     <TextView
                         android:id="@+id/txv_Q5"
@@ -209,7 +216,7 @@
                         android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
                         android:text="4"
-                        android:textSize="30dp" />
+                        android:textSize="30sp" />
                 </TableRow>
 
             </TableLayout>
@@ -228,5 +235,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.276" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="604dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.986"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.324" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

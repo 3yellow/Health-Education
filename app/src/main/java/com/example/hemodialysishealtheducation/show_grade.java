@@ -2,16 +2,22 @@ package com.example.hemodialysishealtheducation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 public class show_grade extends AppCompatActivity {
 
@@ -21,13 +27,16 @@ public class show_grade extends AppCompatActivity {
     ImageView txv_right_wrong_1,txv_right_wrong_2,txv_right_wrong_3,txv_right_wrong_4,txv_right_wrong_5;
     TextView txv_Q1,txv_Q2,txv_Q3,txv_Q4,txv_Q5;
     TextView nurse,patient,title,patient_id;
+    Button btn_8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_grade);
-        db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
 
+        db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
+        get_intent();
+        init_element();
         cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+nurseID+"' ",null);
         if(cu.getCount()>0) {
             cu.moveToFirst();
@@ -51,10 +60,62 @@ public class show_grade extends AppCompatActivity {
         title.setTextSize(45);
 
 
-        get_intent();
-        init_element();
         input_picture();
         input_Q();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+        }
+        return true;
+    }
+
+    public  void  back(View v){
+        Intent i=new Intent( this,Grade.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
+        i.putExtra("ed_name_ec",ed_name_ec);
+        db.close();
+        startActivity(i);
+        finish();
+    }
+
+    public void onclick(View v){
+        AlertDialog dialog=new AlertDialog.Builder(show_grade.this)
+                .setTitle("確定要登出?")
+                .setPositiveButton("登出", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(show_grade.this,MainActivity.class);
+                        db.close();
+                        startActivity(i);
+                        finish();
+                    }
+                }).setNegativeButton("取消",null).create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+        try {
+            Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+            mAlert.setAccessible(true);
+            Object mAlertController = mAlert.get(dialog);
+            //通过反射修改title字体大小和颜色
+            Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+            mTitle.setAccessible(true);
+            TextView mTitleView = (TextView) mTitle.get(mAlertController);
+            mTitleView.setTextSize(32);
+            mTitleView.setTextColor(Color.RED);
+            //通过反射修改message字体大小和颜色
+        } catch (IllegalAccessException e1) {
+            e1.printStackTrace();
+        } catch (NoSuchFieldException e2) {
+            e2.printStackTrace();
+        }
     }
 
     protected void input_Q()
@@ -86,14 +147,19 @@ public class show_grade extends AppCompatActivity {
             {
                 case 0:
                     txv_Q1.setText(content);
+                    break;
                 case 1:
-                    txv_Q2.setText(content);
+                    txv_Q2.setText(""+content);
+                    break;
                 case 2:
                     txv_Q3.setText(content);
+                    break;
                 case 3:
                     txv_Q4.setText(content);
+                    break;
                 case 4:
                     txv_Q5.setText(content);
+                    break;
             }
             count++;
         }
@@ -128,15 +194,15 @@ public class show_grade extends AppCompatActivity {
                 }
                 else
                 {
-                    if(count==1)
+                    if(count==0)
                         txv_right_wrong_1.setImageResource(R.drawable.wrong);
-                    else if(count==2)
+                    else if(count==1)
                         txv_right_wrong_2.setImageResource(R.drawable.wrong);
-                    else if(count==3)
+                    else if(count==2)
                         txv_right_wrong_3.setImageResource(R.drawable.wrong);
-                    else if(count==4)
+                    else if(count==3)
                         txv_right_wrong_4.setImageResource(R.drawable.wrong);
-                    else if(count==5)
+                    else if(count==4)
                         txv_right_wrong_5.setImageResource(R.drawable.wrong);
                 }
                 //cu.moveToNext();
@@ -172,13 +238,5 @@ public class show_grade extends AppCompatActivity {
         txv_right_wrong_3=findViewById(R.id.txv_right_wrong_3);
         txv_right_wrong_4=findViewById(R.id.txv_right_wrong_4);
         txv_right_wrong_5=findViewById(R.id.txv_right_wrong_5);
-    }
-
-    public  void  back(View v){
-        Intent i=new Intent( this,Grade.class);
-        i.putExtra("nurseID",nurseID);
-        db.close();
-        startActivity(i);
-        finish();
     }
 }
