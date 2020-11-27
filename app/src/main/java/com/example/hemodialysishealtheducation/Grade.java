@@ -39,7 +39,7 @@ public class Grade extends AppCompatActivity {
         init_element();
         Intent intent=this.getIntent();
         nurseID=intent.getStringExtra("nurseID");
-        id=intent.getStringExtra("id"); ;
+        id=intent.getStringExtra("id");
         ed_name_chinese=intent.getStringExtra("ed_name_chinese");
         ed_name_ec=intent.getStringExtra("ed_name_ec");
 
@@ -256,6 +256,7 @@ public class Grade extends AppCompatActivity {
     public  void  back(View v){
         Intent i=new Intent( this,choose_education.class);
         i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
         db.close();
         startActivity(i);
         finish();
