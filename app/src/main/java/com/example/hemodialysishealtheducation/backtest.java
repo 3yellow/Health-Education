@@ -216,7 +216,7 @@ public class backtest extends AppCompatActivity {
             if (cu.moveToFirst()) {
                 explain = cu.getString(3);
             }
-            An.setText("正確答案：" + str + "\n");
+            An.setText("正確答案：" + str);
             Als.setText(explain);
             Als.setVisibility(View.VISIBLE);
             An.setVisibility(View.VISIBLE);
@@ -267,7 +267,6 @@ public class backtest extends AppCompatActivity {
             modify_Answer(answer_id,true_or_false, q_id, exam_id);
             count++;
             Intent i = new Intent(this, backtest.class);
-            count++;
             i.putExtra("count", count);
             i.putExtra("score", score);
             i.putExtra("health_education", health_education);

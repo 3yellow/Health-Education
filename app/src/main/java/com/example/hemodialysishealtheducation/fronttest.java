@@ -43,7 +43,7 @@ public class fronttest extends AppCompatActivity {
 
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫
         TextView Que = (TextView) findViewById(R.id.Question);
-        final TextView YAns = (TextView) findViewById(R.id.YourAns);
+       // final TextView YAns = (TextView) findViewById(R.id.YourAns);
         final RadioGroup ans = (RadioGroup) findViewById(R.id.Ans);
         final Button next = (Button) findViewById(R.id.button12);
         item1 = (RadioButton) findViewById(R.id.radioButton1);
@@ -111,7 +111,7 @@ public class fronttest extends AppCompatActivity {
                         // 以下就可以对这个RadioButton进行处理了
 
                         //patient_answer=tempButton.getText().toString();
-                        YAns.setText("您的答案：" + tempButton.getText());
+                       // YAns.setText("您的答案：" + tempButton.getText());
                         //YAns.setVisibility(View.VISIBLE);
                         next.setVisibility(View.VISIBLE);
                         if (int_your_ans == a) {
