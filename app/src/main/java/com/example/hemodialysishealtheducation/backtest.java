@@ -41,7 +41,6 @@ public class backtest extends AppCompatActivity {
     int right_choi=0,q_id=0;
     //int index=0;
     RadioButton tempButton;
-    String[] Choi;
     // final String[] Choi = {"A.監測水中細菌量","B.測定管路中消毒液殘留量", "C.測定管路壓力", "D.不需要測定任何專案","B.測定管路中消毒液殘留量"};
 
 
@@ -104,10 +103,6 @@ public class backtest extends AppCompatActivity {
             String content = cu.getString(1);
             Que.setText(content);
             //{"A.發熱", "B.肌肉痙攣", "C.失衡綜合征", "D.透析性骨病", "D.透析性骨病"};
-            Choi = new String[4];
-            //  for (int i = 0;i < 2 ; i++){
-            //    Choi[i]=cu.getString(i+3);//拿到存在資料庫中的選項
-            //}
             item1.setText("正確");
             item2.setText("錯誤");
             cu.close();
@@ -237,7 +232,7 @@ public class backtest extends AppCompatActivity {
     }
 
     public void tofronttest2 (View v){
-        count++;
+
         int true_or_false = -1;//判別題目有沒有做對 1:對 0:錯
         if (result == true) {
             true_or_false = 1;
@@ -247,7 +242,7 @@ public class backtest extends AppCompatActivity {
             // Toast.makeText(this, "error" + score, Toast.LENGTH_LONG).show();
             true_or_false = 0;
         }
-        if (count >= 5) {
+        if (count >= 4) {
             // answer_id exam_id+count
             String answer_id=exam_id+count;
             int q=Integer.valueOf(q_id);
@@ -270,6 +265,7 @@ public class backtest extends AppCompatActivity {
             String answer_id=exam_id+count;
             //int q=Integer.valueOf(q_id);
             modify_Answer(answer_id,true_or_false, q_id, exam_id);
+            count++;
             Intent i = new Intent(this, backtest.class);
             i.putExtra("count", count);
             i.putExtra("score", score);

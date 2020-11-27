@@ -13,36 +13,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".show_grade"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity android:name=".Vedio"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Grade"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".signature"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".consent"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Newdata"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".backtest"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".HealthInformation"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".fronttest"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".choose_education"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Nurse_modify"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Nurse_Newdata"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Menu"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Searchlogin"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".MainActivity"
+        <activity android:name=".choice_pdf"></activity>
+        <activity android:name=".choice_test" />
+        <activity android:name=".choice_vedio" />
+        <activity
+            android:name=".show_grade"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Vedio"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Grade"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".signature"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".consent"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Newdata"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".backtest"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HealthInformation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".fronttest"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".choose_education"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Nurse_modify"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Nurse_Newdata"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Menu"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Searchlogin"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
