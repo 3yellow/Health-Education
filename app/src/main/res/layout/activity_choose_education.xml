@@ -68,7 +68,7 @@
                     android:background="#58b19f"
                     android:gravity="center"
                     android:hapticFeedbackEnabled="false"
-                    android:onClick="reason"
+                    android:onClick="t1"
                     android:text="   壹.腎臟功能簡介   "
                     android:textColor="@android:color/background_light"
                     android:textSize="35dp" />
@@ -111,7 +111,7 @@
                     android:layout_height="62dp"
                     android:background="#f7f1e3"
                     android:textColor="#58b19f"
-                    android:onClick="reason"
+                    android:onClick="t2"
                     android:text="   貳.什麼是慢性腎臟病   "
                     android:textSize="35dp" />
 

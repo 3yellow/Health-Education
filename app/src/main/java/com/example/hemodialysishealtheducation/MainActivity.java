@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createQuestionTable()
     {
-        String sql = "CREATE TABLE IF NOT EXISTS Question (question_id int, question_content TEXT, question_answer INT, question_explain TEXT, topic_id char(10), change_data DATETIME, PRIMARY KEY(question_id), FOREIGN KEY(topic_id) REFERENCES Topic(topic_id) ON DELETE SET NULL ON UPDATE CASCADE)";
+        String sql = "CREATE TABLE IF NOT EXISTS Question (question_id INT, question_content TEXT, question_answer INT, question_explain TEXT, topic_id char(10), change_data DATETIME, PRIMARY KEY(question_id), FOREIGN KEY(topic_id) REFERENCES Topic(topic_id) ON DELETE SET NULL ON UPDATE CASCADE)";
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
         Cursor cursor = db.rawQuery("SELECT * FROM Question", null);

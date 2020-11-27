@@ -28,6 +28,12 @@ public class show_grade extends AppCompatActivity {
         setContentView(R.layout.activity_show_grade);
         get_intent();
         init_element();
+        input_picture();
+    }
+
+    protected void input_Q()
+    {
+
     }
 
     protected void input_picture()
@@ -42,10 +48,35 @@ public class show_grade extends AppCompatActivity {
             {
                 cu.moveToFirst();
                 int result=cu.getInt(1);
-                if(result==1){}
+                if(result==1)
+                {
+                    if(count==1)
+                        txv_right_wrong_1.setImageResource(R.drawable.right);
+                    else if(count==2)
+                        txv_right_wrong_2.setImageResource(R.drawable.right);
+                    else if(count==3)
+                        txv_right_wrong_3.setImageResource(R.drawable.right);
+                    else if(count==4)
+                        txv_right_wrong_4.setImageResource(R.drawable.right);
+                    else if(count==5)
+                        txv_right_wrong_5.setImageResource(R.drawable.right);
+                }
                 else
-                {}
+                {
+                    if(count==1)
+                        txv_right_wrong_1.setImageResource(R.drawable.wrong);
+                    else if(count==2)
+                        txv_right_wrong_2.setImageResource(R.drawable.wrong);
+                    else if(count==3)
+                        txv_right_wrong_3.setImageResource(R.drawable.wrong);
+                    else if(count==4)
+                        txv_right_wrong_4.setImageResource(R.drawable.wrong);
+                    else if(count==5)
+                        txv_right_wrong_5.setImageResource(R.drawable.wrong);
+                }
+                cu.moveToNext();
             }
+            count--;
         }
 
     }
