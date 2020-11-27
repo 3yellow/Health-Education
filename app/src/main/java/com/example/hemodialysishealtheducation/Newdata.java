@@ -47,7 +47,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     String idd=null;
     int flag1=0;//判斷是要修改的還是新增。 1為修改
 
-    String nurseID;
+    String nurseID,name;
     int flag=0;//判別是不是已經有資料;
     int mYear_b,mMonth_b,mDay_b;
     RadioButton malee,femalee;
@@ -203,6 +203,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             DBS.close();
             i=new Intent(Newdata.this,Searchlogin.class);
             i.putExtra("nurseID",nurseID);
+            i.putExtra("patientname",ename);
             i=new Intent(Newdata.this,Searchlogin.class);
             DBS.close();
             startActivity(i);
@@ -216,6 +217,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             i=new Intent(Newdata.this,consent.class);
             i.putExtra("nurseID",nurseID);
             i.putExtra("id",eId);
+            i.putExtra("patientname",ename);
             DBS.close();
             startActivity(i);
             finish();

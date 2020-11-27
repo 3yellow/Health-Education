@@ -672,7 +672,7 @@ public class choose_education extends AppCompatActivity {
     }
 
     public void Answer_inser_db(String exam_id,int[] Q_array){
-        for (int i=1;i<=5;i++)
+        for (int i=0;i<5;i++)
         {
             int q_id=Integer.valueOf(Q_array[i]);
             String answer_id=exam_id+i;

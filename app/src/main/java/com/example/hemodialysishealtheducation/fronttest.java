@@ -140,7 +140,7 @@ public class fronttest extends AppCompatActivity {
     }
     public void tofronttest2 (View v){
         if (your_ans!=null) {
-            count++;
+
             int true_or_false = -1;//判別題目有沒有做對 1:對 0:錯
             if (result == true) {
                 true_or_false = 1;
@@ -161,6 +161,7 @@ public class fronttest extends AppCompatActivity {
                 i.putExtra("nurseID", nurseID);
                 i.putExtra("id", id);
                 i.putExtra("flag", 99);//到MaunActivity時要判別 修改考卷
+
                 db.close();
                 startActivity(i);
                 finish();
@@ -169,6 +170,7 @@ public class fronttest extends AppCompatActivity {
                 String answer_id=exam_id+count;
                 modify_Answer(answer_id, true_or_false, q_id, exam_id);
                 Intent i = new Intent(this, fronttest.class);
+                count++;
                 i.putExtra("count", count);
                 i.putExtra("score", score);
                 i.putExtra("nurseID", nurseID);

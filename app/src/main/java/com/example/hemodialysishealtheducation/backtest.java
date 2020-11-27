@@ -237,7 +237,6 @@ public class backtest extends AppCompatActivity {
     }
 
     public void tofronttest2 (View v){
-        count++;
         int true_or_false = -1;//判別題目有沒有做對 1:對 0:錯
         if (result == true) {
             true_or_false = 1;
@@ -271,6 +270,7 @@ public class backtest extends AppCompatActivity {
             //int q=Integer.valueOf(q_id);
             modify_Answer(answer_id,true_or_false, q_id, exam_id);
             Intent i = new Intent(this, backtest.class);
+            count++;
             i.putExtra("count", count);
             i.putExtra("score", score);
             i.putExtra("health_education", health_education);
