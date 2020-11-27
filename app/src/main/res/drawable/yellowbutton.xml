@@ -3,12 +3,13 @@
     android:shape="rectangle" >
 
     <!-- 填充的颜色 -->
-    <solid android:color="#FCF1AA" />
+    <solid android:color="#f8ecc9" /><!--c6e5d9-->
 
     <!-- 设置按钮的四个角为弧形 -->
     <!-- android:radius 弧形的半径 -->
     <corners android:radius="15dip" />
-
+    <!-- 设置按钮的邊框 -->
+   <!-- <stroke android:width="3dp" android:color="#ffffffff"/> -->
     <!-- padding：Button里面的文字与Button边界的间隔 -->
     <padding
         android:bottom="10dp"

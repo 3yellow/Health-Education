@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,6 @@ public class Menu extends AppCompatActivity {
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
         TextView user=(TextView)findViewById(R.id.textView);
         //   String name=getIntent().getStringExtra("name").toString();
-        user.setText("登出");
 
 
         // db = openOrCreateDatabase("dbs", Context.MODE_PRIVATE, null);
@@ -143,30 +143,46 @@ public class Menu extends AppCompatActivity {
                     staue="離職";
 
                 }
-                String text=cu.getString(1)+"\t\t\t\t"+cu.getString((0))+"\t\t\t"+staue;
+                //Nurse (nurse_id char(10) NOT NULL, nurse_name TEXT NOT NULL, nurse_password TEXT NOT NULL, nurse_authority INT NOT NULL,change_data DATETIME,
                 id_array.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
-                namee=cu.getString(0);
-                idd=cu.getString(1);
+                namee=cu.getString(1);
+                idd=cu.getString(0);
                 agee=cu.getString(2);
-                final Button button = new Button(this);//final Button
+                final TextView na = new TextView(this);//final Button
+                final TextView id = new TextView(this);
+                final TextView statu = new TextView(this);
                 final Button btn_modify = new Button(this);//final Button
+                btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                 TableRow r = new TableRow(this);//final TableRow
                 //  final ScrollView sc=new ScrollView(this);
                 // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-                r.setLayoutParams(new TableRow.LayoutParams(1520,100));
-                button.setLayoutParams(new TableRow.LayoutParams(1124,100));//842
-
                 btn_modify.setLayoutParams(new TableRow.LayoutParams(60,100));
+                na.setLayoutParams(new TableRow.LayoutParams());//842
+               // id.setLayoutParams(new TableRow.LayoutParams());
+               // statu.setLayoutParams(new TableRow.LayoutParams());
+                btn_modify.setLayoutParams(new TableRow.LayoutParams());
+              // id.setId(i);
+              //  statu.setId(i);
                 btn_modify.setId(i);
-                button.setId(i);
+                na.setId(i);
                 r.setId(i);
                 i++;
-                button.setTextSize(35);
-                button.setText(text);
+                na.setTextSize(30);
+                na.setText(namee);
+                na.setGravity(Gravity.CENTER);
+                id.setTextSize(30);
+                id.setText(idd);
+                id.setGravity(Gravity.CENTER);
+                statu.setTextSize(30);
+                statu.setText(staue);
+                statu.setGravity(Gravity.CENTER);
+
                 // la.addView(layout2);
-                btn_modify.setTextSize(35);
+                btn_modify.setTextSize(30);
                 btn_modify.setText("修改");
-                r.addView(button);//yout
+                r.addView(na);//yout
+                r.addView(id);
+                r.addView(statu);
                 r.addView(btn_modify);//yout2
                 layout2.addView(r);
                 btn_modify.setOnClickListener(new View.OnClickListener() {
@@ -219,27 +235,42 @@ public class Menu extends AppCompatActivity {
                         }
                         String text=cu.getString(1)+"\t\t"+cu.getString((0))+"\t\t\t"+staue;
                         id_array.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
-                        String namee = cu.getString(0);
-                        String idd = cu.getString(1);
-                        String agee = cu.getString(2);
-                        final Button button = new Button(this);//final Button
+                        namee=cu.getString(1);
+                        idd=cu.getString(0);
+                        agee=cu.getString(2);
+                        final TextView na = new TextView(this);//final Button
+                        final TextView id = new TextView(this);
+                        final TextView statu = new TextView(this);
                         final Button btn_modify = new Button(this);//final Button
+                        btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                         TableRow r = new TableRow(this);//final TableRow
                         //  final ScrollView sc=new ScrollView(this);
                         // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-                        r.setLayoutParams(new TableRow.LayoutParams(1520,100));
-                        button.setLayoutParams(new TableRow.LayoutParams(1124,100));//842
-
-                        btn_modify.setLayoutParams(new TableRow.LayoutParams(60,100));
+                        btn_modify.setLayoutParams(new TableRow.LayoutParams());
+                        na.setLayoutParams(new TableRow.LayoutParams());//842
+                        id.setLayoutParams(new TableRow.LayoutParams());
+                        statu.setLayoutParams(new TableRow.LayoutParams());
+                        btn_modify.setLayoutParams(new TableRow.LayoutParams());
+                        id.setId(i);
+                        statu.setId(i);
                         btn_modify.setId(i);
-                        button.setId(i);
+                        na.setId(i);
                         r.setId(i);
-                        button.setTextSize(35);
-                        button.setText(text);
-                        // la.addView(layout2);
-                        btn_modify.setTextSize(35);
+                        i++;
+                        na.setTextSize(30);
+                        na.setText(namee);
+                        na.setGravity(Gravity.CENTER);
+                        id.setTextSize(30);
+                        id.setText(idd);
+                        id.setGravity(Gravity.CENTER);
+                        statu.setTextSize(30);
+                        statu.setText(staue);
+                        statu.setGravity(Gravity.CENTER);
+                        btn_modify.setTextSize(30);
                         btn_modify.setText("修改");
-                        r.addView(button);//yout
+                        r.addView(na);//yout
+                        r.addView(id);
+                        r.addView(statu);
                         r.addView(btn_modify);//yout2
                         layout2.addView(r);
 
@@ -272,31 +303,43 @@ public class Menu extends AppCompatActivity {
                             staue="離職";
 
                         }
-                        String text=cu.getString(1)+"\t\t"+cu.getString((0))+"\t\t\t"+staue;
                         id_array.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
-                        String namee = cu.getString(0);
-                        String idd = cu.getString(1);
-                        String agee = cu.getString(2);
-                        final Button button = new Button(this);//final Button
+                        namee=cu.getString(1);
+                        idd=cu.getString(0);
+                        agee=cu.getString(2);
+                        final TextView na = new TextView(this);//final Button
+                        final TextView id = new TextView(this);
+                        final TextView statu = new TextView(this);
                         final Button btn_modify = new Button(this);//final Button
+                        btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                         TableRow r = new TableRow(this);//final TableRow
                         //  final ScrollView sc=new ScrollView(this);
                         // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-                        r.setLayoutParams(new TableRow.LayoutParams(1520,100));
-                        button.setLayoutParams(new TableRow.LayoutParams(1124,100));//842
-
                         btn_modify.setLayoutParams(new TableRow.LayoutParams(60,100));
-
-                        button.setTextSize(35);
-                        button.setText(text);
-                        // la.addView(layout2);
+                        na.setLayoutParams(new TableRow.LayoutParams());//842
+                        id.setLayoutParams(new TableRow.LayoutParams());
+                        statu.setLayoutParams(new TableRow.LayoutParams());
+                        btn_modify.setLayoutParams(new TableRow.LayoutParams());
+                        id.setId(i);
+                        statu.setId(i);
                         btn_modify.setId(i);
-                        button.setId(i);
+                        na.setId(i);
                         r.setId(i);
                         i++;
-                        btn_modify.setTextSize(35);
+                        na.setTextSize(30);
+                        na.setText(namee);
+                        na.setGravity(Gravity.CENTER);
+                        id.setTextSize(30);
+                        id.setText(idd);
+                        id.setGravity(Gravity.CENTER);
+                        statu.setTextSize(30);
+                        statu.setText(staue);
+                        statu.setGravity(Gravity.CENTER);
+                        btn_modify.setTextSize(30);
                         btn_modify.setText("修改");
-                        r.addView(button);//yout
+                        r.addView(na);//yout
+                        r.addView(id);
+                        r.addView(statu);
                         r.addView(btn_modify);//yout2
                         layout2.addView(r);
                         btn_modify.setOnClickListener(new View.OnClickListener() {
