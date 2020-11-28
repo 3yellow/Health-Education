@@ -169,12 +169,13 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     }
 
     public void onClick(View v) {
-        Boolean iAge,iId;
+        Boolean len;
         eId=edt_id.getText().toString().trim();//trim去除多餘空白
         eId=eId.toUpperCase();
         String ename=edt_name.getText().toString().trim();
         Intent i=this.getIntent();
         String nurseID=i.getStringExtra("nurseID");
+        len=vreifyId(eId);
         flag=searchData(eId);
         if (flag==2&&flag1!=1){
             textView7.setVisibility(View.VISIBLE);
@@ -187,6 +188,11 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         else if (eId.isEmpty()){
             textView7.setVisibility(View.VISIBLE);
             textView7.setText("身分證還沒填");
+        }
+        else if(!len)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("身分證長度為10");
         }
         else if (geender==0){
             textView7.setVisibility(View.VISIBLE);
@@ -224,13 +230,13 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         }
     }
 
-    /*public Boolean  vreifyId(String id){
+    public Boolean  vreifyId(String id){
         int c=0,n=0; //c判斷第一個字是否為英文字 n判別第二個字是否為1或2
         if (id.length()!=10){
             return false;
         }
-        for (int i=65;i<=90;i++)
-        {
+         /*for (int i=65;i<=90;i++)
+       {
             char ch=(char)i;
             if (id.charAt(0)==i){
                 c=1;//第一個字為英文字
@@ -267,9 +273,10 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         if (aa==0) {              //aa不等於0則輸入身分證字號不符合
             System.out.println("這不是正確的身分證字號!!");
             return false;
-        }
-        return false;
-    }*/
+        }*/
+        return true;
+
+    }
     private int searchData(String str1) //判別是否已經有此資料了
     {
         c=DBS.rawQuery("SELECT * FROM Patient  WHERE patient_id='"+str1+"'",null);

@@ -211,7 +211,7 @@ public class fronttest extends AppCompatActivity {
         String change_data=datetime();
         String exam_date,nurseID;
         Cursor c = db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+exam_id+"'",null);
-        if(c.getCount()>0) {
+       if(c.getCount()>0) {
             c.moveToFirst();
             exam_date=c.getString(1);
             nurseID=c.getString(4);
@@ -224,10 +224,10 @@ public class fronttest extends AppCompatActivity {
             cv.put("change_data",change_data);
             //如果是修改
             String whereClause = "exam_id = ?";
-            //  String whereArgs[] = {id};
+            //String whereArgs[] = {id};
             String whereArgs[ ]={String.valueOf(exam_id)};
             db.replace ("Exam", null,cv);
-          //  db.update("Exam", cv, whereClause, whereArgs);
+        //    db.update("Exam", cv, whereClause, whereArgs);
         }
         c.close();
 

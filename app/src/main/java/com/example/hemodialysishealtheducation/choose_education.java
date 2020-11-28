@@ -752,6 +752,7 @@ public class choose_education extends AppCompatActivity {
         int [ ]Q=new  int[20];
         int []Q_array=new int[5];
         int count=0,total=0;
+
         cu = db.rawQuery("SELECT * FROM Question WHERE topic_id='"+str+"' ",null);
         if (cu.getCount()>0)
         {
@@ -1164,7 +1165,6 @@ public class choose_education extends AppCompatActivity {
             {
                 int i=0;//判別考卷從哪開始做
                 int j=0;//檢查題目
-                int k=0;
                 while (j<5)
                 {
                     cu.close();
@@ -1758,7 +1758,6 @@ public class choose_education extends AppCompatActivity {
             {
                 int i=0;//判別考卷從哪開始做
                 int j=0;//檢查題目
-                int k=0;
                 while (j<5)
                 {
                     cu.close();
@@ -1846,7 +1845,7 @@ public class choose_education extends AppCompatActivity {
         i.putExtra("count",index);
         i.putExtra("score",score);
         i.putExtra("exam_id",exam_id);
-        i.putExtra("health_education","t14");
+        i.putExtra("health education","t14");
         db.close();
         startActivity(i);
         finish();

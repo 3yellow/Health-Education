@@ -2,31 +2,76 @@ package com.example.hemodialysishealtheducation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
+
+import com.github.barteksc.pdfviewer.PDFView;
 
 public class HealthInformation extends AppCompatActivity {
 
+    SQLiteDatabase db;
     String nurseID,exam_id,health_education;
     String id;
+    String eduaction=null,vido=null;
     int index=0,count,score;
+    Button vido_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_information);
+        db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
         Intent intent = this.getIntent();
         nurseID = intent.getStringExtra("nurseID");
         id = intent.getStringExtra("id");
         exam_id = intent.getStringExtra("exam_id");
         count = intent.getIntExtra("count", -1);
         score = intent.getIntExtra("score", -1);
-        health_education = intent.getStringExtra("health education");
+        health_education = intent.getStringExtra("health_education");
+        vido_btn.findViewById(R.id.btn_vido);
 
-       // PDFView pdf=findViewById(R.id.pdfView);
-      //  pdf.fromAsset("014.顧腰子好朋友-呷哈咪.pdf").load();//壹．腎臟功能簡介.doc.pdf
+        // Topic (topic_id char(10), topic_name TEXT,change_data DATETIME, vidio int
+        Cursor cu=db.rawQuery("SELECT * FROM Topic WHERE topic_id='"+health_education+"'",null);
+        if (cu.getCount()>0) {
+            cu.moveToFirst();
+            eduaction=cu.getString(1);
+            vido=cu.getString(3);
+        }
+        PDFView pdf=findViewById(R.id.pdfView);
+        pdf.fromAsset(eduaction).load();//壹．腎臟功能簡介.doc.pdf
+        if(vido!=null)
+        {
+            vido_btn.setVisibility(View.VISIBLE);
+            switch (health_education)
+            {
+                case "t6":
+                    intent=new Intent(HealthInformation.this,Vedio.class);
+                    startActivity(intent);
+                    break;
+                case "t8":
+                    intent=new Intent(HealthInformation.this,vedio_care.class);
+                    startActivity(intent);
+                    break;
+                case "t12":
+                    intent=new Intent(HealthInformation.this,vedio_weight.class);
+                    startActivity(intent);
+                    break;
+                case "t3":
+                    intent=new Intent(HealthInformation.this,vedio_lin.class);
+                    startActivity(intent);
+                    break;
+                case "t4":
+                    intent=new Intent(HealthInformation.this,vedio_ca.class);
+                    startActivity(intent);
+                    break;
+            }
+        }
     }
 
     public void tofronttest(View v){

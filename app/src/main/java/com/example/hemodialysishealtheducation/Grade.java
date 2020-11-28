@@ -159,17 +159,18 @@ public class Grade extends AppCompatActivity {
 
         //Answer (answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME,
         String date=null,nurse=null;
-        int score=0,i=2,count=5;
+        int score=0,i=2,count=4;
         String exam=null;
         while (count>count_exam)
         {
-            if(count==5)
+
+            if(count==4)
                 btn_5_date.setVisibility(View.INVISIBLE); // 隱藏
-            else if(count==4)
-                btn_4_date.setVisibility(View.INVISIBLE); // 隱藏
             else if(count==3)
-                btn_3_date.setVisibility(View.INVISIBLE); // 隱藏
+                btn_4_date.setVisibility(View.INVISIBLE); // 隱藏
             else if(count==2)
+                btn_3_date.setVisibility(View.INVISIBLE); // 隱藏
+            else if(count==1)
                 btn_2_date.setVisibility(View.INVISIBLE); // 隱藏
             count--;
         }
@@ -188,6 +189,7 @@ public class Grade extends AppCompatActivity {
             txt_1_nurse.setText(nurse);
             count--;
         }
+        count+=1;
         cu.close();
         while (count>0)
         {
