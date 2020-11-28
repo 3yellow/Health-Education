@@ -41,6 +41,7 @@ public class Grade extends AppCompatActivity {
         nurseID=intent.getStringExtra("nurseID");
         id=intent.getStringExtra("id");
         ed_name_ec=intent.getStringExtra("ed_name_ec");
+        ed_name_chinese=intent.getStringExtra("ed_name_chinese");
 
         cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+nurseID+"' ",null);
         if(cu.getCount()>0) {
@@ -59,15 +60,10 @@ public class Grade extends AppCompatActivity {
         }
         cu.close();
         //Topic (topic_id char(10), topic_name TEXT,change_data DATETIME
-        cu=db.rawQuery("SELECT * FROM Topic WHERE topic_id='"+ed_name_ec+"' ",null);
-        if(cu.getCount()>0)
-        {
-            cu.moveToFirst();
-            ed_name_chinese=cu.getString(1);
-            //String[] tokens=ed_name_chinese.split(".");
-            title.setText(ed_name_chinese);
-            title.setTextSize(45);
-        }
+
+        //String[] tokens=ed_name_chinese.split(".");
+        title.setText(ed_name_chinese);
+        title.setTextSize(45);
         patient.setTextSize(30);
         patient_id.setText(id);
         patient_id.setTextSize(30);
@@ -98,6 +94,7 @@ public class Grade extends AppCompatActivity {
                 intent.putExtra("examid",ex_id_1);
                 intent.putExtra("id",id);
                 intent.putExtra("ed_name_ec",ed_name_ec);
+                intent.putExtra("ed_name_chinese",ed_name_chinese);
                 startActivity(intent);
                 finish();
             }
@@ -110,6 +107,7 @@ public class Grade extends AppCompatActivity {
                 intent.putExtra("examid",ex_id_2);
                 intent.putExtra("id",id);
                 intent.putExtra("ed_name_ec",ed_name_ec);
+                intent.putExtra("ed_name_chinese",ed_name_chinese);
                 startActivity(intent);
                 finish();
             }
@@ -122,6 +120,7 @@ public class Grade extends AppCompatActivity {
                 intent.putExtra("examid",ex_id_3);
                 intent.putExtra("id",id);
                 intent.putExtra("ed_name_ec",ed_name_ec);
+                intent.putExtra("ed_name_chinese",ed_name_chinese);
                 startActivity(intent);
                 finish();
             }
@@ -133,6 +132,7 @@ public class Grade extends AppCompatActivity {
                 intent.putExtra("nurseID",nurseID);
                 intent.putExtra("examid",ex_id_4);
                 intent.putExtra("id",id);
+                intent.putExtra("ed_name_chinese",ed_name_chinese);
                 intent.putExtra("ed_name_ec",ed_name_ec);
                 startActivity(intent);
                 finish();
@@ -146,6 +146,7 @@ public class Grade extends AppCompatActivity {
                 intent.putExtra("examid",ex_id_5);
                 intent.putExtra("id",id);
                 intent.putExtra("ed_name_ec",ed_name_ec);
+                intent.putExtra("ed_name_chinese",ed_name_chinese);
                 startActivity(intent);
                 finish();
             }
@@ -183,7 +184,7 @@ public class Grade extends AppCompatActivity {
             ex_id_1=exam;
             btn_1_date.setText(date);
             txt_1_score.setText(""+score);
-            txt_1_time.setText("前側");
+            txt_1_time.setText("前測");
             txt_1_nurse.setText(nurse);
             count--;
         }
@@ -209,7 +210,7 @@ public class Grade extends AppCompatActivity {
                         ex_id_2=exam;
                         btn_2_date.setText(date);
                         txt_2_score.setText(""+score);
-                        txt_2_time.setText("後側第"+count_exam+"次");
+                        txt_2_time.setText("後測第"+count_exam+"次");
                         txt_2_nurse.setText(nurse);
                     }
                     else if(i==3)
@@ -217,7 +218,7 @@ public class Grade extends AppCompatActivity {
                         ex_id_3=exam;
                         btn_3_date.setText(date);
                         txt_3_score.setText(""+score);
-                        txt_3_time.setText("後側第"+count_exam+"次");
+                        txt_3_time.setText("後測第"+count_exam+"次");
                         txt_3_nurse.setText(nurse);
                     }
                     else if(i==4)
@@ -225,7 +226,7 @@ public class Grade extends AppCompatActivity {
                         ex_id_4=exam;
                         btn_4_date.setText(date);
                         txt_4_score.setText(""+score);
-                        txt_4_time.setText("後側第"+count_exam+"次");
+                        txt_4_time.setText("後測第"+count_exam+"次");
                         txt_4_nurse.setText(nurse);
                     }
                     else if(i==5)
@@ -233,7 +234,7 @@ public class Grade extends AppCompatActivity {
                         ex_id_5=exam;
                         btn_5_date.setText(date);
                         txt_5_score.setText(""+score);
-                        txt_5_time.setText("後側第"+count_exam+"次");
+                        txt_5_time.setText("後測第"+count_exam+"次");
                         txt_5_nurse.setText(nurse);
                     }
                     i++;
