@@ -64,6 +64,9 @@ public class Grade extends AppCompatActivity {
         {
             cu.moveToFirst();
             ed_name_chinese=cu.getString(1);
+            //String[] tokens=ed_name_chinese.split(".");
+            title.setText(ed_name_chinese);
+            title.setTextSize(45);
         }
         patient.setTextSize(30);
         patient_id.setText(id);
@@ -104,7 +107,43 @@ public class Grade extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(Grade.this,show_grade.class);
                 intent.putExtra("nurseID",nurseID);
-                intent.putExtra("examid",ex_id_1);
+                intent.putExtra("examid",ex_id_2);
+                intent.putExtra("id",id);
+                intent.putExtra("ed_name_ec",ed_name_ec);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btn_3_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Grade.this,show_grade.class);
+                intent.putExtra("nurseID",nurseID);
+                intent.putExtra("examid",ex_id_3);
+                intent.putExtra("id",id);
+                intent.putExtra("ed_name_ec",ed_name_ec);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btn_4_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Grade.this,show_grade.class);
+                intent.putExtra("nurseID",nurseID);
+                intent.putExtra("examid",ex_id_4);
+                intent.putExtra("id",id);
+                intent.putExtra("ed_name_ec",ed_name_ec);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btn_5_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Grade.this,show_grade.class);
+                intent.putExtra("nurseID",nurseID);
+                intent.putExtra("examid",ex_id_5);
                 intent.putExtra("id",id);
                 intent.putExtra("ed_name_ec",ed_name_ec);
                 startActivity(intent);

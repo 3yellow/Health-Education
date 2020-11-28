@@ -37,12 +37,128 @@ public class choose_education extends AppCompatActivity {
     String nurseID;
     int pad=0;
     String id;
-    //String exam_id="kidney_reason"+id+count;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_education);
+        init_element();
+        TextView nurse=findViewById(R.id.tex_nurse_name);
+        db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
+        Intent i=this.getIntent();
+        nurseID=i.getStringExtra("nurseID");
+        pad=i.getIntExtra("pad",-1);
+        cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+nurseID+"' ",null);
+        if(cu.getCount()>0) {
+            cu.moveToFirst();
+            String nurse_name=cu.getString(1);
+            nurse.setText(nurse_name+" 登入");
+        }
+        TextView patient = findViewById(R.id.tex_patient_name);
+        id=i.getStringExtra("id");
+        cu.close();
+        cu = db.rawQuery("SELECT * FROM Patient WHERE patient_id='"+id+"' ",null);
+        if(cu.getCount()>0) {
+            cu.moveToFirst();
+            String patient_name=cu.getString(1);
+            patient.setText("姓名："+patient_name);
+        }
+        cu.close();
+
+
+
+        show_t1( id,"t1");
+        show_t2( id,"t2");
+
+
+        t1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //hendl action here eg
+                Intent intent=new Intent(choose_education.this,Grade.class);
+                intent.putExtra("nurseID",nurseID);
+                intent.putExtra("id",id);
+                intent.putExtra("ed_name_chinese","壹.腎臟估能簡介");
+                intent.putExtra("ed_name_ec","t1");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        t2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(choose_education.this,Grade.class);
+                intent.putExtra("nurseID",nurseID);
+                intent.putExtra("id",id);
+                intent.putExtra("ed_name_chinese","貳.甚麼是慢性腎臟病");
+                intent.putExtra("ed_name_ec","t2");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+    protected void button(String id)
+    {
+        String examid=null;
+        //按鈕顏色
+        examid="t1"+id;
+        button_color( examid,one);
+        examid="t2"+id;
+        button_color( examid,two);
+        examid="t3"+id;
+        button_color( examid,three);
+        examid="t4"+id;
+        button_color( examid,four);
+        examid="t5"+id;
+        button_color( examid,five);
+        examid="t6"+id;
+        button_color( examid,six);
+        examid="t7"+id;
+        button_color( examid,seven);
+        examid="t8"+id;
+        button_color( examid,eight);
+        examid="t9"+id;
+        button_color( examid,nine);
+        examid="t10"+id;
+        button_color( examid,ten);
+        examid="t11"+id;
+        button_color( examid,eleven);
+        examid="t12"+id;
+        button_color( examid,twelve);
+        examid="t13"+id;
+        button_color( examid,thirteen);
+    }
+
+    protected void button_color(String examid,Button btn_id)
+    {
+        ////Answer (answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME,
+        //Exam (exam_id TEXT, exam_date DateTime, exam_score INT, patient_id char(10), nurse_id char(10),change_data DATETIME
+        cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+examid+"%'",null);
+        if(cu.getCount()>1)//沒有做過考卷
+        {
+            cu.close();
+            int count=cu.getCount();
+            count-=1;
+            String ans_id=examid+count;
+            //Patient WHERE patient_id='"+id+"' ",
+            cu=db.rawQuery("SELECT * FROM Answer WHERE answer_id='"+ans_id+"' AND result!='"+"-1"+"' ",null);
+            if(cu.getCount()>0)//已經做過後側
+            {
+                btn_id.setBackgroundColor(Color.parseColor("#58b19f"));
+                btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+            }
+            else//做到一半 沒有做完後側
+            {
+                btn_id.setBackgroundColor(Color.parseColor("#96e8d7"));
+                btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+            }
+        }
+    }
+
+    protected void init_element()
+    {
         one=findViewById(R.id.one);
         t1_date=findViewById(R.id.t1_date);
         t1_grade=findViewById(R.id.t1_grade);
@@ -107,60 +223,7 @@ public class choose_education extends AppCompatActivity {
         t13_date=findViewById(R.id.t13_date);
         t13_grade=findViewById(R.id.t13_grade);
         t13=findViewById(R.id.t13);
-
-
-        TextView nurse=findViewById(R.id.tex_nurse_name);
-        db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
-        Intent i=this.getIntent();
-        nurseID=i.getStringExtra("nurseID");
-        pad=i.getIntExtra("pad",-1);
-        cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+nurseID+"' ",null);
-        if(cu.getCount()>0) {
-            cu.moveToFirst();
-            String nurse_name=cu.getString(1);
-            nurse.setText(nurse_name+" 登入");
-        }
-        TextView patient = findViewById(R.id.tex_patient_name);
-        id=i.getStringExtra("id");
-        cu.close();
-        cu = db.rawQuery("SELECT * FROM Patient WHERE patient_id='"+id+"' ",null);
-        if(cu.getCount()>0) {
-            cu.moveToFirst();
-            String patient_name=cu.getString(1);
-            patient.setText("姓名："+patient_name);
-        }
-        cu.close();
-        show_t1( id,"t1");
-        show_t2( id,"t2");
-
-        t1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //hendl action here eg
-                Intent intent=new Intent(choose_education.this,Grade.class);
-                intent.putExtra("nurseID",nurseID);
-                intent.putExtra("id",id);
-                intent.putExtra("ed_name_chinese","壹.腎臟估能簡介");
-                intent.putExtra("ed_name_ec","t1");
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        t2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(choose_education.this,Grade.class);
-                intent.putExtra("nurseID",nurseID);
-                intent.putExtra("id",id);
-                intent.putExtra("ed_name_chinese","貳.甚麼是慢性腎臟病");
-                intent.putExtra("ed_name_ec","t1");
-                startActivity(intent);
-                finish();
-            }
-        });
     }
-
 
     public int[] choi_Q(String str)//隨機產生5題題目
     {

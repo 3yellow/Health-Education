@@ -53,11 +53,20 @@ public class show_grade extends AppCompatActivity {
             patient_id.setTextSize(30);
         }
         cu.close();
+
+        cu=db.rawQuery("SELECT * FROM Topic WHERE topic_id='"+ed_name_ec+"' ",null);
+        if(cu.getCount()>0)
+        {
+            cu.moveToFirst();
+            ed_name_chinese=cu.getString(1);
+            //String[] tokens=ed_name_chinese.split(".");
+            title.setText(ed_name_chinese);
+            title.setTextSize(45);
+        }
+        cu.close();
         patient.setTextSize(30);
         patient_id.setText(id);
         patient_id.setTextSize(30);
-        title.setText(ed_name_chinese);
-        title.setTextSize(45);
 
 
         input_picture();
@@ -120,7 +129,7 @@ public class show_grade extends AppCompatActivity {
 
     protected void input_Q()
     {
-        ////Answer (answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME,
+        //Answer (answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME,
         //Exam (exam_id TEXT, exam_date DateTime, exam_score INT, patient_id char(10), nurse_id char(10),change_data DATETIME
         //question_id INT, question_content TEXT, question_answer INT, question_explain TEXT, topic_id char(10), change_data DATETIME
         int count=0;
@@ -217,7 +226,7 @@ public class show_grade extends AppCompatActivity {
         Intent intent=this.getIntent();
         nurseID=intent.getStringExtra("nurseID");
         id=intent.getStringExtra("id");
-        ed_name_chinese=intent.getStringExtra("ed_name_chinese");
+       // ed_name_chinese=intent.getStringExtra("ed_name_chinese");
         ed_name_ec=intent.getStringExtra("ed_name_ec");
         examid=intent.getStringExtra("examid");
     }

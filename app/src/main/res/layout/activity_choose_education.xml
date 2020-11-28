@@ -71,14 +71,14 @@
                     android:onClick="t1"
                     android:text="   壹.腎臟功能簡介   "
                     android:textColor="@android:color/background_light"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t1_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t1_grade"
@@ -94,7 +94,7 @@
                     android:gravity="center"
                     android:text="展開"
                     android:textColor="#1f4e5f"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
             </TableRow>
 
