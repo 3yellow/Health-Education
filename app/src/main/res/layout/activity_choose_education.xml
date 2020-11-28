@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.648">
+        app:layout_constraintVertical_bias="0.698">
 
 
         <TableLayout
@@ -590,7 +590,7 @@
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
                     android:onClick="reason"
-                    android:text="   拾肆.鉀哈咪   "
+                    android:text="   拾肆.鉀啥咪   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
 
@@ -646,6 +646,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
+            android:onClick="go_vedio"
             app:srcCompat="@drawable/choicetheme2" />
 
         <ImageView
@@ -654,6 +655,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
+            android:onClick="go_pdf"
             app:srcCompat="@drawable/choicetheme3" />
 
         <ImageView
@@ -662,6 +664,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
+            android:onClick="go_test"
             app:srcCompat="@drawable/choicetheme4" />
 
     </TableRow>

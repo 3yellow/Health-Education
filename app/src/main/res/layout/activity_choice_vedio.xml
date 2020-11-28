@@ -2,8 +2,248 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".choice_vedio">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginEnd="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/wave1"
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="4dp"
+        android:background="#00000000"
+        android:onClick="back"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onclick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.669"
+        app:layout_constraintStart_toEndOf="@+id/tex_nurse_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.033"
+        app:srcCompat="@drawable/home" />
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="1124dp"
+        android:layout_height="405dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.577">
+
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="350dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginStart="200dp"
+            android:orientation="horizontal">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/one"
+                    android:layout_width="800dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#58b19f"
+                    android:hapticFeedbackEnabled="false"
+                    android:onClick="t1"
+                    android:text="什麼是透析"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/two"
+                    android:layout_width="400dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t2"
+                    android:text="如何正確洗手"
+                    android:textColor="#58b19f"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/three"
+                    android:layout_width="400dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t2"
+                    android:text="穿刺後傷口照護"
+                    android:textColor="#58b19f"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/four"
+                    android:layout_width="400dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="reason"
+                    android:text="乾體重"
+                    android:textColor="#58b19f"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/five"
+                    android:layout_width="400dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="reason"
+                    android:text="顧腰子好朋友——鉀啥咪"
+                    android:textColor="#58b19f"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/six"
+                    android:layout_width="400dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="reason"
+                    android:text="磷結合劑的運用"
+                    android:textColor="#58b19f"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
+
+        </TableLayout>
+    </ScrollView>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="761dp"
+        android:layout_height="83dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.751">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:onClick="totheme"
+            app:srcCompat="@drawable/choicetheme1" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@drawable/choicetheme2" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:onClick="go_pdf"
+            app:srcCompat="@drawable/choicetheme3" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:onClick="go_test"
+            app:srcCompat="@drawable/choicetheme4" />
+
+    </TableRow>
+
+    <TextView
+        android:id="@+id/tex_patient_name"
+        android:layout_width="507dp"
+        android:layout_height="69dp"
+        android:gravity="center"
+        android:text="姓名"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021" />
+
+    <TextView
+        android:id="@+id/tex_nurse_name"
+        android:layout_width="491dp"
+        android:layout_height="69dp"
+        android:gravity="center"
+        android:text="登入中"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.808"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

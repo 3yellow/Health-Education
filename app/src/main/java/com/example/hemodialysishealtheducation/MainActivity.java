@@ -99,14 +99,18 @@ public class MainActivity extends AppCompatActivity {
         if (!cursor.moveToFirst()) {
             insertTopic("t1","壹.腎臟功能簡介.doc.pdf");//這個之後要改成t1
             insertTopic("t2","貳.甚麼是慢性腎臟病.doc.pdf");
-            insertTopic("t3","參.健康人如何保護自己健康.doc.pdf");
-            insertTopic("t4","肆.腎衰竭的原因.doc.pdf");
-            insertTopic("t5","伍.腎衰竭原因治療.doc.pdf");
-            insertTopic("t6","陸.血液透析治療與照護.doc.pdf");
-            insertTopic("t7","柒.何為血液透析.doc.pdf");
-            insertTopic("t8","捌.動靜脈廔管的照顧.doc.pdf");
-            insertTopic("t9","玖.腎友如何預防便祕.doc.pdf");
-            insertTopic("t10","拾..doc.pdf");
+            insertTopic("t3","參.腎衰竭的原因.doc.pdf");
+            insertTopic("t4","肆.腎衰竭的治療方式.doc.pdf");
+            insertTopic("t5","伍.如何保護自己的腎.doc.pdf");
+            insertTopic("t6","陸.血液透析.doc.pdf");
+            insertTopic("t7","柒.血管通路.doc.pdf");
+            insertTopic("t8","捌.動靜脈廔管的照護.doc.pdf");
+            insertTopic("t9","玖.皮膚搔癢該怎麼辦.doc.pdf");
+            insertTopic("t10","拾.透析患者睡眠問題.doc.pdf");
+            insertTopic("t11","拾壹.腎友如何預防便秘.doc.pdf");
+            insertTopic("t12","拾貳.乾體重.doc.pdf");
+            insertTopic("t13","拾叁.磷是啥.doc.pdf");
+            insertTopic("t14","拾肆.鉀啥咪.doc.pdf");
         }
         cursor.close();
     }

@@ -665,5 +665,32 @@ public class choose_education extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+
+    public void go_vedio(View v)
+    {
+        Intent i=new Intent( this,choice_vedio.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
+        startActivity(i);
+        finish();
+    }
+
+    public void go_pdf(View v)
+    {
+        Intent i=new Intent( this,choice_pdf.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
+        startActivity(i);
+        finish();
+    }
+
+    public void go_test(View v)
+    {
+        Intent i=new Intent( this,choice_test.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
+        startActivity(i);
+        finish();
+    }
 }
 
