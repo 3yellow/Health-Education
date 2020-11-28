@@ -28,10 +28,10 @@
 
         <Button
             android:id="@+id/btn_clear"
-            android:layout_width="145dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="620dp"
-            android:layout_marginStart="620dp"
+            android:layout_marginLeft="650dp"
+            android:layout_marginStart="650dp"
             android:background="@drawable/choiceedubutton1"
             android:onClick="clear"
             android:text="清除"
@@ -40,10 +40,10 @@
 
         <Button
             android:id="@+id/btn_save"
-            android:layout_width="145dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginStart="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/choiceedubutton1"
             android:onClick="W"
