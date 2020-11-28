@@ -30,7 +30,7 @@
         android:layout_weight="1"
         android:background="@drawable/yellowbutton"
         android:onClick="tofronttest2"
-        android:text="NEXT"
+        android:text="下一題"
         android:textSize="56dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
