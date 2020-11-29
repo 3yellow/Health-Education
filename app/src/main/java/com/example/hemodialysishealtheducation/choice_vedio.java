@@ -17,7 +17,7 @@ import java.lang.reflect.Field;
 
 public class choice_vedio extends AppCompatActivity {
 
-    String nurseID;
+    String nurseID,count,score,exam_id;
     int pad=0;
     String id;
     Cursor cu;
@@ -32,6 +32,10 @@ public class choice_vedio extends AppCompatActivity {
         TextView nurse=findViewById(R.id.tex_nurse_name);
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
         Intent i=this.getIntent();
+        count=i.getStringExtra("count");
+        score=i.getStringExtra("score");
+        id=i.getStringExtra("id");
+        exam_id=i.getStringExtra("exam_id");
         nurseID=i.getStringExtra("nurseID");
         pad=i.getIntExtra("pad",-1);
         cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+nurseID+"' ",null);
