@@ -763,7 +763,7 @@ public class choose_education extends AppCompatActivity {
         two=findViewById(R.id.two);
         t2_date=findViewById(R.id.t2_date);
         t2_grade=findViewById(R.id.t2_grade);
-        t2=findViewById(R.id.t12);
+        t2=findViewById(R.id.t2);
 
         three=findViewById(R.id.three);
         t3_date=findViewById(R.id.t3_date);

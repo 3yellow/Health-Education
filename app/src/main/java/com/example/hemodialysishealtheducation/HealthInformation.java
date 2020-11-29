@@ -19,7 +19,7 @@ public class HealthInformation extends AppCompatActivity {
     String nurseID,exam_id,health_education;
     String id;
     String eduaction=null,vido=null;
-    int index=0,count,score;
+    int index=0,count,score,flag9=0;
     Button vido_btn;
 
     @Override
@@ -30,6 +30,7 @@ public class HealthInformation extends AppCompatActivity {
         Intent intent = this.getIntent();
         nurseID = intent.getStringExtra("nurseID");
         id = intent.getStringExtra("id");
+        flag9=intent.getIntExtra("flag",0);
         exam_id = intent.getStringExtra("exam_id");
         count = intent.getIntExtra("count", -1);
         score = intent.getIntExtra("score", -1);
@@ -46,7 +47,7 @@ public class HealthInformation extends AppCompatActivity {
         }
         PDFView pdf=findViewById(R.id.pdfView);
         pdf.fromAsset(eduaction).load();//壹．腎臟功能簡介.doc.pdf
-        if(vido!=null)
+        if(!vido.equals("0"))
         {
             vido_btn.setVisibility(View.VISIBLE);
             vido_btn.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +117,15 @@ public class HealthInformation extends AppCompatActivity {
         int score=intent.getIntExtra("score",0);
         int count=intent.getIntExtra("count",0);
         Q_array=intent.getStringArrayExtra("Q_array");
-        intent=new Intent(HealthInformation.this,backtest.class);
+        if(flag9==1)
+        {
+            intent=new Intent(HealthInformation.this,choice_pdf.class);
+
+        }
+        else
+        {
+            intent=new Intent(HealthInformation.this,backtest.class);
+        }
         intent.putExtra("count",count);
         intent.putExtra("score",score);
         intent.putExtra("nurseID",nurseID);
