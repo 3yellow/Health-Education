@@ -84,14 +84,14 @@ public class Nurse_Newdata extends AppCompatActivity {
             textView7.setVisibility(View.VISIBLE);
             textView7.setText("兩次密碼輸入必須相同");
         }
-        if (flag_2==2 ){
+        else if (flag_2==2 ){
             textView7.setVisibility(View.VISIBLE);
             textView7.setText("已有此資料");
         }
         else if(!len)
         {
             textView7.setVisibility(View.VISIBLE);
-            textView7.setText("已有此資料");
+            textView7.setText("身分證長度為10");
         }
         else if (pas1==null){
             //判別是不是空

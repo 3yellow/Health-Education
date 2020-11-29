@@ -109,8 +109,9 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
+                    android:hapticFeedbackEnabled="false"
                     android:onClick="t2"
-                    android:text="   貳.什麼是慢性腎臟病   "
+                    android:text="   貳.甚麼是慢性腎臟病   "
                     android:textColor="#58b19f"
                     android:textSize="35sp" />
 
@@ -132,9 +133,11 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
+                    android:gravity="center"
                     android:text="展開"
                     android:textColor="#1f4e5f"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"/>
+
 
             </TableRow>
 

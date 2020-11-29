@@ -158,7 +158,7 @@ public class Grade extends AppCompatActivity {
         // cu = db.rawQuery("SELECT * FROM Patient WHERE patient_id='"+id+"' ",null);
 
         //Answer (answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME,
-        String date=null,nurse=null;
+        String date=null,nurse=null,nurse_name=null;
         int score=0,i=2,count=4;
         String exam=null;
         while (count>count_exam)
@@ -174,6 +174,8 @@ public class Grade extends AppCompatActivity {
                 btn_2_date.setVisibility(View.INVISIBLE); // 隱藏
             count--;
         }
+        //Nurse (nurse_id char(10) NOT NULL, nurse_name TEXT NOT NULL, nurse_password TEXT NOT NULL, nurse_authority INT NOT NULL,change_data DATETIME
+
         exam=exam_id+"0";
         Cursor cu=db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+exam+"'",null);
         if (cu.getCount()>0)
@@ -182,11 +184,18 @@ public class Grade extends AppCompatActivity {
             score=cu.getInt(2);
             date=cu.getString(1);
             nurse=cu.getString(4);
+            Cursor  c=db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+nurse+"'",null);
+            if(c.getCount()>0)
+            {
+                c.moveToFirst();
+                nurse_name=c.getString(1);
+            }
+            c.close();
             ex_id_1=exam;
             btn_1_date.setText(date);
             txt_1_score.setText(""+score);
             txt_1_time.setText("前測");
-            txt_1_nurse.setText(nurse);
+            txt_1_nurse.setText(nurse_name);
             count--;
         }
         count+=1;
@@ -213,7 +222,7 @@ public class Grade extends AppCompatActivity {
                         btn_2_date.setText(date);
                         txt_2_score.setText(""+score);
                         txt_2_time.setText("後測第"+count_exam+"次");
-                        txt_2_nurse.setText(nurse);
+                        txt_2_nurse.setText(nurse_name);
                     }
                     else if(i==3)
                     {
@@ -221,7 +230,7 @@ public class Grade extends AppCompatActivity {
                         btn_3_date.setText(date);
                         txt_3_score.setText(""+score);
                         txt_3_time.setText("後測第"+count_exam+"次");
-                        txt_3_nurse.setText(nurse);
+                        txt_3_nurse.setText(nurse_name);
                     }
                     else if(i==4)
                     {
@@ -229,7 +238,7 @@ public class Grade extends AppCompatActivity {
                         btn_4_date.setText(date);
                         txt_4_score.setText(""+score);
                         txt_4_time.setText("後測第"+count_exam+"次");
-                        txt_4_nurse.setText(nurse);
+                        txt_4_nurse.setText(nurse_name);
                     }
                     else if(i==5)
                     {
@@ -237,7 +246,7 @@ public class Grade extends AppCompatActivity {
                         btn_5_date.setText(date);
                         txt_5_score.setText(""+score);
                         txt_5_time.setText("後測第"+count_exam+"次");
-                        txt_5_nurse.setText(nurse);
+                        txt_5_nurse.setText(nurse_name);
                     }
                     i++;
                     count--;

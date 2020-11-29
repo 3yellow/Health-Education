@@ -149,7 +149,7 @@ public class Nurse_modify extends AppCompatActivity {
         else if(!len)
         {
             textView7.setVisibility(View.VISIBLE);
-            textView7.setText("已有此資料");
+            textView7.setText("身分證長度為10");
         }
         else if(flag==0&iId){
             //  pas1=pas1.toLowerCase();//讓密碼統一都是小寫
