@@ -66,6 +66,10 @@ public class choice_vedio extends AppCompatActivity {
         Intent i=new Intent(choice_vedio.this,choose_education.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
+        i.putExtra("count",count);
+        i.putExtra("score",score);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("exam_id",exam_id);
         startActivity(i);
         finish();
     }
@@ -75,6 +79,10 @@ public class choice_vedio extends AppCompatActivity {
         Intent i=new Intent( this,choice_pdf.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
+        i.putExtra("count",count);
+        i.putExtra("score",score);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("exam_id",exam_id);
         startActivity(i);
         finish();
     }
@@ -84,6 +92,10 @@ public class choice_vedio extends AppCompatActivity {
         Intent i=new Intent( this,choice_test.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
+        i.putExtra("count",count);
+        i.putExtra("score",score);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("exam_id",exam_id);
         startActivity(i);
         finish();
     }
@@ -91,6 +103,12 @@ public class choice_vedio extends AppCompatActivity {
     public void ved(View v)
     {
         Intent i=new Intent( this,Vedio.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
+        i.putExtra("count",count);
+        i.putExtra("score",score);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("exam_id",exam_id);
         startActivity(i);
         finish();
     }
@@ -98,6 +116,12 @@ public class choice_vedio extends AppCompatActivity {
     public void ved_ca(View v)
     {
         Intent i=new Intent( this,vedio_ca.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
+        i.putExtra("count",count);
+        i.putExtra("score",score);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("exam_id",exam_id);
         startActivity(i);
         finish();
     }
@@ -105,6 +129,12 @@ public class choice_vedio extends AppCompatActivity {
     public void ved_care(View v)
     {
         Intent i=new Intent( this,vedio_care.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
+        i.putExtra("count",count);
+        i.putExtra("score",score);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("exam_id",exam_id);
         startActivity(i);
         finish();
     }
@@ -112,6 +142,12 @@ public class choice_vedio extends AppCompatActivity {
     public void ved_lin(View v)
     {
         Intent i=new Intent( this,vedio_lin.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
+        i.putExtra("count",count);
+        i.putExtra("score",score);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("exam_id",exam_id);
         startActivity(i);
         finish();
     }
@@ -119,6 +155,12 @@ public class choice_vedio extends AppCompatActivity {
     public void ved_washhand(View v)
     {
         Intent i=new Intent( this,vedio_washhand.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
+        i.putExtra("count",count);
+        i.putExtra("score",score);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("exam_id",exam_id);
         startActivity(i);
         finish();
     }
@@ -126,6 +168,12 @@ public class choice_vedio extends AppCompatActivity {
     public void ved_weight(View v)
     {
         Intent i=new Intent( this,vedio_weight.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
+        i.putExtra("count",count);
+        i.putExtra("score",score);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("exam_id",exam_id);
         startActivity(i);
         finish();
     }
