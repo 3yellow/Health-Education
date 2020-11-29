@@ -1,7 +1,12 @@
 package com.example.hemodialysishealtheducation;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -13,6 +18,8 @@ public class vedio_care extends YouTubeBaseActivity implements YouTubePlayer.OnI
     public static final String API_key = "AIzaSyD07V93XTujLIEDZMoJ_aoFdrlktHHL0to";
     public static final String Video_id = "rO9xWxKgDpM";//https://youtu.be/rO9xWxKgDpM 穿刺後的傷口照護
     YouTubePlayerView youTubePlayerView;
+    int flag=0;
+    String count,score,nurseID,pid,exam_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +28,14 @@ public class vedio_care extends YouTubeBaseActivity implements YouTubePlayer.OnI
 
         youTubePlayerView = (YouTubePlayerView)findViewById(R.id.youtube_player);
         youTubePlayerView.initialize(API_key,this);
+
+        Intent i=this.getIntent();
+        count=i.getStringExtra("count");
+        score=i.getStringExtra("score");
+        nurseID=i.getStringExtra("nurseID");
+        pid=i.getStringExtra("id");
+        exam_id=i.getStringExtra("exam_id");
+        flag=i.getIntExtra("flag",0);
     }
 
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
@@ -96,5 +111,29 @@ public class vedio_care extends YouTubeBaseActivity implements YouTubePlayer.OnI
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
         Toast.makeText(this,"Failured to Initialize",Toast.LENGTH_SHORT).show();
+    }
+
+    public void onnext(View v) {
+        if(flag==0){        //回到影片頁
+            Intent intent = new Intent(vedio_care.this, choice_vedio.class);
+
+            intent.putExtra("count",count);
+            intent.putExtra("score",score);
+            intent.putExtra("nurseID",nurseID);
+            intent.putExtra("id",pid);
+            intent.putExtra("exam_id",exam_id);
+
+            startActivity(intent);
+        }else{              //繼續衛教
+            Intent intent = new Intent(vedio_care.this, backtest.class);
+
+            intent.putExtra("count",count);
+            intent.putExtra("score",score);
+            intent.putExtra("nurseID",nurseID);
+            intent.putExtra("id",pid);
+            intent.putExtra("exam_id",exam_id);
+
+            startActivity(intent);
+        }
     }
 }

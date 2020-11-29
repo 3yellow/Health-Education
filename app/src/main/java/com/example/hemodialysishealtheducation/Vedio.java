@@ -20,6 +20,8 @@ public class Vedio extends YouTubeBaseActivity implements YouTubePlayer.OnInitia
     public static final String Video_id = "6Zz7uwJfLSE";//https://youtu.be/6Zz7uwJfLSE 血液透析
     YouTubePlayerView youTubePlayerView;
 
+    String count,score,nurseID,pid,exam_id;
+    int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,13 @@ public class Vedio extends YouTubeBaseActivity implements YouTubePlayer.OnInitia
         youTubePlayerView = (YouTubePlayerView)findViewById(R.id.youtube_player);
         youTubePlayerView.initialize(API_key,this);
 
+        Intent i=this.getIntent();
+        count=i.getStringExtra("count");
+        score=i.getStringExtra("score");
+        nurseID=i.getStringExtra("nurseID");
+        pid=i.getStringExtra("id");
+        exam_id=i.getStringExtra("exam_id");
+        flag=i.getIntExtra("flag",0);
 
     }
 
@@ -111,23 +120,61 @@ public class Vedio extends YouTubeBaseActivity implements YouTubePlayer.OnInitia
     {
         //youTubePlayerView.
     }
+
     public void onnext(View v) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Vedio.this);
+        if(flag==0){        //回到影片頁
+            Intent intent = new Intent(Vedio.this, choice_vedio.class);
+
+            intent.putExtra("count",count);
+            intent.putExtra("score",score);
+            intent.putExtra("nurseID",nurseID);
+            intent.putExtra("id",pid);
+            intent.putExtra("exam_id",exam_id);
+
+            startActivity(intent);
+        }else{              //繼續衛教
+            Intent intent = new Intent(Vedio.this, backtest.class);
+
+            intent.putExtra("count",count);
+            intent.putExtra("score",score);
+            intent.putExtra("nurseID",nurseID);
+            intent.putExtra("id",pid);
+            intent.putExtra("exam_id",exam_id);
+
+            startActivity(intent);
+        }
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(Vedio.this);
         builder.setMessage("請選擇您要返回的畫面？");
         builder.setPositiveButton("影片列表", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 Intent intent = new Intent(Vedio.this, choice_vedio.class);
+
+                intent.putExtra("count",count);
+                intent.putExtra("score",score);
+                intent.putExtra("nurseID",nurseID);
+                intent.putExtra("id",pid);
+                intent.putExtra("exam_id",exam_id);
+
                 startActivity(intent);
             }
         });
         builder.setNegativeButton("繼續測驗", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int id) {
+                Intent intent = new Intent(Vedio.this, backtest.class);
+
+                intent.putExtra("count",count);
+                intent.putExtra("score",score);
+                intent.putExtra("nurseID",nurseID);
+                intent.putExtra("id",pid);
+                intent.putExtra("exam_id",exam_id);
+
+                startActivity(intent);
 
             }
         });
         AlertDialog dialog = builder.create();
-        dialog.show();
+        dialog.show();*/
     }
 
 }

@@ -62,6 +62,7 @@ public class HealthInformation extends AppCompatActivity {
                             intent.putExtra("nurseID",nurseID);
                             intent.putExtra("id",id);
                             intent.putExtra("exam_id",exam_id);
+                            intent.putExtra("flag",1);
                             startActivity(intent);
                             break;
                         case "t8":
@@ -71,6 +72,7 @@ public class HealthInformation extends AppCompatActivity {
                             intent.putExtra("nurseID",nurseID);
                             intent.putExtra("id",id);
                             intent.putExtra("exam_id",exam_id);
+                            intent.putExtra("flag",1);
                             startActivity(intent);
                             break;
                         case "t12":
@@ -80,24 +82,27 @@ public class HealthInformation extends AppCompatActivity {
                             intent.putExtra("nurseID",nurseID);
                             intent.putExtra("id",id);
                             intent.putExtra("exam_id",exam_id);
+                            intent.putExtra("flag",1);
                             startActivity(intent);
                             break;
-                        case "t3":
+                        case "t13":
                             intent=new Intent(HealthInformation.this,vedio_lin.class);
                             intent.putExtra("count",count);
                             intent.putExtra("score",score);
                             intent.putExtra("nurseID",nurseID);
                             intent.putExtra("id",id);
                             intent.putExtra("exam_id",exam_id);
+                            intent.putExtra("flag",1);
                             startActivity(intent);
                             break;
-                        case "t4":
+                        case "t14":
                             intent=new Intent(HealthInformation.this,vedio_ca.class);
                             intent.putExtra("count",count);
                             intent.putExtra("score",score);
                             intent.putExtra("nurseID",nurseID);
                             intent.putExtra("id",id);
                             intent.putExtra("exam_id",exam_id);
+                            intent.putExtra("flag",1);
                             startActivity(intent);
                             break;
                     }
