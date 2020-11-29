@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,6 +70,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public String datetime(){
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //==GMT標準時間往後加八小時
+        nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //==取得目前時間
+        String date_time = nowdate.format(new java.util.Date());
+
+        return date_time;
+    }
 
     private void createNurseTable() {
         String pas=sha256("admin");
@@ -92,25 +103,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createTopicTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS Topic (topic_id char(10), topic_name TEXT,change_data DATETIME,  PRIMARY KEY(topic_id))";
+        //vidio  1有影片 0沒有影片
+        String sql = "CREATE TABLE IF NOT EXISTS Topic (topic_id char(10), topic_name TEXT,change_data DATETIME, vidio int, PRIMARY KEY(topic_id))";
         db.execSQL(sql);
         ContentValues contentValues = new ContentValues(1);
         Cursor cursor = db.rawQuery("SELECT * FROM Topic", null);
         if (!cursor.moveToFirst()) {
-            insertTopic("t1","壹.腎臟功能簡介.doc.pdf");//這個之後要改成t1
-            insertTopic("t2","貳.甚麼是慢性腎臟病.doc.pdf");
-            insertTopic("t3","參.腎衰竭的原因.doc.pdf");
-            insertTopic("t4","肆.腎衰竭的治療方式.doc.pdf");
-            insertTopic("t5","伍.如何保護自己的腎.doc.pdf");
-            insertTopic("t6","陸.血液透析.doc.pdf");
-            insertTopic("t7","柒.血管通路.doc.pdf");
-            insertTopic("t8","捌.動靜脈廔管的照護.doc.pdf");
-            insertTopic("t9","玖.皮膚搔癢該怎麼辦.doc.pdf");
-            insertTopic("t10","拾.透析患者睡眠問題.doc.pdf");
-            insertTopic("t11","拾壹.腎友如何預防便秘.doc.pdf");
-            insertTopic("t12","拾貳.乾體重.doc.pdf");
-            insertTopic("t13","拾叁.磷是啥.doc.pdf");
-            insertTopic("t14","拾肆.鉀啥咪.doc.pdf");
+            insertTopic("t1","壹.腎臟功能簡介.pdf",0);//這個之後要改成t1
+            insertTopic("t2","貳.甚麼是慢性腎臟病.pdf",0);
+            insertTopic("t3","參.腎衰竭的原因.pdf",0);
+            insertTopic("t4","肆.腎衰竭的治療方式.pdf",0);
+            insertTopic("t5","伍.如何保護自己的腎.pdf",0);
+            insertTopic("t6","陸.血液透析.pdf",1);
+            insertTopic("t7","柒.血管通路.pdf",0);
+            insertTopic("t8","捌.動靜脈廔管的照護.pdf",1);
+            insertTopic("t9","玖.皮膚搔癢該怎麼辦.pdf",0);
+            insertTopic("t10","拾.透析患者睡眠問題.pdf",0);
+            insertTopic("t11","拾壹.腎友如何預防便秘.pdf",0);
+            insertTopic("t12","拾貳.乾體重.pdf",1);
+            insertTopic("t13","拾叁.磷是啥.pdf",1);
+            insertTopic("t14","拾肆.鉀啥咪.pdf",1);
         }
         cursor.close();
     }
@@ -176,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             //t4  肆.腎衰竭的治療方法
             insertQuestion( 38, "血液透析及腹膜透析都是腎衰竭的替代療法。", 1, "", "t4", 1);
             insertQuestion( 39,"腎移植不是腎衰竭的替代療法。", 0, "腎移植是腎衰竭的代替療法之一。", "t4", 1);
-            insertQuestion( 40, "血液透析俗稱「洗腎」，意思就是把腎臟拿出來洗。", 0, "不是將腎臟拿出來洗，而是透過機器、人工腎臟透析器、透析液，經過毒素的交換及移除，排除體內廢物，達成洗腎的目的。", "t5", 1);
+            insertQuestion( 40, "血液透析俗稱「洗腎」，意思就是把腎臟拿出來洗。", 0, "不是將腎臟拿出來洗，而是透過機器、人工腎臟透析器、透析液，經過毒素的交換及移除，排除體內廢物，達成洗腎的目的。", "t4", 1);
             insertQuestion( 41, "腹膜透析可以在家中自行操作，達到洗腎的目的。", 1, "", "t4", 1);
             insertQuestion( 42, "腎移植時，是把原來的腎臟拿掉，換一個新的腎臟。", 0, "是在骨盆腔的腸骨窩處植入另一個健康的腎臟，觸摸腹股溝上方即可摸到新的腎臟。", "t4", 1);
             insertQuestion( 43, "換腎時新的移植腎臟位置是放在腸骨窩處。", 1, "", "t4", 1);
@@ -327,14 +339,14 @@ public class MainActivity extends AppCompatActivity {
             //t14 拾肆.鉀啥咪
             insertQuestion( 160, "洗腎病人可以自行至中藥行抓藥進補。", 0, "中藥草均富含鉀離子，自行進補，可能鉀離子會過高。", "t14", 1);
             insertQuestion( 161, "蔬菜時要燙過，可以降低鉀離子的攝取。", 1, "", "t14", 1);
-            insertQuestion( 148, "腎友體內水份（重水）過多，容易造成鉀離子清除效率變差。", 1, "", "t14", 1);
-            insertQuestion( 149, "洗腎病人可以食用保健食品當作治療藥物。", 0, "保健食品成份複雜，而且許多含鉀量標示有限，無法了解所吃進去的含鉀量是多少，容易發生危險。", "t14", 1);
-            insertQuestion( 150, "便祕容易造成鉀離子排出的途徑減少。", 1, "", "t14", 1);
-            insertQuestion( 151, "腎友出現手指嘴唇僵硬、肌肉僵硬無力、舌頭僵硬難說話的症狀可能是因為鉀升變。", 1, "", "t14", 1);
-            insertQuestion( 152, "怕吃的太鹹，可以改用低鈉鹽或薄鹽醬油。", 0, "不行，因為低鈉鹽或薄鹽醬油多半是用鉀鹽取代鈉。", "t14", 1);
-            insertQuestion( 153, "高血鉀是血中鉀離子超過正常生理上限值 5.5 mmol/L。", 1, "", "t14", 1);
-            insertQuestion( 154, "夏天到了，洗腎病人可以喝很多冰涼果汁。", 0, "不行，除了水果中的鉀離子含量會過多以外，水份也可能增加過多。", "t14", 1);
-            insertQuestion( 155, "楊桃及楊桃汁雖不是高鉀水果，但部份會引發腎毒及神經毒性，所以絕對要吃。", 1, "", "t14", 1);
+            insertQuestion( 162, "腎友體內水份（重水）過多，容易造成鉀離子清除效率變差。", 1, "", "t14", 1);
+            insertQuestion( 163, "洗腎病人可以食用保健食品當作治療藥物。", 0, "保健食品成份複雜，而且許多含鉀量標示有限，無法了解所吃進去的含鉀量是多少，容易發生危險。", "t14", 1);
+            insertQuestion( 164, "便祕容易造成鉀離子排出的途徑減少。", 1, "", "t14", 1);
+            insertQuestion( 165, "腎友出現手指嘴唇僵硬、肌肉僵硬無力、舌頭僵硬難說話的症狀可能是因為鉀升變。", 1, "", "t14", 1);
+            insertQuestion( 166, "怕吃的太鹹，可以改用低鈉鹽或薄鹽醬油。", 0, "不行，因為低鈉鹽或薄鹽醬油多半是用鉀鹽取代鈉。", "t14", 1);
+            insertQuestion( 167, "高血鉀是血中鉀離子超過正常生理上限值 5.5 mmol/L。", 1, "", "t14", 1);
+            insertQuestion( 168, "夏天到了，洗腎病人可以喝很多冰涼果汁。", 0, "不行，除了水果中的鉀離子含量會過多以外，水份也可能增加過多。", "t14", 1);
+            insertQuestion( 169, "楊桃及楊桃汁雖不是高鉀水果，但部份會引發腎毒及神經毒性，所以絕對要吃。", 1, "", "t14", 1);
 
         }
         cursor.close();
@@ -352,11 +364,12 @@ public class MainActivity extends AppCompatActivity {
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
 
-    private void insertTopic(String topic_id,String topic_name )
+    private void insertTopic(String topic_id,String topic_name,int vidio )
     {
         ContentValues cv =new ContentValues(1);//10
         cv.put("topic_id",topic_id);
         cv.put("topic_name",topic_name);
+        cv.put("vidio",vidio);
         db.insert("Topic", null, cv);
     }
 

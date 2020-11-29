@@ -10,7 +10,9 @@
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
-        android:layout_height="680dp"/>
+        android:layout_height="680dp">
+
+    </com.github.barteksc.pdfviewer.PDFView>
 
     <Button
         android:id="@+id/button2"
@@ -21,5 +23,12 @@
         android:textSize="30sp"
         android:text="完成"
         android:layout_marginLeft="1000dp"/>
+
+    <Button
+        android:id="@+id/btn_vido"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:text="影片"
+        android:visibility="invisible" />
 
 </LinearLayout>

@@ -126,14 +126,14 @@ public class Nurse_modify extends AppCompatActivity {
     }
 
     public void onclick(View v){
-        Boolean iId;
+        Boolean iId,len;
         String pas1,eId;
         pas1=edt_pas1.getText().toString();
         flag=pas1.compareTo(edt_pas2.getText().toString());
         eId=edt_id.getText().toString();
         eId=eId.toUpperCase();
         iId=Boolean.TRUE;
-//        iId=vreifyId(eId);
+        len=vreifyId(eId);
         if (flag!=0) {
             textView7.setVisibility(View.VISIBLE);
             textView7.setText("兩次密碼輸入必須相同");
@@ -145,6 +145,11 @@ public class Nurse_modify extends AppCompatActivity {
         else if(w_stause==0){
             textView7.setVisibility(View.VISIBLE);
             textView7.setText("工作狀態還沒選");
+        }
+        else if(!len)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("已有此資料");
         }
         else if(flag==0&iId){
             //  pas1=pas1.toLowerCase();//讓密碼統一都是小寫
@@ -229,7 +234,7 @@ public class Nurse_modify extends AppCompatActivity {
     }
 
     public String datetime(){
-        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd 'T' HH:mm:ss");
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //==GMT標準時間往後加八小時
         nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         //==取得目前時間
@@ -261,6 +266,7 @@ public class Nurse_modify extends AppCompatActivity {
         if (id.length()!=10){
             return false;
         }
+        /*
         for (int i=65;i<=90;i++)
         {
             char ch=(char)i;
@@ -300,6 +306,7 @@ public class Nurse_modify extends AppCompatActivity {
             System.out.println("這不是正確的身分證字號!!");
             return false;
         }
-        return false;
+        */
+        return true;
     }
 }

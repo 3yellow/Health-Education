@@ -54,15 +54,8 @@ public class show_grade extends AppCompatActivity {
         }
         cu.close();
 
-        cu=db.rawQuery("SELECT * FROM Topic WHERE topic_id='"+ed_name_ec+"' ",null);
-        if(cu.getCount()>0)
-        {
-            cu.moveToFirst();
-            ed_name_chinese=cu.getString(1);
-            //String[] tokens=ed_name_chinese.split(".");
-            title.setText(ed_name_chinese);
-            title.setTextSize(45);
-        }
+        title.setText(ed_name_chinese);
+        title.setTextSize(45);
         cu.close();
         patient.setTextSize(30);
         patient_id.setText(id);
@@ -87,6 +80,7 @@ public class show_grade extends AppCompatActivity {
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("ed_name_ec",ed_name_ec);
+        i.putExtra("ed_name_chinese",ed_name_chinese);
         db.close();
         startActivity(i);
         finish();
@@ -226,7 +220,7 @@ public class show_grade extends AppCompatActivity {
         Intent intent=this.getIntent();
         nurseID=intent.getStringExtra("nurseID");
         id=intent.getStringExtra("id");
-       // ed_name_chinese=intent.getStringExtra("ed_name_chinese");
+        ed_name_chinese=intent.getStringExtra("ed_name_chinese");
         ed_name_ec=intent.getStringExtra("ed_name_ec");
         examid=intent.getStringExtra("examid");
     }

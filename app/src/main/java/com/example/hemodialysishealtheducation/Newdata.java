@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
@@ -169,12 +170,22 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     }
 
     public void onClick(View v) {
-        Boolean iAge,iId;
+        Boolean len,birth_bool,accet_bool;
         eId=edt_id.getText().toString().trim();//trim去除多餘空白
         eId=eId.toUpperCase();
         String ename=edt_name.getText().toString().trim();
+        String Accepted_date=button6.getText().toString();
+        String birth=btn_birth.getText().toString();
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy/MM/dd");
+        //==GMT標準時間往後加八小時
+        nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //==取得目前時間
+        String now_date = nowdate.format(new java.util.Date());
         Intent i=this.getIntent();
         String nurseID=i.getStringExtra("nurseID");
+        birth_bool=compare_date(birth,now_date);
+        accet_bool=compare_date(Accepted_date,now_date);
+        len=vreifyId(eId);
         flag=searchData(eId);
         if (flag==2&&flag1!=1){
             textView7.setVisibility(View.VISIBLE);
@@ -188,6 +199,21 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             textView7.setVisibility(View.VISIBLE);
             textView7.setText("身分證還沒填");
         }
+        else if(!birth_bool)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("生日日期選錯!!");
+        }
+        else if(!accet_bool)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("收案日期日期選錯!!");
+        }
+        else if(!len)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("身分證長度為10");
+        }
         else if (geender==0){
             textView7.setVisibility(View.VISIBLE);
             flag=3;
@@ -199,7 +225,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             textView7.setText("身分證還沒選");
         }
         else if (flag1==1){
-            modify_patient(ename,eId,geender,button6.getText().toString(),btn_birth.getText().toString());
+            modify_patient(ename,eId,geender,Accepted_date,birth);
             DBS.close();
             i=new Intent(Newdata.this,Searchlogin.class);
             i.putExtra("nurseID",nurseID);
@@ -210,7 +236,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             finish();
         }
         else if (flag == 1) {
-            addData(ename,eId,geender,button6.getText().toString(),btn_birth.getText().toString(),nurseID);
+            addData(ename,eId,geender,Accepted_date,birth,nurseID);
             //(String name,String id,String age,int gender,String date,String birth_date)
             DBS.close();
 
@@ -224,13 +250,24 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         }
     }
 
-    /*public Boolean  vreifyId(String id){
+    public boolean compare_date(String goal_date,String now_date)
+    {
+        Date date2 = new Date(now_date);
+        Date date1 = new Date(goal_date);
+        if(date1.getTime()>date2.getTime())
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean  vreifyId(String id){
         int c=0,n=0; //c判斷第一個字是否為英文字 n判別第二個字是否為1或2
         if (id.length()!=10){
             return false;
         }
-        for (int i=65;i<=90;i++)
-        {
+         /*for (int i=65;i<=90;i++)
+       {
             char ch=(char)i;
             if (id.charAt(0)==i){
                 c=1;//第一個字為英文字
@@ -267,9 +304,10 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         if (aa==0) {              //aa不等於0則輸入身分證字號不符合
             System.out.println("這不是正確的身分證字號!!");
             return false;
-        }
-        return false;
-    }*/
+        }*/
+        return true;
+
+    }
     private int searchData(String str1) //判別是否已經有此資料了
     {
         c=DBS.rawQuery("SELECT * FROM Patient  WHERE patient_id='"+str1+"'",null);
@@ -284,7 +322,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     }
 
     public String datetime(){
-        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd 'T' HH:mm:ss");
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //==GMT標準時間往後加八小時
         nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         //==取得目前時間
