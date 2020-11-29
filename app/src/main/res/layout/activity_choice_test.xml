@@ -106,7 +106,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="t2"
+                    android:onClick="t3"
                     android:text="   叁.腎衰竭的原因   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -124,7 +124,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t4"
                     android:text="   肆.腎衰竭的治療方式   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -141,7 +141,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t5"
                     android:text="   伍.如何保護自己的腎  "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -159,7 +159,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t6"
                     android:text="   陸.血液透析   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -177,7 +177,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t7"
                     android:text="   柒.血管通路   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -195,7 +195,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t8"
                     android:text="   捌.動靜脈廔管的照護   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -213,7 +213,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t9"
                     android:text="   玖.皮膚搔癢該怎麼辦   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -231,7 +231,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t10"
                     android:text="   拾.透析患者睡眠問題   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -249,7 +249,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t11"
                     android:text="   拾壹.腎友如何預防便秘   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -267,7 +267,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t12"
                     android:text="   拾貳.乾體重   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -285,7 +285,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t13"
                     android:text="   拾叁.磷是啥   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
@@ -302,7 +302,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#f7f1e3"
-                    android:onClick="reason"
+                    android:onClick="t14"
                     android:text="   拾肆.鉀啥咪   "
                     android:textColor="#58b19f"
                     android:textSize="35dp" />
