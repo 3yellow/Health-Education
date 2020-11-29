@@ -1629,7 +1629,7 @@ public class choose_education extends AppCompatActivity {
         int Q_array[]=new int[5];
         int count=0;//看有幾張考卷了
         String exam_id;
-        exam_id="11"+id;
+        exam_id="t11"+id;
         cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+exam_id+"%'",null);
         if (cu.getCount()>0){
             //衛教+後側

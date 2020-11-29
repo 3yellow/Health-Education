@@ -191,6 +191,8 @@ public class choice_test extends AppCompatActivity {
         }
     }
 
+
+
     public void t1(View v){
         int score=0;
         int Q_array[]=new int[5];
