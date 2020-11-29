@@ -122,7 +122,12 @@ public class MainActivity extends AppCompatActivity {
             insertTopic("t11","拾壹.腎友如何預防便秘.pdf",0);
             insertTopic("t12","拾貳.乾體重.pdf",1);
             insertTopic("t13","拾叁.磷是啥.pdf",1);
-            insertTopic("t14","拾肆.鉀啥咪.pdf",1);
+            insertTopic("t14","拾肆.鉀啥咪.pdf",1);//
+            insertTopic("t15","拾伍.日常生活中的注意事項.pdf",0);
+            insertTopic("t16","拾陸.含各種離子高的食物參考.pdf",0);
+            insertTopic("t17","拾柒.飲食控制要點.pdf",0);
+            insertTopic("t18","拾捌.傷口加壓止血的方法.pdf",0);
+            insertTopic("t19","拾玖.藥物的使用.pdf",0);
         }
         cursor.close();
     }
