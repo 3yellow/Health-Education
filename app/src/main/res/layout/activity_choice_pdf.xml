@@ -310,6 +310,96 @@
 
             </TableRow>
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/fifteen"
+                    android:layout_width="800dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="reason"
+                    android:text="   拾伍.日常生活中的注意事項   "
+                    android:textColor="#58b19f"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/sixteen"
+                    android:layout_width="800dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="reason"
+                    android:text="   拾陸.含各種離子高的食物參考   "
+                    android:textColor="#58b19f"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/seventeen"
+                    android:layout_width="800dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="reason"
+                    android:text="   拾柒.飲食控制要點   "
+                    android:textColor="#58b19f"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/eightteen"
+                    android:layout_width="800dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="reason"
+                    android:text="   拾捌.傷口加壓止血的方法   "
+                    android:textColor="#58b19f"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/nineteen"
+                    android:layout_width="800dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="reason"
+                    android:text="   拾玖.藥物的使用   "
+                    android:textColor="#58b19f"
+                    android:textSize="35dp" />
+
+            </TableRow>
+
 
         </TableLayout>
     </ScrollView>

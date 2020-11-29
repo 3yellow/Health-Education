@@ -84,6 +84,48 @@ public class choice_vedio extends AppCompatActivity {
         finish();
     }
 
+    public void ved(View v)
+    {
+        Intent i=new Intent( this,Vedio.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void ved_ca(View v)
+    {
+        Intent i=new Intent( this,vedio_ca.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void ved_care(View v)
+    {
+        Intent i=new Intent( this,vedio_care.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void ved_lin(View v)
+    {
+        Intent i=new Intent( this,vedio_lin.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void ved_washhand(View v)
+    {
+        Intent i=new Intent( this,vedio_washhand.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void ved_weight(View v)
+    {
+        Intent i=new Intent( this,vedio_weight.class);
+        startActivity(i);
+        finish();
+    }
+
     public void onclick(View v){
         AlertDialog dialog=new AlertDialog.Builder(choice_vedio.this)
                 .setTitle("確定要登出?")

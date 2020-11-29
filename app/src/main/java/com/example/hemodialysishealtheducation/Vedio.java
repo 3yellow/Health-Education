@@ -1,6 +1,10 @@
 package com.example.hemodialysishealtheducation;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -13,7 +17,7 @@ import java.security.Provider;
 public class Vedio extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
 
     public static final String API_key = "AIzaSyD07V93XTujLIEDZMoJ_aoFdrlktHHL0to";
-    public static final String Video_id = "1jGFssRayD8";//https://youtu.be/irS1aLu9XJQ 2BEFukvLZfI https://youtu.be/1jGFssRayD8
+    public static final String Video_id = "6Zz7uwJfLSE";//https://youtu.be/6Zz7uwJfLSE 血液透析
     YouTubePlayerView youTubePlayerView;
 
 
@@ -24,6 +28,8 @@ public class Vedio extends YouTubeBaseActivity implements YouTubePlayer.OnInitia
 
         youTubePlayerView = (YouTubePlayerView)findViewById(R.id.youtube_player);
         youTubePlayerView.initialize(API_key,this);
+
+
     }
 
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
@@ -105,4 +111,23 @@ public class Vedio extends YouTubeBaseActivity implements YouTubePlayer.OnInitia
     {
         //youTubePlayerView.
     }
+    public void onnext(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Vedio.this);
+        builder.setMessage("請選擇您要返回的畫面？");
+        builder.setPositiveButton("影片列表", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Intent intent = new Intent(Vedio.this, choice_vedio.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("繼續測驗", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int id) {
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 }
