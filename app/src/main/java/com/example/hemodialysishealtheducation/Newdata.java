@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
@@ -169,12 +170,21 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     }
 
     public void onClick(View v) {
-        Boolean len;
+        Boolean len,birth_bool,accet_bool;
         eId=edt_id.getText().toString().trim();//trim去除多餘空白
         eId=eId.toUpperCase();
         String ename=edt_name.getText().toString().trim();
+        String Accepted_date=button6.getText().toString();
+        String birth=btn_birth.getText().toString();
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy/MM/dd");
+        //==GMT標準時間往後加八小時
+        nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //==取得目前時間
+        String now_date = nowdate.format(new java.util.Date());
         Intent i=this.getIntent();
         String nurseID=i.getStringExtra("nurseID");
+        birth_bool=compare_date(birth,now_date);
+        accet_bool=compare_date(Accepted_date,now_date);
         len=vreifyId(eId);
         flag=searchData(eId);
         if (flag==2&&flag1!=1){
@@ -188,6 +198,16 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         else if (eId.isEmpty()){
             textView7.setVisibility(View.VISIBLE);
             textView7.setText("身分證還沒填");
+        }
+        else if(!birth_bool)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("生日日期選錯!!");
+        }
+        else if(!accet_bool)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("收案日期日期選錯!!");
         }
         else if(!len)
         {
@@ -205,7 +225,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             textView7.setText("身分證還沒選");
         }
         else if (flag1==1){
-            modify_patient(ename,eId,geender,button6.getText().toString(),btn_birth.getText().toString());
+            modify_patient(ename,eId,geender,Accepted_date,birth);
             DBS.close();
             i=new Intent(Newdata.this,Searchlogin.class);
             i.putExtra("nurseID",nurseID);
@@ -216,7 +236,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             finish();
         }
         else if (flag == 1) {
-            addData(ename,eId,geender,button6.getText().toString(),btn_birth.getText().toString(),nurseID);
+            addData(ename,eId,geender,Accepted_date,birth,nurseID);
             //(String name,String id,String age,int gender,String date,String birth_date)
             DBS.close();
 
@@ -228,6 +248,17 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             startActivity(i);
             finish();
         }
+    }
+
+    public boolean compare_date(String goal_date,String now_date)
+    {
+        Date date2 = new Date(now_date);
+        Date date1 = new Date(goal_date);
+        if(date1.getTime()>date2.getTime())
+        {
+            return false;
+        }
+        return true;
     }
 
     public Boolean  vreifyId(String id){
@@ -291,7 +322,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     }
 
     public String datetime(){
-        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd 'T' HH:mm:ss");
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //==GMT標準時間往後加八小時
         nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         //==取得目前時間

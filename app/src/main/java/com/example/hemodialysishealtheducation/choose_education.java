@@ -63,7 +63,7 @@ public class choose_education extends AppCompatActivity {
             patient.setText("姓名："+patient_name);
         }
         cu.close();
-
+        button(id);
         show_grade(id);
 
         t1.setOnClickListener(new View.OnClickListener() {
@@ -291,7 +291,10 @@ public class choose_education extends AppCompatActivity {
             String grade=cu.getString(2);
             t1_date.setText("  "+date);
             if(t1_grade.equals("-1"))
+            {
                 t1_grade.setText("上次測驗沒有做完!!");
+                t1_grade.setTextSize(25);
+            }
             else
                 t1_grade.setText(" "+grade);
         }
@@ -317,7 +320,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t2_date.setText("  "+date);
-            t2_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t2_grade.setText("上次測驗沒有做完!!");
+                t2_grade.setTextSize(18);
+            }
+            else
+                t2_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -341,7 +350,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t3_date.setText("  "+date);
-            t3_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t3_grade.setText("上次測驗沒有做完!!");
+                t3_grade.setTextSize(18);
+            }
+            else
+                t3_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -365,7 +380,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t4_date.setText("  "+date);
-            t4_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t4_grade.setText("上次測驗沒有做完!!");
+                t4_grade.setTextSize(18);
+            }
+            else
+                t4_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -389,7 +410,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t5_date.setText("  "+date);
-            t5_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t5_grade.setText("上次測驗沒有做完!!");
+                t5_grade.setTextSize(18);
+            }
+            else
+                t5_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -413,7 +440,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t6_date.setText("  "+date);
-            t6_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t6_grade.setText("上次測驗沒有做完!!");
+                t6_grade.setTextSize(18);
+            }
+            else
+                t6_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -437,7 +470,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t7_date.setText("  "+date);
-            t7_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t7_grade.setText("上次測驗沒有做完!!");
+                t7_grade.setTextSize(18);
+            }
+            else
+                t7_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -461,7 +500,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t8_date.setText("  "+date);
-            t8_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t8_grade.setText("上次測驗沒有做完!!");
+                t8_grade.setTextSize(18);
+            }
+            else
+                t8_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -485,7 +530,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t9_date.setText("  "+date);
-            t9_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t9_grade.setText("上次測驗沒有做完!!");
+                t9_grade.setTextSize(18);
+            }
+            else
+                t9_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -509,7 +560,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t10_date.setText("  "+date);
-            t10_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t10_grade.setText("上次測驗沒有做完!!");
+                t10_grade.setTextSize(18);
+            }
+            else
+                t10_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -533,7 +590,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t11_date.setText("  "+date);
-            t11_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t11_grade.setText("上次測驗沒有做完!!");
+                t11_grade.setTextSize(18);
+            }
+            else
+                t11_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -557,7 +620,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t12_date.setText("  "+date);
-            t12_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t12_grade.setText("上次測驗沒有做完!!");
+                t12_grade.setTextSize(18);
+            }
+            else
+                t12_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -581,7 +650,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t13_date.setText("  "+date);
-            t13_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t13_grade.setText("上次測驗沒有做完!!");
+                t13_grade.setTextSize(18);
+            }
+            else
+                t13_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -605,7 +680,13 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t14_date.setText("  "+date);
-            t14_grade.setText(" "+grade);
+            if(grade.equals("-1"))
+            {
+                t14_grade.setText("上次測驗沒有做完!!");
+                t14_grade.setTextSize(18);
+            }
+            else
+                t14_grade.setText(" "+grade);
         }
         cu.close();
     }
@@ -656,16 +737,17 @@ public class choose_education extends AppCompatActivity {
             count-=1;
             String ans_id=examid+count;
             //Patient WHERE patient_id='"+id+"' ",
-            cu=db.rawQuery("SELECT * FROM Answer WHERE answer_id='"+ans_id+"' AND result!='"+"-1"+"' ",null);
+            cu=db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+ans_id+"' AND exam_score='"+"-1"+"' ",null);
             if(cu.getCount()>0)//已經做過後側
             {
-                btn_id.setBackgroundColor(Color.parseColor("#58b19f"));
+                btn_id.setBackgroundColor(Color.parseColor("#96e8d7"));
                 btn_id.setTextColor(Color.parseColor("#FFFAFA"));
             }
             else//做到一半 沒有做完後側
             {
-                btn_id.setBackgroundColor(Color.parseColor("#96e8d7"));
+                btn_id.setBackgroundColor(Color.parseColor("#58b19f"));
                 btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+
             }
             cu.close();
         }

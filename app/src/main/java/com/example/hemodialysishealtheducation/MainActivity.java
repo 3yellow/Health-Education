@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,6 +70,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public String datetime(){
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //==GMT標準時間往後加八小時
+        nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //==取得目前時間
+        String date_time = nowdate.format(new java.util.Date());
+
+        return date_time;
+    }
 
     private void createNurseTable() {
         String pas=sha256("admin");
