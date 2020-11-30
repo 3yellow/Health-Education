@@ -187,8 +187,8 @@ public class Nurse_modify extends AppCompatActivity {
         else{
             edt_id.setFocusable(false);
             edt_id.setFocusableInTouchMode(false);
-            edt_name.setFocusable(false);
-            edt_name.setFocusableInTouchMode(false);
+           // edt_name.setFocusable(false);
+            //edt_name.setFocusableInTouchMode(false);
             String anamee = cu.getString(1);
            // String pa=cu.getString(2);
             edt_name.setText(anamee);

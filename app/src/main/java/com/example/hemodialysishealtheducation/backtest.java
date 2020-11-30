@@ -201,7 +201,7 @@ public class backtest extends AppCompatActivity {
                     str="正確";
                 else
                     str="錯誤";
-                MyToast("恭喜你，回答正確！");
+                //MyToast("恭喜你，回答正確！");
                 An.setTextColor(Color.GREEN);
             } else {
                 if (int_your_ans==1)
@@ -209,7 +209,7 @@ public class backtest extends AppCompatActivity {
                 else
                     str="正確";
                 tempButton.setTextColor(Color.RED);
-                MyToast("回答錯誤！");
+               // MyToast("回答錯誤！");
                 An.setTextColor(Color.RED);
             }
             cu = db.rawQuery("SELECT * FROM Question WHERE question_id = '" + q_id + "'", null);
