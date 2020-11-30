@@ -53,6 +53,7 @@
             android:layout_marginStart="600dp"
             android:background="#00000000"
             android:onClick="onclick"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/home" />
 
     </LinearLayout>
