@@ -56,12 +56,12 @@
             android:id="@+id/imageButton4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginStart="80dp"
             android:layout_marginTop="5dp"
             android:background="#00ffffff"
             android:onClick="onclick"
-            android:scaleType="center"
+            android:scaleType="fitCenter"
             android:src="@drawable/home" />
 
     </LinearLayout>
