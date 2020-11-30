@@ -67,11 +67,11 @@
                     android:layout_width="800dp"
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
-                    android:background="#58b19f"
+                    android:background="#f7f1e3"
                     android:hapticFeedbackEnabled="false"
                     android:onClick="t1"
                     android:text="   壹.腎臟功能簡介   "
-                    android:textColor="@android:color/background_light"
+                    android:textColor="#58b19f"
                     android:textSize="35dp" />
 
 

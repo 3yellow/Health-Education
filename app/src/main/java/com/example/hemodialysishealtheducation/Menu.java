@@ -94,7 +94,7 @@ public class Menu extends AppCompatActivity {
             public void onClick(View v) {
                 String s=username.getText().toString().trim();
                 String prepas=password.getText().toString().trim();
-                String pas=sha256(prepas);
+                String pas=sha256(prepas).trim();
                 Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id = '"+ s +"'",null);
                 if (!cu.moveToFirst()){
                     Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();

@@ -7,10 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -19,6 +22,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
@@ -29,6 +33,8 @@ public class Nurse_modify extends AppCompatActivity {
     boolean canSee;
     SQLiteDatabase db;
     String idd;
+    String pass;
+    String decodeWord;
     EditText edt_id,edt_name,edt_pas1,edt_pas2;
     TextView textView7;
     RadioGroup work;
@@ -125,6 +131,10 @@ public class Nurse_modify extends AppCompatActivity {
         }
     }
 
+    public void sendImage(String bmMsg){
+        byte [] input = Base64.decode(bmMsg, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(input, 0, input.length);
+    }
     public void onclick(View v){
         Boolean iId,len;
         String pas1,eId;
@@ -153,6 +163,14 @@ public class Nurse_modify extends AppCompatActivity {
         }
         else if(flag==0&iId){
             //  pas1=pas1.toLowerCase();//讓密碼統一都是小寫
+            if(pas1.equals(""))
+            {
+                pas1=pass;
+            }
+            else
+            {
+                pas1=sha256(pas1);
+            }
             modify_nurse(edt_name.getText().toString(),eId,pas1,w_stause);
             String sql = "SELECT * FROM Nurse WHERE nurse_id = '"+ eId +"'";
             Cursor cu = db.rawQuery( sql,null );
@@ -190,7 +208,7 @@ public class Nurse_modify extends AppCompatActivity {
            // edt_name.setFocusable(false);
             //edt_name.setFocusableInTouchMode(false);
             String anamee = cu.getString(1);
-           // String pa=cu.getString(2);
+           pass=cu.getString(2).trim();
             edt_name.setText(anamee);
             edt_id.setText(idd);
             edt_pas1.setText("");
@@ -232,6 +250,16 @@ public class Nurse_modify extends AppCompatActivity {
             throw new RuntimeException(ex);
         }
     }
+    public static String setDecrypt(String encodeWord) {
+        // decodeWord;
+        try {
+            String  decodeWord = new String(Base64.decode(encodeWord, Base64.DEFAULT), "utf-8");
+            Log.i("Tag", "decode wrods = " + decodeWord);
+            return decodeWord;
+        }catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
 
     public String datetime(){
         SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -245,7 +273,6 @@ public class Nurse_modify extends AppCompatActivity {
 
     private void modify_nurse(String name,String id,String pas,int staue){
         String date_time=datetime();
-        pas=sha256(pas);
         ContentValues cv = new ContentValues(7);
         cv.put("nurse_id", id);
         cv.put("nurse_name", name);

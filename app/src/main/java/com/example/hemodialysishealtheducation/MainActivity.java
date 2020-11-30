@@ -390,12 +390,6 @@ public class MainActivity extends AppCompatActivity {
         cv.put("change_data",change_data);
         db.insert("Question", null, cv);
     }
-    public void vediotest(View v){
-        Intent intent = new Intent();
-        intent.setClass(MainActivity.this , signature.class);
-        db.close();
-        startActivity(intent);
-    }
 
     public static String sha256(String base) //加密
     {
@@ -444,108 +438,95 @@ public class MainActivity extends AppCompatActivity {
         //跳轉到病人畫面
         String str=Account.getText().toString().trim().toUpperCase();
         String pas=editText.getText().toString().trim();
-        pas=sha256(pas);
-        Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+str+"'",null);
-        if (str.trim().length()>0){
-            if ("admin".equals(pas)){
-                AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("此權限沒有病友管理!!!")
-                        .setNegativeButton("確定",null).create();
-                dialog.show();
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
-                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
-                try {
-                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
-                    mAlert.setAccessible(true);
-                    Object mAlertController = mAlert.get(dialog);
-                    //通过反射修改title字体大小和颜色
-                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
-                    mTitle.setAccessible(true);
-                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                    mTitleView.setTextSize(32);
-                    mTitleView.setTextColor(Color.RED);
-                    //通过反射修改message字体大小和颜色
-                } catch (IllegalAccessException e1) {
-                    e1.printStackTrace();
-                } catch (NoSuchFieldException e2) {
-                    e2.printStackTrace();
-                }
+        if(str.equals("") && pas.equals(""))
+        {
+            AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("帳號密碼沒有輸入!!!")
+                    .setNegativeButton("確定",null).create();
+            dialog.show();
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            try {
+                Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                mAlert.setAccessible(true);
+                Object mAlertController = mAlert.get(dialog);
+                //通过反射修改title字体大小和颜色
+                Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                mTitle.setAccessible(true);
+                TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                mTitleView.setTextSize(32);
+                mTitleView.setTextColor(Color.RED);
+                //通过反射修改message字体大小和颜色
+            } catch (IllegalAccessException e1) {
+                e1.printStackTrace();
+            } catch (NoSuchFieldException e2) {
+                e2.printStackTrace();
             }
-            else {
-                if(cu.getCount()>0) {
-                    cu.moveToFirst();
-                    do {
-                        String password=cu.getString(2);
-                        int flag_staue=cu.getInt(3);
-                        if (password.equals(pas) && flag_staue==1){
-                            intent.setClass(this, Searchlogin.class);
-                            intent.putExtra("pad",1); //修改狀態時 要分辨是哪一台電腦用的。
-                            intent.putExtra("nurseID",str);
-                            intent.putExtra("nurse",str);
-                            // intent.putExtra("name", Account.getText().toString());
-                            db.close();
-                            startActivity(intent);
-                            finish();
-                        }
-                        else if (password.equals(pas) && flag_staue!=1){
-                            AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
-                                    .setTitle("沒有權限!!!")
-                                    .setNegativeButton("確定",null).create();
-                            dialog.show();
-                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
-                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
-                            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
-                            try {
-                                Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
-                                mAlert.setAccessible(true);
-                                Object mAlertController = mAlert.get(dialog);
-                                //通过反射修改title字体大小和颜色
-                                Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
-                                mTitle.setAccessible(true);
-                                TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                                mTitleView.setTextSize(32);
-                                mTitleView.setTextColor(Color.RED);
-                                //通过反射修改message字体大小和颜色
-                            } catch (IllegalAccessException e1) {
-                                e1.printStackTrace();
-                            } catch (NoSuchFieldException e2) {
-                                e2.printStackTrace();
-                            }
-                        }
-                        else {
-                            AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
-                                    .setTitle("密碼輸入錯誤!!!")
-                                    .setNegativeButton("確定",null).create();
-                            dialog.show();
-                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
-                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
-                            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
-                            try {
-                                Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
-                                mAlert.setAccessible(true);
-                                Object mAlertController = mAlert.get(dialog);
-                                //通过反射修改title字体大小和颜色
-                                Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
-                                mTitle.setAccessible(true);
-                                TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                                mTitleView.setTextSize(32);
-                                mTitleView.setTextColor(Color.RED);
-                                //通过反射修改message字体大小和颜色
-                            } catch (IllegalAccessException e1) {
-                                e1.printStackTrace();
-                            } catch (NoSuchFieldException e2) {
-                                e2.printStackTrace();
-                            }
-                        }
-                    }while(cu.moveToNext());
-                }
-                else {
+        }
+        else if(str.equals(""))
+        {
+            AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("帳號沒有輸入!!")
+                    .setNegativeButton("確定",null).create();
+            dialog.show();
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            try {
+                Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                mAlert.setAccessible(true);
+                Object mAlertController = mAlert.get(dialog);
+                //通过反射修改title字体大小和颜色
+                Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                mTitle.setAccessible(true);
+                TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                mTitleView.setTextSize(32);
+                mTitleView.setTextColor(Color.RED);
+                //通过反射修改message字体大小和颜色
+            } catch (IllegalAccessException e1) {
+                e1.printStackTrace();
+            } catch (NoSuchFieldException e2) {
+                e2.printStackTrace();
+            }
+        }
+        else if(pas.equals(""))
+        {
+            AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("密碼沒有輸入!!!")
+                    .setNegativeButton("確定",null).create();
+            dialog.show();
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            try {
+                Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                mAlert.setAccessible(true);
+                Object mAlertController = mAlert.get(dialog);
+                //通过反射修改title字体大小和颜色
+                Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                mTitle.setAccessible(true);
+                TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                mTitleView.setTextSize(32);
+                mTitleView.setTextColor(Color.RED);
+                //通过反射修改message字体大小和颜色
+            } catch (IllegalAccessException e1) {
+                e1.printStackTrace();
+            } catch (NoSuchFieldException e2) {
+                e2.printStackTrace();
+            }
+        }
+        else
+        {
+            pas=sha256(pas).trim();
+            Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+str+"'",null);
+            if (str.trim().length()>0){
+                if ("admin".equals(pas)){
                     AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
-                            .setTitle("帳號輸入錯誤!!!")
+                            .setTitle("此權限沒有病友管理!!!")
                             .setNegativeButton("確定",null).create();
                     dialog.show();
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
@@ -569,96 +550,279 @@ public class MainActivity extends AppCompatActivity {
                         e2.printStackTrace();
                     }
                 }
+                else {
+                    if(cu.getCount()>0) {
+                        cu.moveToFirst();
+                        do {
+                            String password=cu.getString(2);
+                            int flag_staue=cu.getInt(3);
+                            if (password.equals(pas) && flag_staue==1){
+                                intent.setClass(this, Searchlogin.class);
+                                intent.putExtra("pad",1); //修改狀態時 要分辨是哪一台電腦用的。
+                                intent.putExtra("nurseID",str);
+                                intent.putExtra("nurse",str);
+                                // intent.putExtra("name", Account.getText().toString());
+                                db.close();
+                                startActivity(intent);
+                                finish();
+                            }
+                            else if (password.equals(pas) && flag_staue!=1){
+                                AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("沒有權限!!!")
+                                        .setNegativeButton("確定",null).create();
+                                dialog.show();
+                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                                try {
+                                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                                    mAlert.setAccessible(true);
+                                    Object mAlertController = mAlert.get(dialog);
+                                    //通过反射修改title字体大小和颜色
+                                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                                    mTitle.setAccessible(true);
+                                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                                    mTitleView.setTextSize(32);
+                                    mTitleView.setTextColor(Color.RED);
+                                    //通过反射修改message字体大小和颜色
+                                } catch (IllegalAccessException e1) {
+                                    e1.printStackTrace();
+                                } catch (NoSuchFieldException e2) {
+                                    e2.printStackTrace();
+                                }
+                            }
+                            else {
+                                AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("密碼輸入錯誤!!!")
+                                        .setNegativeButton("確定",null).create();
+                                dialog.show();
+                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                                try {
+                                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                                    mAlert.setAccessible(true);
+                                    Object mAlertController = mAlert.get(dialog);
+                                    //通过反射修改title字体大小和颜色
+                                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                                    mTitle.setAccessible(true);
+                                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                                    mTitleView.setTextSize(32);
+                                    mTitleView.setTextColor(Color.RED);
+                                    //通过反射修改message字体大小和颜色
+                                } catch (IllegalAccessException e1) {
+                                    e1.printStackTrace();
+                                } catch (NoSuchFieldException e2) {
+                                    e2.printStackTrace();
+                                }
+                            }
+                        }while(cu.moveToNext());
+                    }
+                    else {
+                        AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("帳號輸入錯誤!!!")
+                                .setNegativeButton("確定",null).create();
+                        dialog.show();
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                        try {
+                            Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                            mAlert.setAccessible(true);
+                            Object mAlertController = mAlert.get(dialog);
+                            //通过反射修改title字体大小和颜色
+                            Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                            mTitle.setAccessible(true);
+                            TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                            mTitleView.setTextSize(32);
+                            mTitleView.setTextColor(Color.RED);
+                            //通过反射修改message字体大小和颜色
+                        } catch (IllegalAccessException e1) {
+                            e1.printStackTrace();
+                        } catch (NoSuchFieldException e2) {
+                            e2.printStackTrace();
+                        }
+                    }
+                }
             }
+            cu.close();
         }
-        cu.close();
+
     }
 
     public void back(View v) {
         String str1=Account.getText().toString().trim().toLowerCase();
         String pas=editText.getText().toString().trim().toLowerCase();
-       pas=sha256(pas);
-        if (str1.trim().length()>0)//確定有輸入東西，不是誤按。
+        if(str1.equals("") && pas.equals(""))
         {
-           // String str_pas=pas=sha256("admin");
-            if ("admin".equals(str1))//只有管理員可以進入後台管理。
-            {
-                Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+"admin"+"'",null);
-                if(cu.getCount()>0) {
-                    cu.moveToFirst();
-                    do {
-                        String password=cu.getString(2);
-                        if (password.equals(pas) )//輸入正確帳號密碼
-                        {
-                            Intent i = new Intent(MainActivity.this, Menu.class);
-                            db.close();;
-                            startActivity(i);
-                            finish();
-                        }
-                        else {
-                            AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
-                                    .setTitle("密碼輸入錯誤!!!")
-                                    .setNegativeButton("確定",null).create();
-                            dialog.show();
-                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
-                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
-                            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
-                            try {
-                                Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
-                                mAlert.setAccessible(true);
-                                Object mAlertController = mAlert.get(dialog);
-                                //通过反射修改title字体大小和颜色
-                                Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
-                                mTitle.setAccessible(true);
-                                TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                                mTitleView.setTextSize(32);
-                                mTitleView.setTextColor(Color.RED);
-                                //通过反射修改message字体大小和颜色
-                            } catch (IllegalAccessException e1) {
-                                e1.printStackTrace();
-                            } catch (NoSuchFieldException e2) {
-                                e2.printStackTrace();
-                            }
-                        }
-                    }while(cu.moveToNext());
-                }
-                cu.close();
-            }
-            else {
-                AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("沒有後台管理權限!!!")
-                        .setNegativeButton("確定",null).create();
-                dialog.show();
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
-                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
-                try {
-                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
-                    mAlert.setAccessible(true);
-                    Object mAlertController = mAlert.get(dialog);
-                    //通过反射修改title字体大小和颜色
-                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
-                    mTitle.setAccessible(true);
-                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                    mTitleView.setTextSize(32);
-                    mTitleView.setTextColor(Color.RED);
-                    //通过反射修改message字体大小和颜色
-                } catch (IllegalAccessException e1) {
-                    e1.printStackTrace();
-                } catch (NoSuchFieldException e2) {
-                    e2.printStackTrace();
-                }
+            AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("帳號密碼沒有輸入!!!")
+                    .setNegativeButton("確定",null).create();
+            dialog.show();
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            try {
+                Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                mAlert.setAccessible(true);
+                Object mAlertController = mAlert.get(dialog);
+                //通过反射修改title字体大小和颜色
+                Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                mTitle.setAccessible(true);
+                TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                mTitleView.setTextSize(32);
+                mTitleView.setTextColor(Color.RED);
+                //通过反射修改message字体大小和颜色
+            } catch (IllegalAccessException e1) {
+                e1.printStackTrace();
+            } catch (NoSuchFieldException e2) {
+                e2.printStackTrace();
             }
         }
+        else if(str1.equals(""))
+        {
+            AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("帳號沒有輸入!!")
+                    .setNegativeButton("確定",null).create();
+            dialog.show();
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            try {
+                Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                mAlert.setAccessible(true);
+                Object mAlertController = mAlert.get(dialog);
+                //通过反射修改title字体大小和颜色
+                Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                mTitle.setAccessible(true);
+                TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                mTitleView.setTextSize(32);
+                mTitleView.setTextColor(Color.RED);
+                //通过反射修改message字体大小和颜色
+            } catch (IllegalAccessException e1) {
+                e1.printStackTrace();
+            } catch (NoSuchFieldException e2) {
+                e2.printStackTrace();
+            }
+        }
+        else if(pas.equals(""))
+        {
+            AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("密碼沒有輸入!!!")
+                    .setNegativeButton("確定",null).create();
+            dialog.show();
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            try {
+                Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                mAlert.setAccessible(true);
+                Object mAlertController = mAlert.get(dialog);
+                //通过反射修改title字体大小和颜色
+                Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                mTitle.setAccessible(true);
+                TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                mTitleView.setTextSize(32);
+                mTitleView.setTextColor(Color.RED);
+                //通过反射修改message字体大小和颜色
+            } catch (IllegalAccessException e1) {
+                e1.printStackTrace();
+            } catch (NoSuchFieldException e2) {
+                e2.printStackTrace();
+            }
+        }
+        else
+            {
+                pas=sha256(pas);
+                if (str1.trim().length()>0)//確定有輸入東西，不是誤按。
+                {
+                    // String str_pas=pas=sha256("admin");
+                    if ("admin".equals(str1))//只有管理員可以進入後台管理。
+                    {
+                        Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+"admin"+"'",null);
+                        if(cu.getCount()>0) {
+                            cu.moveToFirst();
+                            do {
+                                String password=cu.getString(2);
+                                if (password.equals(pas) )//輸入正確帳號密碼
+                                {
+                                    Intent i = new Intent(MainActivity.this, Menu.class);
+                                    db.close();;
+                                    startActivity(i);
+                                    finish();
+                                }
+                                else {
+                                    AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                                            .setTitle("密碼輸入錯誤!!!")
+                                            .setNegativeButton("確定",null).create();
+                                    dialog.show();
+                                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                                    try {
+                                        Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                                        mAlert.setAccessible(true);
+                                        Object mAlertController = mAlert.get(dialog);
+                                        //通过反射修改title字体大小和颜色
+                                        Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                                        mTitle.setAccessible(true);
+                                        TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                                        mTitleView.setTextSize(32);
+                                        mTitleView.setTextColor(Color.RED);
+                                        //通过反射修改message字体大小和颜色
+                                    } catch (IllegalAccessException e1) {
+                                        e1.printStackTrace();
+                                    } catch (NoSuchFieldException e2) {
+                                        e2.printStackTrace();
+                                    }
+                                }
+                            }while(cu.moveToNext());
+                        }
+                        cu.close();
+                    }
+                    else {
+                        AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("沒有後台管理權限!!!")
+                                .setNegativeButton("確定",null).create();
+                        dialog.show();
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                        try {
+                            Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                            mAlert.setAccessible(true);
+                            Object mAlertController = mAlert.get(dialog);
+                            //通过反射修改title字体大小和颜色
+                            Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                            mTitle.setAccessible(true);
+                            TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                            mTitleView.setTextSize(32);
+                            mTitleView.setTextColor(Color.RED);
+                            //通过反射修改message字体大小和颜色
+                        } catch (IllegalAccessException e1) {
+                            e1.printStackTrace();
+                        } catch (NoSuchFieldException e2) {
+                            e2.printStackTrace();
+                        }
+                    }
+                }
+            }
+
     }
 
     public void help(View v){
         Intent intent = new Intent();
         intent.setClass(MainActivity.this , HealthInformation.class);
         intent.putExtra("health_education","t20");
-        intent.putExtra("flag","99");//顯示PDF的地方 按鈕要改變 跳轉道的葉面要改
+        intent.putExtra("flag",99);//顯示PDF的地方 按鈕要改變 跳轉道的葉面要改
         startActivity(intent);
         finish();
     }

@@ -127,6 +127,10 @@ public class HealthInformation extends AppCompatActivity {
             intent=new Intent(HealthInformation.this,choice_pdf.class);
 
         }
+        else if(flag9==99)
+        {
+            intent=new Intent(HealthInformation.this,MainActivity.class);
+        }
         else
         {
             intent=new Intent(HealthInformation.this,backtest.class);

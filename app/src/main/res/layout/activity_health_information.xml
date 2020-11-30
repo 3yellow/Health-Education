@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:background="@drawable/choiceedubutton1"
         android:onClick="tofronttest"
-        android:text="前往後測"
+        android:text="完成"
         android:textColor="#ffffffff"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"

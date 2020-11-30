@@ -36,6 +36,14 @@ public class fronttest extends AppCompatActivity {
     int q_id=0;//要把所有用到資料庫的 都要改成int
     int score=0,count=0;
 
+
+    public  void  back(View v){
+        Intent i=new Intent(this,Searchlogin.class);
+        i.putExtra("nurseID",nurseID);
+        //i.putExtra("id",id);
+        startActivity(i);
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
