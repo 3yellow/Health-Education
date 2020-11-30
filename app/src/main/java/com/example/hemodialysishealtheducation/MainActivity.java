@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
             insertTopic("t17","拾柒.飲食控制要點.pdf",0);
             insertTopic("t18","拾捌.傷口加壓止血的方法.pdf",0);
             insertTopic("t19","拾玖.藥物的使用.pdf",0);
+            insertTopic("t20","HELP.pdf",0);
         }
         cursor.close();
     }
@@ -653,10 +654,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void signaturetest(View v){
+    public void help(View v){
         Intent intent = new Intent();
-        intent.setClass(MainActivity.this , signature.class);
+        intent.setClass(MainActivity.this , HealthInformation.class);
+        intent.putExtra("health_education","t20");
+        intent.putExtra("flag","99");//顯示PDF的地方 按鈕要改變 跳轉道的葉面要改
         startActivity(intent);
+        finish();
     }
 
 }
