@@ -94,7 +94,7 @@ public class Menu extends AppCompatActivity {
             public void onClick(View v) {
                 String s=username.getText().toString().trim();
                 String prepas=password.getText().toString().trim();
-                String pas=sha256(prepas).trim();
+                String pas=sha256(prepas);
                 Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id = '"+ s +"'",null);
                 if (!cu.moveToFirst()){
                     Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
@@ -185,14 +185,47 @@ public class Menu extends AppCompatActivity {
                 r.addView(statu);
                 r.addView(btn_modify);//yout2
                 layout2.addView(r);
-                btn_modify.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int tmp=btn_modify.getId();
-                        String id_tmp=id_array.get(tmp).toString();
-                        on_dialog(id_tmp);
-                    }
-                });
+
+                    btn_modify.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(btn_modify.getId()!=0)
+                            {
+                            int tmp=btn_modify.getId();
+                            String id_tmp=id_array.get(tmp).toString();
+                            on_dialog(id_tmp);
+                            }
+                            else
+                            {
+                                AlertDialog dialog=new AlertDialog.Builder(Menu.this)
+                                        .setTitle("管理者資料不可以變動!!")
+                                        .setNegativeButton("確定",null).create();
+                                dialog.show();
+                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                                try {
+                                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                                    mAlert.setAccessible(true);
+                                    Object mAlertController = mAlert.get(dialog);
+                                    //通过反射修改title字体大小和颜色
+                                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                                    mTitle.setAccessible(true);
+                                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                                    mTitleView.setTextSize(32);
+                                    mTitleView.setTextColor(Color.BLACK);
+                                    //通过反射修改message字体大小和颜色
+                                } catch (IllegalAccessException e1) {
+                                    e1.printStackTrace();
+                                } catch (NoSuchFieldException e2) {
+                                    e2.printStackTrace();
+                                }
+                            }
+                        }
+                    });
+
+
             }while(cu.moveToNext());
         }
         cu.close();

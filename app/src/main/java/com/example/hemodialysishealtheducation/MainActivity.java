@@ -521,7 +521,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            pas=sha256(pas).trim();
+            pas=sha256(pas);
             Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+str+"'",null);
             if (str.trim().length()>0){
                 if ("admin".equals(pas)){
