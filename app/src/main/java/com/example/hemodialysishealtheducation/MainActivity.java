@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);
+        createTopicTable();
         createNurseTable();
         createPatientTable();
-        createTopicTable();
         createStudyTable();
         createQuestionTable();
         createExamTable();

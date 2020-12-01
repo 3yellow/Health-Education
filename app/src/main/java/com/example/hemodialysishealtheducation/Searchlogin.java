@@ -213,6 +213,33 @@ public class Searchlogin extends AppCompatActivity {
                     });
                 } while (cu.moveToNext());
             }
+            else
+            {
+                AlertDialog dialog=new AlertDialog.Builder(Searchlogin.this)
+                        .setTitle("沒有此資料!!!\n按兩下收尋按鈕會顯示所有資料")
+                        .setNegativeButton("確定",null).create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                try {
+                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                    mAlert.setAccessible(true);
+                    Object mAlertController = mAlert.get(dialog);
+                    //通过反射修改title字体大小和颜色
+                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                    mTitle.setAccessible(true);
+                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                    mTitleView.setTextSize(32);
+                    mTitleView.setTextColor(Color.BLACK);
+                    //通过反射修改message字体大小和颜色
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                } catch (NoSuchFieldException e2) {
+                    e2.printStackTrace();
+                }
+            }
             cu.close();
         }
         else if(s_p.length() > 0) //收尋病人名
@@ -297,6 +324,33 @@ public class Searchlogin extends AppCompatActivity {
                         }
                     });
                 } while (cu.moveToNext());
+            }
+            else
+            {
+                AlertDialog dialog=new AlertDialog.Builder(Searchlogin.this)
+                        .setTitle("沒有此資料!!!\n按兩下收尋按鈕會顯示所有資料")
+                        .setNegativeButton("確定",null).create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                try {
+                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                    mAlert.setAccessible(true);
+                    Object mAlertController = mAlert.get(dialog);
+                    //通过反射修改title字体大小和颜色
+                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                    mTitle.setAccessible(true);
+                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                    mTitleView.setTextSize(32);
+                    mTitleView.setTextColor(Color.BLACK);
+                    //通过反射修改message字体大小和颜色
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                } catch (NoSuchFieldException e2) {
+                    e2.printStackTrace();
+                }
             }
             cu.close();
         }

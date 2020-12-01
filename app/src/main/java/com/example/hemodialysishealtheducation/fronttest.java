@@ -2,11 +2,14 @@ package com.example.hemodialysishealtheducation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
@@ -175,6 +179,33 @@ public class fronttest extends AppCompatActivity {
                 db.close();
                 startActivity(i);
                 finish();
+            }
+        }
+        else
+        {
+            AlertDialog dialog=new AlertDialog.Builder(fronttest.this)
+                    .setTitle("請選擇您的答案!!")
+                    .setNegativeButton("確定",null).create();
+            dialog.show();
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            try {
+                Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                mAlert.setAccessible(true);
+                Object mAlertController = mAlert.get(dialog);
+                //通过反射修改title字体大小和颜色
+                Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                mTitle.setAccessible(true);
+                TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                mTitleView.setTextSize(32);
+                mTitleView.setTextColor(Color.BLACK);
+                //通过反射修改message字体大小和颜色
+            } catch (IllegalAccessException e1) {
+                e1.printStackTrace();
+            } catch (NoSuchFieldException e2) {
+                e2.printStackTrace();
             }
         }
     }

@@ -138,7 +138,7 @@ public class Nurse_modify extends AppCompatActivity {
     public void onclick(View v){
         Boolean iId,len;
         String pas1,eId;
-        pas1=edt_pas1.getText().toString();
+        pas1=edt_pas1.getText().toString().trim();
         flag=pas1.compareTo(edt_pas2.getText().toString());
         eId=edt_id.getText().toString();
         eId=eId.toUpperCase();
@@ -204,11 +204,11 @@ public class Nurse_modify extends AppCompatActivity {
         }
         else{
             edt_id.setFocusable(false);
-            edt_id.setFocusableInTouchMode(false);
+           // edt_id.setFocusableInTouchMode(false);
            // edt_name.setFocusable(false);
             //edt_name.setFocusableInTouchMode(false);
             String anamee = cu.getString(1);
-           pass=cu.getString(2).trim();
+           pass=cu.getString(2);
             edt_name.setText(anamee);
             edt_id.setText(idd);
             edt_pas1.setText("");

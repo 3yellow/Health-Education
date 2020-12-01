@@ -290,10 +290,10 @@ public class choose_education extends AppCompatActivity {
             String date=cu.getString(1);
             String grade=cu.getString(2);
             t1_date.setText("  "+date);
-            if(t1_grade.equals("-1"))
+            if(grade.equals("-1"))
             {
                 t1_grade.setText("上次測驗沒有做完!!");
-                t1_grade.setTextSize(25);
+                t1_grade.setTextSize(18);
             }
             else
                 t1_grade.setText(" "+grade);
@@ -673,6 +673,10 @@ public class choose_education extends AppCompatActivity {
         }
         cu.close();
         count=count-1;
+        if(count<0)
+        {
+            count=0;
+        }
         String exam_id=s_p+id+count;
         cu=db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+exam_id+"' ",null);
         if (cu.getCount()>0){
@@ -730,24 +734,30 @@ public class choose_education extends AppCompatActivity {
         ////Answer (answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME,
         //Exam (exam_id TEXT, exam_date DateTime, exam_score INT, patient_id char(10), nurse_id char(10),change_data DATETIME
         cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+examid+"%'",null);
-        if(cu.getCount()>1)//沒有做過考卷
+        if(cu.getCount()>0)//沒有做過考卷
         {
             cu.close();
             int count=cu.getCount();
             count-=1;
+            if(count<0)
+                count=0;
             String ans_id=examid+count;
             //Patient WHERE patient_id='"+id+"' ",
             cu=db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+ans_id+"' AND exam_score='"+"-1"+"' ",null);
-            if(cu.getCount()>0)//已經做過後側
+            if(cu.getCount()>0)//做到一半 沒有做完後側
             {
-                btn_id.setBackgroundColor(Color.parseColor("#96e8d7"));
-                btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+
+                    btn_id.setBackgroundColor(Color.parseColor("#96e8d7"));
+                    btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+
             }
-            else//做到一半 沒有做完後側
+            else//已經做過後側
             {
+                if(count>0)
+                {
                 btn_id.setBackgroundColor(Color.parseColor("#58b19f"));
                 btn_id.setTextColor(Color.parseColor("#FFFAFA"));
-
+                }
             }
             cu.close();
         }

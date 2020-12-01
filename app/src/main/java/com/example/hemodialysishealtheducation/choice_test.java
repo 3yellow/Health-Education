@@ -191,8 +191,6 @@ public class choice_test extends AppCompatActivity {
         }
     }
 
-
-
     public void t1(View v){
         int score=0;
         int Q_array[]=new int[5];
@@ -1152,7 +1150,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t14(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t14"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1184,7 +1182,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t13(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t13"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1216,7 +1214,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t12(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t12"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1248,7 +1246,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t11(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t11"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this, backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1280,7 +1278,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t10(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t10"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1312,7 +1310,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t9(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t9"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1344,7 +1342,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t8(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t8"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1376,7 +1374,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t7(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t7"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1408,7 +1406,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t6(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t6"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1440,7 +1438,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t5(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t5"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1472,7 +1470,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t4(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t4"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1504,7 +1502,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t3(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t3"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1536,7 +1534,7 @@ public class choice_test extends AppCompatActivity {
     public void go_backtest_t2(int count,int[] Q_array,int index,int score)//index是用來判別題目從哪題開始做  還沒修改完
     {
         String exam_id="t2"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("count",index);
@@ -1569,7 +1567,7 @@ public class choice_test extends AppCompatActivity {
     {
         //衛教+後側
         String exam_id="t1"+id+count;//考卷id=衛教資料名+病友id+第幾筆
-        Intent i=new Intent( this,HealthInformation.class);
+        Intent i=new Intent( this,backtest.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("exam_id",exam_id);

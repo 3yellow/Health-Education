@@ -21,14 +21,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".vedio_ca"></activity>
-        <activity android:name=".vedio_lin" />
-        <activity android:name=".vedio_weight" />
-        <activity android:name=".vedio_care" />
-        <activity android:name=".vedio_washhand" />
-        <activity android:name=".choice_pdf" />
-        <activity android:name=".choice_test" />
-        <activity android:name=".choice_vedio" />
+        <activity android:name=".vedio_ca"
+            android:screenOrientation="landscape"
+            >
+        </activity>
+        <activity android:name=".vedio_lin"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".vedio_weight"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".vedio_care"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".vedio_washhand"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".choice_pdf"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".choice_test"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".choice_vedio"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".show_grade"
             android:screenOrientation="landscape" />

@@ -132,74 +132,77 @@ public class Menu extends AppCompatActivity {
         i=0;//計數有幾筆資料
         Cursor cu = db.rawQuery("SELECT * FROM "+Nurse,null);
         if(cu.getCount()>0) {
+            int co=1;//co-=1;
             cu.moveToFirst();
+            namee = cu.getString(1);
             do {
-                String staue=null;
-                int a=cu.getInt(3);
-                if (a==1){
-                    staue="在職中";
-                }
-                else {
-                    staue="離職";
 
-                }
-                //Nurse (nurse_id char(10) NOT NULL, nurse_name TEXT NOT NULL, nurse_password TEXT NOT NULL, nurse_authority INT NOT NULL,change_data DATETIME,
-                id_array.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
-                namee=cu.getString(1);
-                idd=cu.getString(0);
-                agee=cu.getString(2);
-                final TextView na = new TextView(this);//final Button
-                final TextView id = new TextView(this);
-                final TextView statu = new TextView(this);
-                final Button btn_modify = new Button(this);//final Button
-                btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
-                TableRow r = new TableRow(this);//final TableRow
-                //  final ScrollView sc=new ScrollView(this);
-                // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-                btn_modify.setLayoutParams(new TableRow.LayoutParams(60,100));
-                na.setLayoutParams(new TableRow.LayoutParams());//842
-               // id.setLayoutParams(new TableRow.LayoutParams());
-               // statu.setLayoutParams(new TableRow.LayoutParams());
-                btn_modify.setLayoutParams(new TableRow.LayoutParams());
-              // id.setId(i);
-              //  statu.setId(i);
-                btn_modify.setId(i);
-                na.setId(i);
-                r.setId(i);
-                i++;
-                na.setTextSize(30);
-                na.setText(namee);
-                na.setGravity(Gravity.CENTER);
-                id.setTextSize(30);
-                id.setText(idd);
-                id.setGravity(Gravity.CENTER);
-                statu.setTextSize(30);
-                statu.setText(staue);
-                statu.setGravity(Gravity.CENTER);
+                    String staue = null;
+                    int a = cu.getInt(3);
+                    if (a == 1) {
+                        staue = "在職中";
+                    } else {
+                        staue = "離職";
 
-                // la.addView(layout2);
-                btn_modify.setTextSize(30);
-                btn_modify.setText("修改");
-                r.addView(na);//yout
-                r.addView(id);
-                r.addView(statu);
-                r.addView(btn_modify);//yout2
-                layout2.addView(r);
+                    }
+                    //Nurse (nurse_id char(10) NOT NULL, nurse_name TEXT NOT NULL, nurse_password TEXT NOT NULL, nurse_authority INT NOT NULL,change_data DATETIME,
+                    id_array.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
+                    namee = cu.getString(1);
+                    idd = cu.getString(0);
+                    agee = cu.getString(2);
+                    final TextView na = new TextView(this);//final Button
+                    final TextView id = new TextView(this);
+                    final TextView statu = new TextView(this);
+                    final Button btn_modify = new Button(this);//final Button
+                    btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+                    TableRow r = new TableRow(this);//final TableRow
+                    //  final ScrollView sc=new ScrollView(this);
+                    // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
+                    btn_modify.setLayoutParams(new TableRow.LayoutParams(60, 100));
+                    na.setLayoutParams(new TableRow.LayoutParams());//842
+                    // id.setLayoutParams(new TableRow.LayoutParams());
+                    // statu.setLayoutParams(new TableRow.LayoutParams());
+                    btn_modify.setLayoutParams(new TableRow.LayoutParams());
+                    // id.setId(i);
+                    //  statu.setId(i);
+                    btn_modify.setId(i);
+                    na.setId(i);
+                    r.setId(i);
+                    i++;
+                    na.setTextSize(30);
+                    na.setText(namee);
+                    na.setGravity(Gravity.CENTER);
+                    id.setTextSize(30);
+                    id.setText(idd);
+                    id.setGravity(Gravity.CENTER);
+                    statu.setTextSize(30);
+                    statu.setText(staue);
+                    statu.setGravity(Gravity.CENTER);
+
+                    // la.addView(layout2);
+                    btn_modify.setTextSize(30);
+                    btn_modify.setText("修改");
+                    if(!namee.equals("Admin"))
+                    {
+                        r.addView(na);//yout
+                        r.addView(id);
+                        r.addView(statu);
+                        r.addView(btn_modify);//yout2
+                        layout2.addView(r);
+                    }
+
 
                     btn_modify.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(btn_modify.getId()!=0)
-                            {
-                            int tmp=btn_modify.getId();
-                            String id_tmp=id_array.get(tmp).toString();
-                            on_dialog(id_tmp);
-                            }
-                            else
-                            {
-                                AlertDialog dialog=new AlertDialog.Builder(Menu.this)
+                            if (btn_modify.getId() != 0) {
+                                int tmp = btn_modify.getId();
+                                String id_tmp = id_array.get(tmp).toString();
+                                on_dialog(id_tmp);
+                            } else {
+                                AlertDialog dialog = new AlertDialog.Builder(Menu.this)
                                         .setTitle("管理者資料不可以變動!!")
-                                        .setNegativeButton("確定",null).create();
+                                        .setNegativeButton("確定", null).create();
                                 dialog.show();
                                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
                                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
@@ -224,12 +227,13 @@ public class Menu extends AppCompatActivity {
                             }
                         }
                     });
+                    co++;
 
-
-            }while(cu.moveToNext());
+            } while (cu.moveToNext() );
         }
         cu.close();
     }
+
 
     public void nwedata(View v){
         Intent i=new Intent(Menu.this,Nurse_Newdata.class);
@@ -237,6 +241,7 @@ public class Menu extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+
     public void search(View v){
         Cursor cu=null;
         edt_search = findViewById(R.id.edt_search);
@@ -255,6 +260,7 @@ public class Menu extends AppCompatActivity {
                 String sql = "SELECT * FROM Nurse WHERE nurse_id = '"+s_p+"'";
                 cu=db.rawQuery(sql,null);
                 if (cu.getCount() > 0) {
+
                     cu.moveToFirst();
                     do {
                         i++;
@@ -301,12 +307,14 @@ public class Menu extends AppCompatActivity {
                         statu.setGravity(Gravity.CENTER);
                         btn_modify.setTextSize(30);
                         btn_modify.setText("修改");
-                        r.addView(na);//yout
-                        r.addView(id);
-                        r.addView(statu);
-                        r.addView(btn_modify);//yout2
-                        layout2.addView(r);
-
+                        if(!namee.equals("Admin"))
+                        {
+                            r.addView(na);//yout
+                            r.addView(id);
+                            r.addView(statu);
+                            r.addView(btn_modify);//yout2
+                            layout2.addView(r);
+                        }
                         btn_modify.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -317,7 +325,36 @@ public class Menu extends AppCompatActivity {
                         });
                     } while (cu.moveToNext());
                 }
-                cu.close();
+                else
+                {
+                    AlertDialog dialog = new AlertDialog.Builder(Menu.this)
+                            .setTitle("沒有此資料!!!\n按兩下收尋按鈕會顯示所有資料")
+                            .setNegativeButton("確定", null).create();
+                    dialog.show();
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                    try {
+                        Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                        mAlert.setAccessible(true);
+                        Object mAlertController = mAlert.get(dialog);
+                        //通过反射修改title字体大小和颜色
+                        Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                        mTitle.setAccessible(true);
+                        TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                        mTitleView.setTextSize(32);
+                        mTitleView.setTextColor(Color.BLACK);
+                        //通过反射修改message字体大小和颜色
+                    } catch (IllegalAccessException e1) {
+                        e1.printStackTrace();
+                    } catch (NoSuchFieldException e2) {
+                        e2.printStackTrace();
+                    }
+
+                    cu.close();
+                }
+
             }
             else //收尋病人名
             {
@@ -370,11 +407,14 @@ public class Menu extends AppCompatActivity {
                         statu.setGravity(Gravity.CENTER);
                         btn_modify.setTextSize(30);
                         btn_modify.setText("修改");
-                        r.addView(na);//yout
-                        r.addView(id);
-                        r.addView(statu);
-                        r.addView(btn_modify);//yout2
-                        layout2.addView(r);
+                        if(!namee.equals("Admin"))
+                        {
+                            r.addView(na);//yout
+                            r.addView(id);
+                            r.addView(statu);
+                            r.addView(btn_modify);//yout2
+                            layout2.addView(r);
+                        }
                         btn_modify.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -385,7 +425,35 @@ public class Menu extends AppCompatActivity {
                         });
                     } while (cu.moveToNext());
                 }
-                cu.close();
+                else
+                {
+                    AlertDialog dialog = new AlertDialog.Builder(Menu.this)
+                            .setTitle("沒有此資料!!!\n按兩下收尋按鈕會顯示所有資料")
+                            .setNegativeButton("確定", null).create();
+                    dialog.show();
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                    try {
+                        Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                        mAlert.setAccessible(true);
+                        Object mAlertController = mAlert.get(dialog);
+                        //通过反射修改title字体大小和颜色
+                        Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                        mTitle.setAccessible(true);
+                        TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                        mTitleView.setTextSize(32);
+                        mTitleView.setTextColor(Color.BLACK);
+                        //通过反射修改message字体大小和颜色
+                    } catch (IllegalAccessException e1) {
+                        e1.printStackTrace();
+                    } catch (NoSuchFieldException e2) {
+                        e2.printStackTrace();
+                    }
+
+                    cu.close();
+                }
             }
         }
         else {
@@ -399,6 +467,227 @@ public class Menu extends AppCompatActivity {
         }
 
     }
+
+    /*public void search(View v) {
+        i = 0;//計數有幾筆資料
+        Cursor cu = db.rawQuery("SELECT * FROM " + Nurse, null);
+        if (cu.getCount() > 0) {
+            int co = 1;//co-=1;
+            cu.moveToFirst();
+            namee = cu.getString(1);
+            do {
+                if (namee.equals("Admin")) {
+                    co++;
+                    cu.moveToNext();
+                    namee = cu.getString(1);
+                } else {
+                    String staue = null;
+                    int a = cu.getInt(3);
+                    if (a == 1) {
+                        staue = "在職中";
+                    } else {
+                        staue = "離職";
+
+                    }
+                    String text = cu.getString(1) + "\t\t" + cu.getString((0)) + "\t\t\t" + staue;
+                    id_array.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
+
+                    idd = cu.getString(0);
+                    agee = cu.getString(2);
+                    final TextView na = new TextView(this);//final Button
+                    final TextView id = new TextView(this);
+                    final TextView statu = new TextView(this);
+                    final Button btn_modify = new Button(this);//final Button
+                    btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+                    TableRow r = new TableRow(this);//final TableRow
+                    //  final ScrollView sc=new ScrollView(this);
+                    // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
+                    btn_modify.setLayoutParams(new TableRow.LayoutParams());
+                    na.setLayoutParams(new TableRow.LayoutParams());//842
+                    id.setLayoutParams(new TableRow.LayoutParams());
+                    statu.setLayoutParams(new TableRow.LayoutParams());
+                    btn_modify.setLayoutParams(new TableRow.LayoutParams());
+                    id.setId(i);
+                    statu.setId(i);
+                    btn_modify.setId(i);
+                    na.setId(i);
+                    r.setId(i);
+                    i++;
+                    na.setTextSize(30);
+                    na.setText(namee);
+                    na.setGravity(Gravity.CENTER);
+                    id.setTextSize(30);
+                    id.setText(idd);
+                    id.setGravity(Gravity.CENTER);
+                    statu.setTextSize(30);
+                    statu.setText(staue);
+                    statu.setGravity(Gravity.CENTER);
+                    btn_modify.setTextSize(30);
+                    btn_modify.setText("修改");
+                    r.addView(na);//yout
+                    r.addView(id);
+                    r.addView(statu);
+                    r.addView(btn_modify);//yout2
+                    layout2.addView(r);
+
+                    btn_modify.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            int tmp = btn_modify.getId();
+                            String id_tmp = id_array.get(tmp).toString();
+                            on_dialog(id_tmp);
+                        }
+                    });
+                }
+                co++;
+                cu.moveToNext();
+            } while (co <= cu.getCount());
+        }
+            else
+            {
+                AlertDialog dialog = new AlertDialog.Builder(Menu.this)
+                        .setTitle("沒有此資料!!!\n按兩下收尋按鈕會顯示所有資料")
+                        .setNegativeButton("確定", null).create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                try {
+                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                    mAlert.setAccessible(true);
+                    Object mAlertController = mAlert.get(dialog);
+                    //通过反射修改title字体大小和颜色
+                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                    mTitle.setAccessible(true);
+                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                    mTitleView.setTextSize(32);
+                    mTitleView.setTextColor(Color.BLACK);
+                    //通过反射修改message字体大小和颜色
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                } catch (NoSuchFieldException e2) {
+                    e2.printStackTrace();
+                }
+
+            cu.close();
+        } else //收尋病人名
+        {
+            i = 0;
+            //String sql = "SELECT * FROM Patient  WHERE patient_name = '"+s_p+"'";  收尋名字時 只能找到輸入全名
+            String sql = "SELECT * FROM Nurse WHERE nurse_name LIKE '" + s_p + "%'";
+            cu = db.rawQuery(sql, null);
+
+            if (cu.getCount() > 0) {
+                cu.moveToFirst();
+                int co = 1;//co-=1;
+                cu.moveToFirst();
+                namee = cu.getString(1);
+                do {
+                    if (namee.equals("Admin")) {
+                        co++;
+                        cu.moveToNext();
+                        namee = cu.getString(1);
+                    } else {
+                        i++;
+                        String staue = null;
+                        if (cu.getInt(3) == 1) {
+                            staue = "在職中";
+                        } else {
+                            staue = "離職";
+
+                        }
+                        id_array.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
+                        namee = cu.getString(1);
+                        idd = cu.getString(0);
+                        agee = cu.getString(2);
+                        final TextView na = new TextView(this);//final Button
+                        final TextView id = new TextView(this);
+                        final TextView statu = new TextView(this);
+                        final Button btn_modify = new Button(this);//final Button
+                        btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+                        TableRow r = new TableRow(this);//final TableRow
+                        //  final ScrollView sc=new ScrollView(this);
+                        // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
+                        btn_modify.setLayoutParams(new TableRow.LayoutParams(60, 100));
+                        na.setLayoutParams(new TableRow.LayoutParams());//842
+                        id.setLayoutParams(new TableRow.LayoutParams());
+                        statu.setLayoutParams(new TableRow.LayoutParams());
+                        btn_modify.setLayoutParams(new TableRow.LayoutParams());
+                        id.setId(i);
+                        statu.setId(i);
+                        btn_modify.setId(i);
+                        na.setId(i);
+                        r.setId(i);
+                        i++;
+                        na.setTextSize(30);
+                        na.setText(namee);
+                        na.setGravity(Gravity.CENTER);
+                        id.setTextSize(30);
+                        id.setText(idd);
+                        id.setGravity(Gravity.CENTER);
+                        statu.setTextSize(30);
+                        statu.setText(staue);
+                        statu.setGravity(Gravity.CENTER);
+                        btn_modify.setTextSize(30);
+                        btn_modify.setText("修改");
+                        r.addView(na);//yout
+                        r.addView(id);
+                        r.addView(statu);
+                        r.addView(btn_modify);//yout2
+                        layout2.addView(r);
+                        btn_modify.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                int tmp = btn_modify.getId();
+                                String id_tmp = id_array.get(tmp).toString();
+                                on_dialog(id_tmp);
+                            }
+                        });
+                    }
+                    co++;
+                    cu.moveToNext();
+
+
+                } while (co <= cu.getCount());
+            }
+            else {
+                AlertDialog dialog = new AlertDialog.Builder(Menu.this)
+                        .setTitle("沒有此資料!!!\n按兩下收尋按鈕會顯示所有資料")
+                        .setNegativeButton("確定", null).create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                try {
+                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                    mAlert.setAccessible(true);
+                    Object mAlertController = mAlert.get(dialog);
+                    //通过反射修改title字体大小和颜色
+                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                    mTitle.setAccessible(true);
+                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                    mTitleView.setTextSize(32);
+                    mTitleView.setTextColor(Color.BLACK);
+                    //通过反射修改message字体大小和颜色
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                } catch (NoSuchFieldException e2) {
+                    e2.printStackTrace();
+                }
+            }
+            cu.close();
+        }
+        else{
+            for (int x = 0; x <= i; x++) {
+                ViewGroup layout = (ViewGroup) findViewById(R.id.tbl);
+                View command = layout.findViewById(x);
+                layout.removeView(command);
+            }
+            read();
+        }
+    }*/
 
     //不能返回
     @Override
