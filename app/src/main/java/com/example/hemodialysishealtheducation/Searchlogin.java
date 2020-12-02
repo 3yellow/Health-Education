@@ -216,7 +216,7 @@ public class Searchlogin extends AppCompatActivity {
             else
             {
                 AlertDialog dialog=new AlertDialog.Builder(Searchlogin.this)
-                        .setTitle("沒有此資料!!!\n按兩下收尋按鈕會顯示所有資料")
+                        .setTitle("沒有此資料!!!\n請先把要收尋的內容刪除，再按兩下收尋按鈕會顯示所有資料")
                         .setNegativeButton("確定",null).create();
                 dialog.show();
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
@@ -328,7 +328,7 @@ public class Searchlogin extends AppCompatActivity {
             else
             {
                 AlertDialog dialog=new AlertDialog.Builder(Searchlogin.this)
-                        .setTitle("沒有此資料!!!\n按兩下收尋按鈕會顯示所有資料")
+                        .setTitle("沒有此資料!!!\n請先把要收尋的內容刪除，再按兩下收尋按鈕會顯示所有資料")
                         .setNegativeButton("確定",null).create();
                 dialog.show();
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
