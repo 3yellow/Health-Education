@@ -417,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog,
                                                     int which) {
-                                    finish();
+                                    android.os.Process.killProcess(android.os.Process.myPid());
                                 }
                             })
                     .setNegativeButton("取消",
