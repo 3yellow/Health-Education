@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
@@ -28,6 +29,7 @@ public class Grade extends AppCompatActivity {
     TextView txt_1_score=null,txt_2_score=null,txt_3_score=null,txt_4_score=null,txt_5_score=null;
     TextView txt_1_nurse=null,txt_2_nurse=null,txt_3_nurse=null,txt_4_nurse=null,txt_5_nurse=null;
     TextView nurse=null,patient=null,title=null,patient_id=null;
+    TableRow linearLayout2=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +82,9 @@ public class Grade extends AppCompatActivity {
         {
             title.setVisibility(View.VISIBLE);
             btn_1_date.setVisibility(View.INVISIBLE); // 隱藏
-            title.setText("您還沒有做過任何測驗喔!!~");
+            linearLayout2.setVisibility(View.INVISIBLE);
+            patient.setVisibility(View.INVISIBLE);
+            title.setText("您還沒有做過任何測驗");
         }
         c.close();
         count_exam-=1;
@@ -260,6 +264,7 @@ public class Grade extends AppCompatActivity {
 
     protected void init_element()
     {
+        linearLayout2=findViewById(R.id.linearLayout2);
         btn_1_date=findViewById(R.id.btn_1_date);
         btn_2_date=findViewById(R.id.btn_2_date);
         btn_3_date=findViewById(R.id.btn_3_date);
