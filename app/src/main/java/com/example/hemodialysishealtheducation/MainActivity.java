@@ -434,6 +434,32 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void end(View v){
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("確定要結束應用程式嗎?")
+                //  .setIcon(R.drawable.ic_launcher)
+                .setPositiveButton("確定",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                            }
+                        })
+                .setNegativeButton("取消",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+
+                            }
+                        }).show();
+
+    }
+
     public void choicepatient(View v) {
         //跳轉到病人畫面
         String str=Account.getText().toString().trim().toUpperCase();
