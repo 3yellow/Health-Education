@@ -216,7 +216,7 @@ public class Searchlogin extends AppCompatActivity {
             else
             {
                 AlertDialog dialog=new AlertDialog.Builder(Searchlogin.this)
-                        .setTitle("沒有此資料!!!\n請先把要收尋的內容刪除，再按兩下收尋按鈕會顯示所有資料")
+                        .setTitle("沒有此資料!!!\n請先把要搜尋的內容刪除，再按兩下搜尋按鈕會顯示所有資料")
                         .setNegativeButton("確定",null).create();
                 dialog.show();
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
@@ -247,7 +247,7 @@ public class Searchlogin extends AppCompatActivity {
 
             i=0;
             //String sql = "SELECT * FROM Patient  WHERE patient_name = '"+s_p+"'";  收尋名字時 只能找到輸入全名
-            String sql = "SELECT * FROM Patient  WHERE patient_name LIKE '"+s_p+"%'";
+            String sql = "SELECT * FROM Patient  WHERE patient_name LIKE '%"+s_p+"%'";
             cu=db.rawQuery(sql,null);
             if (cu.getCount() > 0) {
                 cu.moveToFirst();
@@ -328,7 +328,7 @@ public class Searchlogin extends AppCompatActivity {
             else
             {
                 AlertDialog dialog=new AlertDialog.Builder(Searchlogin.this)
-                        .setTitle("沒有此資料!!!\n請先把要收尋的內容刪除，再按兩下收尋按鈕會顯示所有資料")
+                        .setTitle("沒有此資料!!!\n請先把要搜尋的內容刪除，再按兩下搜尋按鈕會顯示所有資料")
                         .setNegativeButton("確定",null).create();
                 dialog.show();
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
@@ -451,10 +451,16 @@ public class Searchlogin extends AppCompatActivity {
     }
 
     public void insertpaient(View v){
+        edt_search = findViewById(R.id.edt_search);
+        String na=edt_search.getText().toString().trim();
         Intent intent = new Intent();
         intent.setClass(this,Newdata.class);
         intent.putExtra("nurseID",nurseID);
         intent.putExtra("pad",pad);
+        if(na!=null)
+        {
+            intent.putExtra("na",edt_search.getText().toString().trim());
+        }
         db.close();
         startActivity(intent);
         finish();

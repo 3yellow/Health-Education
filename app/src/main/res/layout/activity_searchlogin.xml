@@ -48,7 +48,6 @@
             android:layout_marginLeft="400dp"
             android:layout_marginStart="400dp"
             android:gravity="center"
-            android:text="aaadfsfd"
             android:textSize="26sp" />
 
         <ImageButton

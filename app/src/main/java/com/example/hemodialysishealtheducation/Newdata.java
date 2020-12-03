@@ -43,7 +43,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     String date,birth;
     int geender=0;//1：男 2：女
     String eName,eId=null;
-
+    String na=null;
     //以下是要在修改時使用的
     String idd=null;
     int flag1=0;//判斷是要修改的還是新增。 1為修改
@@ -61,6 +61,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
 
         Intent i=this.getIntent();
         nurseID=i.getStringExtra("nurseID");
+        na=i.getStringExtra("na");
+
         cal =  Calendar.getInstance();
         ca2 =  Calendar.getInstance();
         textView7=findViewById(R.id.textView7);
@@ -71,7 +73,10 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         sex.setOnCheckedChangeListener(this);
         malee = findViewById(R.id.male);
         femalee = findViewById(R.id.female);
-
+        if(na!=null)
+        {
+            edt_name.setText(na);
+        }
         //修改資料
         //   Intent i=this.getIntent();
         flag1=i.getIntExtra("flag",0);
@@ -230,7 +235,6 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             i=new Intent(Newdata.this,Searchlogin.class);
             i.putExtra("nurseID",nurseID);
             i.putExtra("patientname",ename);
-            i=new Intent(Newdata.this,Searchlogin.class);
             DBS.close();
             startActivity(i);
             finish();

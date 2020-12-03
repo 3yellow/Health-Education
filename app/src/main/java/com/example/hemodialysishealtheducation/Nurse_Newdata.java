@@ -175,7 +175,8 @@ public class Nurse_Newdata extends AppCompatActivity {
 
     private void addData(String name,String id,String pas,int staue) {
         String date_time= datetime();
-        pas=sha256(pas);
+        String pa=pas.toUpperCase();
+        pas=sha256(pa);
         ContentValues cv=new ContentValues(5);
         cv.put("nurse_name",name);
         cv.put("nurse_id",id);

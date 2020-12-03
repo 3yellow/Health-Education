@@ -42,11 +42,33 @@ public class fronttest extends AppCompatActivity {
 
 
     public  void  back(View v){
-        Intent i=new Intent(this,Searchlogin.class);
-        i.putExtra("nurseID",nurseID);
-        //i.putExtra("id",id);
-        startActivity(i);
-        finish();
+        new android.app.AlertDialog.Builder(fronttest.this)
+                .setTitle("確定要離開測驗嗎?")
+                //  .setIcon(R.drawable.ic_launcher)
+                .setPositiveButton("確定",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                Intent i=new Intent(fronttest.this,Searchlogin.class);
+                                i.putExtra("nurseID",nurseID);
+                                //i.putExtra("id",id);
+                                startActivity(i);
+                                finish();
+                            }
+                        })
+                .setNegativeButton("取消",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+
+                            }
+                        }).show();
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

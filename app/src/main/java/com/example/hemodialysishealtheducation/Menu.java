@@ -94,6 +94,7 @@ public class Menu extends AppCompatActivity {
             public void onClick(View v) {
                 String s=username.getText().toString().trim();
                 String prepas=password.getText().toString().trim();
+                prepas=prepas.toUpperCase();
                 String pas=sha256(prepas);
                 Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id = '"+ s +"'",null);
                 if (!cu.moveToFirst()){
@@ -101,7 +102,7 @@ public class Menu extends AppCompatActivity {
                 }
                 else{
                     String password1=cu.getString(2);
-                    if (password1.equals(pas)||"admin".equals(prepas))//輸入正確帳號密碼
+                    if (password1.equals(pas)||"ADMIN".equals(prepas))//輸入正確帳號密碼
                     {
                         flag=1;
                         Intent intent=new Intent(Menu.this,Nurse_modify.class);
@@ -328,7 +329,7 @@ public class Menu extends AppCompatActivity {
                 else
                 {
                     AlertDialog dialog = new AlertDialog.Builder(Menu.this)
-                            .setTitle("沒有此資料!!!\n請先把要收尋的內容刪除，再按兩下收尋按鈕會顯示所有資料")
+                            .setTitle("沒有此資料!!!\n請先把要搜尋的內容刪除，再按兩下搜尋按鈕會顯示所有資料")
                             .setNegativeButton("確定", null).create();
                     dialog.show();
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
@@ -360,7 +361,7 @@ public class Menu extends AppCompatActivity {
             {
                 i=0;
                 //String sql = "SELECT * FROM Patient  WHERE patient_name = '"+s_p+"'";  收尋名字時 只能找到輸入全名
-                String sql = "SELECT * FROM Nurse  WHERE nurse_name LIKE '"+s_p+"%'";
+                String sql = "SELECT * FROM Nurse  WHERE nurse_name LIKE '%"+s_p+"%'";
                 cu=db.rawQuery(sql,null);
                 if (cu.getCount() > 0) {
                     cu.moveToFirst();
@@ -428,7 +429,7 @@ public class Menu extends AppCompatActivity {
                 else
                 {
                     AlertDialog dialog = new AlertDialog.Builder(Menu.this)
-                            .setTitle("沒有此資料!!!\n請先把要收尋的內容刪除，再按兩下收尋按鈕會顯示所有資料")
+                            .setTitle("沒有此資料!!!\n請先把要收搜尋的內容刪除，再按兩下搜尋按鈕會顯示所有資料")
                             .setNegativeButton("確定", null).create();
                     dialog.show();
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);

@@ -58,6 +58,8 @@ public class choice_vedio extends AppCompatActivity {
 
     public  void  back(View v){
         Intent i=new Intent(this,Searchlogin.class);
+        i.putExtra("nurseID",nurseID);
+        i.putExtra("id",id);
         startActivity(i);
         finish();
     }
