@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         if (!cursor.moveToFirst()) {
 
             //t1的部分  壹.腎臟功能簡介
-            insertQuestion( 1, "臟是一對位於後腹腔的器官,右腎較左腎略低。", 1, "","t1",1);
+            insertQuestion( 1, "腎臟是一對位於後腹腔的器官,右腎較左腎略低。", 1, "","t1",1);
             insertQuestion( 2, "腎臟是人體主要的排毒器官，負責清除血液中的代謝廢物。", 1, "",   "t1", 1);
             insertQuestion( 3, "腎臟所分泌的腎素（Renin），為調節血壓維持恆定重要的荷爾蒙。", 1, "",    "t1", 1);
             insertQuestion( 4, "每個人每天約有3,000毫升（ML）的尿液。", 0, "每天約有1,500～2,000毫升（ML）的尿液。", "t1", 1);
