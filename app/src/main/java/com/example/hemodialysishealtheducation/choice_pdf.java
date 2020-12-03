@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
@@ -24,11 +25,13 @@ public class choice_pdf extends AppCompatActivity {
     SQLiteDatabase db;
     Button one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen,seventeen,eightteen,nineteen;
     TextView patient,nurse;
+    ImageButton ib1,ib2,ib3,ib4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice_pdf);
         init_element();
+        ib3.setBackgroundResource(R.drawable.choicetheme31);
         get_intent();
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
         Intent i=this.getIntent();
@@ -308,6 +311,10 @@ public class choice_pdf extends AppCompatActivity {
 
     protected void init_element()
     {
+        ib1=findViewById(R.id.imageView7);
+        ib2=findViewById(R.id.imageView8);
+        ib3=findViewById(R.id.imageView9);
+        ib4=findViewById(R.id.imageView10);
         patient = findViewById(R.id.tex_patient_name);
         nurse=findViewById(R.id.tex_nurse_name);
         one=findViewById(R.id.one);

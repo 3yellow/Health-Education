@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,9 @@ public class choose_education extends AppCompatActivity {
     TextView t1_grade,t2_grade,t3_grade,t4_grade,t5_grade,t6_grade,t7_grade,t8_grade,t9_grade,t10_grade,t11_grade,t12_grade,t13_grade,t14_grade;
     //衛教資料按鈕
     Button one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen;
-    //顯示成績按鈕
+    ImageButton ib1,ib2,ib3,ib4;
+
+   //顯示成績按鈕
     Button t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14;
     Cursor cu;
     String nurseID;
@@ -42,6 +45,9 @@ public class choose_education extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_education);
         init_element();
+
+        ib1.setBackgroundResource(R.drawable.choicetheme11);
+
         TextView nurse=findViewById(R.id.tex_nurse_name);
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
         Intent i=this.getIntent();
@@ -765,21 +771,25 @@ public class choose_education extends AppCompatActivity {
 
     protected void init_element()
     {
+        ib1=findViewById(R.id.imageView7);
         one=findViewById(R.id.one);
         t1_date=findViewById(R.id.t1_date);
         t1_grade=findViewById(R.id.t1_grade);
         t1=findViewById(R.id.t1);
 
+        ib2=findViewById(R.id.imageView8);
         two=findViewById(R.id.two);
         t2_date=findViewById(R.id.t2_date);
         t2_grade=findViewById(R.id.t2_grade);
         t2=findViewById(R.id.t2);
 
+        ib3=findViewById(R.id.imageView9);
         three=findViewById(R.id.three);
         t3_date=findViewById(R.id.t3_date);
         t3_grade=findViewById(R.id.t3_grade);
         t3=findViewById(R.id.t3);
 
+        ib4=findViewById(R.id.imageView10);
         four=findViewById(R.id.four);
         t4_date=findViewById(R.id.t4_date);
         t4_grade=findViewById(R.id.t4_grade);
