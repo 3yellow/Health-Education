@@ -142,11 +142,32 @@ public class backtest extends AppCompatActivity {
     }
 
     public  void  back(View v){
-        Intent i=new Intent(this,Searchlogin.class);
-        i.putExtra("nurseID",nurseID);
-        //i.putExtra("id",id);
-        startActivity(i);
-        finish();
+        new android.app.AlertDialog.Builder(backtest.this)
+                .setTitle("確定要離開測驗嗎?")
+                //  .setIcon(R.drawable.ic_launcher)
+                .setPositiveButton("確定",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                Intent i=new Intent(backtest.this,Searchlogin.class);
+                                i.putExtra("nurseID",nurseID);
+                                //i.putExtra("id",id);
+                                startActivity(i);
+                                finish();
+                            }
+                        })
+                .setNegativeButton("取消",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+
+                            }
+                        }).show();
     }
 
     private void showDialog(){
@@ -200,9 +221,11 @@ public class backtest extends AppCompatActivity {
             Button next = (Button) findViewById(R.id.button17);
             item1.setClickable(false);
             item2.setClickable(false);
-
+            int int_result=-1;
             //   RadioButton tempButton = (RadioButton) findViewById(checkedId);
             if (result == true) {
+                int_result=1;
+                score += 20;
                 tempButton.setTextColor(Color.GREEN);
                 if(int_your_ans==1)
                     str="正確";
@@ -211,6 +234,7 @@ public class backtest extends AppCompatActivity {
                 //MyToast("恭喜你，回答正確！");
                 An.setTextColor(Color.GREEN);
             } else {
+                int_result=0;
                 if (int_your_ans==1)
                     str="錯誤";
                 else
@@ -222,6 +246,13 @@ public class backtest extends AppCompatActivity {
             cu = db.rawQuery("SELECT * FROM Question WHERE question_id = '" + q_id + "'", null);
             if (cu.moveToFirst()) {
                 explain = cu.getString(3);
+            }
+            String answer_id=exam_id+count;
+            int q=Integer.valueOf(q_id);
+            modify_Answer(answer_id,int_result, q, exam_id);
+            if (count >= 4)
+            {
+                modify_Exam(score, id, exam_id);
             }
             An.setText("正確答案：" + str);
             Als.setText(explain);
@@ -259,19 +290,12 @@ public class backtest extends AppCompatActivity {
         }
     }
 
-    private void MyToast(String str)
-    {
-        Toast mtoast = Toast.makeText(this,str, Toast.LENGTH_SHORT);
-        mtoast.setGravity(Gravity.TOP,0,400);
-        mtoast.show();
-    }
-
     public void tofronttest2 (View v){
 
         int true_or_false = -1;//判別題目有沒有做對 1:對 0:錯
         if (result == true) {
             true_or_false = 1;
-            score += 20;
+
             // Toast.makeText(this, "right" + score, Toast.LENGTH_LONG).show();
         } else {
             // Toast.makeText(this, "error" + score, Toast.LENGTH_LONG).show();
@@ -281,8 +305,8 @@ public class backtest extends AppCompatActivity {
             // answer_id exam_id+count
             String answer_id=exam_id+count;
             int q=Integer.valueOf(q_id);
-            modify_Answer(answer_id,true_or_false, q, exam_id);
-            modify_Exam(score, id, exam_id);
+          //  modify_Answer(answer_id,true_or_false, q, exam_id);
+            //modify_Exam(score, id, exam_id);
             Intent intent = this.getIntent();
             health_education = intent.getStringExtra("health education");
             Intent i = new Intent(backtest.this, choose_education.class);
@@ -299,7 +323,7 @@ public class backtest extends AppCompatActivity {
             // answer_id exam_id+count
             String answer_id=exam_id+count;
             //int q=Integer.valueOf(q_id);
-            modify_Answer(answer_id,true_or_false, q_id, exam_id);
+          //  modify_Answer(answer_id,true_or_false, q_id, exam_id);
             count++;
             Intent i = new Intent(this, backtest.class);
             i.putExtra("count", count);

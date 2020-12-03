@@ -299,7 +299,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t1_grade.setText("上次測驗沒有做完!!");
-                t1_grade.setTextSize(18);
+                t1_grade.setTextSize(16);
             }
             else
                 t1_grade.setText(" "+grade);
@@ -329,7 +329,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t2_grade.setText("上次測驗沒有做完!!");
-                t2_grade.setTextSize(18);
+                t2_grade.setTextSize(16);
             }
             else
                 t2_grade.setText(" "+grade);
@@ -359,7 +359,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t3_grade.setText("上次測驗沒有做完!!");
-                t3_grade.setTextSize(18);
+                t3_grade.setTextSize(16);
             }
             else
                 t3_grade.setText(" "+grade);
@@ -389,7 +389,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t4_grade.setText("上次測驗沒有做完!!");
-                t4_grade.setTextSize(18);
+                t4_grade.setTextSize(16);
             }
             else
                 t4_grade.setText(" "+grade);
@@ -419,7 +419,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t5_grade.setText("上次測驗沒有做完!!");
-                t5_grade.setTextSize(18);
+                t5_grade.setTextSize(16);
             }
             else
                 t5_grade.setText(" "+grade);
@@ -449,7 +449,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t6_grade.setText("上次測驗沒有做完!!");
-                t6_grade.setTextSize(18);
+                t6_grade.setTextSize(16);
             }
             else
                 t6_grade.setText(" "+grade);
@@ -479,7 +479,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t7_grade.setText("上次測驗沒有做完!!");
-                t7_grade.setTextSize(18);
+                t7_grade.setTextSize(16);
             }
             else
                 t7_grade.setText(" "+grade);
@@ -509,7 +509,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t8_grade.setText("上次測驗沒有做完!!");
-                t8_grade.setTextSize(18);
+                t8_grade.setTextSize(16);
             }
             else
                 t8_grade.setText(" "+grade);
@@ -539,7 +539,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t9_grade.setText("上次測驗沒有做完!!");
-                t9_grade.setTextSize(18);
+                t9_grade.setTextSize(16);
             }
             else
                 t9_grade.setText(" "+grade);
@@ -569,7 +569,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t10_grade.setText("上次測驗沒有做完!!");
-                t10_grade.setTextSize(18);
+                t10_grade.setTextSize(16);
             }
             else
                 t10_grade.setText(" "+grade);
@@ -599,7 +599,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t11_grade.setText("上次測驗沒有做完!!");
-                t11_grade.setTextSize(18);
+                t11_grade.setTextSize(16);
             }
             else
                 t11_grade.setText(" "+grade);
@@ -629,7 +629,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t12_grade.setText("上次測驗沒有做完!!");
-                t12_grade.setTextSize(18);
+                t12_grade.setTextSize(16);
             }
             else
                 t12_grade.setText(" "+grade);
@@ -659,7 +659,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t13_grade.setText("上次測驗沒有做完!!");
-                t13_grade.setTextSize(18);
+                t13_grade.setTextSize(16);
             }
             else
                 t13_grade.setText(" "+grade);
@@ -693,7 +693,7 @@ public class choose_education extends AppCompatActivity {
             if(grade.equals("-1"))
             {
                 t14_grade.setText("上次測驗沒有做完!!");
-                t14_grade.setTextSize(18);
+                t14_grade.setTextSize(16);
             }
             else
                 t14_grade.setText(" "+grade);
@@ -737,11 +737,13 @@ public class choose_education extends AppCompatActivity {
 
     protected void button_color(String examid,Button btn_id)
     {
+        int exams_count=-1;
         ////Answer (answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME,
         //Exam (exam_id TEXT, exam_date DateTime, exam_score INT, patient_id char(10), nurse_id char(10),change_data DATETIME
         cu = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+examid+"%'",null);
         if(cu.getCount()>0)//沒有做過考卷
         {
+            exams_count=cu.getCount();
             cu.close();
             int count=cu.getCount();
             count-=1;
@@ -750,20 +752,54 @@ public class choose_education extends AppCompatActivity {
             String ans_id=examid+count;
             //Patient WHERE patient_id='"+id+"' ",
             cu=db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+ans_id+"' AND exam_score='"+"-1"+"' ",null);
-            if(cu.getCount()>0)//做到一半 沒有做完後側
+            if(cu.getCount()>0)//做到一半 沒有做完後測
             {
-
+                if(exams_count<2)
+                {
                     btn_id.setBackgroundColor(Color.parseColor("#96e8d7"));
                     btn_id.setTextColor(Color.parseColor("#FFFAFA"));
-
-            }
-            else//已經做過後側
-            {
-                if(count>0)
+                }
+                else if(exams_count==2) {
+                    //綠
+                    btn_id.setBackgroundColor(Color.parseColor("#96e8d7"));
+                    btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+                }
+                else if(exams_count==3)
                 {
-                btn_id.setBackgroundColor(Color.parseColor("#58b19f"));
+                    //紫/藍
+                    btn_id.setBackgroundColor(Color.parseColor("#FF8EFF"));
+                    btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+                }
+                else if(exams_count>3)
+                {
+                    //紅
+                    btn_id.setBackgroundColor(Color.parseColor("#FF5151"));
+                    btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+                }
+                cu.close();
+            }
+            else//已經做過後測
+            {
+                cu.close();
+                cu=db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+ans_id+"' AND exam_score!='"+"-1"+"' ",null);
+                //exams_count=cu.getCount();
+                if(exams_count==2) {
+                //綠
+                    btn_id.setBackgroundColor(Color.parseColor("#58b19f"));
+                    btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+                 }
+                else if(exams_count==3)
+                    {
+                //紫/藍
+                btn_id.setBackgroundColor(Color.parseColor("#E800E8"));
                 btn_id.setTextColor(Color.parseColor("#FFFAFA"));
                 }
+                else if(exams_count>3)
+                {
+                //紅
+                btn_id.setBackgroundColor(Color.parseColor("#CE0000"));
+                btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+             }
             }
             cu.close();
         }

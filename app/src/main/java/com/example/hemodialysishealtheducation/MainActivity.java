@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.security.MessageDigest;
@@ -81,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createNurseTable() {
-        String pas=sha256("admin");
+        String ad="admin".toUpperCase();
+        String pas=sha256(ad);
         String sql = "CREATE TABLE IF NOT EXISTS Nurse (nurse_id char(10) NOT NULL, nurse_name TEXT NOT NULL, nurse_password TEXT NOT NULL, nurse_authority INT NOT NULL,change_data DATETIME,  PRIMARY KEY(nurse_id))";
         db.execSQL(sql);
         ContentValues contentValues = new ContentValues(1);
@@ -149,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         if (!cursor.moveToFirst()) {
 
             //t1的部分  壹.腎臟功能簡介
-            insertQuestion( 1, "臟是一對位於後腹腔的器官,右腎較左腎略低。", 1, "","t1",1);
+            insertQuestion( 1, "腎臟是一對位於後腹腔的器官,右腎較左腎略低。", 1, "","t1",1);
             insertQuestion( 2, "腎臟是人體主要的排毒器官，負責清除血液中的代謝廢物。", 1, "",   "t1", 1);
             insertQuestion( 3, "腎臟所分泌的腎素（Renin），為調節血壓維持恆定重要的荷爾蒙。", 1, "",    "t1", 1);
             insertQuestion( 4, "每個人每天約有3,000毫升（ML）的尿液。", 0, "每天約有1,500～2,000毫升（ML）的尿液。", "t1", 1);
@@ -464,6 +468,7 @@ public class MainActivity extends AppCompatActivity {
         //跳轉到病人畫面
         String str=Account.getText().toString().trim().toUpperCase();
         String pas=editText.getText().toString().trim();
+        pas=pas.toUpperCase();
         if(str.equals("") && pas.equals(""))
         {
             AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)
@@ -682,6 +687,7 @@ public class MainActivity extends AppCompatActivity {
     public void back(View v) {
         String str1=Account.getText().toString().trim().toLowerCase();
         String pas=editText.getText().toString().trim().toLowerCase();
+        pas=pas.toUpperCase();
         if(str1.equals("") && pas.equals(""))
         {
             AlertDialog dialog=new AlertDialog.Builder(MainActivity.this)

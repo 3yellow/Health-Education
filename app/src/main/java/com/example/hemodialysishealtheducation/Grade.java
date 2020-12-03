@@ -73,10 +73,12 @@ public class Grade extends AppCompatActivity {
         title.setTextSize(45);
 
         exam_id=ed_name_ec+id;
-        Cursor c = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+exam_id+"%'",null);//要找總共有幾張考卷 才知道要顯示的是哪幾張
+        Cursor c = db.rawQuery("SELECT * FROM Exam WHERE exam_id LIKE '"+exam_id+"%' AND exam_score!=-1",null);//要找總共有幾張考卷 才知道要顯示的是哪幾張
         if(c.getCount()>0) {
             c.moveToFirst();
             count_exam=c.getCount();
+            count_exam-=1;
+            show(exam_id,count_exam);
         }
         else
         {
@@ -85,10 +87,13 @@ public class Grade extends AppCompatActivity {
             linearLayout2.setVisibility(View.INVISIBLE);
             patient.setVisibility(View.INVISIBLE);
             title.setText("您還沒有做過任何測驗");
+            btn_5_date.setVisibility(View.INVISIBLE); // 隱藏
+            btn_4_date.setVisibility(View.INVISIBLE); // 隱藏
+            btn_3_date.setVisibility(View.INVISIBLE); // 隱藏
+            btn_2_date.setVisibility(View.INVISIBLE); // 隱藏
         }
         c.close();
-        count_exam-=1;
-        show(exam_id,count_exam);
+
 
         btn_1_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,6 +220,15 @@ public class Grade extends AppCompatActivity {
                 if(score==-1)
                 {
                     count_exam-=1;
+                    if(count==4)
+                        btn_5_date.setVisibility(View.INVISIBLE); // 隱藏
+                    else if(count==3)
+                        btn_4_date.setVisibility(View.INVISIBLE); // 隱藏
+                    else if(count==2)
+                        btn_3_date.setVisibility(View.INVISIBLE); // 隱藏
+                    else if(count==1)
+                        btn_2_date.setVisibility(View.INVISIBLE); // 隱藏
+                    count--;
                 }
                 else
                 {
