@@ -756,8 +756,8 @@ public class choose_education extends AppCompatActivity {
             {
                 if(exams_count<2)
                 {
-                    btn_id.setBackgroundColor(Color.parseColor("#96e8d7"));
-                    btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+                    btn_id.setBackgroundColor(Color.parseColor("#e2e7bf"));
+                    btn_id.setTextColor(Color.parseColor("#58b19f"));
                 }
                 else if(exams_count==2) {
                     //綠
@@ -767,14 +767,14 @@ public class choose_education extends AppCompatActivity {
                 else if(exams_count==3)
                 {
                     //紫/藍
-                    btn_id.setBackgroundColor(Color.parseColor("#FF8EFF"));
-                    btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+                    btn_id.setBackgroundColor(Color.parseColor("#d0dfe6"));
+                    btn_id.setTextColor(Color.parseColor("#58b19f"));
                 }
                 else if(exams_count>3)
                 {
                     //紅
-                    btn_id.setBackgroundColor(Color.parseColor("#FF5151"));
-                    btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+                    btn_id.setBackgroundColor(Color.parseColor("#FEDFE1"));
+                    btn_id.setTextColor(Color.parseColor("#58b19f"));
                 }
                 cu.close();
             }
@@ -783,7 +783,12 @@ public class choose_education extends AppCompatActivity {
                 cu.close();
                 cu=db.rawQuery("SELECT * FROM Exam WHERE exam_id='"+ans_id+"' AND exam_score!='"+"-1"+"' ",null);
                 //exams_count=cu.getCount();
-                if(exams_count==2) {
+                if(exams_count<2)
+                {
+                    btn_id.setBackgroundColor(Color.parseColor("#f7f1e3"));
+                    btn_id.setTextColor(Color.parseColor("#58b19f"));
+                }
+                else if(exams_count==2) {
                 //綠
                     btn_id.setBackgroundColor(Color.parseColor("#58b19f"));
                     btn_id.setTextColor(Color.parseColor("#FFFAFA"));
@@ -791,14 +796,14 @@ public class choose_education extends AppCompatActivity {
                 else if(exams_count==3)
                     {
                 //紫/藍
-                btn_id.setBackgroundColor(Color.parseColor("#E800E8"));
-                btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+                btn_id.setBackgroundColor(Color.parseColor("#2376b7"));
+                btn_id.setTextColor(Color.parseColor("#f7f1e3"));
                 }
                 else if(exams_count>3)
                 {
                 //紅
-                btn_id.setBackgroundColor(Color.parseColor("#CE0000"));
-                btn_id.setTextColor(Color.parseColor("#FFFAFA"));
+                btn_id.setBackgroundColor(Color.parseColor("#ee3f4d"));
+                btn_id.setTextColor(Color.parseColor("#f7f1e3"));
              }
             }
             cu.close();
@@ -1983,7 +1988,7 @@ public class choose_education extends AppCompatActivity {
         i.putExtra("count",index);
         i.putExtra("score",score);
         i.putExtra("exam_id",exam_id);
-        i.putExtra("health education","t14");
+        i.putExtra("health_education","t14");
         db.close();
         startActivity(i);
         finish();
