@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
@@ -22,13 +23,14 @@ public class choice_vedio extends AppCompatActivity {
     String id;
     Cursor cu;
     SQLiteDatabase db;
-
+    ImageButton ib1,ib2,ib3,ib4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice_vedio);
-
+        ib2=findViewById(R.id.imageView8);
+        ib2.setBackgroundResource(R.drawable.choicetheme21);
         TextView nurse=findViewById(R.id.tex_nurse_name);
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
         Intent i=this.getIntent();

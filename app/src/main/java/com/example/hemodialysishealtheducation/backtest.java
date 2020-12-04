@@ -104,8 +104,8 @@ public class backtest extends AppCompatActivity {
             String content = cu.getString(1);
             Que.setText(content);
             //{"A.發熱", "B.肌肉痙攣", "C.失衡綜合征", "D.透析性骨病", "D.透析性骨病"};
-            item1.setText("正確");
-            item2.setText("錯誤");
+           // item1.setText("正確");
+          //  item2.setText("錯誤");
             cu.close();
 
             mRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
