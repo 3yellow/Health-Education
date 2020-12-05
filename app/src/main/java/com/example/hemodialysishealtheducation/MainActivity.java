@@ -314,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createNurseTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS Nurse (nurse_id TEXT NOT NULL, nurse_name TEXT NOT NULL, nurse_password TEXT NOT NULL, nurse_authority INT NOT NULL,change_data INT,  PRIMARY KEY(nurse_id))";
+        String sql = "CREATE TABLE IF NOT EXISTS Nurse (nurse_id CHAR(10) NOT NULL, nurse_name TEXT NOT NULL, nurse_password TEXT NOT NULL, nurse_authority INT NOT NULL,change_data INT,  PRIMARY KEY(nurse_id))";
         db.execSQL(sql);
         ContentValues contentValues = new ContentValues(1);
         Cursor cursor = db.rawQuery("SELECT * FROM Nurse", null);
@@ -328,13 +328,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createPatientTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS Patient (patient_id TEXT NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge TEXT NOT NULL,change_data INT,  PRIMARY KEY(patient_id), FOREIGN KEY(patient_incharge) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
+        String sql = "CREATE TABLE IF NOT EXISTS Patient (patient_id CHAR(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_birth DATE , patient_sign INT, patient_incharge CHAR(10) NOT NULL,change_data INT,  PRIMARY KEY(patient_id), FOREIGN KEY(patient_incharge) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
 
     private void createTopicTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS Topic (topic_id TEXT, topic_name TEXT,change_data INT,  PRIMARY KEY(topic_id))";
+        String sql = "CREATE TABLE IF NOT EXISTS Topic (topic_id CHAR(10), topic_name TEXT,change_data INT,  PRIMARY KEY(topic_id))";
         db.execSQL(sql);
         ContentValues contentValues = new ContentValues(1);
         Cursor cursor = db.rawQuery("SELECT * FROM Topic", null);
@@ -354,14 +354,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void createStudyTable()//閱讀紀錄
     {
-        String sql = "CREATE TABLE IF NOT EXISTS Study (study_id TEXT, study_date DateTime, topic_id TEXT, patient_id TEXT, nurse_id TEXT,change_data INT,  PRIMARY KEY(study_id), FOREIGN KEY (topic_id) REFERENCES Topic(topic_id) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (nurse_id) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
+        String sql = "CREATE TABLE IF NOT EXISTS Study (study_id TEXT, study_date DateTime, topic_id CHAR(10), patient_id CHAR(10), nurse_id CHAR(10),change_data INT,  PRIMARY KEY(study_id), FOREIGN KEY (topic_id) REFERENCES Topic(topic_id) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (nurse_id) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
 
     private void createQuestionTable()
     {
-        String sql = "CREATE TABLE IF NOT EXISTS Question (question_id TEXT, question_content TEXT, question_answer INT, question_explain TEXT, topic_id TEXT, change_data INT, PRIMARY KEY(question_id), FOREIGN KEY(topic_id) REFERENCES Topic(topic_id) ON DELETE SET NULL ON UPDATE CASCADE)";
+        String sql = "CREATE TABLE IF NOT EXISTS Question (question_id INT, question_content TEXT, question_answer INT, question_explain TEXT, topic_id TEXT, change_data INT, PRIMARY KEY(question_id), FOREIGN KEY(topic_id) REFERENCES Topic(topic_id) ON DELETE SET NULL ON UPDATE CASCADE)";
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
         Cursor cursor = db.rawQuery("SELECT * FROM Question", null);
@@ -537,13 +537,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createExamTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS Exam (exam_id TEXT, exam_date DateTime, exam_score INT, patient_id TEXT, nurse_id TEXT,change_data INT,  PRIMARY KEY(exam_id), FOREIGN KEY(patient_id) REFERENCES Patient(patient_id) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY(nurse_id) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
+        String sql = "CREATE TABLE IF NOT EXISTS Exam (exam_id TEXT, exam_date DateTime, exam_score INT, patient_id CHAR(10), nurse_id CHAR(10),change_data INT,  PRIMARY KEY(exam_id), FOREIGN KEY(patient_id) REFERENCES Patient(patient_id) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY(nurse_id) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
 
     private void createAnswerTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS Answer (result INT, patient_answer INT, question_id INT, exam_id INT,change_data INT,  PRIMARY KEY(exam_id, question_id), FOREIGN KEY(exam_id) REFERENCES Exam(exam_id)ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY(question_id) REFERENCES Question(question_id) ON DELETE SET NULL ON UPDATE CASCADE)";
+        String sql = "CREATE TABLE IF NOT EXISTS Answer (answer_id TEXT,result INT, exam_id TEXT, question_id INT,change_data INT,  PRIMARY KEY(exam_id, question_id), FOREIGN KEY(exam_id) REFERENCES Exam(exam_id)ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY(question_id) REFERENCES Question(question_id) ON DELETE SET NULL ON UPDATE CASCADE)";
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
