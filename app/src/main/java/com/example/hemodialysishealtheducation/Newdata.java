@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
@@ -41,12 +43,12 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     String date,birth;
     int geender=0;//1：男 2：女
     String eName,eId=null;
-
+    String na=null;
     //以下是要在修改時使用的
     String idd=null;
     int flag1=0;//判斷是要修改的還是新增。 1為修改
 
-    String nurseID;
+    String nurseID,name;
     int flag=0;//判別是不是已經有資料;
     int mYear_b,mMonth_b,mDay_b;
     RadioButton malee,femalee;
@@ -59,6 +61,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
 
         Intent i=this.getIntent();
         nurseID=i.getStringExtra("nurseID");
+        na=i.getStringExtra("na");
+
         cal =  Calendar.getInstance();
         ca2 =  Calendar.getInstance();
         textView7=findViewById(R.id.textView7);
@@ -69,7 +73,10 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         sex.setOnCheckedChangeListener(this);
         malee = findViewById(R.id.male);
         femalee = findViewById(R.id.female);
-
+        if(na!=null)
+        {
+            edt_name.setText(na);
+        }
         //修改資料
         //   Intent i=this.getIntent();
         flag1=i.getIntExtra("flag",0);
@@ -91,7 +98,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
                     femalee.setChecked(true);
                 }
             }
-
+            cu.close();
             read(idd);
         }
         else {
@@ -117,6 +124,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             edt_name.setText(anamee);
             edt_id.setText(idd);
         }
+        cu.close();
     }
     public void onDay2(View v)//設定時間的元件 View v int flag,String date
     {
@@ -161,68 +169,109 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             }
         },mYear_b,mMonth_b,mDay_b).show();
     }
+
     private String setDateFormat(int year, int month, int day) {
         return String.valueOf(year)+"/"+String.valueOf(month+1)+"/"+String.valueOf(day);
     }
 
     public void onClick(View v) {
-        Boolean iAge,iId;
+        Boolean len,birth_bool,accet_bool;
         eId=edt_id.getText().toString().trim();//trim去除多餘空白
         eId=eId.toUpperCase();
         String ename=edt_name.getText().toString().trim();
-
-
-
+        String Accepted_date=button6.getText().toString();
+        String birth=btn_birth.getText().toString();
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy/MM/dd");
+        //==GMT標準時間往後加八小時
+        nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //==取得目前時間
+        String now_date = nowdate.format(new java.util.Date());
         Intent i=this.getIntent();
         String nurseID=i.getStringExtra("nurseID");
+        birth_bool=compare_date(birth,now_date);
+        accet_bool=compare_date(Accepted_date,now_date);
+        len=vreifyId(eId);
         flag=searchData(eId);
         if (flag==2&&flag1!=1){
+            textView7.setVisibility(View.VISIBLE);
             textView7.setText("已有此資料");
         }
         else if (ename.isEmpty()){
-            textView7.setText("身分證還沒填");
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("姓名還沒填");
         }
         else if (eId.isEmpty()){
+            textView7.setVisibility(View.VISIBLE);
             textView7.setText("身分證還沒填");
         }
+        else if(!birth_bool)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("生日日期選錯!!");
+        }
+        else if(!accet_bool)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("收案日期日期選錯!!");
+        }
+        else if(!len)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("身分證長度為10");
+        }
         else if (geender==0){
+            textView7.setVisibility(View.VISIBLE);
             flag=3;
             textView7.setText("性別還沒選");
         }
         else if(eId==null){
+            textView7.setVisibility(View.VISIBLE);
             flag=3;
             textView7.setText("身分證還沒選");
         }
         else if (flag1==1){
-            modify_patient(ename,eId,geender,button6.getText().toString(),btn_birth.getText().toString());
+            modify_patient(ename,eId,geender,Accepted_date,birth);
             DBS.close();
             i=new Intent(Newdata.this,Searchlogin.class);
             i.putExtra("nurseID",nurseID);
-            i=new Intent(Newdata.this,Searchlogin.class);
+            i.putExtra("patientname",ename);
+            DBS.close();
             startActivity(i);
             finish();
         }
         else if (flag == 1) {
-            addData(ename,eId,geender,button6.getText().toString(),btn_birth.getText().toString(),nurseID);
+            addData(ename,eId,geender,Accepted_date,birth,nurseID);
             //(String name,String id,String age,int gender,String date,String birth_date)
             DBS.close();
 
             i=new Intent(Newdata.this,consent.class);
             i.putExtra("nurseID",nurseID);
             i.putExtra("id",eId);
-
+            i.putExtra("patientname",ename);
+            DBS.close();
             startActivity(i);
             finish();
         }
     }
 
-    /*public Boolean  vreifyId(String id){
+    public boolean compare_date(String goal_date,String now_date)
+    {
+        Date date2 = new Date(now_date);
+        Date date1 = new Date(goal_date);
+        if(date1.getTime()>date2.getTime())
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean  vreifyId(String id){
         int c=0,n=0; //c判斷第一個字是否為英文字 n判別第二個字是否為1或2
         if (id.length()!=10){
             return false;
         }
-        for (int i=65;i<=90;i++)
-        {
+         /*for (int i=65;i<=90;i++)
+       {
             char ch=(char)i;
             if (id.charAt(0)==i){
                 c=1;//第一個字為英文字
@@ -259,9 +308,10 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         if (aa==0) {              //aa不等於0則輸入身分證字號不符合
             System.out.println("這不是正確的身分證字號!!");
             return false;
-        }
-        return false;
-    }*/
+        }*/
+        return true;
+
+    }
     private int searchData(String str1) //判別是否已經有此資料了
     {
         c=DBS.rawQuery("SELECT * FROM Patient  WHERE patient_id='"+str1+"'",null);
@@ -271,10 +321,21 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         else {
             flag =1;
         }
+        c.close();
         return flag;
     }
 
+    public String datetime(){
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //==GMT標準時間往後加八小時
+        nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //==取得目前時間
+        String date_time = nowdate.format(new java.util.Date());
+
+        return date_time;
+    }
     private void addData(String name,String id ,int gender,String date,String birth_date,String nurseID) {
+        String date_time= datetime();
         int pad=0,change_data=0;
         Intent i=this.getIntent();
         pad=i.getIntExtra("pad",-1);
@@ -285,23 +346,14 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         cv.put("patient_gender",gender);
         cv.put("patient_register",date);
         cv.put("patient_birth",birth_date);
-        cv.put("change_data",change_data);
-
-        //cv.put("nurse_id", nurseID);
+        cv.put("change_data",date_time);
         cv.put("patient_incharge",nurseID);//目前沒有護理師的資料，護理師的資料是從登入那抓取id，一直傳
 
-        //cv.put("nurse_id", nurseId);
-        cv.put("patient_incharge","admin");//目前沒有護理師的資料，護理師的資料是從登入那抓取id，一直傳
-
         DBS.insert("Patient", null, cv);
-
-        Cursor cu = DBS.rawQuery("SELECT * FROM Patient",null);
-        if(cu.getCount()>0) {
-            cu.moveToFirst();
-        }
     }
 
     private void modify_patient(String name,String id ,int gender,String date,String birth_date ){
+        String date_time= datetime();
         int pad=0,change_data=0;
         Intent i=this.getIntent();
         pad=i.getIntExtra("pad",pad);
@@ -312,18 +364,12 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         cv.put("patient_gender", gender);
         cv.put("patient_register", date);
         cv.put("patient_birth", birth_date);
-        cv.put("change_data",change_data);
-
+        cv.put("change_data",date_time);
 
         //如果是修改
         String whereClause = "patient_id = ?";
         String whereArgs[] = {id};
         DBS.update("Patient", cv, whereClause, whereArgs);
-        // Toast.makeText(getApplicationContext(), "Modify Success!", Toast.LENGTH_SHORT).show();
-        Cursor cu = DBS.rawQuery("SELECT * FROM Patient",null);
-        if(cu.getCount()>0) {
-            cu.moveToFirst();
-        }
     }
 
     public void nowTime(int flag_data,String id_tmp,int flag)//取得當日日期並且顯示在按鈕上
@@ -339,6 +385,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
                 else {
                     date = cu.getString(0);//formatter.format(new java.util.Date());
                 }
+                cu.close();
             }
             else {
                 date=formatter.format(new java.util.Date());
@@ -358,6 +405,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
                 else {
                     birth = cu.getString(0);
                 }
+                cu.close();
             }
             else {
                 birth=formatter_b.format(new java.util.Date());
@@ -392,6 +440,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     public void back(View v){
         Intent i=new Intent(Newdata.this,Searchlogin.class);
         i.putExtra("nurseID",nurseID);
+        DBS.close();
         startActivity(i);
         finish();
     }

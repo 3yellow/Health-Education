@@ -1,112 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:layout_marginEnd="20dp"
+    android:layout_marginRight="20dp"
     android:background="@drawable/wave1"
     android:orientation="vertical">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:orientation="horizontal"></LinearLayout>
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="4dp"
+        android:background="#00000000"
+        android:onClick="back"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/back" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="1020dp"
-            android:layout_height="99dp"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="4dp"
-                android:background="#00000000"
-                android:onClick="back"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.035"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.032"
-                app:srcCompat="@drawable/backkey" />
-
-            <TextView
-                android:id="@+id/tex_patient_name"
-                android:layout_width="455dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:text="姓名"
-                android:textSize="35sp" />
-
-            <TextView
-                android:id="@+id/tex_nurse_name"
-                android:layout_width="455dp"
-                android:layout_height="wrap_content"
-                android:text="登入中"
-                android:textSize="33sp" />
-            <Button
-                android:id="@+id/Sign_out"
-                android:layout_width="99dp"
-                android:layout_height="wrap_content"
-                android:onClick="onclick"
-                android:background="@drawable/bluebutton"
-                android:text="登出"
-                android:textSize="30sp" />
-        </TableRow>
-
-    </TableLayout>
-
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:orientation="horizontal">
-
-        <TableRow
-            android:layout_width="999dp"
-            android:layout_height="62dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="433dp"
-                android:layout_height="62dp"
-                android:text="衛教章節   "
-                android:textSize="35dp" />
-
-            <TextView
-                android:layout_width="313dp"
-                android:layout_height="62dp"
-                android:text=" 日期   "
-                android:textSize="35dp" />
-
-            <TextView
-                android:layout_width="253dp"
-                android:layout_height="62dp"
-                android:text=" 測驗分數   "
-                android:textSize="35dp" />
-        </TableRow>
-
-    </TableLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:orientation="horizontal"></LinearLayout>
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="63dp"
+        android:layout_height="86dp"
+        android:onClick="onclick"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toEndOf="@+id/tex_nurse_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.005"
+        app:srcCompat="@drawable/home" />
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="420dp"
-        android:layout_marginLeft="50dp">
+        android:id="@+id/scrollView3"
+        android:layout_width="1124dp"
+        android:layout_height="405dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.698">
 
 
         <TableLayout
@@ -116,37 +58,45 @@
             android:orientation="horizontal">
 
             <TableRow
-                android:layout_width="999dp"
-                android:layout_height="62dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/one"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:hapticFeedbackEnabled="false"
                     android:onClick="t1"
                     android:text="   壹.腎臟功能簡介   "
-                    android:textSize="35dp" />
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t1_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t1_grade"
-                    android:layout_width="150dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <Button
                     android:id="@+id/t1"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
+                    android:gravity="center"
                     android:text="展開"
-                    android:textSize="35dp" />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
@@ -158,29 +108,38 @@
                     android:id="@+id/two"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:hapticFeedbackEnabled="false"
                     android:onClick="t2"
                     android:text="   貳.甚麼是慢性腎臟病   "
-                    android:textSize="35dp" />
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t2_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t2_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <Button
                     android:id="@+id/t2"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
+                    android:gravity="center"
                     android:text="展開"
-                    android:textSize="35dp" />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp"/>
+
+
             </TableRow>
 
             <TableRow
@@ -189,32 +148,37 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/three"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   參.健康人如何保護自己健康   "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t3"
+                    android:text="   叁.腎衰竭的原因   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t3_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t3_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
                     android:id="@+id/t3"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
@@ -226,29 +190,35 @@
                     android:id="@+id/four"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   肆.腎衰竭的原因   "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t4"
+                    android:text="   肆.腎衰竭的治療方式   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t4_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t4_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
                     android:id="@+id/t4"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
@@ -260,29 +230,35 @@
                     android:id="@+id/five"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   伍.腎衰竭原因治療   "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t5"
+                    android:text="   伍.如何保護自己的腎  "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t5_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t5_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
                     android:id="@+id/t5"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
@@ -294,63 +270,75 @@
                     android:id="@+id/six"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   陸.血液透析治療與照護   "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t6"
+                    android:text="   陸.血液透析   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t6_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t6_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
                     android:id="@+id/t6"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/seven"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   柒.何為血液透析   "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t7"
+                    android:text="   柒.血管通路   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t7_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t7_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
                     android:id="@+id/t7"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
@@ -362,29 +350,35 @@
                     android:id="@+id/eight"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   捌.動靜脈廔管的照顧  "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t8"
+                    android:text="   捌.動靜脈廔管的照護   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t8_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t8_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
                     android:id="@+id/t8"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
@@ -396,97 +390,115 @@
                     android:id="@+id/nine"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   玖.腎友如何預防便祕   "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t9"
+                    android:text="   玖.皮膚搔癢該怎麼辦   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t9_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t9_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
                     android:id="@+id/t9"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/ten"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   拾.甚有皮膚搔癢該如何處離   "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t10"
+                    android:text="   拾.透析患者睡眠問題   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t10_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t10_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
                     android:id="@+id/t10"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/eleven"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   拾壹.乾體重   "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t11"
+                    android:text="   拾壹.腎友如何預防便秘   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t11_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t11_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
                     android:id="@+id/t11"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
@@ -498,29 +510,35 @@
                     android:id="@+id/twelve"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   拾貳.血管通路的介紹   "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t12"
+                    android:text="   拾貳.乾體重   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t12_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t12_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
                     android:id="@+id/t12"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
             </TableRow>
 
             <TableRow
@@ -532,30 +550,202 @@
                     android:id="@+id/thirteen"
                     android:layout_width="400dp"
                     android:layout_height="62dp"
-                    android:onClick="reason"
-                    android:text="   拾參.飲食控制要點   "
-                    android:textSize="35dp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t13"
+                    android:text="   拾叁.磷是啥   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t13_date"
                     android:layout_width="300dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/t13_grade"
-                    android:layout_width="200dp"
+                    android:layout_width="159dp"
                     android:layout_height="62dp"
-                    android:textSize="35dp" />
+                    android:textSize="35sp" />
+
                 <Button
+                    android:id="@+id/t13"
                     android:layout_width="99dp"
                     android:layout_height="62dp"
+                    android:background="#c6e5d9"
                     android:text="展開"
-                    android:textSize="35dp"
-                    />
+                    android:textColor="#1f4e5f"
+                    android:textSize="35sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/fourteen"
+                    android:layout_width="400dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#f7f1e3"
+                    android:onClick="t14"
+                    android:text="   拾肆.鉀啥咪   "
+                    android:textColor="#58b19f"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:id="@+id/t14_date"
+                    android:layout_width="300dp"
+                    android:layout_height="62dp"
+                    android:layout_marginLeft="80dp"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:id="@+id/t14_grade"
+                    android:layout_width="159dp"
+                    android:layout_height="62dp"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/t14"
+                    android:layout_width="99dp"
+                    android:layout_height="62dp"
+                    android:background="#c6e5d9"
+                    android:text="展開"
+                    android:textColor="#1f4e5f"
+                    android:textSize="35dp" />
+
             </TableRow>
 
         </TableLayout>
     </ScrollView>
-</LinearLayout>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="995dp"
+        android:layout_height="92dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.784"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:background="#00000000"
+            android:scaleType="center"
+            app:srcCompat="@drawable/choicetheme1" />
+
+        <ImageButton
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#00000000"
+            android:onClick="go_vedio"
+            app:srcCompat="@drawable/choicetheme2" />
+
+        <ImageButton
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#00000000"
+            android:onClick="go_pdf"
+            app:srcCompat="@drawable/choicetheme3" />
+
+        <ImageButton
+            android:id="@+id/imageView10"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#00000000"
+            android:onClick="go_test"
+            app:srcCompat="@drawable/choicetheme4" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="1027dp"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="140dp"
+            android:layout_marginStart="140dp"
+            android:gravity="clip_horizontal|center|center_vertical"
+            android:text="衛教章節   "
+            android:textSize="35dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="260dp"
+            android:layout_marginStart="260dp"
+            android:gravity="center"
+            android:text="日期   "
+            android:textSize="35dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="100dp"
+            android:layout_marginStart="100dp"
+            android:gravity="center"
+            android:text=" 測驗分數   "
+            android:textSize="35dp" />
+    </TableRow>
+
+    <TextView
+        android:id="@+id/tex_patient_name"
+        android:layout_width="507dp"
+        android:layout_height="69dp"
+        android:gravity="center"
+        android:text="姓名"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021" />
+
+    <TextView
+        android:id="@+id/tex_nurse_name"
+        android:layout_width="491dp"
+        android:layout_height="69dp"
+        android:gravity="center"
+        android:text="登入中"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.808"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

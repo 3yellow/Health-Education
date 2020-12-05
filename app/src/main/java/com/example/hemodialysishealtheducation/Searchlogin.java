@@ -10,15 +10,19 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -63,7 +67,7 @@ public class Searchlogin extends AppCompatActivity {
             user.setText(nurse_name+"登入");
             user.setTextSize(28);
         }
-
+        cu.close();
 
         // db = openOrCreateDatabase("dbs", Context.MODE_PRIVATE, null);
         layout2=findViewById(R.id.tbl);
@@ -79,8 +83,9 @@ public class Searchlogin extends AppCompatActivity {
         components.add("Button");
         components.add("CheckBox");
         components.add("RadioButton");
-        components.add("ToggleButton");
         components.add("ImageView");
+        components.add("ToggleButton");
+
 
         // 将List包装成ArrayAdapter
         /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -130,29 +135,48 @@ public class Searchlogin extends AppCompatActivity {
                 cu.moveToFirst();
                 do {
                     i++;
-                    String text = cu.getString(1) + "\t\t" + cu.getString((0)) + "\t\t\t" + cu.getString(3);
+                    String text1=cu.getString(1);
+                    String text2=cu.getString(0);
+                    String text3=cu.getString(3);
                     id_array_search.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
                     String namee = cu.getString(0);
                     String idd = cu.getString(1);
                     String agee = cu.getString(2);
+                   // final Button button = new Button(this);//final Button
                     final Button button = new Button(this);//final Button
-                    final Button btn_modify = new Button(this);//final Button
+                    button.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+                    final TextView id = new TextView(this);
+                    final TextView statu = new TextView(this);
+                    final Button btn_modify=new Button(this);//final Button
+                    btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                     TableRow r = new TableRow(this);//final TableRow
                     //  final ScrollView sc=new ScrollView(this);
                     // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-                    r.setLayoutParams(new TableRow.LayoutParams(1520, 80));
-                    button.setLayoutParams(new TableRow.LayoutParams(684, 80));
-
-                    btn_modify.setLayoutParams(new TableRow.LayoutParams(120, 80));
+                    r.setLayoutParams(new TableRow.LayoutParams());
+                    button.setLayoutParams(new TableRow.LayoutParams());//842
+                    id.setLayoutParams(new TableRow.LayoutParams());
+                    statu.setLayoutParams(new TableRow.LayoutParams());
+                    btn_modify.setLayoutParams(new TableRow.LayoutParams());
                     btn_modify.setId(i);
+                    id.setId(i);
+                    statu.setId(i);
                     button.setId(i);
                     r.setId(i);
-                    button.setTextSize(35);
-                    button.setText(text);
-                    // la.addView(layout2);
-                    btn_modify.setTextSize(35);
+                    button.setTextSize(30);
+                    button.setText(text1);
+                    id.setTextSize(30);
+                    id.setGravity(Gravity.CENTER);
+                    id.setText(text2);
+                    statu.setTextSize(30);
+                    statu.setGravity(Gravity.CENTER);
+                    statu.setText(text3);
+                    btn_modify.setTextSize(30);
                     btn_modify.setText("修改");
+                    // la.addView(layout2);
+
                     r.addView(button);//yout
+                    r.addView(id);
+                    r.addView(statu);
                     r.addView(btn_modify);//yout2
                     layout2.addView(r);
                     button.setOnClickListener(new View.OnClickListener() {
@@ -189,42 +213,86 @@ public class Searchlogin extends AppCompatActivity {
                     });
                 } while (cu.moveToNext());
             }
+            else
+            {
+                AlertDialog dialog=new AlertDialog.Builder(Searchlogin.this)
+                        .setTitle("沒有此資料!!!\n請先把要搜尋的內容刪除，再按兩下搜尋按鈕會顯示所有資料")
+                        .setNegativeButton("確定",null).create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                try {
+                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                    mAlert.setAccessible(true);
+                    Object mAlertController = mAlert.get(dialog);
+                    //通过反射修改title字体大小和颜色
+                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                    mTitle.setAccessible(true);
+                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                    mTitleView.setTextSize(32);
+                    mTitleView.setTextColor(Color.BLACK);
+                    //通过反射修改message字体大小和颜色
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                } catch (NoSuchFieldException e2) {
+                    e2.printStackTrace();
+                }
+            }
+            cu.close();
         }
         else if(s_p.length() > 0) //收尋病人名
         {
 
             i=0;
             //String sql = "SELECT * FROM Patient  WHERE patient_name = '"+s_p+"'";  收尋名字時 只能找到輸入全名
-            String sql = "SELECT * FROM Patient  WHERE patient_name LIKE '"+s_p+"%'";
+            String sql = "SELECT * FROM Patient  WHERE patient_name LIKE '%"+s_p+"%'";
             cu=db.rawQuery(sql,null);
             if (cu.getCount() > 0) {
                 cu.moveToFirst();
                 do {
-                    String text = cu.getString(1) + "\t\t" + cu.getString((0)) + "\t\t\t" + cu.getString(3);
+                    String text1=cu.getString(1);
+                    String text2=cu.getString(0);
+                    String text3=cu.getString(3);
                     id_array_search.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
                     String namee = cu.getString(0);
                     String idd = cu.getString(1);
                     String agee = cu.getString(2);
                     final Button button = new Button(this);//final Button
-                    final Button btn_modify = new Button(this);//final Button
-                    TableRow r = new TableRow(this);//final TableRow
+                    button.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+                    final TextView id = new TextView(this);
+                    final TextView statu = new TextView(this);
+                    final Button btn_modify=new Button(this);//final Button
+                    btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+                    r=new TableRow(this);//final TableRow
                     //  final ScrollView sc=new ScrollView(this);
                     // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-                    r.setLayoutParams(new TableRow.LayoutParams(1520, 80));
-                    button.setLayoutParams(new TableRow.LayoutParams(684, 80));
+                    r.setLayoutParams(new TableRow.LayoutParams());
+                    button.setLayoutParams(new TableRow.LayoutParams());
 
-                    btn_modify.setLayoutParams(new TableRow.LayoutParams(120, 80));
+                    btn_modify.setLayoutParams(new TableRow.LayoutParams());
 
-                    button.setTextSize(35);
-                    button.setText(text);
+                    button.setTextSize(30);
+                    button.setText(text1);
+                    id.setTextSize(30);
+                    id.setGravity(Gravity.CENTER);
+                    id.setText(text2);
+                    statu.setTextSize(30);
+                    statu.setGravity(Gravity.CENTER);
+                    statu.setText(text3);
+                    btn_modify.setTextSize(30);
+                    btn_modify.setText("修改");
                     // la.addView(layout2);
                     btn_modify.setId(i);
+                    id.setId(i);
+                    statu.setId(i);
                     button.setId(i);
                     r.setId(i);
                     i++;
-                    btn_modify.setTextSize(35);
-                    btn_modify.setText("修改");
                     r.addView(button);//yout
+                    r.addView(id);
+                    r.addView(statu);
                     r.addView(btn_modify);//yout2
                     layout2.addView(r);
                     button.setOnClickListener(new View.OnClickListener() {
@@ -257,6 +325,34 @@ public class Searchlogin extends AppCompatActivity {
                     });
                 } while (cu.moveToNext());
             }
+            else
+            {
+                AlertDialog dialog=new AlertDialog.Builder(Searchlogin.this)
+                        .setTitle("沒有此資料!!!\n請先把要搜尋的內容刪除，再按兩下搜尋按鈕會顯示所有資料")
+                        .setNegativeButton("確定",null).create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                try {
+                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                    mAlert.setAccessible(true);
+                    Object mAlertController = mAlert.get(dialog);
+                    //通过反射修改title字体大小和颜色
+                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                    mTitle.setAccessible(true);
+                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                    mTitleView.setTextSize(32);
+                    mTitleView.setTextColor(Color.BLACK);
+                    //通过反射修改message字体大小和颜色
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                } catch (NoSuchFieldException e2) {
+                    e2.printStackTrace();
+                }
+            }
+            cu.close();
         }
         else
             read();
@@ -271,30 +367,50 @@ public class Searchlogin extends AppCompatActivity {
         if(cu.getCount()>0) {
             cu.moveToFirst();
             do {
-                String text=cu.getString(1)+"\t\t"+cu.getString((0))+"\t\t\t"+cu.getString(3);
+                String text1=cu.getString(1);
+                String text2=cu.getString(0);
+                String text3=cu.getString(3);
                 id_array.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
                 namee=cu.getString(0);
                 idd=cu.getString(1);
                 agee=cu.getString(2);
                 final Button button = new Button(this);//final Button
+                button.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+                final TextView id = new TextView(this);
+                final TextView statu = new TextView(this);
                 final Button btn_modify=new Button(this);//final Button
+                btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                 r=new TableRow(this);//final TableRow
                 //  final ScrollView sc=new ScrollView(this);
                 // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-                r.setLayoutParams(new TableRow.LayoutParams(1520,80));
-                button.setLayoutParams(new TableRow.LayoutParams(824,80));
+               /* r.setLayoutParams(new TableRow.LayoutParams(1520,100));
+                button.setLayoutParams(new TableRow.LayoutParams(1124,100));
 
-                btn_modify.setLayoutParams(new TableRow.LayoutParams(60,80));
+                btn_modify.setLayoutParams(new TableRow.LayoutParams(60,100));*/
+                r.setLayoutParams(new TableRow.LayoutParams());
+                button.setLayoutParams(new TableRow.LayoutParams());//842
+                id.setLayoutParams(new TableRow.LayoutParams());
+                statu.setLayoutParams(new TableRow.LayoutParams());
                 btn_modify.setId(i);
+                id.setId(i);
+                statu.setId(i);
                 button.setId(i);
                 r.setId(i);
                 i++;
-                button.setTextSize(35);
-                button.setText(text);
+                button.setTextSize(30);
+                button.setText(text1);
+                id.setTextSize(30);
+                id.setGravity(Gravity.CENTER);
+                id.setText(text2);
+                statu.setTextSize(30);
+                statu.setGravity(Gravity.CENTER);
+                statu.setText(text3);
                 // la.addView(layout2);
-                btn_modify.setTextSize(35);
+                btn_modify.setTextSize(30);
                 btn_modify.setText("修改");
                 r.addView(button);//yout
+                r.addView(id);
+                r.addView(statu);
                 r.addView(btn_modify);//yout2
                 layout2.addView(r);
                 button.setOnClickListener(new View.OnClickListener()
@@ -331,13 +447,21 @@ public class Searchlogin extends AppCompatActivity {
                 });
             }while(cu.moveToNext());
         }
+        cu.close();
     }
 
     public void insertpaient(View v){
+        edt_search = findViewById(R.id.edt_search);
+        String na=edt_search.getText().toString().trim();
         Intent intent = new Intent();
         intent.setClass(this,Newdata.class);
         intent.putExtra("nurseID",nurseID);
         intent.putExtra("pad",pad);
+        if(na!=null)
+        {
+            intent.putExtra("na",edt_search.getText().toString().trim());
+        }
+        db.close();
         startActivity(intent);
         finish();
     }
@@ -349,8 +473,9 @@ public class Searchlogin extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent i = new Intent(Searchlogin.this,MainActivity.class);
-                        finish();
                         startActivity(i);
+                        db.close();
+                        finish();
                     }
                 }).setNegativeButton("取消",null).create();
         dialog.show();

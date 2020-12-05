@@ -7,9 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Base64;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -18,12 +22,19 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+
 public class Nurse_modify extends AppCompatActivity {
 
     RadioButton malee,femalee;
     boolean canSee;
     SQLiteDatabase db;
     String idd;
+    String pass;
+    String decodeWord;
     EditText edt_id,edt_name,edt_pas1,edt_pas2;
     TextView textView7;
     RadioGroup work;
@@ -69,6 +80,7 @@ public class Nurse_modify extends AppCompatActivity {
                 w_stause = 2;
             }
         }
+        cu.close();
         read(idd);
         //work.setOnCheckedChangeListener(radGrpRegionOnCheckedChange);
     }
@@ -101,6 +113,7 @@ public class Nurse_modify extends AppCompatActivity {
 
     public void back(View v){
         Intent i=new Intent(this,Menu.class);
+        db.close();
         startActivity(i);
         finish();
     }
@@ -118,30 +131,50 @@ public class Nurse_modify extends AppCompatActivity {
         }
     }
 
+    public void sendImage(String bmMsg){
+        byte [] input = Base64.decode(bmMsg, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(input, 0, input.length);
+    }
     public void onclick(View v){
-        Boolean iId;
+        Boolean iId,len;
         String pas1,eId;
-        pas1=edt_pas1.getText().toString();
+        pas1=edt_pas1.getText().toString().trim();
         flag=pas1.compareTo(edt_pas2.getText().toString());
         eId=edt_id.getText().toString();
         eId=eId.toUpperCase();
         iId=Boolean.TRUE;
-//        iId=vreifyId(eId);
+        len=vreifyId(eId);
         if (flag!=0) {
-            textView7.setText("兩個密碼輸入同");
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("兩次密碼輸入必須相同");
         }
         else if (!iId) {
+            textView7.setVisibility(View.VISIBLE);
             textView7.setText("請輸入正確的身分證格式(A123456789)");
         }
         else if(w_stause==0){
+            textView7.setVisibility(View.VISIBLE);
             textView7.setText("工作狀態還沒選");
+        }
+        else if(!len)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("身分證長度為10");
         }
         else if(flag==0&iId){
             //  pas1=pas1.toLowerCase();//讓密碼統一都是小寫
+            if(pas1.equals(""))
+            {
+                pas1=pass;
+            }
+            else
+            {
+                String pa=pas1.toUpperCase();
+                pas1=sha256(pa);
+            }
             modify_nurse(edt_name.getText().toString(),eId,pas1,w_stause);
             String sql = "SELECT * FROM Nurse WHERE nurse_id = '"+ eId +"'";
             Cursor cu = db.rawQuery( sql,null );
-
             if(cu.getCount()>0) {
                 cu.moveToFirst();
 
@@ -156,8 +189,10 @@ public class Nurse_modify extends AppCompatActivity {
                 String text = cu.getString(1) + "\t\t" + cu.getString((0)) + "\t\t\t" + staue1;
 
             }
+            cu.close();
             db.close();
             Intent i=new Intent(this,Menu.class);
+            db.close();
             startActivity(i);
             finish();
         }
@@ -165,23 +200,24 @@ public class Nurse_modify extends AppCompatActivity {
     public void read(String id_tmp){
         String sql = "SELECT * FROM Nurse WHERE nurse_id = '"+ id_tmp +"'";
         Cursor cu = db.rawQuery( sql,null );
-
         if (!cu.moveToFirst()){
             Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
         }
         else{
             edt_id.setFocusable(false);
-            edt_id.setFocusableInTouchMode(false);
+           // edt_id.setFocusableInTouchMode(false);
+           // edt_name.setFocusable(false);
+            //edt_name.setFocusableInTouchMode(false);
             String anamee = cu.getString(1);
-            String pa=cu.getString(2);
+           pass=cu.getString(2);
             edt_name.setText(anamee);
             edt_id.setText(idd);
-            edt_pas1.setText(pa);
+            edt_pas1.setText("");
 
             //以下兩行是不要讓密碼顯示出來
             //  edt_pas1.setTransformationMethod(PasswordTransformationMethod.getInstance());
             // edt_pas2.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            edt_pas2.setText(pa);
+            edt_pas2.setText("");
             int w = cu.getInt(3);//性別的預設值
             if (w==1){
                 //w_stause=1;
@@ -192,6 +228,7 @@ public class Nurse_modify extends AppCompatActivity {
                 femalee.setChecked(true);
             }
         }
+        cu.close();
     }
 
     /*private void addData(String name,String id,String pas,int staue) {
@@ -202,12 +239,47 @@ public class Nurse_modify extends AppCompatActivity {
         cv.put("nurse_authority",staue);//1:表示有正常 0:保釋停權
         db.insert(Nurse,null,cv);
     }*/
+
+    public static String sha256(String base) //加密
+    {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            String pass = Base64.encodeToString(hash, Base64.DEFAULT);
+            return pass;
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
+    public static String setDecrypt(String encodeWord) {
+        // decodeWord;
+        try {
+            String  decodeWord = new String(Base64.decode(encodeWord, Base64.DEFAULT), "utf-8");
+            Log.i("Tag", "decode wrods = " + decodeWord);
+            return decodeWord;
+        }catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public String datetime(){
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //==GMT標準時間往後加八小時
+        nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //==取得目前時間
+        String date_time = nowdate.format(new java.util.Date());
+
+        return date_time;
+    }
+
     private void modify_nurse(String name,String id,String pas,int staue){
+        String date_time=datetime();
         ContentValues cv = new ContentValues(7);
         cv.put("nurse_id", id);
         cv.put("nurse_name", name);
         cv.put("nurse_password", pas);
         cv.put("nurse_authority", staue);
+        cv.put("change_data",date_time);
         //如果是修改
         String whereClause = "nurse_id = ?";
         String whereArgs[] = {id};
@@ -222,6 +294,7 @@ public class Nurse_modify extends AppCompatActivity {
         if (id.length()!=10){
             return false;
         }
+        /*
         for (int i=65;i<=90;i++)
         {
             char ch=(char)i;
@@ -261,6 +334,7 @@ public class Nurse_modify extends AppCompatActivity {
             System.out.println("這不是正確的身分證字號!!");
             return false;
         }
-        return false;
+        */
+        return true;
     }
 }

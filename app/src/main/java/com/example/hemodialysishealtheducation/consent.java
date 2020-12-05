@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 public class consent extends AppCompatActivity {
-    String nurseID,id;
+    String nurseID,id,pname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,12 +17,14 @@ public class consent extends AppCompatActivity {
         Intent i=this.getIntent();
         nurseID =i.getStringExtra("nurseID");
         id=i.getStringExtra("id");
+        pname=i.getStringExtra("patientname");
     }
     public void onclick(View v){
 
         Intent i=new Intent(consent.this,signature.class);
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
+        i.putExtra("patientname",pname);
         startActivity(i);
         finish();
     }

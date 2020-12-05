@@ -10,11 +10,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 public class Nurse_Newdata extends AppCompatActivity {
 
@@ -59,35 +64,46 @@ public class Nurse_Newdata extends AppCompatActivity {
 
     public void back(View v){
         Intent i=new Intent(this,Menu.class);
+        db.close();
         startActivity(i);
         finish();
     }
     public void onclick(View v){
-        Boolean iId;
+        Boolean len;
         String pas1,eId;
         String name=edt_name.getText().toString();
         pas1=edt_pas1.getText().toString();
         flag=pas1.compareTo(edt_pas2.getText().toString());
 
-        eId=edt_id.getText().toString();
+        eId=edt_id.getText().toString().trim();
         eId=eId.toUpperCase();
+        len=vreifyId(eId);
         int flag_2=0;
         flag_2=searchData(eId, flag_2);
         if (flag!=0) {
-            textView7.setText("兩個密碼輸入同");
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("兩次密碼輸入必須相同");
         }
-        if (flag_2==2 ){
+        else if (flag_2==2 ){
+            textView7.setVisibility(View.VISIBLE);
             textView7.setText("已有此資料");
+        }
+        else if(!len)
+        {
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("身分證長度為10");
         }
         else if (pas1==null){
             //判別是不是空
-            textView7.setText("密碼必須數入");
+            textView7.setVisibility(View.VISIBLE);
+            textView7.setText("密碼必須輸入");
         }
         else if(flag==0&&flag_2!=2 ){
             //pas1=pas1.toLowerCase();//讓密碼統一都是小寫
             addData(name,eId,pas1,1);
             db.close();
             Intent i=new Intent(this,Menu.class);
+            db.close();
             startActivity(i);
             finish();
         }
@@ -131,14 +147,42 @@ public class Nurse_Newdata extends AppCompatActivity {
         else {
             flag =1;
         }
+        c.close();
         return flag;
     }
+
+    public static String sha256(String base) //加密
+    {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            String pass = Base64.encodeToString(hash, Base64.DEFAULT);
+            return pass;
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public String datetime(){
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //==GMT標準時間往後加八小時
+        nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //==取得目前時間
+        String date_time = nowdate.format(new java.util.Date());
+
+        return date_time;
+    }
+
     private void addData(String name,String id,String pas,int staue) {
+        String date_time= datetime();
+        String pa=pas.toUpperCase();
+        pas=sha256(pa);
         ContentValues cv=new ContentValues(5);
         cv.put("nurse_name",name);
         cv.put("nurse_id",id);
         cv.put("nurse_password",pas);
         cv.put("nurse_authority",staue);//1:表示有正常 0:保釋停權
+        cv.put("change_data",date_time);
         db.insert(Nurse,null,cv);
     }
 
@@ -147,6 +191,7 @@ public class Nurse_Newdata extends AppCompatActivity {
         if (id.length()!=10){
             return false;
         }
+        /*
         for (int i=65;i<=90;i++)
         {
             char ch=(char)i;
@@ -178,14 +223,17 @@ public class Nurse_Newdata extends AppCompatActivity {
         int bb=((id.charAt(9)-48)+total)%10;
         if (bb==0)
         {
+            textView7.setVisibility(View.VISIBLE);
             System.out.println("這是正確的身分證號碼!!");
             aa=1;
             return true;
         }
         if (aa==0) {              //aa不等於0則輸入身分證字號不符合
+            textView7.setVisibility(View.VISIBLE);
             System.out.println("這不是正確的身分證字號!!");
             return false;
         }
-        return false;
+        */
+        return true;
     }
 }

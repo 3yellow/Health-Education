@@ -15,6 +15,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,9 +32,11 @@ public class mainview extends View{
     //路徑
     private final Path mPath = new Path();
     //承載畫布
-    private static Bitmap canvasBitmap;
+    public static Bitmap canvasBitmap;
     //坐標
     private float endX , endY;
+
+    //private ImageView mImageView;
 
     public mainview(Context context){
         super(context);
@@ -41,41 +45,52 @@ public class mainview extends View{
 
     public mainview(Context context, AttributeSet attrs){
         super(context, attrs);
+        Log.e("mainview1","44");
         initView();
+        Log.e("mainview1","46");
     }
 
     public mainview(Context context, AttributeSet attrs , int defStyleAttr){
         super(context, attrs, defStyleAttr);
+        Log.e("mainview1","51");
         initView();
+        Log.e("mainview1","53");
     }
 
     private void initView()
     {
+        Log.e("mainview1","58");
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeWidth(10f);
         mPaint.setColor(Color.BLACK);
+        Log.e("mainview1","64");
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh){
         super.onSizeChanged(w,h,oldw,oldh);
-        canvasBitmap = Bitmap.createBitmap(getWidth(),getHeight(), Bitmap.Config.ARGB_8888);
-        mCanvas = new Canvas(canvasBitmap);
+        Log.e("mainview1","70");
+        canvasBitmap = Bitmap.createBitmap(getWidth(),getHeight(), Bitmap.Config.ARGB_8888);//bmp=canvasBitmap
+        mCanvas = new Canvas(canvasBitmap);//canvas=mcanvas
         mCanvas.drawColor(Color.WHITE);
         //isDrawing = false;
+        Log.e("mainview1","75");
     }
 
     @Override
     protected void onDraw(Canvas canvas){
+        Log.e("mainview1","80");
         super.onDraw(canvas);
         canvas.drawBitmap(canvasBitmap,0,0,mPaint);
         canvas.drawPath(mPath,mPaint);
+        Log.e("mainview1","84");
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
+        Log.e("mainview1","89");
         float eventX = event.getX();
         float eventY = event.getY();
         switch(event.getAction()){
@@ -97,11 +112,14 @@ public class mainview extends View{
                 mPath.reset();
                 break;
         }
+        Log.e("mainview1","115");
         invalidate();
+        Log.e("mainview1","117");
         return true;
     }
 
     private void touchMove(MotionEvent event){
+        Log.e("mainview1","122");
         final float x = event.getX();
         final float y = event.getY();
         final float previousX = endX;
@@ -117,9 +135,10 @@ public class mainview extends View{
             endX = x;
             endY = y;
         }
+        Log.e("mainview1","138");
     }
 
-    /*public void save() throws IOException {
+    /*public void save(View view) throws IOException {
 
         Bitmap bitmap = canvasBitmap;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -136,12 +155,14 @@ public class mainview extends View{
             outputstream.write(buffer);
             outputstream.close();
         }
-    }*/
+    }
 
-    /*public void save(){
+
+    public void save(){
         OutputStream outputStream;
         Bitmap bitmap = canvasBitmap;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
 
         File filepath = Environment.getExternalStorageDirectory();
         File dir = new File(filepath.getAbsolutePath()+"/Demo/");
@@ -153,14 +174,70 @@ public class mainview extends View{
             e.printStackTrace();
         }
         //bitmap.compress(Bitmap.CompressFormat.JPEG,100,outputStream);
-        outputStream.flush();
-        outputStream.close();
+       // outputStream.flush();
+       // outputStream.close();
     }*/
 
     //\内部共享存储空间\Screenshots
-    public void onclear()
+    public void onclear() //清除
     {
+        Log.e("mainview1","184");
         mCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
         invalidate();
+        Log.e("mainview1","187");
     }
+
+
+    public void save() {
+        Log.e("mainview1", "191");
+        mCanvas.save();
+        Log.e("mainview1", "193");
+        mCanvas.restore();
+        Log.e("mainview1", "195");
+
+        /*try {
+            File file = new File("/sdcard/1.png");
+            Log.e("mainview1","200");
+            FileOutputStream out = new FileOutputStream(file);
+            Log.e("mainview1","202");
+            canvasBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+      /*   File file=new File("/sdcard/2.png");
+
+       if(!file.exists()) {
+            file.mkdirs();
+            FileOutputStream fos;
+            try {
+                fos = new FileOutputStream(file);
+               // canvasBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                fos.flush();
+                fos.close();
+                System.out.println("saveBmp is here");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
+    }
+    // File file = new File(Environment.getExternalStorageDirectory().getPath() + "/share_pic.png");// 保存到sdcard根目录下，文件名为share_pic.png
+       /* Log.i("CXC", Environment.getExternalStorageDirectory().getPath());
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+           // canvasBitmap.compress(Bitmap.CompressFormat.PNG, 50, fos);
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            fos.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        Log.e("mainview1","214");*/
 }
