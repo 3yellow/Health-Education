@@ -46,7 +46,7 @@ public class HealthInformation extends AppCompatActivity {
             vido=cu.getString(3);
         }
         PDFView pdf=findViewById(R.id.pdfView);
-        pdf.fromAsset(eduaction).load();//壹．腎臟功能簡介.doc.pdf
+        pdf.fromAsset(eduaction).load();
         if(!vido.equals("0"))
         {
             vido_btn.setVisibility(View.VISIBLE);

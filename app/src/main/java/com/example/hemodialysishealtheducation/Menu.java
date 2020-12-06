@@ -151,6 +151,15 @@ public class Menu extends AppCompatActivity {
                     namee = cu.getString(1);
                     idd = cu.getString(0);
                     agee = cu.getString(2);
+                    char []pas_id=new char[idd.length()];
+                    for (int i=0;i<idd.length();i++)
+                    {
+                        if(i>3 && i<8)
+                          pas_id[i]='*';
+                        else
+                           pas_id[i]=idd.charAt(i);
+                   }
+                   idd=String.valueOf(pas_id);
                     final TextView na = new TextView(this);//final Button
                     final TextView id = new TextView(this);
                     final TextView statu = new TextView(this);
@@ -237,7 +246,13 @@ public class Menu extends AppCompatActivity {
 
 
     public void nwedata(View v){
+        edt_search = findViewById(R.id.edt_search);
+        String na=edt_search.getText().toString().trim();
         Intent i=new Intent(Menu.this,Nurse_Newdata.class);
+        if(na!=null)
+        {
+            intent.putExtra("na",edt_search.getText().toString().trim());
+        }
         db.close();
         startActivity(i);
         finish();
@@ -278,6 +293,15 @@ public class Menu extends AppCompatActivity {
                         namee=cu.getString(1);
                         idd=cu.getString(0);
                         agee=cu.getString(2);
+                        char []pas_id=new char[idd.length()];
+                        for (int i=0;i<idd.length();i++)
+                        {
+                            if(i>3 && i<8)
+                                pas_id[i]='*';
+                            else
+                                pas_id[i]=idd.charAt(i);
+                        }
+                        idd=String.valueOf(pas_id);
                         final TextView na = new TextView(this);//final Button
                         final TextView id = new TextView(this);
                         final TextView statu = new TextView(this);
@@ -378,6 +402,15 @@ public class Menu extends AppCompatActivity {
                         namee=cu.getString(1);
                         idd=cu.getString(0);
                         agee=cu.getString(2);
+                        char []pas_id=new char[idd.length()];
+                        for (int i=0;i<idd.length();i++)
+                        {
+                            if(i>3 && i<8)
+                                pas_id[i]='*';
+                            else
+                                pas_id[i]=idd.charAt(i);
+                        }
+                        idd=String.valueOf(pas_id);
                         final TextView na = new TextView(this);//final Button
                         final TextView id = new TextView(this);
                         final TextView statu = new TextView(this);
