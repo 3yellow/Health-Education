@@ -256,9 +256,17 @@ public class Searchlogin extends AppCompatActivity {
                     String text2=cu.getString(0);
                     String text3=cu.getString(3);
                     id_array_search.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
-                    String namee = cu.getString(0);
-                    String idd = cu.getString(1);
-                    String agee = cu.getString(2);
+
+                    char []pas_id=new char[text2.length()];
+                    for (int i=0;i<text2.length();i++)
+                    {
+                        if(i>3 && i<8)
+                            pas_id[i]='*';
+                        else
+                            pas_id[i]=text2.charAt(i);
+                    }
+                    text2=String.valueOf(pas_id);
+
                     final Button button = new Button(this);//final Button
                     button.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                     final TextView id = new TextView(this);
@@ -371,9 +379,17 @@ public class Searchlogin extends AppCompatActivity {
                 String text2=cu.getString(0);
                 String text3=cu.getString(3);
                 id_array.add(cu.getString(0));//這是要判斷用來存陣列的，要讓修改去抓的，存id;
-                namee=cu.getString(0);
-                idd=cu.getString(1);
-                agee=cu.getString(2);
+
+                char []pas_id=new char[text2.length()];
+                for (int i=0;i<text2.length();i++)
+                {
+                    if(i>3 && i<8)
+                        pas_id[i]='*';
+                    else
+                        pas_id[i]=text2.charAt(i);
+                }
+                text2=String.valueOf(pas_id);
+
                 final Button button = new Button(this);//final Button
                 button.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                 final TextView id = new TextView(this);
@@ -381,12 +397,6 @@ public class Searchlogin extends AppCompatActivity {
                 final Button btn_modify=new Button(this);//final Button
                 btn_modify.getBackground().setColorFilter(0x000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                 r=new TableRow(this);//final TableRow
-                //  final ScrollView sc=new ScrollView(this);
-                // sc.setLayoutParams(new LinearLayout.LayoutParams(560,540));
-               /* r.setLayoutParams(new TableRow.LayoutParams(1520,100));
-                button.setLayoutParams(new TableRow.LayoutParams(1124,100));
-
-                btn_modify.setLayoutParams(new TableRow.LayoutParams(60,100));*/
                 r.setLayoutParams(new TableRow.LayoutParams());
                 button.setLayoutParams(new TableRow.LayoutParams());//842
                 id.setLayoutParams(new TableRow.LayoutParams());

@@ -248,6 +248,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             i.putExtra("nurseID",nurseID);
             i.putExtra("id",eId);
             i.putExtra("patientname",ename);
+            i.putExtra("health_education","t21");
             DBS.close();
             startActivity(i);
             finish();
