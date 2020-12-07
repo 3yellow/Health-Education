@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
     private void createNurseTable() {
         String ad="admin".toUpperCase();
         String pas=sha256(ad);
+        String date_time=datetime();
         String sql = "CREATE TABLE IF NOT EXISTS Nurse (nurse_id char(10) NOT NULL, nurse_name TEXT NOT NULL, nurse_password TEXT NOT NULL, nurse_authority INT NOT NULL,change_data DATETIME,  PRIMARY KEY(nurse_id))";
         db.execSQL(sql);
         ContentValues contentValues = new ContentValues(1);
@@ -95,10 +96,13 @@ public class MainActivity extends AppCompatActivity {
             contentValues.put("nurse_name", "Admin");
             contentValues.put("nurse_password", pas);
             contentValues.put("nurse_authority", 1);
+            contentValues.put("change_data", date_time);
             db.insert("Nurse", null, contentValues);
         }
         cursor.close();
     }
+
+
 
     private void createPatientTable() {
         String sql = "CREATE TABLE IF NOT EXISTS Patient (patient_id char(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge char(10) NOT NULL,change_data DATETIME,  PRIMARY KEY(patient_id), FOREIGN KEY(patient_incharge) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
