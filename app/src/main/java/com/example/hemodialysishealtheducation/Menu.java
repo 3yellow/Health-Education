@@ -243,8 +243,6 @@ public class Menu extends AppCompatActivity {
         }
         cu.close();
     }
-
-
     public void nwedata(View v){
         edt_search = findViewById(R.id.edt_search);
         String na=edt_search.getText().toString().trim();

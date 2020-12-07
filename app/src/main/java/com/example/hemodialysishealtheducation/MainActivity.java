@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
     private void createNurseTable() {
         String ad="admin".toUpperCase();
         String pas=sha256(ad);
+        String date_time=datetime();
         String sql = "CREATE TABLE IF NOT EXISTS Nurse (nurse_id char(10) NOT NULL, nurse_name TEXT NOT NULL, nurse_password TEXT NOT NULL, nurse_authority INT NOT NULL,change_data DATETIME,  PRIMARY KEY(nurse_id))";
         db.execSQL(sql);
         ContentValues contentValues = new ContentValues(1);
@@ -95,10 +96,13 @@ public class MainActivity extends AppCompatActivity {
             contentValues.put("nurse_name", "Admin");
             contentValues.put("nurse_password", pas);
             contentValues.put("nurse_authority", 1);
+            contentValues.put("change_data", date_time);
             db.insert("Nurse", null, contentValues);
         }
         cursor.close();
     }
+
+
 
     private void createPatientTable() {
         String sql = "CREATE TABLE IF NOT EXISTS Patient (patient_id char(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge char(10) NOT NULL,change_data DATETIME,  PRIMARY KEY(patient_id), FOREIGN KEY(patient_incharge) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
@@ -359,6 +363,9 @@ public class MainActivity extends AppCompatActivity {
             insertQuestion( 168, "夏天到了，洗腎病人可以喝很多冰涼果汁。", 0, "不行，除了水果中的鉀離子含量會過多以外，水份也可能增加過多。", "t14", 1);
             insertQuestion( 169, "楊桃及楊桃汁雖不是高鉀水果，但部份會引發腎毒及神經毒性，所以絕對要吃。", 1, "", "t14", 1);
 
+
+            insertQuestion( 170, "測試新增題目會不會壞", 1, "","t1",1);
+            insertQuestion( 171, "測試新增題目會不會壞", 1, "","t14",1);
         }
         cursor.close();
     }
@@ -377,9 +384,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void insertTopic(String topic_id,String topic_name,int vidio )
     {
+        String time= datetime();
         ContentValues cv =new ContentValues(1);//10
         cv.put("topic_id",topic_id);
         cv.put("topic_name",topic_name);
+        cv.put("change_data",time);
         cv.put("vidio",vidio);
         db.insert("Topic", null, cv);
     }
