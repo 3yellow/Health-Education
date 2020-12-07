@@ -77,10 +77,12 @@ public class signature extends AppCompatActivity {
                 Log.e("sd",sdpath);
                 Intent intent = getIntent();
                 // 通過key得到值 值為字串型別
-                String pname = intent.getStringExtra("patientname");
-                String filename = new SimpleDateFormat("yyyyMMddhhmmss", Locale.getDefault()).format(new Date(System.currentTimeMillis()));// 产生时间戳，称为文件名
+                String pid = intent.getStringExtra("id");
+                //String pname = intent.getStringExtra("patientname");
+                //String filename = new SimpleDateFormat("yyyyMMddhhmmss", Locale.getDefault()).format(new Date(System.currentTimeMillis()));// 产生时间戳，称为文件名
                 Log.e("signature","76");
-                File file = new File(sdpath +  File.separator + "Pictures/" + pname + "-" + filename + ".jpg");
+                //File file = new File(sdpath +  File.separator + "Pictures/" + pname + "-" + filename + ".jpg");
+                File file = new File(sdpath +  File.separator + "Pictures/" + pid + ".jpg");
                 Log.e("signature","78");
                 file.createNewFile();
                 Log.e("signature","82");
