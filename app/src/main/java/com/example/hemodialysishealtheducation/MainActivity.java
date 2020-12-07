@@ -359,6 +359,9 @@ public class MainActivity extends AppCompatActivity {
             insertQuestion( 168, "夏天到了，洗腎病人可以喝很多冰涼果汁。", 0, "不行，除了水果中的鉀離子含量會過多以外，水份也可能增加過多。", "t14", 1);
             insertQuestion( 169, "楊桃及楊桃汁雖不是高鉀水果，但部份會引發腎毒及神經毒性，所以絕對要吃。", 1, "", "t14", 1);
 
+
+            insertQuestion( 170, "測試新增題目會不會壞", 1, "","t1",1);
+            insertQuestion( 171, "測試新增題目會不會壞", 1, "","t14",1);
         }
         cursor.close();
     }
@@ -377,9 +380,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void insertTopic(String topic_id,String topic_name,int vidio )
     {
+        String time= datetime();
         ContentValues cv =new ContentValues(1);//10
         cv.put("topic_id",topic_id);
         cv.put("topic_name",topic_name);
+        cv.put("change_data",time);
         cv.put("vidio",vidio);
         db.insert("Topic", null, cv);
     }

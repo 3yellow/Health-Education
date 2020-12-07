@@ -12,10 +12,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ import java.util.TimeZone;
 public class choose_education extends AppCompatActivity {
 
     SQLiteDatabase db;
+    int []Q_array=new int[99];
     static final String Nurse="nurse"; //database table name
     static final String Patient="patient"; //database table name
     TextView t1_date,t2_date,t3_date,t4_date,t5_date,t6_date,t7_date,t8_date,t9_date,t10_date,t11_date,t12_date,t13_date,t14_date;
@@ -891,7 +894,7 @@ public class choose_education extends AppCompatActivity {
     public int[] choi_Q(String str)//隨機產生5題題目
     {
         int [] array;
-        int min=0,max=0;
+        int min=0,max=0,index=0;
         int [ ]Q=new  int[20];
         int []Q_array=new int[5];
         int count=0,total=0;
@@ -899,13 +902,20 @@ public class choose_education extends AppCompatActivity {
         cu = db.rawQuery("SELECT * FROM Question WHERE topic_id='"+str+"' ",null);
         if (cu.getCount()>0)
         {
-            //total_Q=cu.getCount();
             cu.moveToFirst();
-            min=Integer.valueOf(cu.getString(0));
-            cu.moveToLast();
-            max=Integer.valueOf(cu.getString(0));
+            // Question (question_id INT, question_content TEXT, question_answer INT, question_explain TEXT, topic_id char(10), change_data DATETIME
+            do {
+                Q[index]=cu.getInt(0);
+                index++;
+            }while(cu.moveToNext());
+           // cu.moveToFirst();
+           // min=Integer.valueOf(cu.getString(0));
+            //cu.moveToLast();
+            //max=Integer.valueOf(cu.getString(0));
         }
         cu.close();
+        min=0;
+        max=index-1;
         array=new int [5];
         while (count<5){
             int num=(int)(Math.random()*(max-min+1))+min;
@@ -919,10 +929,11 @@ public class choose_education extends AppCompatActivity {
             if (flag)
             {
                 array[count]=num;
-                Q_array[count]=num;
+                Q_array[count]=Q[num];
                 count++;
             }
         }
+       // Q_array[0]=170;
         cu.close();
         return Q_array;
     }
@@ -1988,7 +1999,7 @@ public class choose_education extends AppCompatActivity {
         i.putExtra("count",index);
         i.putExtra("score",score);
         i.putExtra("exam_id",exam_id);
-        i.putExtra("health education","t14");
+        i.putExtra("health_education","t14");
         db.close();
         startActivity(i);
         finish();
