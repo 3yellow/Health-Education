@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             insertTopic("t18","拾捌.傷口加壓止血的方法.pdf",0);
             insertTopic("t19","拾玖.藥物的使用.pdf",0);
             insertTopic("t20","HELP.pdf",0);
+
         }
         cursor.close();
     }
