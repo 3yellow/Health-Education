@@ -336,6 +336,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         return date_time;
     }
     private void addData(String name,String id ,int gender,String date,String birth_date,String nurseID) {
+        //Patient (patient_id char(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge char(10) NOT NULL,change_data DATETIME,
         String date_time= datetime();
         int pad=0,change_data=0;
         Intent i=this.getIntent();
@@ -347,6 +348,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         cv.put("patient_gender",gender);
         cv.put("patient_register",date);
         cv.put("patient_birth",birth_date);
+        cv.put("patient_sign",0);
         cv.put("change_data",date_time);
         cv.put("patient_incharge",nurseID);//目前沒有護理師的資料，護理師的資料是從登入那抓取id，一直傳
 
