@@ -60,6 +60,9 @@ public class backtest extends AppCompatActivity {
         item2 = (RadioButton) findViewById(R.id.icho2);
         final Button check = (Button) findViewById(R.id.button19);
 
+       // item1.setTextColor(Color.parseColor("#00FFFFFF"));
+        //item2.setTextColor(Color.parseColor("#00FFFFFF"));
+
         //nurseID id exam_id index health_education
         intent = this.getIntent();
         nurseID = intent.getStringExtra("nurseID");
@@ -112,6 +115,7 @@ public class backtest extends AppCompatActivity {
 
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     tempButton = (RadioButton) findViewById(checkedId);
+                    choiceid = tempButton.getId();
                     cu = db.rawQuery(sql_1, null);
                     if (cu.moveToFirst())
                     {
@@ -126,7 +130,7 @@ public class backtest extends AppCompatActivity {
                         int_your_ans = 0;
                     }
                     if (int_your_ans == right_choi) {
-                        //choiceid = tempButton.getId();
+                      //  choiceid = tempButton.getId();
                         result = true;
 
                         // MyToast("正確答案："+tempButton.getText()+"，恭喜你，回答正確");
@@ -226,7 +230,7 @@ public class backtest extends AppCompatActivity {
             if (result == true) {
                 int_result=1;
                 score += 20;
-                tempButton.setTextColor(Color.GREEN);
+               // tempButton.setTextColor(Color.GREEN);
                 if(int_your_ans==1)
                     str="正確";
                 else
@@ -239,7 +243,7 @@ public class backtest extends AppCompatActivity {
                     str="錯誤";
                 else
                     str="正確";
-                tempButton.setTextColor(Color.RED);
+               // tempButton.setTextColor(Color.RED);
                // MyToast("回答錯誤！");
                 An.setTextColor(Color.RED);
             }

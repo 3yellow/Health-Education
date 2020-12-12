@@ -58,8 +58,8 @@
 
     <RadioGroup
         android:id="@+id/Mrg"
-        android:layout_width="564dp"
-        android:layout_height="252dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,24 +71,26 @@
 
         <RadioButton
             android:id="@+id/icho1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:background="@drawable/right"
             android:button="@drawable/radiostyle"
-            android:textColor="@color/radiobutton_textcolor"
+            android:text="正確"
+            android:textColor="#00000000"
             android:textSize="68sp" />
 
         <RadioButton
             android:id="@+id/icho2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/wrong"
             android:button="@drawable/radiostyle"
-            android:textColor="@color/radiobutton_textcolor"
+            android:text="錯誤"
+            android:textColor="#00000000"
             android:textSize="68sp" />
 
 
