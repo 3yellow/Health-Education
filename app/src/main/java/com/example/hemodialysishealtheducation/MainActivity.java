@@ -391,7 +391,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void insertQuestion(int question_id,String content,int question_answer,String explain, String topic_id,String change_data)
     {
-        String change_data=datetime();
+        //String change_data=datetime();
         ContentValues cv =new ContentValues(1);//10
         cv.put("question_id",question_id);
         cv.put("question_content",content);

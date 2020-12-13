@@ -358,10 +358,11 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
 
     private void modify_patient(String name,String id ,int gender,String date,String birth_date ){
         String date_time= datetime();
-        int pad=0,change_data=0;
+        int pad=0;
+        //,change_data=0;
         Intent i=this.getIntent();
-        pad=i.getIntExtra("pad",pad);
-        change_data=pad+2;
+        //pad=i.getIntExtra("pad",pad);
+        //change_data=pad+2;
         ContentValues cv = new ContentValues(7);
         cv.put("patient_id", id);
         cv.put("patient_name", name);
