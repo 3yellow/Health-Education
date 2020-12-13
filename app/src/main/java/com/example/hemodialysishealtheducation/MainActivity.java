@@ -789,7 +789,7 @@ public class MainActivity extends AppCompatActivity {
                                 String password=cu.getString(2);
                                 if (password.equals(pas) )//輸入正確帳號密碼
                                 {
-                                    Intent i = new Intent(MainActivity.this, Menu.class);
+                                    Intent i = new Intent(MainActivity.this, Backstage.class);
                                     db.close();;
                                     startActivity(i);
                                     finish();

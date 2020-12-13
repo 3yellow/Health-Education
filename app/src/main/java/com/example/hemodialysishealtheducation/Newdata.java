@@ -171,7 +171,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     }
 
     private String setDateFormat(int year, int month, int day) {
-        return String.valueOf(year)+"/"+String.valueOf(month+1)+"/"+String.valueOf(day);
+        return String.valueOf(year)+"-"+String.valueOf(month+1)+"-"+String.valueOf(day);
     }
 
     public void onClick(View v) {
@@ -378,7 +378,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     public void nowTime(int flag_data,String id_tmp,int flag)//取得當日日期並且顯示在按鈕上
     {
         if (flag_data==1){
-            SimpleDateFormat formatter=new SimpleDateFormat("yyyy/MM/dd");
+            SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
             if (flag==1){
                 String sql = "SELECT patient_register FROM Patient WHERE patient_id = '"+ id_tmp +"'";
                 Cursor cu = DBS.rawQuery( sql,null );
@@ -398,7 +398,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
 
         }
         else {
-            SimpleDateFormat formatter_b=new SimpleDateFormat("1970/MM/dd");
+            SimpleDateFormat formatter_b=new SimpleDateFormat("1970-MM-dd");
             if (flag==1){
                 String sql = "SELECT patient_birth FROM Patient WHERE patient_id = '"+ id_tmp +"'";
                 Cursor cu = DBS.rawQuery( sql,null );

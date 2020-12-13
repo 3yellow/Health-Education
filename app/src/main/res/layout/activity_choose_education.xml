@@ -93,7 +93,7 @@
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
                     android:gravity="center"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -135,9 +135,9 @@
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
                     android:gravity="center"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
-                    android:textSize="35sp"/>
+                    android:textSize="35sp" />
 
 
             </TableRow>
@@ -176,7 +176,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -216,7 +216,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -256,7 +256,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -296,7 +296,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -336,7 +336,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -376,7 +376,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -416,7 +416,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -456,7 +456,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -496,7 +496,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -536,7 +536,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -576,7 +576,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35sp" />
 
@@ -616,7 +616,7 @@
                     android:layout_width="99dp"
                     android:layout_height="62dp"
                     android:background="#c6e5d9"
-                    android:text="展開"
+                    android:text="成績"
                     android:textColor="#1f4e5f"
                     android:textSize="35dp" />
 

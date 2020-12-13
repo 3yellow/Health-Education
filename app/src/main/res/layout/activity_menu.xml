@@ -13,12 +13,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <ImageButton
+            android:id="@+id/imageButton2"
+            style="@style/Widget.AppCompat.ImageButton"
+            android:layout_width="74dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="130dp"
+            android:background="#00000000"
+            android:onClick="back"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.003"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/back" />
+
         <EditText
             android:id="@+id/edt_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_marginStart="130dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:textSize="24sp" />
@@ -27,8 +44,8 @@
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:background="#00ffffff"
             android:onClick="search"
@@ -47,7 +64,7 @@
 
         <Button
             android:id="@+id/button10"
-            android:layout_width="wrap_content"
+            android:layout_width="202dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
@@ -57,11 +74,12 @@
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
 
+
         <ImageButton
             android:id="@+id/imageButton3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="350dp"
+            android:layout_marginLeft="250dp"
             android:background="#00000000"
             android:onClick="onclick"
             android:scaleType="fitCenter"

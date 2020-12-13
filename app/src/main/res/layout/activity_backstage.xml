@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/newnurse"
+    tools:context=".Backstage">
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="120dp"
+        android:layout_height="139dp"
+        android:background="#00000000"
+        android:onClick="onclick"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/home" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="422dp"
+        android:layout_height="144dp"
+        android:background="#f7f1e3"
+        android:onClick="nurse"
+        android:text="護理人員管理"
+        android:textColor="#58b19f"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.222" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="422dp"
+        android:layout_height="144dp"
+        android:background="#f7f1e3"
+        android:text="讀取"
+        android:textColor="#58b19f"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.865" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="422dp"
+        android:layout_height="144dp"
+        android:background="#f7f1e3"
+        android:text="輸出"
+        android:textColor="#58b19f"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.528" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

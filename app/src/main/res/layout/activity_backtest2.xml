@@ -5,24 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/testbg"
-    tools:context=".backtest">
+    tools:context=".backtest2">
+
 
     <Button
-        android:id="@+id/button19"
-        android:layout_width="170dp"
-        android:layout_height="102dp"
-        android:layout_marginStart="1080dp"
-        android:layout_marginLeft="1080dp"
+        android:id="@+id/button17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/bluebutton"
-        android:onClick="CHECK"
-        android:text="檢查"
+        android:background="@drawable/yellowbutton"
+        android:onClick="tofronttest2"
+        android:text="下一題"
         android:textSize="56dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.964" />
+        app:layout_constraintVertical_bias="0.977" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -40,52 +41,44 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/back" />
 
-    <RadioGroup
-        android:id="@+id/Mrg"
-        android:layout_width="676dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="196dp"
-        android:layout_marginLeft="196dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+    <ScrollView
+        android:id="@+id/scrollView6"
+        android:layout_width="1251dp"
+        android:layout_height="296dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView4"
-        app:layout_constraintVertical_bias="0.761">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.722">
 
-        <RadioButton
-            android:id="@+id/icho1"
-            android:layout_width="309dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/right"
-            android:button="@drawable/radiostyle"
-            android:text="正確"
-            android:textColor="#00000000"
-            android:textSize="68sp" />
-
-        <RadioButton
-            android:id="@+id/icho2"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/wrong"
-            android:button="@drawable/radiostyle"
-            android:text="錯誤"
-            android:textColor="#00000000"
-            android:textSize="68sp" />
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/An"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textSize="68sp"
+                android:visibility="invisible" />
 
-    </RadioGroup>
+            <TextView
+                android:id="@+id/Analysis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="解析"
+                android:textSize="68sp"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </ScrollView>
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="931dp"
-        android:layout_height="293dp"
+        android:layout_width="914dp"
+        android:layout_height="193dp"
         android:layout_marginTop="140dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
@@ -102,15 +95,15 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="320dp"
+        android:layout_width="286dp"
         android:layout_height="138dp"
         android:layout_weight="1"
         android:text="後測"
         android:textColor="#79a6a9"
         android:textSize="108sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
