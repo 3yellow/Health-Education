@@ -346,6 +346,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         cv.put("patient_name",name);
         cv.put("patient_gender",gender);
         cv.put("patient_register",date);
+        cv.put("patient_sign",0);
         cv.put("patient_birth",birth_date);
         cv.put("change_data",date_time);
         cv.put("patient_incharge",nurseID);//目前沒有護理師的資料，護理師的資料是從登入那抓取id，一直傳
