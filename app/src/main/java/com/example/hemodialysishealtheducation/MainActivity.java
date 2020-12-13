@@ -102,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
         cursor.close();
     }
 
-
-
     private void createPatientTable() {
         String sql = "CREATE TABLE IF NOT EXISTS Patient (patient_id char(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge char(10) NOT NULL,change_data DATETIME,  PRIMARY KEY(patient_id), FOREIGN KEY(patient_incharge) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
         db.execSQL(sql);
@@ -381,9 +379,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void insertTopic(String topic_id,String topic_name,int vidio, String change_data )
     {
+        String time= datetime();
         ContentValues cv =new ContentValues(1);//10
         cv.put("topic_id",topic_id);
         cv.put("topic_name",topic_name);
+        cv.put("change_data",time);
         cv.put("vidio",vidio);
         cv.put("change_data",change_data);
         db.insert("Topic", null, cv);
@@ -391,6 +391,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void insertQuestion(int question_id,String content,int question_answer,String explain, String topic_id,String change_data)
     {
+        String change_data=datetime();
         ContentValues cv =new ContentValues(1);//10
         cv.put("question_id",question_id);
         cv.put("question_content",content);

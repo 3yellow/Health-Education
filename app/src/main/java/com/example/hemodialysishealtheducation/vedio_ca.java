@@ -37,6 +37,7 @@ public class vedio_ca extends YouTubeBaseActivity implements YouTubePlayer.OnIni
         nurseID=i.getStringExtra("nurseID");
         pid=i.getStringExtra("id");
         exam_id=i.getStringExtra("exam_id");
+        flag=i.getIntExtra("flag",0);
     }
 
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {

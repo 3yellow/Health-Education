@@ -2,7 +2,10 @@ package com.example.hemodialysishealtheducation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -22,12 +25,20 @@ import static com.example.hemodialysishealtheducation.mainview.canvasBitmap;
 
 public class signature extends AppCompatActivity {
 
+    SQLiteDatabase db;
     Button btnsave, btnclear,btnsavet;
     mainview mainV;
+    String nurseID=null,id=null;
+    int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent i=this.getIntent();
+        nurseID =i.getStringExtra("nurseID");
+        id=i.getStringExtra("id");
+        flag=i.getIntExtra("flag",0);
+        db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
         mainV = new mainview(this);
         Log.e("signature","20");
         setContentView(R.layout.activity_signature);
@@ -51,11 +62,17 @@ public class signature extends AppCompatActivity {
     }
     public void W(View v){
         save(v);
+        modify_Patient(id);
         Log.e("signature","33");
-        Intent i=this.getIntent();
-        String nurseID =i.getStringExtra("nurseID");
-        String id=i.getStringExtra("id");
-        i=new Intent(signature.this,choose_education.class);
+        Intent i;
+        if(flag==99)
+        {
+            i=new Intent(signature.this,Menu.class);
+        }
+        else
+        {
+            i=new Intent(signature.this,choose_education.class);
+        }
         i.putExtra("nurseID",nurseID);
         i.putExtra("id",id);
         i.putExtra("flag",1);//要前測
@@ -64,7 +81,23 @@ public class signature extends AppCompatActivity {
         Log.e("signature","43");
     }
 
+    public void modify_Patient(String patient_id)
+    {
+        //Patient (patient_id char(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge char(10) NOT NULL,change_data DATETIME,
 
+        ContentValues cv=new ContentValues(1);
+        cv.put("patient_id",id);
+        //cv.put("patient_name",name);
+        //cv.put("patient_gender",gender);
+        //cv.put("patient_register",date);
+        //cv.put("patient_birth",birth_date);
+        cv.put("patient_sign",1);
+        //cv.put("change_data",date_time);
+        String whereClause = "patient_id = ?";
+        String whereArgs[] = {patient_id};
+        db.update ("Patient", cv, whereClause, whereArgs);
+        //db.replace ("Answer", null,cv);
+    }
     public void save(View view){
         try {
             Log.e("signature","66");

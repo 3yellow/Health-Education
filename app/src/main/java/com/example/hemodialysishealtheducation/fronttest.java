@@ -253,7 +253,7 @@ public class fronttest extends AppCompatActivity {
         cv.put("change_data",change_data);
         String whereClause = "answer_id = ?";
         String whereArgs[] = {answer_id};
-       // db.replace ("Answer", cv, whereClause, whereArgs);
+       //db.replace ("Answer", cv, whereClause, whereArgs);
         db.replace ("Answer", null,cv);
     }
 

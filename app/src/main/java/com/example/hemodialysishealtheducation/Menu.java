@@ -243,8 +243,6 @@ public class Menu extends AppCompatActivity {
         }
         cu.close();
     }
-
-
     public void nwedata(View v){
         edt_search = findViewById(R.id.edt_search);
         String na=edt_search.getText().toString().trim();
@@ -500,6 +498,59 @@ public class Menu extends AppCompatActivity {
             read();
         }
 
+    }
+
+    public void sign(View v)
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(Menu.this);
+        View v1 = getLayoutInflater().inflate(R.layout.dialog_signin,null);
+        alertDialog.setView(v1);
+        Button btn=v1.findViewById(R.id.btn_right);
+        Button btn_cancle=v1.findViewById(R.id.btn_left);
+        final EditText username=v1.findViewById(R.id.username);
+        final EditText password=v1.findViewById(R.id.password);
+        username.setHint("請輸入姓名：");
+        password.setHint("請輸入身分證：");
+        //username.setText(str);
+        final AlertDialog dialog = alertDialog.create();
+        dialog.show();
+        btn_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s=username.getText().toString().trim();
+                String prepas=password.getText().toString().trim();
+                prepas=prepas.toUpperCase();
+    //Patient (patient_id char(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge
+                Cursor cu = db.rawQuery("SELECT * FROM Patient WHERE patient_name = '"+ s +"'",null);
+                if (!cu.moveToFirst()){
+                    Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    String password1=cu.getString(0);
+                    if (password1.equals(prepas))//輸入身分證和姓名一樣的人
+                    {
+                        flag=1;
+                        Intent intent=new Intent(Menu.this,signature.class);
+                        intent.putExtra("id",prepas);
+                        intent.putExtra("flag",99);
+                        dialog.cancel();
+                        db.close();
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "輸入錯誤!!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                cu.close();
+            }
+        });
     }
 
     //不能返回
