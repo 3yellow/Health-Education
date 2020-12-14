@@ -564,6 +564,13 @@ public class Menu extends AppCompatActivity {
         return true;
     }
 
+    public void back(View v){
+        Intent i=new Intent(Menu.this,Backstage.class);
+        db.close();
+        startActivity(i);
+        finish();
+    }
+
     public void onclick(View v){
         AlertDialog dialog=new AlertDialog.Builder(Menu.this)
                 .setTitle("確定要登出?")

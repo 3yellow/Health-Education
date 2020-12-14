@@ -146,7 +146,7 @@ public class backtest extends AppCompatActivity {
     }
 
     public  void  back(View v){
-        new android.app.AlertDialog.Builder(backtest.this)
+        android.app.AlertDialog dialog=new android.app.AlertDialog.Builder(backtest.this)
                 .setTitle("確定要離開測驗嗎?")
                 //  .setIcon(R.drawable.ic_launcher)
                 .setPositiveButton("確定",
@@ -172,6 +172,26 @@ public class backtest extends AppCompatActivity {
 
                             }
                         }).show();
+        dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+        dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+        try {
+            Field mAlert = android.app.AlertDialog.class.getDeclaredField("dialog");
+            mAlert.setAccessible(true);
+            Object mAlertController = mAlert.get(dialog);
+            //通过反射修改title字体大小和颜色
+            Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+            mTitle.setAccessible(true);
+            TextView mTitleView = (TextView) mTitle.get(mAlertController);
+            mTitleView.setTextSize(56);
+            mTitleView.setTextColor(Color.BLACK);
+            //通过反射修改message字体大小和颜色
+        } catch (IllegalAccessException e1) {
+            e1.printStackTrace();
+        } catch (NoSuchFieldException e2) {
+            e2.printStackTrace();
+        }
     }
 
     private void showDialog(){
@@ -236,7 +256,7 @@ public class backtest extends AppCompatActivity {
                 else
                     str="錯誤";
                 //MyToast("恭喜你，回答正確！");
-                An.setTextColor(Color.GREEN);
+               // An.setTextColor(Color.GREEN);
             } else {
                 int_result=0;
                 if (int_your_ans==1)
@@ -245,7 +265,7 @@ public class backtest extends AppCompatActivity {
                     str="正確";
                // tempButton.setTextColor(Color.RED);
                // MyToast("回答錯誤！");
-                An.setTextColor(Color.RED);
+               // An.setTextColor(Color.RED);
             }
             cu = db.rawQuery("SELECT * FROM Question WHERE question_id = '" + q_id + "'", null);
             if (cu.moveToFirst()) {
@@ -258,11 +278,25 @@ public class backtest extends AppCompatActivity {
             {
                 modify_Exam(score, id, exam_id);
             }
-            An.setText("正確答案：" + str);
-            Als.setText(explain);
-            Als.setVisibility(View.VISIBLE);
-            An.setVisibility(View.VISIBLE);
-            next.setVisibility(View.VISIBLE);
+            Intent i = new Intent(this, backtest2.class);
+            i.putExtra("count", count);
+            i.putExtra("score", score);
+            i.putExtra("health_education", health_education);
+            i.putExtra("nurseID", nurseID);
+            i.putExtra("id", id);
+            i.putExtra("exam_id", exam_id);
+            i.putExtra("right_choi",str);
+            i.putExtra("explain",explain);
+            i.putExtra("int_result",int_result);
+            //i.putExtra("Q_array", Q_array);
+            db.close();
+            startActivity(i);
+            finish();
+           // An.setText("正確答案：" + str);
+            //Als.setText(explain);
+            //Als.setVisibility(View.VISIBLE);
+            //An.setVisibility(View.VISIBLE);
+            //next.setVisibility(View.VISIBLE);
         }
         else
         {
@@ -283,7 +317,7 @@ public class backtest extends AppCompatActivity {
                 Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                 mTitle.setAccessible(true);
                 TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                mTitleView.setTextSize(32);
+                mTitleView.setTextSize(26);
                 mTitleView.setTextColor(Color.BLACK);
                 //通过反射修改message字体大小和颜色
             } catch (IllegalAccessException e1) {
@@ -295,16 +329,6 @@ public class backtest extends AppCompatActivity {
     }
 
     public void tofronttest2 (View v){
-
-        int true_or_false = -1;//判別題目有沒有做對 1:對 0:錯
-        if (result == true) {
-            true_or_false = 1;
-
-            // Toast.makeText(this, "right" + score, Toast.LENGTH_LONG).show();
-        } else {
-            // Toast.makeText(this, "error" + score, Toast.LENGTH_LONG).show();
-            true_or_false = 0;
-        }
         if (count >= 4) {
             // answer_id exam_id+count
             String answer_id=exam_id+count;

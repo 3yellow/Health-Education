@@ -301,11 +301,16 @@ public class choose_education extends AppCompatActivity {
             t1_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t1_grade.setText("上次測驗沒有做完!!");
-                t1_grade.setTextSize(16);
+                t1_grade.setText("未完成!!");
             }
             else
+            {
                 t1_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t1_grade.setTextColor(Color.RED);
+            }
+
         }
         cu.close();
     }
@@ -331,11 +336,15 @@ public class choose_education extends AppCompatActivity {
             t2_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t2_grade.setText("上次測驗沒有做完!!");
-                t2_grade.setTextSize(16);
+                t2_grade.setText("未完成!!");
             }
             else
+            {
                 t2_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t2_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -361,11 +370,15 @@ public class choose_education extends AppCompatActivity {
             t3_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t3_grade.setText("上次測驗沒有做完!!");
-                t3_grade.setTextSize(16);
+                t3_grade.setText("未完成!!");
             }
             else
+            {
                 t3_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t3_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -391,11 +404,15 @@ public class choose_education extends AppCompatActivity {
             t4_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t4_grade.setText("上次測驗沒有做完!!");
-                t4_grade.setTextSize(16);
+                t4_grade.setText("未完成!!");
             }
             else
+            {
                 t4_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t4_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -421,11 +438,15 @@ public class choose_education extends AppCompatActivity {
             t5_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t5_grade.setText("上次測驗沒有做完!!");
-                t5_grade.setTextSize(16);
+                t5_grade.setText("未完成!!");
             }
             else
+            {
                 t5_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t5_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -451,11 +472,15 @@ public class choose_education extends AppCompatActivity {
             t6_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t6_grade.setText("上次測驗沒有做完!!");
-                t6_grade.setTextSize(16);
+                t6_grade.setText("未完成!!");
             }
             else
+            {
                 t6_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t6_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -481,11 +506,15 @@ public class choose_education extends AppCompatActivity {
             t7_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t7_grade.setText("上次測驗沒有做完!!");
-                t7_grade.setTextSize(16);
+                t7_grade.setText("未完成!!");
             }
             else
+            {
                 t7_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t7_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -511,11 +540,15 @@ public class choose_education extends AppCompatActivity {
             t8_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t8_grade.setText("上次測驗沒有做完!!");
-                t8_grade.setTextSize(16);
+                t8_grade.setText("未完成!!");
             }
             else
+            {
                 t8_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t8_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -541,11 +574,15 @@ public class choose_education extends AppCompatActivity {
             t9_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t9_grade.setText("上次測驗沒有做完!!");
-                t9_grade.setTextSize(16);
+                t9_grade.setText("未完成!!");
             }
             else
+            {
                 t9_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t9_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -571,11 +608,15 @@ public class choose_education extends AppCompatActivity {
             t10_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t10_grade.setText("上次測驗沒有做完!!");
-                t10_grade.setTextSize(16);
+                t10_grade.setText("未完成!!");
             }
             else
+            {
                 t10_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t10_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -601,11 +642,15 @@ public class choose_education extends AppCompatActivity {
             t11_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t11_grade.setText("上次測驗沒有做完!!");
-                t11_grade.setTextSize(16);
+                t11_grade.setText("未完成!!");
             }
             else
+            {
                 t11_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t11_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -631,11 +676,15 @@ public class choose_education extends AppCompatActivity {
             t12_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t12_grade.setText("上次測驗沒有做完!!");
-                t12_grade.setTextSize(16);
+                t12_grade.setText("未完成!!");
             }
             else
+            {
                 t12_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t12_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -661,11 +710,15 @@ public class choose_education extends AppCompatActivity {
             t13_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t13_grade.setText("上次測驗沒有做完!!");
-                t13_grade.setTextSize(16);
+                t13_grade.setText("未完成!!");
             }
             else
+            {
                 t13_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t13_grade.setTextColor(Color.RED);
+            }
         }
         cu.close();
     }
@@ -695,11 +748,16 @@ public class choose_education extends AppCompatActivity {
             t14_date.setText("  "+date);
             if(grade.equals("-1"))
             {
-                t14_grade.setText("上次測驗沒有做完!!");
-                t14_grade.setTextSize(16);
+                t14_grade.setText("未完成!!");
             }
             else
+            {
                 t14_grade.setText(" "+grade);
+                int g=Integer.parseInt(grade);
+                if(g<60)
+                    t14_grade.setTextColor(Color.RED);
+            }
+
         }
         cu.close();
     }

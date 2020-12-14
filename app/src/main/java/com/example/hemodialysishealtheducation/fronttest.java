@@ -160,6 +160,7 @@ public class fronttest extends AppCompatActivity {
 
         }
     }
+
     public void tofronttest2 (View v){
         if (your_ans!=null) {
             int true_or_false = -1;//判別題目有沒有做對 1:對 0:錯
@@ -209,9 +210,9 @@ public class fronttest extends AppCompatActivity {
                     .setTitle("請選擇您的答案!!")
                     .setNegativeButton("確定",null).create();
             dialog.show();
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(56);
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(56);
             dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
             try {
                 Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -221,7 +222,7 @@ public class fronttest extends AppCompatActivity {
                 Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                 mTitle.setAccessible(true);
                 TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                mTitleView.setTextSize(32);
+                mTitleView.setTextSize(56);
                 mTitleView.setTextColor(Color.BLACK);
                 //通过反射修改message字体大小和颜色
             } catch (IllegalAccessException e1) {
