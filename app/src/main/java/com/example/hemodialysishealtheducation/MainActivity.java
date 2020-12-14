@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
             insertQuestion( 1, "腎臟是一對位於後腹腔的器官，右腎較左腎略低。", 1, "","t1", datetime());
             insertQuestion( 2, "腎臟是人體主要的排毒器官，負責清除血液中的代謝廢物。", 1, "",   "t1", datetime());
             insertQuestion( 3, "腎臟所分泌的腎素（Renin），為調節血壓維持恆定重要的荷爾蒙。", 1, "",    "t1", datetime());
-            insertQuestion( 4, "每個人每天約有3000毫升（ML）的尿液。", 0, "每天約有1,500～2,000毫升（ML）的尿液。", "t1", datetime());
+            insertQuestion( 4, "每個人每天約有3000毫升（ML）的尿液。", 0, "每天約有1500～2000毫升（ML）的尿液。", "t1", datetime());
             insertQuestion( 5, "體內水份過多排不出時，血壓也可能會升高。", 1, "", "t1", datetime());
             insertQuestion( 6, "當腎臟功能喪失，會導致體內毒素無法排除，造成尿毒症。", 1,"","t1", datetime());
             insertQuestion( 7, "腎絲球廓清率下降至每分鐘30～35毫升時，稱做末期腎衰竭(尿毒)。", 0,  "是屬於中度慢性腎臟病，如控制不好，離末期腎衰竭也不遠了。", "t1", datetime());
@@ -303,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
             insertQuestion( 122, "佈置良好的睡眠環境、減少不必要的干擾有效促進睡眠品質。 ", 1, "", "t10", datetime());
             insertQuestion( 123, "研究指出影響透析病患睡眠品質的可能原因包括：電解質、缺鐵、貧血、體液過多、藥物、服用酒精及刺激性的飲料或吸菸等。", 1, "", "t10", datetime());
             insertQuestion( 124, "保持規律而固定的就寢及起床時間不要故意長期睡過多、過少、或太晚睡、避免日夜顛倒的生活有效促進睡眠品質。", 1, "", "t10", datetime());
-            insertQuestion( 125, "平時減少咖啡因的攝取、戒菸、戒酒,尤其就寢前避免咖啡因、酒精或尼古丁有效促進睡眠品質。", 1, "", "t10", datetime());
+            insertQuestion( 125, "平時減少咖啡因的攝取、戒菸、戒酒，尤其就寢前避免咖啡因、酒精或尼古丁有效促進睡眠品質。", 1, "", "t10", datetime());
 
 
             //t11   拾壹.腎友如何預防便祕
@@ -335,18 +335,18 @@ public class MainActivity extends AppCompatActivity {
 
             //t13  拾叁.磷是啥
             insertQuestion( 146, "血磷為人體最高的礦物質。", 0, "第二高，僅次於鈣。", "t13", datetime());
-            insertQuestion( 147, "吃進含磷食物後,人體主要由腎臟及腸道排出。", 1, "", "t13", datetime());
+            insertQuestion( 147, "吃進含磷食物後，人體主要由腎臟及腸道排出。", 1, "", "t13", datetime());
             insertQuestion( 148, "正常血磷值為2.5~4.5mg/dl之間。", 1, "", "t13", datetime());
             insertQuestion( 149, "低血磷多為疾病引起，只要針對病因加以治療即可獲得改善。", 1, "", "t13", datetime());
             insertQuestion( 150, "腎衰竭病患因腎臟排磷能力降低導致血磷滯留堆積體內而造成高血磷。", 1, "", "t13", datetime());
-            insertQuestion( 151, "因血磷存在於大部分的食物中,避免高血磷,要先從飲食控制開始。", 1, "", "t13", datetime());
-            insertQuestion( 152, "如何達到高蛋白又避免高血磷--注意減少喝火鍋湯、肉汁、大骨湯,還有肉汁拌飯。", 1, "", "t13", datetime());
-            insertQuestion( 153, "加工食品中的添加物多為無機磷,容易100%被人體吸收造成高血磷。", 1, "", "t13", datetime());
-            insertQuestion( 154, "常見降磷藥有自費及健保給付,服用時要注意需要咬碎或磨粉,有的不可咬碎。", 1, "", "t13", datetime());
+            insertQuestion( 151, "因血磷存在於大部分的食物中，避免高血磷，要先從飲食控制開始。", 1, "", "t13", datetime());
+            insertQuestion( 152, "如何達到高蛋白又避免高血磷--注意減少喝火鍋湯、肉汁、大骨湯，還有肉汁拌飯。", 1, "", "t13", datetime());
+            insertQuestion( 153, "加工食品中的添加物多為無機磷，容易100%被人體吸收造成高血磷。", 1, "", "t13", datetime());
+            insertQuestion( 154, "常見降磷藥有自費及健保給付，服用時要注意需要咬碎或磨粉，有的不可咬碎。", 1, "", "t13", datetime());
             insertQuestion( 155, "腎友對血磷的控制有賴於飲食控制、規則透析和降磷藥的使用。", 1, "", "t13", datetime());
             insertQuestion( 156, "指數>6.5mg/dl即為高血磷症。", 0, "大於>5.5mg/dl即為高血磷症。", "t13", datetime());
             insertQuestion( 157, "過多磷堆積在皮膚造成全身搔癢難耐。", 1, "", "t13", datetime());
-            insertQuestion( 158, "磷太高會刺激副甲狀腺造成副甲狀腺機能亢進,使儲存在骨骼中的鈣、磷釋出導致骨痛、易骨折。", 1, "", "t13", datetime());
+            insertQuestion( 158, "磷太高會刺激副甲狀腺造成副甲狀腺機能亢進，使儲存在骨骼中的鈣、磷釋出導致骨痛、易骨折。", 1, "", "t13", datetime());
             insertQuestion( 159, "服用鈣片時不需要咬碎，才不會影響效果。", 0, "要咬碎，才能增加與食物結合的效果，發揮結合磷的功效。", "t13", datetime());
 
             //t14 拾肆.鉀啥咪
