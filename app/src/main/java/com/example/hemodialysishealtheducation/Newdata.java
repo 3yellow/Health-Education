@@ -130,7 +130,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     {
         mYear_b = 0;mMonth_b = 0; mDay_b = 0;
         if (flag1 == 1){
-            String[] token=birth.split("/");
+            String[] token=birth.split("-");
             mYear_b=Integer.valueOf(token[0]);
             mMonth_b=Integer.valueOf(token[1])-1;
             mDay_b=Integer.valueOf(token[2]);
@@ -151,7 +151,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     public void onDay(View v){
         mYear_b = 0;mMonth_b = 0; mDay_b = 0;
         if (flag1 == 1){
-            String[] token=date.split("/");
+            String[] token=date.split("-");
             mYear_b=Integer.valueOf(token[0]);
             mMonth_b=Integer.valueOf(token[1])-1;
             mDay_b=Integer.valueOf(token[2]);
@@ -181,15 +181,18 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         String ename=edt_name.getText().toString().trim();
         String Accepted_date=button6.getText().toString();
         String birth=btn_birth.getText().toString();
-        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd");
         //==GMT標準時間往後加八小時
         nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         //==取得目前時間
         String now_date = nowdate.format(new java.util.Date());
         Intent i=this.getIntent();
         String nurseID=i.getStringExtra("nurseID");
-        birth_bool=compare_date(birth,now_date);
-        accet_bool=compare_date(Accepted_date,now_date);
+        String birth_1=birth.replace('-','/');
+        String Accepted_date_1=Accepted_date.replace('-','/');
+        String now_date_1=now_date.replace('-','/');
+        birth_bool=compare_date(birth_1,now_date_1);//birth,now_date
+        accet_bool=compare_date(Accepted_date_1,now_date_1);//Accepted_date,now_date
         len=vreifyId(eId);
         flag=searchData(eId);
         if (flag==2&&flag1!=1){
