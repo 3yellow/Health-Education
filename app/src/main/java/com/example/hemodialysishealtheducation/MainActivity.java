@@ -592,7 +592,7 @@ public class MainActivity extends AppCompatActivity {
                     if(cu.getCount()>0) {
                         cu.moveToFirst();
                         do {
-                            String password=cu.getString(2);
+                            String password=cu.getString(2).replace("\n","");
                             int flag_staue=cu.getInt(3);
                             if (password.equals(pas) && flag_staue==1){
                                 intent.setClass(this, Searchlogin.class);
