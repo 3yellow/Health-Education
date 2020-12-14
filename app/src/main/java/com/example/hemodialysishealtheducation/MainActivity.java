@@ -408,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(base.getBytes("UTF-8"));
             String pass = Base64.encodeToString(hash, Base64.DEFAULT);
-            return pass;
+            return pass.replace("\n","");
         } catch(Exception ex){
             throw new RuntimeException(ex);
         }
@@ -474,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
     public void choicepatient(View v) {
         //跳轉到病人畫面
         String str=Account.getText().toString().trim().toUpperCase();
-        String pas=editText.getText().toString().trim();
+        String pas=editText.getText().toString().trim().replace("\n","");
         pas=pas.toUpperCase();
         if(str.equals("") && pas.equals(""))
         {
