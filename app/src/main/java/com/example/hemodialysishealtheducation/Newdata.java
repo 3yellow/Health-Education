@@ -347,6 +347,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         cv.put("patient_name",name);
         cv.put("patient_gender",gender);
         cv.put("patient_register",date);
+        cv.put("patient_sign",0);
         cv.put("patient_birth",birth_date);
         cv.put("patient_sign",0);
         cv.put("change_data",date_time);
@@ -357,10 +358,11 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
 
     private void modify_patient(String name,String id ,int gender,String date,String birth_date ){
         String date_time= datetime();
-        int pad=0,change_data=0;
+        int pad=0;
+        //,change_data=0;
         Intent i=this.getIntent();
-        pad=i.getIntExtra("pad",pad);
-        change_data=pad+2;
+        //pad=i.getIntExtra("pad",pad);
+        //change_data=pad+2;
         ContentValues cv = new ContentValues(7);
         cv.put("patient_id", id);
         cv.put("patient_name", name);

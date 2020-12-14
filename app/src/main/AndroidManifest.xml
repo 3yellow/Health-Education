@@ -29,6 +29,8 @@
         <activity
             android:name=".vedio_ca"
             android:screenOrientation="landscape" />
+        <activity android:name=".DataTransfer"></activity>
+
         <activity
             android:name=".vedio_lin"
             android:screenOrientation="landscape" />
