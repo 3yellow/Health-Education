@@ -59,6 +59,10 @@ public class DataTransfer extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void export_function(View v) throws IOException {
+        if(! Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).exists())
+        {
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).mkdir();
+        }
         File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "csvname");
         if (!ddfile.exists()) {
             ddfile.mkdir();
@@ -519,7 +523,7 @@ public class DataTransfer extends AppCompatActivity {
             SQLiteDatabase DBS = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
             while ((row = csvReader.readLine()) != null) {
                 String[] data = row.split(",");
-                String sql = "SELECT * FROM Answer WHERE answer = '" + data[0] + "'";
+                String sql = "SELECT * FROM Answer WHERE answer_id = '" + data[0] + "'";
                 Cursor cu = DBS.rawQuery(sql, null);
 
                 if (cu.moveToFirst()) {
@@ -528,11 +532,11 @@ public class DataTransfer extends AppCompatActivity {
                     Date dbdate = dateFormat.parse(x);
 
                     if (newdate.after(dbdate)) {
-                        updateAnswer(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]), data[4]);
+                        updateAnswer(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3], data[4]);
                     }
 
                 } else if (data[0] != null) {
-                    insertAnswer(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]), data[4]);
+                    insertAnswer(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3], data[4]);
                 }
             }
             csvReader.close();
@@ -555,7 +559,7 @@ public class DataTransfer extends AppCompatActivity {
             SQLiteDatabase DBS = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);//創建資料庫  "dbs"
             while ((row = csvReader.readLine()) != null) {
                 String[] data = row.split(",");
-                String sql = "SELECT * FROM Exam WHERE exam = '" + data[0] + "'";
+                String sql = "SELECT * FROM Exam WHERE exam_id = '" + data[0] + "'";
                 Cursor cu = DBS.rawQuery(sql, null);
 
                 if (cu.moveToFirst()) {
@@ -645,7 +649,7 @@ public class DataTransfer extends AppCompatActivity {
         db.update("Topic", cv, whereClause, whereArgs);
     }
 
-    private void updateAnswer(String answer_id, int result, int question_id, int exam_id, String change_data) {
+    private void updateAnswer(String answer_id, int result, int question_id, String exam_id, String change_data) {
         ContentValues cv = new ContentValues(1);//10
         //cv.put("answer_id",answer_id);
         cv.put("result", result);
@@ -725,7 +729,7 @@ public class DataTransfer extends AppCompatActivity {
         db.insert("Topic", null, cv);
     }
 
-    private void insertAnswer(String answer_id, int result, int question_id, int exam_id, String change_data) {
+    private void insertAnswer(String answer_id, int result, int question_id, String exam_id, String change_data) {
         ContentValues cv = new ContentValues(1);//10
         cv.put("answer_id", answer_id);
         cv.put("result", result);
