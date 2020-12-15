@@ -211,7 +211,18 @@ public class Nurse_modify extends AppCompatActivity {
             String anamee = cu.getString(1);
            pass=cu.getString(2);
             edt_name.setText(anamee);
-            edt_id.setText(idd);
+            String idd2=idd;
+            char []pas_id=new char[idd2.length()];
+            for (int i=0;i<idd2.length();i++)
+            {
+                if(i>3 && i<8)
+                    pas_id[i]='*';
+                else
+                    pas_id[i]=idd2.charAt(i);
+            }
+            idd2=String.valueOf(pas_id);
+
+            edt_id.setText(idd2);
             edt_pas1.setText("");
 
             //以下兩行是不要讓密碼顯示出來
@@ -275,7 +286,7 @@ public class Nurse_modify extends AppCompatActivity {
     private void modify_nurse(String name,String id,String pas,int staue){
         String date_time=datetime();
         ContentValues cv = new ContentValues(7);
-        cv.put("nurse_id", id);
+        cv.put("nurse_id", idd);
         cv.put("nurse_name", name);
         cv.put("nurse_password", pas);
         cv.put("nurse_authority", staue);

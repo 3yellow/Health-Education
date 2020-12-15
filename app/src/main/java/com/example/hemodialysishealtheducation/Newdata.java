@@ -114,7 +114,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         String sql = "SELECT *FROM Patient WHERE patient_id = '"+ id_tmp +"'";
         Cursor cu = DBS.rawQuery( sql,null );
 
-        if (!cu.moveToFirst()){
+        if (!cu.moveToFirst())
+        {
             Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
         }
         else{
@@ -122,7 +123,18 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             String date_register=cu.getString(2);
             String bi=cu.getString(3);
             edt_name.setText(anamee);
-            edt_id.setText(idd);
+            String idd2=idd;
+            char []pas_id=new char[idd2.length()];
+            for (int i=0;i<idd2.length();i++)
+            {
+                if(i>3 && i<8)
+                    pas_id[i]='*';
+                else
+                    pas_id[i]=idd2.charAt(i);
+            }
+            idd2=String.valueOf(pas_id);
+
+            edt_id.setText(idd2);
         }
         cu.close();
     }
@@ -316,7 +328,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         return true;
 
     }
-    
+
     private int searchData(String str1) //判別是否已經有此資料了
     {
         c=DBS.rawQuery("SELECT * FROM Patient  WHERE patient_id='"+str1+"'",null);
@@ -368,7 +380,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         //pad=i.getIntExtra("pad",pad);
         //change_data=pad+2;
         ContentValues cv = new ContentValues(7);
-        cv.put("patient_id", id);
+        cv.put("patient_id", idd);
         cv.put("patient_name", name);
         cv.put("patient_gender", gender);
         cv.put("patient_register", date);
@@ -377,7 +389,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
 
         //如果是修改
         String whereClause = "patient_id = ?";
-        String whereArgs[] = {id};
+        String whereArgs[] = {idd};
         DBS.update("Patient", cv, whereClause, whereArgs);
     }
 
