@@ -72,7 +72,7 @@ public class Nurse_Newdata extends AppCompatActivity {
         Boolean len;
         String pas1,eId;
         String name=edt_name.getText().toString();
-        pas1=edt_pas1.getText().toString();
+        pas1=edt_pas1.getText().toString().trim();
         flag=pas1.compareTo(edt_pas2.getText().toString());
 
         eId=edt_id.getText().toString().trim();
@@ -175,8 +175,8 @@ public class Nurse_Newdata extends AppCompatActivity {
 
     private void addData(String name,String id,String pas,int staue) {
         String date_time= datetime();
-        String pa=pas.toUpperCase();
-        pas=sha256(pa);
+        pas=pas.toUpperCase();
+        pas=sha256(pas).replace("\n","");
         ContentValues cv=new ContentValues(5);
         cv.put("nurse_name",name);
         cv.put("nurse_id",id);

@@ -316,6 +316,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         return true;
 
     }
+    
     private int searchData(String str1) //判別是否已經有此資料了
     {
         c=DBS.rawQuery("SELECT * FROM Patient  WHERE patient_id='"+str1+"'",null);

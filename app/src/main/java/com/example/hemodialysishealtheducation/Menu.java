@@ -95,7 +95,7 @@ public class Menu extends AppCompatActivity {
                 String s=username.getText().toString().trim();
                 String prepas=password.getText().toString().trim();
                 prepas=prepas.toUpperCase();
-                String pas=sha256(prepas);
+                String pas=sha256(prepas).replace("\n","");
                 Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id = '"+ s +"'",null);
                 if (!cu.moveToFirst()){
                     Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();

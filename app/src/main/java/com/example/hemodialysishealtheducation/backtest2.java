@@ -96,7 +96,7 @@ public class backtest2 extends AppCompatActivity {
         {
             //green
             An.setText("恭喜您答對!!!!");
-            An.setTextColor(Color.GREEN);
+            An.setTextColor(Color.parseColor("#58b19f"));
         }
         else
         {

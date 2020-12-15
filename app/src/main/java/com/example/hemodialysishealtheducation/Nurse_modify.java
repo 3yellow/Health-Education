@@ -170,7 +170,7 @@ public class Nurse_modify extends AppCompatActivity {
             else
             {
                 String pa=pas1.toUpperCase();
-                pas1=sha256(pa);
+                pas1=sha256(pa).replace("\n","");
             }
             modify_nurse(edt_name.getText().toString(),eId,pas1,w_stause);
             String sql = "SELECT * FROM Nurse WHERE nurse_id = '"+ eId +"'";
