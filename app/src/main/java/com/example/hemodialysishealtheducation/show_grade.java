@@ -27,6 +27,9 @@ public class show_grade extends AppCompatActivity {
     ImageView txv_right_wrong_1,txv_right_wrong_2,txv_right_wrong_3,txv_right_wrong_4,txv_right_wrong_5;
     TextView txv_Q1,txv_Q2,txv_Q3,txv_Q4,txv_Q5;
     TextView nurse,patient,title,patient_id;
+    int Q[]=new int[5];//題目標號
+    int Answer[]=new int[5];//題目答案
+    int Q_result[]=new int[5];//達題解果
     Button btn_8;
 
     @Override
@@ -173,7 +176,9 @@ public class show_grade extends AppCompatActivity {
     {
         ////Answer (answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME,
         //Exam (exam_id TEXT, exam_date DateTime, exam_score INT, patient_id char(10), nurse_id char(10),change_data DATETIME
-        int count=0;
+        //Question (question_id INT, question_content TEXT, question_answer INT, question_explain TEXT, topic_id char(10), change_data DATETIME
+        int count=0,i=0;
+        int q=0,result=-1,ans=-1;
         while (count<=4)
         {
             String answer_id_str=examid+count;
@@ -181,8 +186,22 @@ public class show_grade extends AppCompatActivity {
             if(cu.getCount()>0)
             {
                 cu.moveToFirst();
-                int result=cu.getInt(1);
-                if(result==1)
+                q=cu.getInt(2);
+                result=cu.getInt(1);
+                //Answer[i]=cu.getInt(1);
+
+                //cu.moveToNext();
+            }
+            cu.close();
+            cu=db.rawQuery("SELECT * FROM Question WHERE question_id='"+q+"' ",null);
+            if(cu.getCount()>0)
+            {
+                cu.moveToFirst();
+                ans=cu.getInt(2);
+            }
+            if(result==1)
+            {
+                if(ans==1)
                 {
                     if(count==0)
                         txv_right_wrong_1.setImageResource(R.drawable.right);
@@ -198,17 +217,81 @@ public class show_grade extends AppCompatActivity {
                 else
                 {
                     if(count==0)
+                    {
                         txv_right_wrong_1.setImageResource(R.drawable.wrong);
+                        //txv_Q1.setTextColor(Color.RED);
+                    }
                     else if(count==1)
+                    {
                         txv_right_wrong_2.setImageResource(R.drawable.wrong);
+                        //txv_Q2.setTextColor(Color.RED);
+                    }
                     else if(count==2)
+                    {
                         txv_right_wrong_3.setImageResource(R.drawable.wrong);
+                        //txv_Q3.setTextColor(Color.RED);
+                    }
                     else if(count==3)
+                    {
                         txv_right_wrong_4.setImageResource(R.drawable.wrong);
+                        //txv_Q4.setTextColor(Color.RED);
+                    }
                     else if(count==4)
+                    {
                         txv_right_wrong_5.setImageResource(R.drawable.wrong);
+                       // txv_Q5.setTextColor(Color.RED);
+                    }
                 }
-                //cu.moveToNext();
+
+            }
+            else
+            {
+                if(ans==1) {
+                    if (count == 0) {
+                        txv_right_wrong_1.setImageResource(R.drawable.wrong);
+                        txv_Q1.setTextColor(Color.RED);
+                    } else if (count == 1) {
+                        txv_right_wrong_2.setImageResource(R.drawable.wrong);
+                        txv_Q2.setTextColor(Color.RED);
+                    } else if (count == 2) {
+                        txv_right_wrong_3.setImageResource(R.drawable.wrong);
+                        txv_Q3.setTextColor(Color.RED);
+                    } else if (count == 3) {
+                        txv_right_wrong_4.setImageResource(R.drawable.wrong);
+                        txv_Q4.setTextColor(Color.RED);
+                    } else if (count == 4) {
+                        txv_right_wrong_5.setImageResource(R.drawable.wrong);
+                        txv_Q5.setTextColor(Color.RED);
+                    }
+                }
+                else
+                {
+                    if(count==0)
+                    {
+                        txv_right_wrong_1.setImageResource(R.drawable.right);
+                        txv_Q1.setTextColor(Color.RED);
+                    }
+                    else if(count==1)
+                    {
+                        txv_right_wrong_2.setImageResource(R.drawable.right);
+                        txv_Q2.setTextColor(Color.RED);
+                    }
+                    else if(count==2)
+                    {
+                        txv_right_wrong_3.setImageResource(R.drawable.right);
+                        txv_Q3.setTextColor(Color.RED);
+                    }
+                    else if(count==3)
+                    {
+                        txv_right_wrong_4.setImageResource(R.drawable.right);
+                        txv_Q4.setTextColor(Color.RED);
+                    }
+                    else if(count==4)
+                    {
+                        txv_right_wrong_5.setImageResource(R.drawable.right);
+                        txv_Q5.setTextColor(Color.RED);
+                    }
+                }
             }
             count++;
         }

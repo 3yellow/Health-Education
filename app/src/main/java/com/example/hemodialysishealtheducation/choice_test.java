@@ -172,9 +172,9 @@ public class choice_test extends AppCompatActivity {
                     }
                 }).setNegativeButton("取消",null).create();
         dialog.show();
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
         dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
         try {
             Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -184,7 +184,7 @@ public class choice_test extends AppCompatActivity {
             Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
             mTitle.setAccessible(true);
             TextView mTitleView = (TextView) mTitle.get(mAlertController);
-            mTitleView.setTextSize(32);
+            mTitleView.setTextSize(18);
             mTitleView.setTextColor(Color.RED);
             //通过反射修改message字体大小和颜色
         } catch (IllegalAccessException e1) {

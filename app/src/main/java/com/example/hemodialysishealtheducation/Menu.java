@@ -138,6 +138,7 @@ public class Menu extends AppCompatActivity {
             }
         });
     }
+
     public void read()
     {
         i=0;//計數有幾筆資料

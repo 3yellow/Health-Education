@@ -70,7 +70,7 @@
                 android:layout_height="62dp"
                 android:background="@drawable/choiceedubutton"
                 android:gravity="center"
-                android:text="對錯"
+                android:text="作答"
                 android:textSize="30dp" />
 
             <TextView
