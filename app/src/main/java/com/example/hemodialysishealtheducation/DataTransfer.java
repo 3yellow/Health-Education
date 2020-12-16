@@ -59,8 +59,7 @@ public class DataTransfer extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void export_function(View v) throws IOException {
-        if(! Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).exists())
-        {
+        if (!Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).exists()) {
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).mkdir();
         }
         File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "csvname");
@@ -69,6 +68,7 @@ public class DataTransfer extends AppCompatActivity {
             scanMedia(ddfile.toString());
         }
         exportAll(ddfile.toString());
+    }
         /*File file = new File(ddfile, "Nurse_tab.csv");
         if (file.exists()) {
             file.delete();
@@ -78,7 +78,7 @@ public class DataTransfer extends AppCompatActivity {
         /*if (file.createNewFile()) {
             exportNurse(file.toString());
         }*/
-    }
+
 
     public void back_function(View v)
     {
