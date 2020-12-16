@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -114,7 +115,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         String sql = "SELECT *FROM Patient WHERE patient_id = '"+ id_tmp +"'";
         Cursor cu = DBS.rawQuery( sql,null );
 
-        if (!cu.moveToFirst()){
+        if (!cu.moveToFirst())
+        {
             Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
         }
         else{
@@ -122,7 +124,18 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             String date_register=cu.getString(2);
             String bi=cu.getString(3);
             edt_name.setText(anamee);
-            edt_id.setText(idd);
+            String idd2=idd;
+            char []pas_id=new char[idd2.length()];
+            for (int i=0;i<idd2.length();i++)
+            {
+                if(i>3 && i<8)
+                    pas_id[i]='*';
+                else
+                    pas_id[i]=idd2.charAt(i);
+            }
+            idd2=String.valueOf(pas_id);
+
+            edt_id.setText(idd2);
         }
         cu.close();
     }
@@ -193,7 +206,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         String now_date_1=now_date.replace('-','/');
         birth_bool=compare_date(birth_1,now_date_1);//birth,now_date
         accet_bool=compare_date(Accepted_date_1,now_date_1);//Accepted_date,now_date
-        len=vreifyId(eId);
+        len=isValidIDorRCNumber(eId);
         flag=searchData(eId);
         if (flag==2&&flag1!=1){
             textView7.setVisibility(View.VISIBLE);
@@ -220,7 +233,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         else if(!len)
         {
             textView7.setVisibility(View.VISIBLE);
-            textView7.setText("身分證長度為10");
+            textView7.setText("身分證格式不對");
         }
         else if (geender==0){
             textView7.setVisibility(View.VISIBLE);
@@ -274,8 +287,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         if (id.length()!=10){
             return false;
         }
-         /*for (int i=65;i<=90;i++)
-       {
+        for (int i=65;i<=90;i++)
+        {
             char ch=(char)i;
             if (id.charAt(0)==i){
                 c=1;//第一個字為英文字
@@ -305,17 +318,74 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         int bb=((id.charAt(9)-48)+total)%10;
         if (bb==0)
         {
+            textView7.setVisibility(View.VISIBLE);
             System.out.println("這是正確的身分證號碼!!");
             aa=1;
             return true;
         }
         if (aa==0) {              //aa不等於0則輸入身分證字號不符合
+            textView7.setVisibility(View.VISIBLE);
             System.out.println("這不是正確的身分證字號!!");
             return false;
-        }*/
+        }
         return true;
-
     }
+
+    public boolean isValidIDorRCNumber(String str) {
+
+        if (str == null || "".equals(str)) {
+            return false;
+        }
+
+        final char[] pidCharArray = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+        // 原身分證英文字應轉換為10~33，這裡直接作個位數*9+10
+        final int[] pidIDInt = { 1, 10, 19, 28, 37, 46, 55, 64, 39, 73, 82, 2, 11, 20, 48, 29, 38, 47, 56, 65, 74, 83, 21, 3, 12, 30 };
+
+        // 原居留證第一碼英文字應轉換為10~33，十位數*1，個位數*9，這裡直接作[(十位數*1) mod 10] + [(個位數*9) mod 10]
+        final int[] pidResidentFirstInt = { 1, 10, 9, 8, 7, 6, 5, 4, 9, 3, 2, 2, 11, 10, 8, 9, 8, 7, 6, 5, 4, 3, 11, 3, 12, 10 };
+
+        // 原居留證第二碼英文字應轉換為10~33，並僅取個位數*8，這裡直接取[(個位數*8) mod 10]
+        final int[] pidResidentSecondInt = {0, 8, 6, 4, 2, 0, 8, 6, 2, 4, 2, 0, 8, 6, 0, 4, 2, 0, 8, 6, 4, 2, 6, 0, 8, 4};
+
+        str = str.toUpperCase();// 轉換大寫
+        final char[] strArr = str.toCharArray();// 字串轉成char陣列
+        int verifyNum = 0;
+
+        /* 檢查身分證字號 */
+        if (str.matches("[A-Z]{1}[1-2]{1}[0-9]{8}")) {
+            // 第一碼
+            verifyNum = verifyNum + pidIDInt[Arrays.binarySearch(pidCharArray, strArr[0])];
+            // 第二~九碼
+            for (int i = 1, j = 8; i < 9; i++, j--) {
+                verifyNum += Character.digit(strArr[i], 10) * j;
+            }
+            // 檢查碼
+            verifyNum = (10 - (verifyNum % 10)) % 10;
+
+            return verifyNum == Character.digit(strArr[9], 10);
+        }
+
+        /* 檢查統一證(居留證)編號 */
+        verifyNum = 0;
+        if (str.matches("[A-Z]{1}[A-D]{1}[0-9]{8}")) {
+            // 第一碼
+            verifyNum += pidResidentFirstInt[Arrays.binarySearch(pidCharArray, strArr[0])];
+            // 第二碼
+            verifyNum += pidResidentSecondInt[Arrays.binarySearch(pidCharArray, strArr[1])];
+            // 第三~八碼
+            for (int i = 2, j = 7; i < 9; i++, j--) {
+                verifyNum += Character.digit(strArr[i], 10) * j;
+            }
+            // 檢查碼
+            verifyNum = (10 - (verifyNum % 10)) % 10;
+            int a=Character.digit(strArr[9], 10);
+            return verifyNum == Character.digit(strArr[9], 10);
+        }
+
+        return false;
+    }
+
     private int searchData(String str1) //判別是否已經有此資料了
     {
         c=DBS.rawQuery("SELECT * FROM Patient  WHERE patient_id='"+str1+"'",null);
@@ -367,7 +437,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         //pad=i.getIntExtra("pad",pad);
         //change_data=pad+2;
         ContentValues cv = new ContentValues(7);
-        cv.put("patient_id", id);
+        cv.put("patient_id", idd);
         cv.put("patient_name", name);
         cv.put("patient_gender", gender);
         cv.put("patient_register", date);
@@ -376,7 +446,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
 
         //如果是修改
         String whereClause = "patient_id = ?";
-        String whereArgs[] = {id};
+        String whereArgs[] = {idd};
         DBS.update("Patient", cv, whereClause, whereArgs);
     }
 

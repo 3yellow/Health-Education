@@ -140,7 +140,7 @@ public class Nurse_modify extends AppCompatActivity {
         String pas1,eId;
         pas1=edt_pas1.getText().toString().trim();
         flag=pas1.compareTo(edt_pas2.getText().toString());
-        eId=edt_id.getText().toString();
+        eId=idd;//edt_id.getText().toString();
         eId=eId.toUpperCase();
         iId=Boolean.TRUE;
         len=vreifyId(eId);
@@ -159,7 +159,7 @@ public class Nurse_modify extends AppCompatActivity {
         else if(!len)
         {
             textView7.setVisibility(View.VISIBLE);
-            textView7.setText("身分證長度為10");
+            textView7.setText("身分證格式不對");
         }
         else if(flag==0&iId){
             //  pas1=pas1.toLowerCase();//讓密碼統一都是小寫
@@ -170,7 +170,7 @@ public class Nurse_modify extends AppCompatActivity {
             else
             {
                 String pa=pas1.toUpperCase();
-                pas1=sha256(pa);
+                pas1=sha256(pa).replace("\n","");
             }
             modify_nurse(edt_name.getText().toString(),eId,pas1,w_stause);
             String sql = "SELECT * FROM Nurse WHERE nurse_id = '"+ eId +"'";
@@ -211,7 +211,18 @@ public class Nurse_modify extends AppCompatActivity {
             String anamee = cu.getString(1);
            pass=cu.getString(2);
             edt_name.setText(anamee);
-            edt_id.setText(idd);
+            String idd2=idd;
+            char []pas_id=new char[idd2.length()];
+            for (int i=0;i<idd2.length();i++)
+            {
+                if(i>3 && i<8)
+                    pas_id[i]='*';
+                else
+                    pas_id[i]=idd2.charAt(i);
+            }
+            idd2=String.valueOf(pas_id);
+
+            edt_id.setText(idd2);
             edt_pas1.setText("");
 
             //以下兩行是不要讓密碼顯示出來
@@ -275,7 +286,7 @@ public class Nurse_modify extends AppCompatActivity {
     private void modify_nurse(String name,String id,String pas,int staue){
         String date_time=datetime();
         ContentValues cv = new ContentValues(7);
-        cv.put("nurse_id", id);
+        cv.put("nurse_id", idd);
         cv.put("nurse_name", name);
         cv.put("nurse_password", pas);
         cv.put("nurse_authority", staue);
@@ -283,7 +294,8 @@ public class Nurse_modify extends AppCompatActivity {
         //如果是修改
         String whereClause = "nurse_id = ?";
         String whereArgs[] = {id};
-        db.update("Nurse", cv, whereClause, whereArgs);
+        //db.update("Nurse", cv, whereClause, whereArgs);
+        db.replace ("Nurse", null,cv);
         //Toast.makeText(getApplicationContext(), "Modify Success!", Toast.LENGTH_SHORT).show();
 
 

@@ -482,9 +482,9 @@ public class MainActivity extends AppCompatActivity {
                     .setTitle("帳號密碼沒有輸入!!!")
                     .setNegativeButton("確定",null).create();
             dialog.show();
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
             dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
             try {
                 Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -494,7 +494,7 @@ public class MainActivity extends AppCompatActivity {
                 Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                 mTitle.setAccessible(true);
                 TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                mTitleView.setTextSize(32);
+                mTitleView.setTextSize(18);
                 mTitleView.setTextColor(Color.RED);
                 //通过反射修改message字体大小和颜色
             } catch (IllegalAccessException e1) {
@@ -509,9 +509,9 @@ public class MainActivity extends AppCompatActivity {
                     .setTitle("帳號沒有輸入!!")
                     .setNegativeButton("確定",null).create();
             dialog.show();
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
             dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
             try {
                 Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -521,7 +521,7 @@ public class MainActivity extends AppCompatActivity {
                 Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                 mTitle.setAccessible(true);
                 TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                mTitleView.setTextSize(32);
+                mTitleView.setTextSize(18);
                 mTitleView.setTextColor(Color.RED);
                 //通过反射修改message字体大小和颜色
             } catch (IllegalAccessException e1) {
@@ -536,9 +536,9 @@ public class MainActivity extends AppCompatActivity {
                     .setTitle("密碼沒有輸入!!!")
                     .setNegativeButton("確定",null).create();
             dialog.show();
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
             dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
             try {
                 Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -548,7 +548,7 @@ public class MainActivity extends AppCompatActivity {
                 Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                 mTitle.setAccessible(true);
                 TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                mTitleView.setTextSize(32);
+                mTitleView.setTextSize(18);
                 mTitleView.setTextColor(Color.RED);
                 //通过反射修改message字体大小和颜色
             } catch (IllegalAccessException e1) {
@@ -559,7 +559,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            pas=sha256(pas);
+            pas=sha256(pas).replace("\n","");
             Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+str+"'",null);
             if (str.trim().length()>0){
                 if ("admin".equals(pas)){
@@ -567,9 +567,9 @@ public class MainActivity extends AppCompatActivity {
                             .setTitle("此權限沒有病友管理!!!")
                             .setNegativeButton("確定",null).create();
                     dialog.show();
-                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
                     dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
                     try {
                         Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -579,7 +579,7 @@ public class MainActivity extends AppCompatActivity {
                         Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                         mTitle.setAccessible(true);
                         TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                        mTitleView.setTextSize(32);
+                        mTitleView.setTextSize(18);
                         mTitleView.setTextColor(Color.RED);
                         //通过反射修改message字体大小和颜色
                     } catch (IllegalAccessException e1) {
@@ -609,9 +609,9 @@ public class MainActivity extends AppCompatActivity {
                                         .setTitle("沒有權限!!!")
                                         .setNegativeButton("確定",null).create();
                                 dialog.show();
-                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
                                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
                                 dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
                                 try {
                                     Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -621,7 +621,7 @@ public class MainActivity extends AppCompatActivity {
                                     Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                                     mTitle.setAccessible(true);
                                     TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                                    mTitleView.setTextSize(32);
+                                    mTitleView.setTextSize(18);
                                     mTitleView.setTextColor(Color.RED);
                                     //通过反射修改message字体大小和颜色
                                 } catch (IllegalAccessException e1) {
@@ -635,9 +635,9 @@ public class MainActivity extends AppCompatActivity {
                                         .setTitle("密碼輸入錯誤!!!")
                                         .setNegativeButton("確定",null).create();
                                 dialog.show();
-                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
                                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
                                 dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
                                 try {
                                     Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -647,7 +647,7 @@ public class MainActivity extends AppCompatActivity {
                                     Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                                     mTitle.setAccessible(true);
                                     TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                                    mTitleView.setTextSize(32);
+                                    mTitleView.setTextSize(18);
                                     mTitleView.setTextColor(Color.RED);
                                     //通过反射修改message字体大小和颜色
                                 } catch (IllegalAccessException e1) {
@@ -663,9 +663,9 @@ public class MainActivity extends AppCompatActivity {
                                 .setTitle("帳號輸入錯誤!!!")
                                 .setNegativeButton("確定",null).create();
                         dialog.show();
-                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
                         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
                         dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
                         try {
                             Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -675,7 +675,7 @@ public class MainActivity extends AppCompatActivity {
                             Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                             mTitle.setAccessible(true);
                             TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                            mTitleView.setTextSize(32);
+                            mTitleView.setTextSize(18);
                             mTitleView.setTextColor(Color.RED);
                             //通过反射修改message字体大小和颜色
                         } catch (IllegalAccessException e1) {
@@ -701,9 +701,9 @@ public class MainActivity extends AppCompatActivity {
                     .setTitle("帳號密碼沒有輸入!!!")
                     .setNegativeButton("確定",null).create();
             dialog.show();
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
             dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
             try {
                 Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -713,7 +713,7 @@ public class MainActivity extends AppCompatActivity {
                 Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                 mTitle.setAccessible(true);
                 TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                mTitleView.setTextSize(32);
+                mTitleView.setTextSize(18);
                 mTitleView.setTextColor(Color.RED);
                 //通过反射修改message字体大小和颜色
             } catch (IllegalAccessException e1) {
@@ -728,9 +728,9 @@ public class MainActivity extends AppCompatActivity {
                     .setTitle("帳號沒有輸入!!")
                     .setNegativeButton("確定",null).create();
             dialog.show();
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
             dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
             try {
                 Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -740,7 +740,7 @@ public class MainActivity extends AppCompatActivity {
                 Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                 mTitle.setAccessible(true);
                 TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                mTitleView.setTextSize(32);
+                mTitleView.setTextSize(18);
                 mTitleView.setTextColor(Color.RED);
                 //通过反射修改message字体大小和颜色
             } catch (IllegalAccessException e1) {
@@ -755,9 +755,9 @@ public class MainActivity extends AppCompatActivity {
                     .setTitle("密碼沒有輸入!!!")
                     .setNegativeButton("確定",null).create();
             dialog.show();
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
             dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
             try {
                 Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -767,7 +767,7 @@ public class MainActivity extends AppCompatActivity {
                 Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                 mTitle.setAccessible(true);
                 TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                mTitleView.setTextSize(32);
+                mTitleView.setTextSize(18);
                 mTitleView.setTextColor(Color.RED);
                 //通过反射修改message字体大小和颜色
             } catch (IllegalAccessException e1) {
@@ -801,9 +801,9 @@ public class MainActivity extends AppCompatActivity {
                                             .setTitle("密碼輸入錯誤!!!")
                                             .setNegativeButton("確定",null).create();
                                     dialog.show();
-                                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
                                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                                    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
                                     dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
                                     try {
                                         Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -813,7 +813,7 @@ public class MainActivity extends AppCompatActivity {
                                         Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                                         mTitle.setAccessible(true);
                                         TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                                        mTitleView.setTextSize(32);
+                                        mTitleView.setTextSize(18);
                                         mTitleView.setTextColor(Color.RED);
                                         //通过反射修改message字体大小和颜色
                                     } catch (IllegalAccessException e1) {
@@ -831,9 +831,9 @@ public class MainActivity extends AppCompatActivity {
                                 .setTitle("沒有後台管理權限!!!")
                                 .setNegativeButton("確定",null).create();
                         dialog.show();
-                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(26);
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(18);
                         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(26);
+                        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(18);
                         dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
                         try {
                             Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
@@ -843,7 +843,7 @@ public class MainActivity extends AppCompatActivity {
                             Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
                             mTitle.setAccessible(true);
                             TextView mTitleView = (TextView) mTitle.get(mAlertController);
-                            mTitleView.setTextSize(32);
+                            mTitleView.setTextSize(18);
                             mTitleView.setTextColor(Color.RED);
                             //通过反射修改message字体大小和颜色
                         } catch (IllegalAccessException e1) {

@@ -80,6 +80,16 @@ public class Menu extends AppCompatActivity {
         Button btn_cancle=v1.findViewById(R.id.btn_left);
         final TextView username=v1.findViewById(R.id.username);
         final EditText password=v1.findViewById(R.id.password);
+        final String str2=str;
+        char []pas_id=new char[str.length()];
+        for (int i=0;i<str.length();i++)
+        {
+            if(i>3 && i<8)
+                pas_id[i]='*';
+            else
+                pas_id[i]=str.charAt(i);
+        }
+        str=String.valueOf(pas_id);
         username.setText(str);
         final AlertDialog dialog = alertDialog.create();
         dialog.show();
@@ -92,10 +102,10 @@ public class Menu extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s=username.getText().toString().trim();
+                String s=str2;//username.getText().toString().trim();
                 String prepas=password.getText().toString().trim();
                 prepas=prepas.toUpperCase();
-                String pas=sha256(prepas);
+                String pas=sha256(prepas).replace("\n","");
                 Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id = '"+ s +"'",null);
                 if (!cu.moveToFirst()){
                     Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
