@@ -43,7 +43,7 @@ public class HealthInformation extends AppCompatActivity {
         if (cu.getCount()>0) {
             cu.moveToFirst();
             eduaction=cu.getString(1);
-            vido=cu.getString(3);
+            vido=cu.getString(2);
         }
         PDFView pdf=findViewById(R.id.pdfView);
         pdf.fromAsset(eduaction).load();

@@ -230,7 +230,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             textView7.setVisibility(View.VISIBLE);
             textView7.setText("收案日期日期選錯!!");
         }
-        else if(!len)
+        else if(!len&&flag1!=1)
         {
             textView7.setVisibility(View.VISIBLE);
             textView7.setText("身分證格式不對");
@@ -447,7 +447,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         //如果是修改
         String whereClause = "patient_id = ?";
         String whereArgs[] = {idd};
-        DBS.update("Patient", cv, whereClause, whereArgs);
+       // DBS.replace ("Patient", null,cv);
+       DBS.update("Patient", cv, whereClause, whereArgs);
     }
 
     public void nowTime(int flag_data,String id_tmp,int flag)//取得當日日期並且顯示在按鈕上
