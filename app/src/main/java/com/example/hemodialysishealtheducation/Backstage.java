@@ -103,13 +103,13 @@ public class Backstage extends AppCompatActivity {
             importNurse("csvname/Nurse_pc.csv");
             importPatient("csvname/Patient_pc.csv");
             importQuestion("csvname/Question_pc.csv");
-            importStudy("csvname/Study_pc.csv");
+            //importStudy("csvname/Study_pc.csv");
             importTopic("csvname/Topic_pc.csv");
             importAnswer("csvname/Answer_pc.csv");
             importExam("csvname/Exam_pc.csv");
 
         } catch (FileNotFoundException e) {
-            Toast.makeText(this, "Cant find file", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "請重新點選電腦的【平板輸出到電腦】", Toast.LENGTH_LONG).show();
         }
         Button btn = (Button)findViewById(R.id.button8);
         btn.setBackgroundColor(Color.parseColor("#ffff99"));
@@ -121,7 +121,7 @@ public class Backstage extends AppCompatActivity {
         exportAnswer(path);
         exportExam(path);
         exportQuestion(path);
-        exportStudy(path);
+        //exportStudy(path);
         exportTopic(path);
         Button btn = (Button)findViewById(R.id.button4);
         btn.setBackgroundColor(Color.parseColor("#ffff99"));
@@ -169,9 +169,9 @@ public class Backstage extends AppCompatActivity {
             curCSV.close();
             scanMedia(file.toString());
 
-            Toast.makeText(this, "Nurse_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "護理師資料輸出成功", Toast.LENGTH_LONG).show();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Nurse_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "護理師資料輸出失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -206,9 +206,9 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Patient_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "病友資料輸出成功", Toast.LENGTH_LONG).show();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Patient_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "病友資料輸出失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -239,9 +239,9 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Question_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "題目資料輸出成功", Toast.LENGTH_LONG).show();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Question_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "題目資料輸出失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -301,9 +301,9 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Topic_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "章節資料輸出成功", Toast.LENGTH_LONG).show();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Topic_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "章節資料輸出失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -332,9 +332,9 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Answer_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "作答資料輸出成功", Toast.LENGTH_LONG).show();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Answer_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "作答資料輸出失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -365,9 +365,9 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Exam_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "考卷資料輸出成功", Toast.LENGTH_LONG).show();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Exam_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "考卷資料輸出失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -401,10 +401,10 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Nurse_import_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "護理師資料讀取成功", Toast.LENGTH_LONG).show();
             ddfile.delete();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Nurse_import_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "護理師資料讀取失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -437,10 +437,10 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Patient_import_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "病友資料讀取成功", Toast.LENGTH_LONG).show();
             ddfile.delete();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Patient_import_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "病友資料讀取失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -473,10 +473,10 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Question_import_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "題目資料讀取成功", Toast.LENGTH_LONG).show();
             ddfile.delete();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Question_import_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "題目資料讀取失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -545,10 +545,10 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Topic_import_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "章節資料讀取成功", Toast.LENGTH_LONG).show();
             ddfile.delete();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Topic_import_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "章節資料讀取失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -581,10 +581,10 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Answer_import_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "作答資料讀取成功", Toast.LENGTH_LONG).show();
             ddfile.delete();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Answer_import_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "作答資料讀取失敗", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -617,10 +617,10 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Exam_import_success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "考卷資料讀取成功", Toast.LENGTH_LONG).show();
             ddfile.delete();
         } catch (Exception sqlEx) {
-            Toast.makeText(this, "Exam_import_error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "考卷資料讀取失敗", Toast.LENGTH_LONG).show();
         }
     }
 
