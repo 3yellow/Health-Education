@@ -10,8 +10,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -21,7 +19,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.security.MessageDigest;
@@ -134,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             insertTopic("t17","拾柒.飲食控制要點.pdf",0, datetime());
             insertTopic("t18","拾捌.傷口加壓止血的方法.pdf",0, datetime());
             insertTopic("t19","拾玖.藥物的使用.pdf",0, datetime());
-            insertTopic("t20","HELP.pdf",0, datetime());
+            insertTopic("t20", "HELP.pdf",0, datetime());
 
         }
         cursor.close();
