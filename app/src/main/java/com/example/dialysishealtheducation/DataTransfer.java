@@ -334,7 +334,7 @@ public class DataTransfer extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importNurse(String path) throws IOException, ParseException {
-        try {
+        //try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -363,14 +363,14 @@ public class DataTransfer extends AppCompatActivity {
             DBS.close();
             Toast.makeText(this, "Nurse_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Nurse_import_error", Toast.LENGTH_LONG).show();
-        }
+        //} catch (Exception sqlEx) {
+        //    Toast.makeText(this, "Nurse_import_error", Toast.LENGTH_LONG).show();
+        //}
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importPatient(String path) throws IOException, ParseException {
-        try {
+        //try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -397,16 +397,16 @@ public class DataTransfer extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Patient_import_success", Toast.LENGTH_LONG).show();
+        //    Toast.makeText(this, "Patient_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Patient_import_error", Toast.LENGTH_LONG).show();
-        }
+        //} catch (Exception sqlEx) {
+        //    Toast.makeText(this, "Patient_import_error", Toast.LENGTH_LONG).show();
+        //}
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importQuestion(String path) throws IOException, ParseException {
-        try {
+        //try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -433,16 +433,16 @@ public class DataTransfer extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Question_import_success", Toast.LENGTH_LONG).show();
+        //    Toast.makeText(this, "Question_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Question_import_error", Toast.LENGTH_LONG).show();
-        }
+        //} catch (Exception sqlEx) {
+        //    Toast.makeText(this, "Question_import_error", Toast.LENGTH_LONG).show();
+        //}
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importStudy(String path) throws IOException, ParseException {
-        try {
+        //try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -469,16 +469,16 @@ public class DataTransfer extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Study_import_success", Toast.LENGTH_LONG).show();
+         //   Toast.makeText(this, "Study_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Study_import_error", Toast.LENGTH_LONG).show();
-        }
+        //} catch (Exception sqlEx) {
+        //    Toast.makeText(this, "Study_import_error", Toast.LENGTH_LONG).show();
+        //}
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importTopic(String path) throws IOException, ParseException {
-        try {
+        //try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -505,16 +505,16 @@ public class DataTransfer extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Topic_import_success", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Topic_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Topic_import_error", Toast.LENGTH_LONG).show();
-        }
+        //} catch (Exception sqlEx) {
+        //    Toast.makeText(this, "Topic_import_error", Toast.LENGTH_LONG).show();
+        //}
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importAnswer(String path) throws IOException, ParseException {
-        try {
+        //try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -541,16 +541,16 @@ public class DataTransfer extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Answer_import_success", Toast.LENGTH_LONG).show();
+        //    Toast.makeText(this, "Answer_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Answer_import_error", Toast.LENGTH_LONG).show();
-        }
+        //} catch (Exception sqlEx) {
+        //    Toast.makeText(this, "Answer_import_error", Toast.LENGTH_LONG).show();
+        //}
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importExam(String path) throws IOException, ParseException {
-        try {
+        //try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -577,11 +577,11 @@ public class DataTransfer extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Exam_import_success", Toast.LENGTH_LONG).show();
+         //   Toast.makeText(this, "Exam_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Exam_import_error", Toast.LENGTH_LONG).show();
-        }
+        //} catch (Exception sqlEx) {
+        //    Toast.makeText(this, "Exam_import_error", Toast.LENGTH_LONG).show();
+        //}
     }
 
 
