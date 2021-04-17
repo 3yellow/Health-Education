@@ -63,6 +63,7 @@ public class Backstage extends AppCompatActivity {
         return true;
     }
 
+    //退出後端按鈕
     public void onclick(View v){
         AlertDialog dialog=new AlertDialog.Builder(Backstage.this)
                 .setTitle("確定要登出?")
@@ -97,6 +98,7 @@ public class Backstage extends AppCompatActivity {
         }
     }
 
+    //輸入功能 - 呼叫各種輸入功能 和 更改按鈕顔色
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void import_all(View v) throws IOException, ParseException {
         try {
@@ -115,6 +117,7 @@ public class Backstage extends AppCompatActivity {
         btn.setBackgroundColor(Color.parseColor("#ffff99"));
     }
 
+    //輸出功能 - 呼叫各個資料表的輸出功能 和 更改按鈕顔色
     private void exportAll(String path) {
         try {
             exportNurse(path);
@@ -132,6 +135,7 @@ public class Backstage extends AppCompatActivity {
         }
     }
 
+    //輸出按鈕 確定資料夾是否有創立 和 呼叫輸出功能
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void export_function(View v)  {
         if (!Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).exists()) {
@@ -145,6 +149,7 @@ public class Backstage extends AppCompatActivity {
         exportAll(ddfile.toString());
     }
 
+    //以下爲各種資料表的輸出 平板段的資料輸出成csv檔
     private void exportNurse(String path) throws IOException {
         StringBuilder data = new StringBuilder();
             File file = new File(path, "Nurse_tab.csv");
@@ -339,7 +344,7 @@ public class Backstage extends AppCompatActivity {
             curCSV.close();
     }
 
-
+    //以下為各種 資料表的 讀取 電腦端傳送到平板端的資料(csv)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importNurse(String path) throws IOException, ParseException {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
@@ -559,7 +564,7 @@ public class Backstage extends AppCompatActivity {
             ddfile.delete();
     }
 
-
+    //以下爲 SQL 更新
     private void updateNurse(String nurse_id, String nurse_name, String nurse_password, int nurse_authority, String change_data) {
         ContentValues cv = new ContentValues(1);
         cv.put("nurse_name", nurse_name);
@@ -643,6 +648,7 @@ public class Backstage extends AppCompatActivity {
     }
 
 
+    //以下為 SQL 新增
     private void insertNurse(String nurse_id, String nurse_name, String nurse_password, int nurse_authority, String change_data) {
         ContentValues cv = new ContentValues(1);
         cv.put("nurse_id", nurse_id);
@@ -721,7 +727,7 @@ public class Backstage extends AppCompatActivity {
         db.insert("Exam", null, cv);
     }
 
-
+    //日期格式 用於db中的最新更新日期
     public String getCurrentTime() {
         SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         //==GMT標準時間往後加八小時
@@ -732,6 +738,7 @@ public class Backstage extends AppCompatActivity {
         return currentTime;
     }
 
+    //刷新平板的資料夾
     private void scanMedia(String path) {
         File file = new File(path);
         Uri uri = Uri.fromFile(file);
