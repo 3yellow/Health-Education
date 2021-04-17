@@ -131,7 +131,7 @@ public class Backstage extends AppCompatActivity {
             Button btn = (Button)findViewById(R.id.button4);
             btn.setBackgroundColor(Color.parseColor("#ffff99"));
         } catch (IOException e) {
-            e.printStackTrace();
+            Toast.makeText(this, "請打開程式檔案權限", Toast.LENGTH_LONG).show();
         }
     }
 
