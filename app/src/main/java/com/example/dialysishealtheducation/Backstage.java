@@ -46,8 +46,6 @@ public class Backstage extends AppCompatActivity {
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);
         format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     }
-
-    //切換頁面到 護理師管理
     public void nurse(View v)
     {
         Intent intent=new Intent(Backstage.this,Menu.class);
@@ -65,7 +63,6 @@ public class Backstage extends AppCompatActivity {
         return true;
     }
 
-    //登出
     public void onclick(View v){
         AlertDialog dialog=new AlertDialog.Builder(Backstage.this)
                 .setTitle("確定要登出?")
@@ -100,7 +97,6 @@ public class Backstage extends AppCompatActivity {
         }
     }
 
-    //讀取功能 - 讀取 所有 電腦端 傳送到 平板端 的資料
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void import_all(View v) throws IOException, ParseException {
         try {
@@ -111,7 +107,7 @@ public class Backstage extends AppCompatActivity {
             importTopic("csvname/Topic_pc.csv");
             importAnswer("csvname/Answer_pc.csv");
             importExam("csvname/Exam_pc.csv");
-
+            Toast.makeText(this, "Import successful!", Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             Toast.makeText(this, "Cant find file", Toast.LENGTH_LONG).show();
         }
@@ -119,22 +115,25 @@ public class Backstage extends AppCompatActivity {
         btn.setBackgroundColor(Color.parseColor("#ffff99"));
     }
 
-    //輸出功能 - 輸出 所有 平板端的資料(csv)
     private void exportAll(String path) {
-        exportNurse(path);
-        exportPatient(path);
-        exportAnswer(path);
-        exportExam(path);
-        exportQuestion(path);
-        exportStudy(path);
-        exportTopic(path);
-        Button btn = (Button)findViewById(R.id.button4);
-        btn.setBackgroundColor(Color.parseColor("#ffff99"));
+        try {
+            exportNurse(path);
+            exportPatient(path);
+            exportAnswer(path);
+            exportExam(path);
+            exportQuestion(path);
+            exportStudy(path);
+            exportTopic(path);
+            Toast.makeText(this, "Export successful!", Toast.LENGTH_LONG).show();
+            Button btn = (Button)findViewById(R.id.button4);
+            btn.setBackgroundColor(Color.parseColor("#ffff99"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    //輸出按鈕 - 資料夾創立 和 呼叫輸出功能
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void export_function(View v) throws IOException {
+    public void export_function(View v)  {
         if (!Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).exists()) {
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).mkdir();
         }
@@ -146,11 +145,8 @@ public class Backstage extends AppCompatActivity {
         exportAll(ddfile.toString());
     }
 
-    //以下爲 輸出 各種不同資料表的資料(csv)
-    private void exportNurse(String path) {
+    private void exportNurse(String path) throws IOException {
         StringBuilder data = new StringBuilder();
-        try {
-            //String file = path + "\\Nurse.csv";
             File file = new File(path, "Nurse_tab.csv");
             Cursor curCSV = db.rawQuery("SELECT * FROM Nurse", null);
             FileWriter stream = new FileWriter(file);
@@ -175,16 +171,10 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             curCSV.close();
             scanMedia(file.toString());
-
-            Toast.makeText(this, "Nurse_success", Toast.LENGTH_LONG).show();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Nurse_error", Toast.LENGTH_LONG).show();
-        }
     }
 
-    private void exportPatient(String path) {
+    private void exportPatient(String path) throws IOException {
         StringBuilder data = new StringBuilder();
-        try {
             File file = new File(path, "Patient_tab.csv");
             Cursor curCSV = db.rawQuery("SELECT * FROM Patient", null);
             FileWriter stream = new FileWriter(file);
@@ -213,15 +203,10 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Patient_success", Toast.LENGTH_LONG).show();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Patient_error", Toast.LENGTH_LONG).show();
-        }
     }
 
-    private void exportQuestion(String path) {
+    private void exportQuestion(String path) throws IOException {
         StringBuilder data = new StringBuilder();
-        try {
             File file = new File(path, "Question_tab.csv");
             Cursor curCSV = db.rawQuery("SELECT * FROM Question", null);
             FileWriter stream = new FileWriter(file);
@@ -246,15 +231,10 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Question_success", Toast.LENGTH_LONG).show();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Question_error", Toast.LENGTH_LONG).show();
-        }
     }
 
-    private void exportStudy(String path) {
+    private void exportStudy(String path) throws IOException {
         StringBuilder data = new StringBuilder();
-        try {
             File file = new File(path, "Study_tab.csv");
             Cursor curCSV = db.rawQuery("SELECT * FROM Study", null);
             FileWriter stream = new FileWriter(file);
@@ -279,15 +259,10 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Study_success", Toast.LENGTH_LONG).show();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Study_error", Toast.LENGTH_LONG).show();
-        }
     }
 
-    private void exportTopic(String path) {
+    private void exportTopic(String path) throws IOException {
         StringBuilder data = new StringBuilder();
-        try {
             File file = new File(path, "Topic_tab.csv");
             Cursor curCSV = db.rawQuery("SELECT * FROM Topic", null);
             FileWriter stream = new FileWriter(file);
@@ -308,15 +283,10 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Topic_success", Toast.LENGTH_LONG).show();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Topic_error", Toast.LENGTH_LONG).show();
-        }
     }
 
-    private void exportAnswer(String path) {
+    private void exportAnswer(String path) throws IOException {
         StringBuilder data = new StringBuilder();
-        try {
             File file = new File(path, "Answer_tab.csv");
             Cursor curCSV = db.rawQuery("SELECT * FROM Answer", null);
             FileWriter stream = new FileWriter(file);
@@ -339,15 +309,10 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Answer_success", Toast.LENGTH_LONG).show();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Answer_error", Toast.LENGTH_LONG).show();
-        }
     }
 
-    private void exportExam(String path) {
+    private void exportExam(String path) throws IOException {
         StringBuilder data = new StringBuilder();
-        try {
             File file = new File(path, "Exam_tab.csv");
             Cursor curCSV = db.rawQuery("SELECT * FROM Exam", null);
             FileWriter stream = new FileWriter(file);
@@ -372,17 +337,11 @@ public class Backstage extends AppCompatActivity {
             stream.close();
             scanMedia(file.toString());
             curCSV.close();
-            Toast.makeText(this, "Exam_success", Toast.LENGTH_LONG).show();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Exam_error", Toast.LENGTH_LONG).show();
-        }
     }
 
 
-    //以下為 讀取 各種電腦端 傳送到 平板端 的資料
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importNurse(String path) throws IOException, ParseException {
-        try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -409,16 +368,11 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Nurse_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Nurse_import_error", Toast.LENGTH_LONG).show();
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importPatient(String path) throws IOException, ParseException {
-        try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -445,16 +399,11 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Patient_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Patient_import_error", Toast.LENGTH_LONG).show();
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importQuestion(String path) throws IOException, ParseException {
-        try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -481,16 +430,11 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Question_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Question_import_error", Toast.LENGTH_LONG).show();
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importStudy(String path) throws IOException, ParseException {
-        try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -517,16 +461,11 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Study_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Study_import_error", Toast.LENGTH_LONG).show();
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importTopic(String path) throws IOException, ParseException {
-        try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -553,16 +492,11 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Topic_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Topic_import_error", Toast.LENGTH_LONG).show();
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importAnswer(String path) throws IOException, ParseException {
-        try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -589,16 +523,11 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Answer_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Answer_import_error", Toast.LENGTH_LONG).show();
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void importExam(String path) throws IOException, ParseException {
-        try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
             SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd");
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
@@ -627,18 +556,12 @@ public class Backstage extends AppCompatActivity {
             }
             csvReader.close();
             DBS.close();
-            Toast.makeText(this, "Exam_import_success", Toast.LENGTH_LONG).show();
             ddfile.delete();
-        } catch (Exception sqlEx) {
-            Toast.makeText(this, "Exam_import_error", Toast.LENGTH_LONG).show();
-        }
     }
 
 
-    //SQL指令
     private void updateNurse(String nurse_id, String nurse_name, String nurse_password, int nurse_authority, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
-        //cv.put("nurse_id",nurse_id);
+        ContentValues cv = new ContentValues(1);
         cv.put("nurse_name", nurse_name);
         cv.put("nurse_password", nurse_password);
         cv.put("nurse_authority", nurse_authority);
@@ -649,8 +572,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void updatePatient(String patient_id, String patient_name, int patient_gender, String patient_register, int patient_sign, String patient_birth, String patient_incharge, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
-        //cv.put("patient_id",patient_id);
+        ContentValues cv = new ContentValues(1);
         cv.put("patient_name", patient_name);
         cv.put("patient_gender", patient_gender);
         cv.put("patient_register", patient_register);
@@ -664,8 +586,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void updateQuestion(int question_id, String question_content, int question_answer, String question_explain, String topic_id, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
-        //cv.put("question_id",question_id);
+        ContentValues cv = new ContentValues(1);
         cv.put("question_content", question_content);
         cv.put("question_answer", question_answer);
         cv.put("question_explain", question_explain);
@@ -677,8 +598,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void updateStudy(String study_id, String study_date, String topic_id, String patient_id, String nurse_id, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
-        //cv.put("study_id",study_id);
+        ContentValues cv = new ContentValues(1);
         cv.put("study_date", study_date);
         cv.put("topic_id", topic_id);
         cv.put("patient_id", patient_id);
@@ -690,8 +610,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void updateTopic(String topic_id, String topic_name, int vidio, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
-        //cv.put("topic_id",topic_id);
+        ContentValues cv = new ContentValues(1);
         cv.put("topic_name", topic_name);
         cv.put("vidio", vidio);
         cv.put("change_data", change_data);
@@ -701,8 +620,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void updateAnswer(String answer_id, int result, int question_id, String exam_id, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
-        //cv.put("answer_id",answer_id);
+        ContentValues cv = new ContentValues(1);
         cv.put("result", result);
         cv.put("question_id", question_id);
         cv.put("exam_id", exam_id);
@@ -713,8 +631,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void updateExam(String exam_id, String exam_date, int exam_score, String patient_id, String nurse_id, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
-        //cv.put("exam_id",exam_id);
+        ContentValues cv = new ContentValues(1);
         cv.put("exam_date", exam_date);
         cv.put("exam_score", exam_score);
         cv.put("patient_id", patient_id);
@@ -727,7 +644,7 @@ public class Backstage extends AppCompatActivity {
 
 
     private void insertNurse(String nurse_id, String nurse_name, String nurse_password, int nurse_authority, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
+        ContentValues cv = new ContentValues(1);
         cv.put("nurse_id", nurse_id);
         cv.put("nurse_name", nurse_name);
         cv.put("nurse_password", nurse_password);
@@ -737,7 +654,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void insertPatient(String patient_id, String patient_name, int patient_gender, String patient_register, int patient_sign, String patient_birth, String patient_incharge, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
+        ContentValues cv = new ContentValues(1);
         cv.put("patient_id", patient_id);
         cv.put("patient_name", patient_name);
         cv.put("patient_gender", patient_gender);
@@ -750,7 +667,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void insertQuestion(int question_id, String question_content, int question_answer, String question_explain, String topic_id, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
+        ContentValues cv = new ContentValues(1);
         cv.put("question_id", question_id);
         cv.put("question_content", question_content);
         cv.put("question_answer", question_answer);
@@ -761,7 +678,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void insertStudy(String study_id, String study_date, String topic_id, String patient_id, String nurse_id, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
+        ContentValues cv = new ContentValues(1);
         cv.put("study_id", study_id);
         cv.put("study_date", study_date);
         cv.put("topic_id", topic_id);
@@ -772,7 +689,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void insertTopic(String topic_id, String topic_name, int vidio, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
+        ContentValues cv = new ContentValues(1);
         cv.put("topic_id", topic_id);
         cv.put("topic_name", topic_name);
         cv.put("vidio", vidio);
@@ -781,7 +698,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     private void insertAnswer(String answer_id, int result, int question_id, String exam_id, String change_data) {
-        ContentValues cv = new ContentValues(1);//10
+        ContentValues cv = new ContentValues(1);
         cv.put("answer_id", answer_id);
         cv.put("result", result);
         cv.put("question_id", question_id);
@@ -805,7 +722,6 @@ public class Backstage extends AppCompatActivity {
     }
 
 
-    //日期格式 用於更新 最新更新時間
     public String getCurrentTime() {
         SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         //==GMT標準時間往後加八小時
@@ -816,7 +732,6 @@ public class Backstage extends AppCompatActivity {
         return currentTime;
     }
 
-    //重新刷新平板端的資料内容
     private void scanMedia(String path) {
         File file = new File(path);
         Uri uri = Uri.fromFile(file);

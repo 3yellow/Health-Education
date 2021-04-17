@@ -874,14 +874,6 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public void data_Transfer(View v)
-    {
-        Intent intent = new Intent();
-        intent.setClass(MainActivity.this , DataTransfer.class);
-        intent.putExtra("health_education","t20");
-        intent.putExtra("flag",99);//顯示PDF的地方 按鈕要改變 跳轉道的葉面要改
-        startActivity(intent);
-        finish();
-    }
+
 
 }
