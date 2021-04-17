@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //創建資料庫
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);
         createTopicTable();
         createNurseTable();
@@ -70,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public String datetime(){
+    public String datetime()//日期時間的格式，只要有新增或修改資料的值都要加上日期。
+    {
         SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //==GMT標準時間往後加八小時
         nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             contentValues.put("nurse_id", "admin");
             contentValues.put("nurse_name", "Admin");
             contentValues.put("nurse_password", pas);
-            contentValues.put("nurse_authority", 1);
+            contentValues.put("nurse_authority", 1);//判別權限，護理師在職或離職  1：在職  0：離職
             contentValues.put("change_data", date_time);
             db.insert("Nurse", null, contentValues);
         }
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createPatientTable() {
         String sql = "CREATE TABLE IF NOT EXISTS Patient (patient_id char(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge char(10) NOT NULL,change_data DATETIME,  PRIMARY KEY(patient_id), FOREIGN KEY(patient_incharge) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
+        //
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
@@ -374,7 +377,8 @@ public class MainActivity extends AppCompatActivity {
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
 
-    private void insertTopic(String topic_id,String topic_name,int vidio, String change_data )
+
+    private void insertTopic(String topic_id,String topic_name,int vidio, String change_data )//新增衛教較主題
     {
         String time= datetime();
         ContentValues cv =new ContentValues(1);//10
