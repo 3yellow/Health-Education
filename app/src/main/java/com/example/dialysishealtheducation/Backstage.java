@@ -109,9 +109,9 @@ public class Backstage extends AppCompatActivity {
             importTopic("csvname/Topic_pc.csv");
             importAnswer("csvname/Answer_pc.csv");
             importExam("csvname/Exam_pc.csv");
-            Toast.makeText(this, "Import successful!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "檔案讀取成功!", Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
-            Toast.makeText(this, "Cant find file", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "請重新鏈接電腦傳送資料!", Toast.LENGTH_LONG).show();
         }
         Button btn = (Button)findViewById(R.id.button8);
         btn.setBackgroundColor(Color.parseColor("#ffff99"));
@@ -127,7 +127,7 @@ public class Backstage extends AppCompatActivity {
             exportQuestion(path);
             exportStudy(path);
             exportTopic(path);
-            Toast.makeText(this, "Export successful!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "檔案輸出成功!", Toast.LENGTH_LONG).show();
             Button btn = (Button)findViewById(R.id.button4);
             btn.setBackgroundColor(Color.parseColor("#ffff99"));
         } catch (IOException e) {
