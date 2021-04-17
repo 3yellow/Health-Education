@@ -107,7 +107,7 @@ public class Backstage extends AppCompatActivity {
             importTopic("csvname/Topic_pc.csv");
             importAnswer("csvname/Answer_pc.csv");
             importExam("csvname/Exam_pc.csv");
-
+            Toast.makeText(this, "Import successful!", Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             Toast.makeText(this, "Cant find file", Toast.LENGTH_LONG).show();
         }
@@ -124,6 +124,7 @@ public class Backstage extends AppCompatActivity {
             exportQuestion(path);
             exportStudy(path);
             exportTopic(path);
+            Toast.makeText(this, "Export successful!", Toast.LENGTH_LONG).show();
             Button btn = (Button)findViewById(R.id.button4);
             btn.setBackgroundColor(Color.parseColor("#ffff99"));
         } catch (IOException e) {
@@ -132,7 +133,7 @@ public class Backstage extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void export_function(View v) throws IOException {
+    public void export_function(View v)  {
         if (!Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).exists()) {
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).mkdir();
         }

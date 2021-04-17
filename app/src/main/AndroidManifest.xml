@@ -29,7 +29,6 @@
         <activity
             android:name="com.example.dialysishealtheducation.vedio_ca"
             android:screenOrientation="landscape" />
-        <activity android:name="com.example.dialysishealtheducation.DataTransfer"></activity>
 
         <activity
             android:name="com.example.dialysishealtheducation.vedio_lin"
