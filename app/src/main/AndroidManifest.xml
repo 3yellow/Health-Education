@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.hemodialysishealtheducation">
+    package="com.example.dialysishealtheducation">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -21,81 +21,81 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Backstage"
+        <activity android:name="com.example.dialysishealtheducation.Backstage"
             android:screenOrientation="landscape"></activity>
         <activity
-            android:name=".backtest2"
+            android:name="com.example.dialysishealtheducation.backtest2"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".vedio_ca"
+            android:name="com.example.dialysishealtheducation.vedio_ca"
             android:screenOrientation="landscape" />
-        <activity android:name=".DataTransfer"></activity>
+        <activity android:name="com.example.dialysishealtheducation.DataTransfer"></activity>
 
         <activity
-            android:name=".vedio_lin"
+            android:name="com.example.dialysishealtheducation.vedio_lin"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".vedio_weight"
+            android:name="com.example.dialysishealtheducation.vedio_weight"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".vedio_care"
+            android:name="com.example.dialysishealtheducation.vedio_care"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".vedio_washhand"
+            android:name="com.example.dialysishealtheducation.vedio_washhand"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".choice_pdf"
+            android:name="com.example.dialysishealtheducation.choice_pdf"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".choice_test"
+            android:name="com.example.dialysishealtheducation.choice_test"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".choice_vedio"
+            android:name="com.example.dialysishealtheducation.choice_vedio"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".show_grade"
+            android:name="com.example.dialysishealtheducation.show_grade"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Vedio"
+            android:name="com.example.dialysishealtheducation.Vedio"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Grade"
+            android:name="com.example.dialysishealtheducation.Grade"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".signature"
+            android:name="com.example.dialysishealtheducation.signature"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".consent"
+            android:name="com.example.dialysishealtheducation.consent"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Newdata"
+            android:name="com.example.dialysishealtheducation.Newdata"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".backtest"
+            android:name="com.example.dialysishealtheducation.backtest"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".HealthInformation"
+            android:name="com.example.dialysishealtheducation.HealthInformation"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".fronttest"
+            android:name="com.example.dialysishealtheducation.fronttest"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".choose_education"
+            android:name="com.example.dialysishealtheducation.choose_education"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Nurse_modify"
+            android:name="com.example.dialysishealtheducation.Nurse_modify"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Nurse_Newdata"
+            android:name="com.example.dialysishealtheducation.Nurse_Newdata"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Menu"
+            android:name="com.example.dialysishealtheducation.Menu"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Searchlogin"
+            android:name="com.example.dialysishealtheducation.Searchlogin"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.dialysishealtheducation.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

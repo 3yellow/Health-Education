@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='Hemodialysis Health Education'
+rootProject.name='dialysis Health Education'
