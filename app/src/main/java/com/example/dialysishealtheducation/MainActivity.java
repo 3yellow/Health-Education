@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         ContentValues contentValues = new ContentValues(1);
         Cursor cursor = db.rawQuery("SELECT * FROM Nurse", null);
         if (!cursor.moveToFirst()) {
-            contentValues.put("nurse_id", "admin");
+            contentValues.put("nurse_id", "admin");//管理者的資料
             contentValues.put("nurse_name", "Admin");
             contentValues.put("nurse_password", pas);
             contentValues.put("nurse_authority", 1);//判別權限，護理師在職或離職  1：在職  0：離職
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createPatientTable() {
         String sql = "CREATE TABLE IF NOT EXISTS Patient (patient_id char(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge char(10) NOT NULL,change_data DATETIME,  PRIMARY KEY(patient_id), FOREIGN KEY(patient_incharge) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
-        //
+        //patient_register 病人註冊日期  patient_sign 病人是否有簽名  patient_incharge
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
@@ -147,9 +147,10 @@ public class MainActivity extends AppCompatActivity {
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
 
-    private void createQuestionTable()
+    private void createQuestionTable()//題目資料庫
     {
         String sql = "CREATE TABLE IF NOT EXISTS Question (question_id INT, question_content TEXT, question_answer INT, question_explain TEXT, topic_id char(10), change_data DATETIME, PRIMARY KEY(question_id), FOREIGN KEY(topic_id) REFERENCES Topic(topic_id) ON DELETE SET NULL ON UPDATE CASCADE)";
+        //question_answer 1：該題題目為正確 0；該題題目為錯誤
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
         Cursor cursor = db.rawQuery("SELECT * FROM Question", null);
@@ -365,7 +366,8 @@ public class MainActivity extends AppCompatActivity {
         cursor.close();
     }
 
-    private void createExamTable() {
+    private void createExamTable()
+    {
         String sql = "CREATE TABLE IF NOT EXISTS Exam (exam_id TEXT, exam_date DateTime, exam_score INT, patient_id char(10), nurse_id char(10),change_data DATETIME,  PRIMARY KEY(exam_id), FOREIGN KEY(patient_id) REFERENCES Patient(patient_id) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY(nurse_id) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
@@ -373,6 +375,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createAnswerTable() {
         String sql = "CREATE TABLE IF NOT EXISTS Answer (answer_id TEXT,result INT,  question_id INT, exam_id INT,change_data DATETIME,  PRIMARY KEY(exam_id, question_id), FOREIGN KEY(exam_id) REFERENCES Exam(exam_id)ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY(question_id) REFERENCES Question(question_id) ON DELETE SET NULL ON UPDATE CASCADE)";
+        //result 病友答對或答錯
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
@@ -390,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
         db.insert("Topic", null, cv);
     }
 
-    private void insertQuestion(int question_id,String content,int question_answer,String explain, String topic_id,String change_data)
+    private void insertQuestion(int question_id,String content,int question_answer,String explain, String topic_id,String change_data)//新增題目
     {
         //String change_data=datetime();
         ContentValues cv =new ContentValues(1);//10
@@ -416,7 +419,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) //按底下返回鍵
+    {
         // TODO Auto-generated method stub
 
         if (keyCode == KeyEvent.KEYCODE_BACK) { // 攔截返回鍵
@@ -446,7 +450,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void end(View v){
+    public void end(View v)//結束應用程式
+    {
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("確定要結束應用程式嗎?")
                 //  .setIcon(R.drawable.ic_launcher)
@@ -472,8 +477,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void choicepatient(View v) {
-        //跳轉到病人畫面
+    public void choicepatient(View v)//跳轉到病人畫面
+    {
         String str=Account.getText().toString().trim().toUpperCase();
         String pas=editText.getText().toString().trim().replace("\n","");
         pas=pas.toUpperCase();
@@ -692,7 +697,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void back(View v) {
+    public void back(View v) //跳轉到後台管理
+    {
         String str1=Account.getText().toString().trim().toLowerCase();
         String pas=editText.getText().toString().trim().toLowerCase();
         pas=pas.toUpperCase();
@@ -858,7 +864,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void help(View v){
+    public void help(View v)////跳轉到操作指南
+    {
         Intent intent = new Intent();
         intent.setClass(MainActivity.this , HealthInformation.class);
         intent.putExtra("health_education","t20");

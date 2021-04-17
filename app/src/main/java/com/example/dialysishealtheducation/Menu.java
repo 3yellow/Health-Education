@@ -26,6 +26,11 @@ import java.lang.reflect.Field;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 
+//後台管理
+
+
+
+
 public class Menu extends AppCompatActivity {
 
     static final String Nurse="nurse"; //database table name
