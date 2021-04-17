@@ -592,7 +592,7 @@ public class Backstage extends AppCompatActivity {
     private void importExam(String path) throws IOException, ParseException {
         try {
             SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//yyyy-MM-dd hh:mm:ss
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
+            SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd");
             File ddfile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path);
             BufferedReader csvReader = new BufferedReader(new FileReader(ddfile));
             String row = csvReader.readLine();
@@ -608,7 +608,9 @@ public class Backstage extends AppCompatActivity {
                     Date dbdate = dateFormat.parse(x);
 
                     if (newdate.after(dbdate)) {
-                        updateExam(data[0], data[1], Integer.parseInt(data[2]), data[3], data[4], data[5]);
+                        Date examdate = dateFormat.parse((data[1]));
+                        String tmp = nowdate.format(examdate);
+                        updateExam(data[0], tmp, Integer.parseInt(data[2]), data[3], data[4], data[5]);
                     }
 
                 } else if (data[0] != null) {
@@ -779,10 +781,13 @@ public class Backstage extends AppCompatActivity {
         db.insert("Answer", null, cv);
     }
 
-    private void insertExam(String exam_id, String exam_date, int exam_score, String patient_id, String nurse_id, String change_data) {
+    private void insertExam(String exam_id, String exam_date, int exam_score, String patient_id, String nurse_id, String change_data) throws ParseException {
+        SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        Date t = nowdate.parse(exam_date);
+        String tmp = nowdate.format(t);
         ContentValues cv = new ContentValues(1);//10
         cv.put("exam_id", exam_id);
-        cv.put("exam_date", exam_date);
+        cv.put("exam_date", tmp);
         cv.put("exam_score", exam_score);
         cv.put("patient_id", patient_id);
         cv.put("nurse_id", nurse_id);
