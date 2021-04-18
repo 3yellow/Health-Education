@@ -22,6 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.TimeZone;
 
+//新增護理師
+
 public class Nurse_Newdata extends AppCompatActivity {
 
     static final String db_nurse="nurseDB"; //database name;
@@ -48,7 +50,8 @@ public class Nurse_Newdata extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //通过全局的一个变量的设置，这个就是判断控件里面的内容是不是能被看到
-                if (canSee == false) {
+                if (canSee == false)
+                {
                     //如果是不能看到密码的情况下，
                     edt_pas1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     edt_pas2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -63,13 +66,15 @@ public class Nurse_Newdata extends AppCompatActivity {
         });
     }
 
-    public void back(View v){
+    public void back(View v)//返回前一個頁面
+    {
         Intent i=new Intent(this,Menu.class);
         db.close();
         startActivity(i);
         finish();
     }
-    public void onclick(View v){
+    public void onclick(View v)//點選確認後檢查欄位是否正確
+    {
         Boolean len;
         String pas1,eId;
         String name=edt_name.getText().toString();
@@ -111,9 +116,9 @@ public class Nurse_Newdata extends AppCompatActivity {
 
     }
 
-    //不能返回
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) //不能返回
+    {
         // TODO Auto-generated method stub
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -164,7 +169,8 @@ public class Nurse_Newdata extends AppCompatActivity {
         }
     }
 
-    public String datetime(){
+    public String datetime()//日期時間格式
+    {
         SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //==GMT標準時間往後加八小時
         nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
@@ -174,7 +180,8 @@ public class Nurse_Newdata extends AppCompatActivity {
         return date_time;
     }
 
-    private void addData(String name,String id,String pas,int staue) {
+    private void addData(String name,String id,String pas,int staue) //新增護理師
+    {
         String date_time= datetime();
         pas=pas.toUpperCase();
         pas=sha256(pas).replace("\n","");
@@ -187,6 +194,7 @@ public class Nurse_Newdata extends AppCompatActivity {
         db.insert(Nurse,null,cv);
     }
 
+/*
     public Boolean  vreifyId(String id){
         int c=0,n=0; //c判斷第一個字是否為英文字 n判別第二個字是否為1或2
         if (id.length()!=10){
@@ -236,9 +244,10 @@ public class Nurse_Newdata extends AppCompatActivity {
         }
         return true;
     }
+*/
 
-
-    public boolean isValidIDorRCNumber(String str) {
+    public boolean isValidIDorRCNumber(String str) //判別身分證 居留證
+    {
 
         if (str == null || "".equals(str)) {
             return false;

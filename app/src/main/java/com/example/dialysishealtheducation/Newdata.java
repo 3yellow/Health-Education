@@ -25,6 +25,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+//新增病友
+
 public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
     //static final String db_patient="patientDB"; //database name;
@@ -74,21 +76,21 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         sex.setOnCheckedChangeListener(this);
         malee = findViewById(R.id.male);
         femalee = findViewById(R.id.female);
-        if(na!=null)
+        if(na!=null)//在病友個人衛教畫面收尋打病友姓名後和新增病友，會在下一個畫面把收尋欄位中的內容顯示在新增病友的姓名。
         {
             edt_name.setText(na);
         }
-        //修改資料
-        //   Intent i=this.getIntent();
         flag1=i.getIntExtra("flag",0);
-        if (flag1 == 1) {
+        if (flag1 == 1)// 修改資料，顯示該為病友資料
+        {
             idd=i.getStringExtra("id");
             String sql = "SELECT  patient_gender  FROM Patient WHERE patient_id = '"+ idd +"'";
             Cursor cu = DBS.rawQuery( sql,null );
             if (!cu.moveToFirst()){
                 Toast.makeText(getApplicationContext(), "查無此人", Toast.LENGTH_SHORT).show();
             }
-            else {
+            else
+                {
                 edt_id.setFocusable(false);
                 edt_id.setFocusableInTouchMode(false);
                 geender = cu.getInt(0);//性別的預設值
@@ -111,7 +113,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         nowTime(0,idd,flag1);//生日
     }
 
-    public void read(String id_tmp){
+    public void read(String id_tmp)//顯示要修改病友的資料
+    {
         String sql = "SELECT *FROM Patient WHERE patient_id = '"+ id_tmp +"'";
         Cursor cu = DBS.rawQuery( sql,null );
 
@@ -126,7 +129,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             edt_name.setText(anamee);
             String idd2=idd;
             char []pas_id=new char[idd2.length()];
-            for (int i=0;i<idd2.length();i++)
+            for (int i=0;i<idd2.length();i++)//顯示身分證，中間幾位用*字代替。
             {
                 if(i>3 && i<8)
                     pas_id[i]='*';
@@ -139,7 +142,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         }
         cu.close();
     }
-    public void onDay2(View v)//設定時間的元件 View v int flag,String date
+    public void onDay2(View v)//設定時間的元件 View v int flag,String date  生日
     {
         mYear_b = 0;mMonth_b = 0; mDay_b = 0;
         if (flag1 == 1){
@@ -161,7 +164,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
             }
         },mYear_b,mMonth_b,mDay_b).show();
     }
-    public void onDay(View v){
+    public void onDay(View v)// 收案日期
+    {
         mYear_b = 0;mMonth_b = 0; mDay_b = 0;
         if (flag1 == 1){
             String[] token=date.split("-");
@@ -187,7 +191,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         return String.valueOf(year)+"-"+String.valueOf(month+1)+"-"+String.valueOf(day);
     }
 
-    public void onClick(View v) {
+    public void onClick(View v) //新增或修改完後點選確認，檢查資料格式是否符合。
+    {
         Boolean len,birth_bool,accet_bool;
         eId=edt_id.getText().toString().trim();//trim去除多餘空白
         eId=eId.toUpperCase();
@@ -271,7 +276,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         }
     }
 
-    public boolean compare_date(String goal_date,String now_date)
+    public boolean compare_date(String goal_date,String now_date)//判斷收案日期是否比生日晚。
     {
         Date date2 = new Date(now_date);
         Date date1 = new Date(goal_date);
@@ -281,7 +286,7 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         }
         return true;
     }
-
+/*
     public Boolean  vreifyId(String id){
         int c=0,n=0; //c判斷第一個字是否為英文字 n判別第二個字是否為1或2
         if (id.length()!=10){
@@ -330,8 +335,9 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         }
         return true;
     }
-
-    public boolean isValidIDorRCNumber(String str) {
+*/
+    public boolean isValidIDorRCNumber(String str) //判斷身分證和居留證
+    {
 
         if (str == null || "".equals(str)) {
             return false;
@@ -399,7 +405,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         return flag;
     }
 
-    public String datetime(){
+    public String datetime()//日期時間格式，當資料庫新增或修改時都要有一個時間的欄位
+    {
         SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //==GMT標準時間往後加八小時
         nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
@@ -408,7 +415,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
 
         return date_time;
     }
-    private void addData(String name,String id ,int gender,String date,String birth_date,String nurseID) {
+    private void addData(String name,String id ,int gender,String date,String birth_date,String nurseID) //新增病友資料
+    {
         //Patient (patient_id char(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge char(10) NOT NULL,change_data DATETIME,
         String date_time= datetime();
         int pad=0,change_data=0;
@@ -429,7 +437,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         DBS.insert("Patient", null, cv);
     }
 
-    private void modify_patient(String name,String id ,int gender,String date,String birth_date ){
+    private void modify_patient(String name,String id ,int gender,String date,String birth_date )//修改病友資料
+    {
         String date_time= datetime();
         int pad=0;
         //,change_data=0;
@@ -507,7 +516,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event)//不能使用返回鍵
+    {
         // TODO Auto-generated method stub
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -516,7 +526,8 @@ public class Newdata extends AppCompatActivity implements RadioGroup.OnCheckedCh
         return true;
     }
 
-    public void back(View v){
+    public void back(View v)//返回前一個畫面
+    {
         Intent i=new Intent(Newdata.this,Searchlogin.class);
         i.putExtra("nurseID",nurseID);
         DBS.close();

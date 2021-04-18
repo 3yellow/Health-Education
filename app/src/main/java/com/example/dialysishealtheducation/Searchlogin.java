@@ -24,6 +24,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+//病友個人衛教畫面
+
 public class Searchlogin extends AppCompatActivity {
 
     static final String Nurse="nurse"; //database table name
@@ -56,7 +58,7 @@ public class Searchlogin extends AppCompatActivity {
         Intent i=this.getIntent();
         nurseID=i.getStringExtra("nurseID");
         pad=i.getIntExtra("pad",-1);
-        Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+nurseID+"' ",null);
+        Cursor cu = db.rawQuery("SELECT * FROM Nurse WHERE nurse_id='"+nurseID+"' ",null);//從資料庫中找取哪一位護理師登入
         if(cu.getCount()>0) {
             cu.moveToFirst();
             String nurse_name=cu.getString(1);
@@ -71,7 +73,7 @@ public class Searchlogin extends AppCompatActivity {
         read();
 
 
-
+/*
         // 定义一个List集合
         final List<String> components = new ArrayList<>();
         components.add("TextView");
@@ -101,7 +103,8 @@ public class Searchlogin extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) //不能使用返回鍵
+    {
         // TODO Auto-generated method stub
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -110,7 +113,8 @@ public class Searchlogin extends AppCompatActivity {
         return true;
     }
 
-    public void search(View v){
+    public void search(View v)//收尋病友
+    {
         Cursor cu=null;
         edt_search = findViewById(R.id.edt_search);
         String s_p = edt_search.getText().toString().trim();
@@ -364,7 +368,7 @@ public class Searchlogin extends AppCompatActivity {
 
     }
 
-    public void read()
+    public void read()//自動產生按鈕 從病友資料庫中抓取每一筆資料並顯示
     {
         i=0;//計數有幾筆資料
         Cursor cu = db.rawQuery("SELECT * FROM "+Patient,null);
@@ -456,7 +460,8 @@ public class Searchlogin extends AppCompatActivity {
         cu.close();
     }
 
-    public void insertpaient(View v){
+    public void insertpaient(View v)//跳轉到新增病友畫面
+    {
         edt_search = findViewById(R.id.edt_search);
         String na=edt_search.getText().toString().trim();
         Intent intent = new Intent();
@@ -472,7 +477,8 @@ public class Searchlogin extends AppCompatActivity {
         finish();
     }
 
-    public void onclick(View v){
+    public void onclick(View v)//護理師登出
+    {
         AlertDialog dialog=new AlertDialog.Builder(Searchlogin.this)
                 .setTitle("確定要登出?")
                 .setPositiveButton("登出", new DialogInterface.OnClickListener() {

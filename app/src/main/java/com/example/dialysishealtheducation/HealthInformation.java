@@ -47,7 +47,7 @@ public class HealthInformation extends AppCompatActivity {
         }
         PDFView pdf=findViewById(R.id.pdfView);
         pdf.fromAsset(eduaction).load();
-        if(!vido.equals("0"))
+        if(!vido.equals("0"))//如果該衛教主題有影片，在做下角會顯示觀看影片按鈕
         {
             vido_btn.setVisibility(View.VISIBLE);
             vido_btn.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +112,8 @@ public class HealthInformation extends AppCompatActivity {
         }
     }
 
-    public void tofronttest(View v){
+    public void tofronttest(View v) //看完衛教資料 判斷是要要做測驗，還是只是觀看衛教資料
+    {
         String Q_array[]=new String[5];
         Intent intent=this.getIntent();
         nurseID=intent.getStringExtra("nurseID");
@@ -146,7 +147,8 @@ public class HealthInformation extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) //不能使用返回鍵
+    {
         // TODO Auto-generated method stub
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {

@@ -26,10 +26,7 @@ import java.lang.reflect.Field;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 
-//後台管理
-
-
-
+//後台管理_護理人員管理
 
 public class Menu extends AppCompatActivity {
 
@@ -76,18 +73,19 @@ public class Menu extends AppCompatActivity {
             throw new RuntimeException(ex);
         }
     }
-
-    public void on_dialog(String str){
+    
+    public void on_dialog(String str)//點選變更資料 會出現一個dialog，要輸入該位護理師密碼。
+    {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Menu.this);
         View v1 = getLayoutInflater().inflate(R.layout.dialog_signin,null);
         alertDialog.setView(v1);
-        Button btn=v1.findViewById(R.id.btn_right);
-        Button btn_cancle=v1.findViewById(R.id.btn_left);
+        Button btn=v1.findViewById(R.id.btn_right);//確定
+        Button btn_cancle=v1.findViewById(R.id.btn_left);//取消
         final TextView username=v1.findViewById(R.id.username);
         final EditText password=v1.findViewById(R.id.password);
         final String str2=str;
         char []pas_id=new char[str.length()];
-        for (int i=0;i<str.length();i++)
+        for (int i=0;i<str.length();i++)//
         {
             if(i>3 && i<8)
                 pas_id[i]='*';
@@ -144,7 +142,7 @@ public class Menu extends AppCompatActivity {
         });
     }
 
-    public void read()
+    public void read()//自動產生按鈕，從資料庫中撈取護理師資料
     {
         i=0;//計數有幾筆資料
         Cursor cu = db.rawQuery("SELECT * FROM "+Nurse,null);
@@ -259,7 +257,9 @@ public class Menu extends AppCompatActivity {
         }
         cu.close();
     }
-    public void nwedata(View v){
+
+    public void nwedata(View v)//跳轉到新增護理師
+    {
         edt_search = findViewById(R.id.edt_search);
         String na=edt_search.getText().toString().trim();
         Intent i=new Intent(Menu.this,Nurse_Newdata.class);
@@ -272,7 +272,8 @@ public class Menu extends AppCompatActivity {
         finish();
     }
 
-    public void search(View v){
+    public void search(View v)//收尋護理師
+    {
         Cursor cu=null;
         edt_search = findViewById(R.id.edt_search);
         String s_p = edt_search.getText().toString().trim();
@@ -513,10 +514,9 @@ public class Menu extends AppCompatActivity {
             }
             read();
         }
-
     }
 
-    public void sign(View v)
+    public void sign(View v)//病友補簽名
     {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Menu.this);
         View v1 = getLayoutInflater().inflate(R.layout.dialog_signin,null);
@@ -569,9 +569,9 @@ public class Menu extends AppCompatActivity {
         });
     }
 
-    //不能返回
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) //不能返回
+    {
         // TODO Auto-generated method stub
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -580,14 +580,16 @@ public class Menu extends AppCompatActivity {
         return true;
     }
 
-    public void back(View v){
+    public void back(View v) //返回前一頁
+    {
         Intent i=new Intent(Menu.this,Backstage.class);
         db.close();
         startActivity(i);
         finish();
     }
 
-    public void onclick(View v){
+    public void onclick(View v)//管理者要登出
+    {
         AlertDialog dialog=new AlertDialog.Builder(Menu.this)
                 .setTitle("確定要登出?")
                 .setPositiveButton("登出", new DialogInterface.OnClickListener() {

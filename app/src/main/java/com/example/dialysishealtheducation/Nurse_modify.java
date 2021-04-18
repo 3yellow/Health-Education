@@ -26,6 +26,8 @@ import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
+//修改護理師資料
+
 public class Nurse_modify extends AppCompatActivity {
 
     RadioButton malee,femalee;
@@ -84,7 +86,8 @@ public class Nurse_modify extends AppCompatActivity {
         //work.setOnCheckedChangeListener(radGrpRegionOnCheckedChange);
     }
 
-    public void show_pas(View v){
+    public void show_pas(View v)//顯示密碼或隱藏密碼
+    {
         //通过全局的一个变量的设置，这个就是判断控件里面的内容是不是能被看到
         if (canSee == false) {
             //如果是不能看到密码的情况下，
@@ -99,9 +102,9 @@ public class Nurse_modify extends AppCompatActivity {
         }
     }
 
-    //不能返回
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) //不能使用返回鍵
+    {
         // TODO Auto-generated method stub
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -110,12 +113,14 @@ public class Nurse_modify extends AppCompatActivity {
         return true;
     }
 
-    public void back(View v){
+    public void back(View v)//返回前一頁
+    {
         Intent i=new Intent(this,Menu.class);
         db.close();
         startActivity(i);
         finish();
     }
+
     public void on(View v)//RadioGroup group, int checkedId
     {
         switch (work.getCheckedRadioButtonId()) {
@@ -134,7 +139,9 @@ public class Nurse_modify extends AppCompatActivity {
         byte [] input = Base64.decode(bmMsg, Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(input, 0, input.length);
     }
-    public void onclick(View v){
+
+    public void onclick(View v)//判別欄位是否正確
+    {
         Boolean iId,len;
         String pas1,eId;
         pas1=edt_pas1.getText().toString().trim();
@@ -196,7 +203,8 @@ public class Nurse_modify extends AppCompatActivity {
             finish();
         }
     }
-    public void read(String id_tmp){
+    public void read(String id_tmp)//顯示該為護理師資料
+    {
         String sql = "SELECT * FROM Nurse WHERE nurse_id = '"+ id_tmp +"'";
         Cursor cu = db.rawQuery( sql,null );
         if (!cu.moveToFirst()){
@@ -272,7 +280,8 @@ public class Nurse_modify extends AppCompatActivity {
         }
     }
 
-    public String datetime(){
+    public String datetime()//日期時間格式
+    {
         SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //==GMT標準時間往後加八小時
         nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
@@ -282,7 +291,8 @@ public class Nurse_modify extends AppCompatActivity {
         return date_time;
     }
 
-    private void modify_nurse(String name,String id,String pas,int staue){
+    private void modify_nurse(String name,String id,String pas,int staue)//修改護理師資料
+    {
         String date_time=datetime();
         ContentValues cv = new ContentValues(7);
         cv.put("nurse_id", idd);

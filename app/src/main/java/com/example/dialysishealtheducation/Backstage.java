@@ -35,6 +35,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+//後台管理
+
 public class Backstage extends AppCompatActivity {
     SQLiteDatabase db;
     SimpleDateFormat format;
@@ -46,7 +48,7 @@ public class Backstage extends AppCompatActivity {
         db = openOrCreateDatabase("DBS", Context.MODE_PRIVATE, null);
         format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     }
-    public void nurse(View v)
+    public void nurse(View v)//跳轉護理人員管理
     {
         Intent intent=new Intent(Backstage.this,Menu.class);
         startActivity(intent);
@@ -54,7 +56,8 @@ public class Backstage extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) //返回鍵不能使用
+    {
         // TODO Auto-generated method stub
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -63,8 +66,9 @@ public class Backstage extends AppCompatActivity {
         return true;
     }
 
-    //退出後端按鈕
-    public void onclick(View v){
+
+    public void onclick(View v) //管理者登出
+    {
         AlertDialog dialog=new AlertDialog.Builder(Backstage.this)
                 .setTitle("確定要登出?")
                 .setPositiveButton("登出", new DialogInterface.OnClickListener() {

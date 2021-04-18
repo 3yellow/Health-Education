@@ -23,6 +23,8 @@ import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
+//前測
+
 public class fronttest extends AppCompatActivity {
 
     static final String Question="question"; //database table name
@@ -40,7 +42,8 @@ public class fronttest extends AppCompatActivity {
     int score=0,count=0;
 
 
-    public  void  back(View v){
+    public  void  back(View v)//離開測驗
+    {
         new android.app.AlertDialog.Builder(fronttest.this)
                 .setTitle("確定要離開測驗嗎?")
                 //  .setIcon(R.drawable.ic_launcher)
@@ -69,6 +72,7 @@ public class fronttest extends AppCompatActivity {
                         }).show();
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,23 +90,24 @@ public class fronttest extends AppCompatActivity {
         Intent intent = this.getIntent();
         nurseID = intent.getStringExtra("nurseID");
         id = intent.getStringExtra("id");
-        exam_id = intent.getStringExtra("exam_id");
-        health_education = intent.getStringExtra("health_education");
-        score = intent.getIntExtra("score", 0);
-        count = intent.getIntExtra("count", 0);
+        exam_id = intent.getStringExtra("exam_id");//考卷編號
+        health_education = intent.getStringExtra("health_education");//哪一章節衛教主題
+        score = intent.getIntExtra("score", 0);//分數累加
+        count = intent.getIntExtra("count", 0);//第幾題
         if(score<0)
             score=0;
         if (count == -1) {
             Que.setText("產生考卷發生問題");
-        } else if (count != -1) {
-                String answer_id = exam_id + count;
-                String sql = "SELECT * FROM Answer  WHERE answer_id='" + answer_id + "'";//我在上一個傳給你的城市中有寫感生亂數，用那個亂數的改count，因為這個count 主要的功能是既屬第幾題
+        }
+        else if (count != -1) {
+                String answer_id = exam_id + count;//作答編號
+                String sql = "SELECT * FROM Answer  WHERE answer_id='" + answer_id + "'";//由作答編號找題目編號，在選擇衛教章節時，就把作答資料庫中的的題目編號寫好。
                 cu = db.rawQuery(sql, null);
                 if (cu.getCount() > 0) {
                     cu.moveToFirst();
                     if (cu.getInt(1) == -1)//如果作答解果為-1，表示還沒做過題目
                     {
-                        q_id= cu.getInt(2);
+                        q_id= cu.getInt(2);//題目編號
                     }
                 }
                 cu.close();
@@ -160,8 +165,10 @@ public class fronttest extends AppCompatActivity {
         }
     }
 
-    public void tofronttest2 (View v){
-        if (your_ans!=null) {
+    public void tofronttest2 (View v)
+    {
+        if (your_ans!=null)
+        {
             int true_or_false = -1;//判別題目有沒有做對 1:對 0:錯
             if (result == true) {
                 true_or_false = 1;
@@ -203,7 +210,7 @@ public class fronttest extends AppCompatActivity {
                 finish();
             }
         }
-        else
+        else //沒有選擇作答結果，就點完成
         {
             AlertDialog dialog=new AlertDialog.Builder(fronttest.this)
                     .setTitle("請選擇您的答案!!")

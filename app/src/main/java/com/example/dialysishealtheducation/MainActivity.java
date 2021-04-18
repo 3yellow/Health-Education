@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createPatientTable() {
         String sql = "CREATE TABLE IF NOT EXISTS Patient (patient_id char(10) NOT NULL, patient_name TEXT NOT NULL, patient_gender INT, patient_register DATE, patient_sign INT, patient_birth DATE , patient_incharge char(10) NOT NULL,change_data DATETIME,  PRIMARY KEY(patient_id), FOREIGN KEY(patient_incharge) REFERENCES Nurse(nurse_id) ON DELETE SET NULL ON UPDATE CASCADE)";
-        //patient_register 病人註冊日期  patient_sign 病人是否有簽名  patient_incharge
+        //patient_register 病人註冊日期  patient_sign 病人是否有簽名  patient_incharge 哪位護理師幫病友做註冊
         db.execSQL(sql);
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
